@@ -62,6 +62,8 @@
 		BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B472D5A076300E7CC46 /* LoginModel.swift */; };
 		BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B482D5A076300E7CC46 /* ResponseModel.swift */; };
 		BE4F9B4F2D5A095D00E7CC46 /* LoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B4E2D5A095D00E7CC46 /* LoginFeature.swift */; };
+		BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B502D5A0D9200E7CC46 /* EmailLoginFeature.swift */; };
+		BE4F9B532D5A0DE300E7CC46 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B522D5A0DE300E7CC46 /* TextFieldState.swift */; };
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
 		BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1AA02D51EBA000D124DB /* HomeFeature.swift */; };
 		BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1AA22D51EC5D00D124DB /* HomeView.swift */; };
@@ -134,6 +136,8 @@
 		BE4F9B472D5A076300E7CC46 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		BE4F9B482D5A076300E7CC46 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		BE4F9B4E2D5A095D00E7CC46 /* LoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeature.swift; sourceTree = "<group>"; };
+		BE4F9B502D5A0D9200E7CC46 /* EmailLoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginFeature.swift; sourceTree = "<group>"; };
+		BE4F9B522D5A0DE300E7CC46 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		BE5F1A932D51EB2500D124DB /* Cateogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cateogory.swift; sourceTree = "<group>"; };
 		BE5F1AA02D51EBA000D124DB /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		BE5F1AA22D51EC5D00D124DB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				BE4F9B4E2D5A095D00E7CC46 /* LoginFeature.swift */,
+				BE4F9B502D5A0D9200E7CC46 /* EmailLoginFeature.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				BE5F1A932D51EB2500D124DB /* Cateogory.swift */,
 				BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */,
 				BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */,
+				BE4F9B522D5A0DE300E7CC46 /* TextFieldState.swift */,
 				BE02D09C2D607D0C00F61E66 /* Sort.swift */,
 			);
 			path = Enums;
@@ -585,6 +591,7 @@
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
+				BE4F9B532D5A0DE300E7CC46 /* TextFieldState.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */,
@@ -610,6 +617,7 @@
 				BE3386412D5F8BDC00FF44CF /* RestaurantListModel.swift in Sources */,
 				BE4F9B4F2D5A095D00E7CC46 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
+				BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
 			);
