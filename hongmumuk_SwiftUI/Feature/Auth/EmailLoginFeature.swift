@@ -9,15 +9,20 @@ import ComposableArchitecture
 import Foundation
 
 struct EmailLoginFeature: Reducer {
+    enum ActiveScreen {
+        case none
+        case main
+        case findPassword
+        case signUp
+    }
+    
     struct State {
         var isEnabledSingInButton = false
-        var showSingUp = false
-        var showFindPassword = false
-        var showMain = false
         var emailTextFiledState: TextFiledState = .none
         var passwordTextFiledState: TextFiledState = .none
         var isVisiblePassword: Bool = false
         var pop: Bool = false
+        var activeScreen: ActiveScreen = .none
     }
     
     enum Action {
@@ -27,15 +32,12 @@ struct EmailLoginFeature: Reducer {
         case passwordOnFocused
         case signInButtonTapped(email: String, password: String)
         case signUpButtonTapped
-        case dismissSignUp
         case findPaasswordButtonTapped
-        case dismissFindPaassword
         case backButtonTapped
-        case clearEmailButtonTapped
-        case clearPasswordButtonTapped
         case togglePasswordVisibility(Bool)
         case successLogin
         case failLogin(LoginError)
+        case onDismiss
     }
     
     @Dependency(\.validationClient) var validationClient
@@ -76,34 +78,26 @@ struct EmailLoginFeature: Reducer {
                     }
                 }
             case .signUpButtonTapped:
-                state.showSingUp = true
+                state.activeScreen = .signUp
                 return .none
-            case .dismissSignUp:
-                state.showSingUp = false
+            case .onDismiss:
+                state.activeScreen = .none
                 return .none
             case .findPaasswordButtonTapped:
-                state.showFindPassword = true
-                return .none
-            case .dismissFindPaassword:
-                state.showFindPassword = false
+                state.activeScreen = .findPassword
                 return .none
             case .backButtonTapped:
                 state.pop = true
-                return .none
-            case .clearEmailButtonTapped:
-                return .none
-            case .clearPasswordButtonTapped:
                 return .none
             case let .togglePasswordVisibility(isVisible):
                 state.isVisiblePassword = isVisible
                 return .none
             case .successLogin:
-                state.showMain = true
+                state.activeScreen = .main
                 return .none
             case let .failLogin(error):
                 // 아직 구체적이 에러 처리 기획이 안 되어 있는 상태
                 // 아마 얼럿이나 이런걸로 대체하지 않을까?
-                
                 switch error {
                 case .invalid:
                     print("invalid")
