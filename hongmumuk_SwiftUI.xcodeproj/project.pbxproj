@@ -41,6 +41,9 @@
 		2FA097CF2D42A11000D01792 /* stag.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C82D42A11000D01792 /* stag.xcconfig */; };
 		2FA097D02D42A11000D01792 /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C62D42A11000D01792 /* dev.xcconfig */; };
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
+		2FE55C032D5E356D00BFE6F7 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C022D5E356D00BFE6F7 /* EmailLoginView.swift */; };
+		2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0A2D5E45EA00BFE6F7 /* ProgressButton.swift */; };
+		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
 		BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */; };
@@ -115,6 +118,9 @@
 		2FA097C62D42A11000D01792 /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
 		2FA097C72D42A11000D01792 /* prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = prod.xcconfig; sourceTree = "<group>"; };
 		2FA097C82D42A11000D01792 /* stag.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = stag.xcconfig; sourceTree = "<group>"; };
+		2FE55C022D5E356D00BFE6F7 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
+		2FE55C0A2D5E45EA00BFE6F7 /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
+		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
 		BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
@@ -321,6 +327,8 @@
 			children = (
 				BE4F9B4E2D5A095D00E7CC46 /* LoginFeature.swift */,
 				BE4F9B502D5A0D9200E7CC46 /* EmailLoginFeature.swift */,
+				2FE55C022D5E356D00BFE6F7 /* EmailLoginView.swift */,
+				2FE55C0A2D5E45EA00BFE6F7 /* ProgressButton.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -355,6 +363,7 @@
 				BE33863D2D5F8A4F00FF44CF /* Search */,
 				BE4F9B4D2D5A094F00E7CC46 /* Auth */,
 				BE5F1A9D2D51EB9300D124DB /* Home */,
+				2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -586,9 +595,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
+				2FE55C032D5E356D00BFE6F7 /* EmailLoginView.swift in Sources */,
 				BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
 				BE4F9B532D5A0DE300E7CC46 /* TextFieldState.swift in Sources */,
@@ -607,6 +618,7 @@
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
+				2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,

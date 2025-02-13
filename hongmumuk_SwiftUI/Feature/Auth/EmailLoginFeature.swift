@@ -16,7 +16,9 @@ struct EmailLoginFeature: Reducer {
         case signUp
     }
     
-    struct State {
+    struct State: Equatable {
+        var email: String = ""
+        var password: String = ""
         var isEnabledSingInButton = false
         var emailTextFiledState: TextFiledState = .none
         var passwordTextFiledState: TextFiledState = .none
@@ -25,7 +27,9 @@ struct EmailLoginFeature: Reducer {
         var activeScreen: ActiveScreen = .none
     }
     
-    enum Action {
+    enum Action: Equatable {
+        case emailChanged(String)
+        case passwordChanged(String)
         case emailOnSubmit(String)
         case passwordOnSubmit(String)
         case emailOnFocused
@@ -46,6 +50,12 @@ struct EmailLoginFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case let .emailChanged(email):
+                state.email = email
+                return .none
+            case let .passwordChanged(password):
+                state.password = password
+                return .none
             case let .emailOnSubmit(email):
                 let errorMessage = "올바르지 않은 이메일 형식입니다"
                 let isValid = validationClient.validateEmail(email)
