@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "heartSmallIcon.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
