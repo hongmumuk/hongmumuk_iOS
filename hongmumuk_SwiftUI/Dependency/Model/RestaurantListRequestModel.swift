@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct RestaurantListRequestModel: Codable {
+    let category: Category
+    let page: Int
+    let sort: Sort
+}

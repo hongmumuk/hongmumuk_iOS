@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum Sort: String, Codable {
+    case likes
+    case front
+    case back
+    case name
+}

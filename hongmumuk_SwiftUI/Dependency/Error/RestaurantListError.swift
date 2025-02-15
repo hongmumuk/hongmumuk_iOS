@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum RestaurantListError: String, Error {
+    case unknown
+}
