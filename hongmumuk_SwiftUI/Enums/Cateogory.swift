@@ -8,14 +8,38 @@
 import Foundation
 
 enum Category: String, CaseIterable {
-    case all = "전체"
-    case korean = "한식"
-    case chinese = "중식"
-    case japanese = "일식"
-    case western = "양식"
-    case logo = "로고"
-    case asian = "아시아"
-    case fast = "패·푸"
-    case snack = "간식"
-    case etc = "기타"
+    case all
+    case korean
+    case chinese
+    case japanese
+    case western
+    case asian
+    case fast
+    case snack
+    case etc
+}
+
+extension Category {
+    var displayName: String {
+        switch self {
+        case .all:
+            return "전체"
+        case .korean:
+            return "한식"
+        case .chinese:
+            return "중식"
+        case .japanese:
+            return "일식"
+        case .western:
+            return "양식"
+        case .asian:
+            return "아시아"
+        case .fast:
+            return "패·푸"
+        case .snack:
+            return "간식"
+        case .etc:
+            return "기타"
+        }
+    }
 }

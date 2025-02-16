@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct Colors {
-    struct Primary {
+enum Colors {
+    enum Primary {
         static let normal = Color(hex: "#193BE6")
         static let strong = Color(hex: "#1735CF")
         static let heavy = Color(hex: "#142FB8")
@@ -30,7 +30,7 @@ struct Colors {
         static let primary95 = Color(hex: "#050C2E")
     }
     
-    struct GrayScale {
+    enum GrayScale {
         static let normal = Color(hex: "#040615")
         static let neutral = Color(hex: "#2B2D3B")
         static let alternative = Color(hex: "#8F92A3")
@@ -53,14 +53,14 @@ struct Colors {
         static let grayscale95 = Color(hex: "#040615")
     }
     
-    struct Border {
+    enum Border {
         static let normal = Color(hex: "#040615").opacity(0.1)
         static let neutral = Color(hex: "#040615").opacity(0.07)
         static let alternative = Color(hex: "#040615").opacity(0.05)
         static let strong = Color(hex: "#040615").opacity(0.15)
     }
     
-    struct SemanticColor {
+    enum SemanticColor {
         static let positive = Color(hex: "#20DF7F")
         static let negative = Color(hex: "#FF4433")
         
@@ -97,4 +97,3 @@ struct Colors {
         
     }
 }
-
