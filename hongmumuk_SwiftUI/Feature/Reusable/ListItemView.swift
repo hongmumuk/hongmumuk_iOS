@@ -80,7 +80,7 @@ struct ListItemView: View {
     }
 }
 
-struct ListItemSkeletonView: View {
+struct ListItemSkeletonItemView: View {
     var body: some View {
         HStack(spacing: 12) {
             RoundedRectangle(cornerRadius: 16)

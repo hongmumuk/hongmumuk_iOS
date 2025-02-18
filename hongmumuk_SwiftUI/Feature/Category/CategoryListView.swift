@@ -1,5 +1,5 @@
 //
-//  ListCategoryView.swift
+//  CategoryListView.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/17/25.
@@ -9,15 +9,15 @@ import ComposableArchitecture
 import Shimmer
 import SwiftUI
 
-struct ListCategoryView: View {
-    @ObservedObject var viewStore: ViewStoreOf<ListFeature>
+struct CategoryListView: View {
+    @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 if viewStore.showSkeletonLoading {
                     ForEach(0 ..< 5, id: \.self) { _ in
-                        ListItemSkeletonView()
+                        ListItemSkeletonItemView()
                             .shimmering(active: true)
                     }
                 } else {
