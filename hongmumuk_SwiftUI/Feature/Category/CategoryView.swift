@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  CategoryView.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/17/25.
@@ -8,11 +8,11 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ListView: View {
-    private let store: StoreOf<ListFeature>
-    @ObservedObject var viewStore: ViewStoreOf<ListFeature>
+struct CategoryView: View {
+    private let store: StoreOf<CategoryFeature>
+    @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
     
-    init(store: StoreOf<ListFeature>) {
+    init(store: StoreOf<CategoryFeature>) {
         self.store = store
         viewStore = ViewStore(store, observe: { $0 })
     }
@@ -21,11 +21,11 @@ struct ListView: View {
         NavigationStack {
             ZStack {
                 VStack(spacing: 0) {
-                    ListHeaderView(viewStore: viewStore)
-                    ListFilterView(viewStore: viewStore)
-                    ListCategoryView(viewStore: viewStore)
+                    CategoryHeaderView(viewStore: viewStore)
+                    CategoryFilterView(viewStore: viewStore)
+                    CategoryListView(viewStore: viewStore)
                 }
-                ListRandomButton(viewStore: viewStore)
+                CategoryRandomButton(viewStore: viewStore)
             }
         }
         .onAppear {

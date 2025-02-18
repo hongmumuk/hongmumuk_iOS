@@ -17,7 +17,7 @@ struct SearchListView: View {
             LazyVStack(spacing: 0) {
                 if viewStore.isLoading {
                     ForEach(0 ..< 5, id: \.self) { _ in
-                        ListItemSkeletonView()
+                        ListItemSkeletonItemView()
                             .shimmering(active: true)
                     }
                 } else {

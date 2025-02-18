@@ -1,5 +1,5 @@
 //
-//  ListFeature.swift
+//  CategoryFeature.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/17/25.
@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ListFeature: Reducer {
+struct CategoryFeature: Reducer {
     enum ActiveScreen: Equatable {
         case none
         case restaurantDetail(String)
@@ -128,7 +128,7 @@ struct ListFeature: Reducer {
     
     func fetchRestaurantList(
         for state: State,
-        extra: @escaping (Send<ListFeature.Action>) async -> Void = { _ in }
+        extra: @escaping (Send<CategoryFeature.Action>) async -> Void = { _ in }
     ) -> Effect<Action> {
         let body = RestaurantListRequestModel(category: state.cateogry, page: state.page, sort: state.sort)
         return .run { send in

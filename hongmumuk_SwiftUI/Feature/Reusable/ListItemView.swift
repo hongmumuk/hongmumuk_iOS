@@ -1,5 +1,5 @@
 //
-//  ListItmeView.swift
+//  ListItemView.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/18/25.
@@ -80,7 +80,7 @@ struct ListItemView: View {
     }
 }
 
-struct ListItemSkeletonView: View {
+struct ListItemSkeletonItemView: View {
     var body: some View {
         HStack(spacing: 12) {
             RoundedRectangle(cornerRadius: 16)

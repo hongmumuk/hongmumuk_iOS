@@ -1,5 +1,5 @@
 //
-//  ListHeaderView.swift
+//  CategoryHeaderView.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/17/25.
@@ -8,8 +8,8 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ListHeaderView: View {
-    @ObservedObject var viewStore: ViewStoreOf<ListFeature>
+struct CategoryHeaderView: View {
+    @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
     @SwiftUI.Environment(\.dismiss) var dismiss
     
     var body: some View {
