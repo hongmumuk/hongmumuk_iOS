@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Fonts {
+enum Fonts {
     // title
     static let title1 = FontStyle(
         name: "Pretendard-Bold",
@@ -50,6 +50,13 @@ struct Fonts {
         name: "Pretendard-Bold",
         size: 18,
         lineHeight: 23.4,
+        letterSpacing: -0.4
+    )
+    
+    static let heading3Bold = FontStyle(
+        name: "Pretendard-Bold",
+        size: 16,
+        lineHeight: 20.8,
         letterSpacing: -0.4
     )
     
@@ -143,11 +150,9 @@ struct FontStyle {
     let name: String
     let size: CGFloat
     let lineHeight: CGFloat
-    let letterSpacing: CGFloat 
+    let letterSpacing: CGFloat
 
     func toFont() -> Font {
         Font.custom(name, size: size)
     }
 }
-
-

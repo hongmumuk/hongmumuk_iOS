@@ -11,15 +11,19 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
     var id: String
     var name: String
     var likes: Int
-    let distance: Double
-    let category: String
+    var frontDistance: Double
+    var backDistance: Double
+    var category: String
+    let restrauntCnt: Int
 
     enum CodingKeys: String, CodingKey {
         case id = "rid"
         case name
         case likes
-        case distance
+        case frontDistance
+        case backDistance
         case category
+        case restrauntCnt
     }
     
     static func mock() -> [Self] {
@@ -46,8 +50,11 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
                 id: "1",
                 name: restaurantNames.randomElement() ?? "The Restaurant",
                 likes: 300,
-                distance: 400,
-                category: Category.korean.displayName
+                frontDistance: 400,
+                backDistance: 400,
+                category: Category.allCases.randomElement()!.displayName,
+                
+                restrauntCnt: 99
             ),
             count: 100
         )
@@ -56,6 +63,9 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
             new.likes = (1 ... 100).randomElement() ?? 10
             new.id = UUID().uuidString
             new.name = restaurantNames.randomElement() ?? "The Restaurant"
+            new.category = Category.allCases.randomElement()!.displayName
+            new.frontDistance = Double((1 ... 500).randomElement() ?? 10)
+            new.backDistance = Double((1 ... 500).randomElement() ?? 10)
             return new
         }
     }
