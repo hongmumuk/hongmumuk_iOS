@@ -10,37 +10,36 @@ import Foundation
 
 struct EmailLoginFeature: Reducer {
     enum ActiveScreen {
-        case none
-        case main
-        case findPassword
-        case signUp
+        case none, main, findPassword, signUp
+    }
+    
+    enum FocusedField {
+        case email, password, none
     }
     
     struct State: Equatable {
-        var email: String = ""
-        var password: String = ""
-        var isEnabledSingInButton = false
-        var emailTextFiledState: TextFiledState = .none
-        var passwordTextFiledState: TextFiledState = .none
-        var isVisiblePassword: Bool = false
-        var pop: Bool = false
+        var emailState = TextFieldState()
+        var passwordState = TextFieldState()
+        var focusedField: FocusedField? = nil
+        var isPasswordVisible: Bool = false
+        var isSubmitLoading: Bool = false
         var activeScreen: ActiveScreen = .none
+        
+        var isSigninEnabled: Bool {
+            emailState.status == .valid && passwordState.status == .valid
+        }
     }
     
     enum Action: Equatable {
         case emailChanged(String)
         case passwordChanged(String)
-        case emailOnSubmit(String)
-        case passwordOnSubmit(String)
-        case emailOnFocused
-        case passwordOnFocused
-        case signInButtonTapped(email: String, password: String)
-        case signUpButtonTapped
-        case findPaasswordButtonTapped
-        case backButtonTapped
-        case togglePasswordVisibility(Bool)
-        case successLogin
-        case failLogin(LoginError)
+        case validateField(FocusedField)
+        case focusField(FocusedField)
+        case clearField(FocusedField)
+        case togglePasswordVisibility
+        case signInButtonTapped
+        case findPasswordButtonTapped, signUpButtonTapped, backButtonTapped
+        case successLogin, failLogin(LoginError)
         case onDismiss
     }
     
@@ -51,71 +50,113 @@ struct EmailLoginFeature: Reducer {
         Reduce { state, action in
             switch action {
             case let .emailChanged(email):
-                state.email = email
+                updateFieldState(&state.emailState, text: email, isFocused: state.focusedField == .email)
                 return .none
+                
             case let .passwordChanged(password):
-                state.password = password
+                updateFieldState(&state.passwordState, text: password, isFocused: state.focusedField == .password)
                 return .none
-            case let .emailOnSubmit(email):
-                let errorMessage = "올바르지 않은 이메일 형식입니다"
-                let isValid = validationClient.validateEmail(email)
-                state.emailTextFiledState = isValid ? .valid : .invalid(errorMessage)
-                state.isEnabledSingInButton = state.emailTextFiledState == .valid && state.passwordTextFiledState == .valid
+                
+            case let .validateField(field):
+                validateField(&state, field: field)
                 return .none
-            case let .passwordOnSubmit(password):
-                let errorMessage = "올바르지 않은 비밀번호 형식입니다"
-                let isValid = validationClient.validatePassword(password)
-                state.passwordTextFiledState = isValid ? .valid : .invalid(errorMessage)
-                state.isEnabledSingInButton = state.emailTextFiledState == .valid && state.passwordTextFiledState == .valid
+                
+            case let .focusField(focusedField):
+                state.focusedField = focusedField
+                focusFieldState(&state, field: focusedField)
                 return .none
-            case .emailOnFocused:
-                state.emailTextFiledState = .focused
+                
+            case let .clearField(field):
+                if field == .email { state.emailState.text = "" }
+                if field == .password { state.passwordState.text = "" }
                 return .none
-            case .passwordOnFocused:
-                state.passwordTextFiledState = .focused
-                return .none
-            case let .signInButtonTapped(email, password):
-                let body = LoginModel(email: email, password: password)
-                return .run { send in
-                    do {
-                        if try await authClient.login(body) {
-                            await send(.successLogin)
-                        }
-                    } catch {
-                        if let loginError = error as? LoginError {
-                            await send(.failLogin(loginError))
-                        }
-                    }
+                
+            case .togglePasswordVisibility:
+                state.isPasswordVisible.toggle()
+                if state.focusedField == .password {
+                    return .send(.focusField(.password))
                 }
+                return .none
+                
+            case .signInButtonTapped:
+                return handleLogin(state.emailState.text, state.passwordState.text)
+                
             case .signUpButtonTapped:
                 state.activeScreen = .signUp
                 return .none
-            case .onDismiss:
-                state.activeScreen = .none
-                return .none
-            case .findPaasswordButtonTapped:
+                
+            case .findPasswordButtonTapped:
                 state.activeScreen = .findPassword
                 return .none
-            case .backButtonTapped:
-                state.pop = true
+                
+            case .backButtonTapped, .onDismiss:
+                state.activeScreen = .none
                 return .none
-            case let .togglePasswordVisibility(isVisible):
-                state.isVisiblePassword = isVisible
-                return .none
+                
             case .successLogin:
                 state.activeScreen = .main
                 return .none
+                
             case let .failLogin(error):
-                // 아직 구체적이 에러 처리 기획이 안 되어 있는 상태
-                // 아마 얼럿이나 이런걸로 대체하지 않을까?
-                switch error {
-                case .invalid:
-                    print("invalid")
-                case .unKnown:
-                    print("unKnown")
-                }
+                handleLoginError(error)
                 return .none
             }
+        }
+    }
+    
+    private func updateFieldState(_ fieldState: inout TextFieldState, text: String, isFocused: Bool) {
+        fieldState.text = text
+        fieldState.status = isFocused ? .focused : .default
+    }
+    
+    private func validateField(_ state: inout State, field: FocusedField) {
+        switch field {
+        case .email:
+            let isValid = validationClient.validateEmail(state.emailState.text)
+            state.emailState.updateStatus(isFocused: false, isValid: isValid, message: isValid ? nil : "올바르지 않은 이메일 형식입니다")
+            
+        case .password:
+            let isValid = validationClient.validatePassword(state.passwordState.text)
+            state.passwordState.updateStatus(isFocused: false, isValid: isValid, message: isValid ? nil : "올바르지 않은 비밀번호 형식입니다")
+            
+        case .none:
+            break
+        }
+    }
+    
+    private func focusFieldState(_ state: inout State, field: FocusedField) {
+        switch field {
+        case .email:
+            state.emailState.updateStatus(isFocused: true, isValid: state.emailState.status == .valid)
+        case .password:
+            state.passwordState.updateStatus(isFocused: true, isValid: state.passwordState.status == .valid)
+        case .none:
+            state.emailState.updateStatus(isFocused: false, isValid: state.emailState.status == .valid)
+            state.passwordState.updateStatus(isFocused: false, isValid: state.passwordState.status == .valid)
+        }
+    }
+    
+    private func handleLogin(_ email: String, _ password: String) -> Effect<Action> {
+        let body = LoginModel(email: email, password: password)
+        return .run { send in
+            do {
+                if try await authClient.login(body) {
+                    await send(.successLogin)
+                }
+            } catch {
+                if let loginError = error as? LoginError {
+                    await send(.failLogin(loginError))
+                }
+            }
+        }
+    }
+    
+    private func handleLoginError(_ error: LoginError) {
+        switch error {
+        case .invalid:
+            print("invalid login")
+        case .unKnown:
+            print("unknown error")
         }
     }
 }
