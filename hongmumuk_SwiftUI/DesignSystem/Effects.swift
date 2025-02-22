@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct Effects {
-    struct Shadows {
+enum Effects {
+    enum Shadows {
         static let normal = ShadowStyle(shadows: [
             ShadowEffect(color: .black.opacity(0.12), radius: 2, x: 0, y: 1),
             ShadowEffect(color: .black.opacity(0.08), radius: 1, x: 0, y: 0),

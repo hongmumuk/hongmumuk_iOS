@@ -24,7 +24,9 @@ struct HomeView: View {
                 HomeCircleView(viewStore: viewStore)
                 HomeRandomButton(viewStore: viewStore)
             }
-            .onAppear { viewStore.send(.onAppear) }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
             .navigationDestination(
                 isPresented: viewStore.binding(
                     get: { $0.activeScreen != .none },

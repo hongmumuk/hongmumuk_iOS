@@ -10,7 +10,7 @@ import SwiftUI
 
 extension Text {
     func fontStyle(_ fontStyle: FontStyle) -> some View {
-        self.font(fontStyle.toFont())
+        font(fontStyle.toFont())
             .lineSpacing(fontStyle.lineHeight - fontStyle.size) // 줄 높이
             .tracking(fontStyle.letterSpacing) // 자간
     }
