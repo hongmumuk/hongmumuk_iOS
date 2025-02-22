@@ -12,6 +12,8 @@ struct EmailLoginView: View {
     let store: StoreOf<EmailLoginFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
+    @FocusState private var isEmailFocused: Bool
+    @FocusState private var isPasswordFocused: Bool
     
     init(store: StoreOf<EmailLoginFeature>) {
         self.store = store
@@ -19,8 +21,8 @@ struct EmailLoginView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            NavigationStack {
+        NavigationStack {
+            GeometryReader { geometry in
                 VStack(alignment: .leading) {
                     Divider()
                         .background(Colors.Border.neutral)
@@ -28,88 +30,23 @@ struct EmailLoginView: View {
                     
                     Text("이메일")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(viewStore.emailState.textColor)
+                        .foregroundStyle(viewStore.emailTextColor)
                         .padding(.leading, 24)
                         .padding(.top, geometry.size.height * 0.04)
                     
-                    HStack(alignment: .top) {
-                        InputField(
-                            placeholder: "학교 이메일을 입력해주세요",
-                            text: Binding(
-                                get: { viewStore.emailState.text },
-                                set: { viewStore.send(.emailChanged($0)) }
-                            ),
-                            backgroundColor: viewStore.emailState.backgroundColor,
-                            borderColor: viewStore.emailState.borderColor,
-                            textColor: viewStore.emailState.textColor,
-                            errorMessage: viewStore.emailState.errorMessage,
-                            onSubmit: { viewStore.send(.validateField(.email)) },
-                            onFocusChange: { isFocused in
-                                if isFocused {
-                                    viewStore.send(.focusField(.email))
-                                } else {
-                                    viewStore.send(.validateField(.email))
-                                }
-                            },
-                            clearText: { viewStore.send(.clearField(.email)) },
-                            toggleVisibility: nil
-                        )
-                        
-                        Text("@")
-                            .fontStyle(Fonts.heading3Medium)
-                            .foregroundStyle(Colors.GrayScale.normal)
-                            .frame(minHeight: 48)
-                            .padding(.leading, -16)
-                        
-                        ZStack {
-                            UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                                .fill(Color(hex: "FAFBFE"))
-                                .frame(height: 47)
-                            
-                            Divider()
-                                .background(Colors.Border.strong)
-                                .frame(height: 1)
-                                .padding(.top, 47)
-                            
-                            Text("g.hongik.ac.kr")
-                                .fontStyle(Fonts.body1Medium)
-                                .foregroundStyle(Colors.GrayScale.normal)
-                        }
-                        .frame(width: geometry.size.width * 0.24, height: 48)
-                        .padding(.trailing, 24)
-                        .padding(.leading, 8)
-                    }
-                    .padding(.top, 8)
+                    EmailInputField(isEmailFocused: $isEmailFocused, viewStore: viewStore)
+                        .padding(.horizontal, 24)
+                        .padding(.top, 8)
                     
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(viewStore.passwordState.textColor)
+                        .foregroundStyle(viewStore.passwordTextColor)
                         .padding(.leading, 24)
                         .padding(.top, 24)
                     
-                    InputField(
-                        placeholder: "영문, 숫자 포함 8-20자 이내로 입력해주세요",
-                        text: Binding(
-                            get: { viewStore.passwordState.text },
-                            set: { viewStore.send(.passwordChanged($0)) }
-                        ),
-                        isSecure: !viewStore.isPasswordVisible,
-                        backgroundColor: viewStore.passwordState.backgroundColor,
-                        borderColor: viewStore.passwordState.borderColor,
-                        textColor: viewStore.passwordState.textColor,
-                        errorMessage: viewStore.passwordState.errorMessage,
-                        onSubmit: { viewStore.send(.validateField(.password)) },
-                        onFocusChange: { isFocused in
-                            if isFocused {
-                                viewStore.send(.focusField(.password))
-                            } else {
-                                viewStore.send(.validateField(.password))
-                            }
-                        },
-                        clearText: { viewStore.send(.clearField(.password)) },
-                        toggleVisibility: { viewStore.send(.togglePasswordVisibility) }
-                    )
-                    .padding(.top, 8)
+                    PasswordInputField(isPasswordFocused: $isPasswordFocused, viewStore: viewStore)
+                        .padding(.horizontal, 24)
+                        .padding(.top, 8)
                     
                     NextButton(title: "로그인", isActive: viewStore.isSigninEnabled) {
                         if viewStore.isSigninEnabled {
@@ -121,7 +58,9 @@ struct EmailLoginView: View {
                     .padding(.top, geometry.size.height * 0.07)
                     
                     HStack(alignment: .center, spacing: 12) {
-                        Button(action: { print("버튼이 눌렸습니다!") }) {
+                        Spacer()
+                        
+                        Button(action: { print("회원가입 화면으로 이동") }) {
                             Text("회원가입")
                                 .fontStyle(Fonts.body1Medium)
                                 .foregroundStyle(Colors.GrayScale.alternative)
@@ -130,115 +69,197 @@ struct EmailLoginView: View {
                         
                         Divider()
                             .background(Colors.GrayScale.alternative)
-                            .frame(height: geometry.size.height * 0.02)
+                            .frame(width: 1, height: 12)
                         
-                        Button(action: { print("버튼이 눌렸습니다!") }) {
+                        Button(action: { print("비밀번호 찾기 화면으로 이동") }) {
                             Text("비밀번호 찾기")
                                 .fontStyle(Fonts.body1Medium)
                                 .foregroundStyle(Colors.GrayScale.alternative)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        
+                        Spacer()
                     }
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.05)
                     .padding(.top, 12)
                     
                     Spacer()
                 }
-                .navigationTitle("이메일로 로그인")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("이메일로 로그인")
-                            .fontStyle(Fonts.heading1Bold)
-                            .foregroundColor(Colors.GrayScale.normal)
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: { viewStore.send(.backButtonTapped) }) {
-                            Image("backButton")
-                                .resizable()
-                                .frame(width: 36, height: 36)
-                        }
-                        .padding(.leading, 4)
-                    }
+            }
+            .navigationTitle("이메일로 로그인")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("이메일로 로그인")
+                        .fontStyle(Fonts.heading1Bold)
+                        .foregroundColor(Colors.GrayScale.normal)
                 }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { viewStore.send(.backButtonTapped) }) {
+                        Image("backButton")
+                            .resizable()
+                            .frame(width: 36, height: 36)
+                    }
+                    .padding(.leading, 4)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                isEmailFocused = false
+                isPasswordFocused = false
             }
         }
     }
 }
 
-struct InputField: View {
-    let placeholder: String
-    @Binding var text: String
-    var isSecure: Bool = false
-    @FocusState private var isFocused: Bool
-    let backgroundColor: Color
-    let borderColor: Color
-    let textColor: Color
-    let errorMessage: String?
-    let onSubmit: () -> Void
-    let onFocusChange: (Bool) -> Void
-    let clearText: () -> Void
-    let toggleVisibility: (() -> Void)?
+// Email Input Field
+struct EmailInputField: View {
+    var isEmailFocused: FocusState<Bool>.Binding
+    @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        HStack(alignment: .top) {
             ZStack {
                 UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                    .fill(backgroundColor)
+                    .fill(viewStore.emailBackgroundColor)
                     .frame(height: 47)
                 
                 Divider()
-                    .background(borderColor)
+                    .background(viewStore.emailBorderColor)
                     .frame(height: 1)
                     .padding(.top, 47)
                 
                 HStack {
-                    if isSecure {
-                        SecureField(placeholder, text: $text)
-                            .focused($isFocused)
-                            .onSubmit(onSubmit)
-                            .onChange(of: isFocused, perform: onFocusChange)
-                            .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(textColor)
-                            .padding(.leading, 12)
-                    } else {
-                        TextField(placeholder, text: $text)
-                            .focused($isFocused)
-                            .onSubmit(onSubmit)
-                            .onChange(of: isFocused, perform: onFocusChange)
-                            .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(textColor)
-                            .padding(.leading, 12)
-                    }
-                    
-                    if !text.isEmpty, isFocused {
-                        Button(action: { clearText() }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.gray)
-                                .padding(.trailing, 12)
+                    TextField("학교 이메일을 입력해 주세요", text: Binding(
+                        get: { viewStore.email },
+                        set: { viewStore.send(.emailChanged($0)) }
+                    ))
+                    .focused(isEmailFocused)
+                    .onSubmit { viewStore.send(.emailOnSubmit) }
+                    .onChange(of: isEmailFocused.wrappedValue) { isFocused in
+                        viewStore.send(.emailFocused(isFocused))
+                        
+                        if !isFocused {
+                            viewStore.send(.emailOnSubmit)
                         }
                     }
+                    .font(Fonts.body1Medium.toFont())
+                    .foregroundColor(viewStore.emailTextColor)
+                    .padding(.leading, 12)
                     
-                    if !text.isEmpty, isFocused {
-                        if let toggleVisibility {
-                            Button(action: { toggleVisibility() }) {
-                                Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 12)
-                            }
+                    if !viewStore.email.isEmpty, isEmailFocused.wrappedValue {
+                        Button(action: { viewStore.send(.emailTextClear) }) {
+                            Image("TextFieldClearIcon")
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing, 12)
                         }
                     }
                 }
             }
-            .padding(.horizontal, 24)
             
-            if let error = errorMessage {
-                if !isFocused {
-                    Text(error)
-                        .fontStyle(Fonts.caption1Medium)
-                        .foregroundColor(Colors.SemanticColor.negative)
-                        .padding(.leading, 24)
+            Text("@")
+                .fontStyle(Fonts.heading3Medium)
+                .foregroundStyle(Colors.GrayScale.normal)
+                .frame(minHeight: 48)
+                .padding(.leading, 8)
+        
+            ZStack {
+                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+                    .fill(Color(hex: "FAFBFE"))
+                    .frame(height: 47)
+                
+                Divider()
+                    .background(Colors.Border.strong)
+                    .frame(height: 1)
+                    .padding(.top, 47)
+                
+                Text("g.hongik.ac.kr")
+                    .fontStyle(Fonts.body1Medium)
+                    .foregroundStyle(Colors.GrayScale.normal)
+                    .padding(.leading, 12)
+                    .padding(.trailing, 9)
+            }
+            .padding(.leading, 8)
+            .fixedSize(horizontal: true, vertical: false)
+        }
+    }
+}
+
+// Password Input Field
+struct PasswordInputField: View {
+    var isPasswordFocused: FocusState<Bool>.Binding
+    @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            ZStack {
+                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+                    .fill(viewStore.passwordBackgroundColor)
+                    .frame(height: 47)
+                
+                Divider()
+                    .background(viewStore.passwordBorderColor)
+                    .frame(height: 1)
+                    .padding(.top, 47)
+                
+                HStack {
+                    ZStack {
+                        TextField(
+                            "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
+                            text: Binding(
+                                get: { viewStore.password },
+                                set: { viewStore.send(.passwordChanged($0)) }
+                            )
+                        )
+                        .focused(isPasswordFocused)
+                        .onSubmit { viewStore.send(.passwordOnSubmit) }
+                        .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
+                            viewStore.send(.passwordFocused(isFocused))
+                            
+                            if !isFocused {
+                                viewStore.send(.passwordOnSubmit)
+                            }
+                        }
+                        .font(Fonts.body1Medium.toFont())
+                        .foregroundColor(viewStore.passwordTextColor)
+                        .padding(.leading, 12)
+                        .opacity(viewStore.passwordVisible ? 1 : 0)
+
+                        SecureField(
+                            "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
+                            text: Binding(
+                                get: { viewStore.password },
+                                set: { viewStore.send(.passwordChanged($0)) }
+                            )
+                        )
+                        .focused(isPasswordFocused)
+                        .onSubmit { viewStore.send(.passwordOnSubmit) }
+                        .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
+                            viewStore.send(.passwordFocused(isFocused))
+                        }
+                        .font(Fonts.body1Medium.toFont())
+                        .foregroundColor(viewStore.passwordTextColor)
+                        .padding(.leading, 12)
+                        .opacity(viewStore.passwordVisible ? 0 : 1)
+                    }
+
+                    if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
+                        Button(action: { viewStore.send(.passwordTextClear) }) {
+                            Image("TextFieldClearIcon")
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing, 12)
+                        }
+                    }
+                    
+                    if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
+                        Button(action: { viewStore.send(.passwordVisibleToggled) }) {
+                            Image(viewStore.passwordVisible ? "TextFieldVisibleIcon" : "TextFieldInvisibleIcon")
+                                .frame(width: 20, height: 20)
+                                .padding(.trailing, 12)
+                                .animation(.none, value: viewStore.passwordVisible)
+                        }
+                    }
                 }
             }
         }

@@ -24,6 +24,7 @@ struct NextButton: View {
                     .foregroundColor(isActive ? .white : Colors.GrayScale.alternative)
             }
         }
+        .disabled(!isActive)
         .buttonStyle(PlainButtonStyle())
     }
 }

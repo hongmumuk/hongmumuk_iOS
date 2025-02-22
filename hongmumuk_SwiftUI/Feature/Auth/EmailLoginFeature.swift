@@ -7,36 +7,60 @@
 
 import ComposableArchitecture
 import Foundation
+import SwiftUI
 
 struct EmailLoginFeature: Reducer {
     enum ActiveScreen {
         case none, main, findPassword, signUp
     }
     
-    enum FocusedField {
-        case email, password, none
-    }
-    
     struct State: Equatable {
-        var emailState = TextFieldState()
-        var passwordState = TextFieldState()
-        var focusedField: FocusedField? = nil
-        var isPasswordVisible: Bool = false
-        var isSubmitLoading: Bool = false
+        var email: String = ""
+        var emailFocused: Bool = false
+        var emailValid: Bool = false
+        
+        var emailBackgroundColor: Color = .init(hex: "FAFBFE")
+        var emailBorderColor: Color = Colors.Border.strong
+        var emailTextColor: Color = Colors.GrayScale.normal
+        
+        var password: String = ""
+        var passwordFocused: Bool = false
+        var passwordValid: Bool = false
+        var passwordVisible: Bool = false
+        
+        var passwordBackgroundColor: Color = .init(hex: "FAFBFE")
+        var passwordBorderColor: Color = Colors.Border.strong
+        var passwordTextColor: Color = Colors.GrayScale.normal
+        
+        var isLoginLoading: Bool = false
         var activeScreen: ActiveScreen = .none
         
         var isSigninEnabled: Bool {
-            emailState.status == .valid && passwordState.status == .valid
+            emailValid && passwordValid
         }
     }
     
     enum Action: Equatable {
         case emailChanged(String)
         case passwordChanged(String)
-        case validateField(FocusedField)
-        case focusField(FocusedField)
-        case clearField(FocusedField)
-        case togglePasswordVisibility
+        
+        // empty 조건 필요
+        case emailFocused(Bool)
+        case passwordFocused(Bool)
+        
+        // 밸리데이션 하러가세용 . . .
+        case emailOnSubmit
+        case passwordOnSubmit
+        
+        // 클리어할게용.
+        case emailTextClear
+        case passwordTextClear
+        // 컬러 업뎃 할게용
+        case updateEmailTextFieldColor
+        case updatePasswordTextFieldColor
+        
+        case passwordVisibleToggled
+        
         case signInButtonTapped
         case findPasswordButtonTapped, signUpButtonTapped, backButtonTapped
         case successLogin, failLogin(LoginError)
@@ -50,36 +74,100 @@ struct EmailLoginFeature: Reducer {
         Reduce { state, action in
             switch action {
             case let .emailChanged(email):
-                updateFieldState(&state.emailState, text: email, isFocused: state.focusedField == .email)
-                return .none
-                
+                state.email = email
+                return .send(.updateEmailTextFieldColor)
+            
             case let .passwordChanged(password):
-                updateFieldState(&state.passwordState, text: password, isFocused: state.focusedField == .password)
+                state.password = password
+                return .send(.updatePasswordTextFieldColor)
+                
+            case let .emailFocused(isFocused):
+                state.emailFocused = isFocused
+                return .send(.updateEmailTextFieldColor)
+            
+            case let .passwordFocused(isFocused):
+                state.passwordFocused = isFocused
+                return .send(.updatePasswordTextFieldColor)
+                
+            case .emailOnSubmit:
+                let isValid = validationClient.validateEmail(state.email)
+                state.emailFocused = false
+                state.emailValid = isValid
+                return .send(.updateEmailTextFieldColor)
+            
+            case .passwordOnSubmit:
+                let isValid = validationClient.validatePassword(state.password)
+                state.passwordFocused = false
+                state.passwordValid = isValid
+                return .send(.updatePasswordTextFieldColor)
+            
+            case .emailTextClear:
+                state.email = ""
+                return .none
+            
+            case .passwordTextClear:
+                state.password = ""
                 return .none
                 
-            case let .validateField(field):
-                validateField(&state, field: field)
-                return .none
+            case .updateEmailTextFieldColor:
+                if state.emailFocused {
+                    state.emailBackgroundColor = Color(hex: "FBFBFE")
+                    state.emailBorderColor = Colors.Primary.normal
+                    state.emailTextColor = Colors.GrayScale.normal
+                    return .none
+                }
                 
-            case let .focusField(focusedField):
-                state.focusedField = focusedField
-                focusFieldState(&state, field: focusedField)
+                if state.email.isEmpty {
+                    state.emailBackgroundColor = Color(hex: "FBFBFE")
+                    state.emailBorderColor = Colors.Border.strong
+                    state.emailTextColor = Colors.GrayScale.normal
+                    return .none
+                }
+
+                if !state.emailValid {
+                    state.emailBackgroundColor = Color(hex: "FFE8E5")
+                    state.emailBorderColor = Colors.SemanticColor.negative
+                    state.emailTextColor = Colors.SemanticColor.negative
+                } else {
+                    state.emailBackgroundColor = Color(hex: "FBFBFE")
+                    state.emailBorderColor = Colors.Border.strong
+                    state.emailTextColor = Colors.GrayScale.normal
+                }
                 return .none
+            
+            case .updatePasswordTextFieldColor:
+                if state.passwordFocused {
+                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
+                    state.passwordBorderColor = Colors.Primary.normal
+                    state.passwordTextColor = Colors.GrayScale.normal
+                    return .none
+                }
                 
-            case let .clearField(field):
-                if field == .email { state.emailState.text = "" }
-                if field == .password { state.passwordState.text = "" }
-                return .none
-                
-            case .togglePasswordVisibility:
-                state.isPasswordVisible.toggle()
-                if state.focusedField == .password {
-                    return .send(.focusField(.password))
+                if state.password.isEmpty {
+                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
+                    state.passwordBorderColor = Colors.Primary.normal
+                    state.passwordTextColor = Colors.GrayScale.normal
+                    return .none
+                }
+
+                if !state.passwordValid {
+                    state.passwordBackgroundColor = Color(hex: "FFE8E5")
+                    state.passwordBorderColor = Colors.SemanticColor.negative
+                    state.passwordTextColor = Colors.SemanticColor.negative
+                } else {
+                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
+                    state.passwordBorderColor = Colors.Border.strong
+                    state.passwordTextColor = Colors.GrayScale.normal
                 }
                 return .none
                 
+            case .passwordVisibleToggled:
+                state.passwordVisible.toggle()
+                return .none
+                
             case .signInButtonTapped:
-                return handleLogin(state.emailState.text, state.passwordState.text)
+    
+                return handleLogin(state.email, state.password)
                 
             case .signUpButtonTapped:
                 state.activeScreen = .signUp
@@ -101,38 +189,6 @@ struct EmailLoginFeature: Reducer {
                 handleLoginError(error)
                 return .none
             }
-        }
-    }
-    
-    private func updateFieldState(_ fieldState: inout TextFieldState, text: String, isFocused: Bool) {
-        fieldState.text = text
-        fieldState.status = isFocused ? .focused : .default
-    }
-    
-    private func validateField(_ state: inout State, field: FocusedField) {
-        switch field {
-        case .email:
-            let isValid = validationClient.validateEmail(state.emailState.text)
-            state.emailState.updateStatus(isFocused: false, isValid: isValid, message: isValid ? nil : "올바르지 않은 이메일 형식입니다")
-            
-        case .password:
-            let isValid = validationClient.validatePassword(state.passwordState.text)
-            state.passwordState.updateStatus(isFocused: false, isValid: isValid, message: isValid ? nil : "올바르지 않은 비밀번호 형식입니다")
-            
-        case .none:
-            break
-        }
-    }
-    
-    private func focusFieldState(_ state: inout State, field: FocusedField) {
-        switch field {
-        case .email:
-            state.emailState.updateStatus(isFocused: true, isValid: state.emailState.status == .valid)
-        case .password:
-            state.passwordState.updateStatus(isFocused: true, isValid: state.passwordState.status == .valid)
-        case .none:
-            state.emailState.updateStatus(isFocused: false, isValid: state.emailState.status == .valid)
-            state.passwordState.updateStatus(isFocused: false, isValid: state.passwordState.status == .valid)
         }
     }
     
