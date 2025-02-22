@@ -35,7 +35,18 @@ struct HomeView: View {
                 if case .random = screen {
                     // random View
                 } else if case .search = screen {
-                    // search View
+                    SearchView(
+                        store: Store(
+                            initialState: SearchFeature.State(),
+                            reducer: { SearchFeature() },
+                            withDependencies: {
+                                $0.restaurantClient = RestaurantClient.testValue
+                                $0.userDefaultsClient = UserDefaultsClient.liveValue
+                            }
+                        )
+                    )
+                    .navigationBarHidden(true)
+                    
                 } else if case let .cateogryList(category) = screen {
                     // category List View
                 }
