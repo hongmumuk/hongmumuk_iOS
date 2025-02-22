@@ -35,12 +35,20 @@ struct RootView: View {
                     Image(selectedTab == .home ?"homeSelectedIcon" : "homeIcon")
                 }
                 .tag(Tab.home)
-
-            LikeView()
-                .tabItem {
-                    Image(selectedTab == .like ? "likeSelectedIcon" : "likeIcon")
-                }
-                .tag(Tab.like)
+            
+            LikeView(
+                store: Store(
+                    initialState: LikeFeature.State(),
+                    reducer: { LikeFeature() },
+                    withDependencies: {
+                        $0.likeClient = .testValue
+                    }
+                )
+            )
+            .tabItem {
+                Image(selectedTab == .like ? "likeSelectedIcon" : "likeIcon")
+            }
+            .tag(Tab.like)
 
             ProfileView()
                 .tabItem {
