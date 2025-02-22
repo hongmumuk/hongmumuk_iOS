@@ -94,6 +94,19 @@
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
 		BE8299602D60AFD00081F979 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = BE82995F2D60AFD00081F979 /* Shimmer */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
+		BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */; };
+		BECC4A162D69A74B00F72FAF /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A152D69A74B00F72FAF /* Blog.swift */; };
+		BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */; };
+		BECC4A1B2D69AB4E00F72FAF /* DetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A1A2D69AB4E00F72FAF /* DetailFeature.swift */; };
+		BECC4A1D2D69AB5400F72FAF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A1C2D69AB5400F72FAF /* DetailView.swift */; };
+		BECC4A1F2D69B05B00F72FAF /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A1E2D69B05B00F72FAF /* DetailInfoView.swift */; };
+		BECC4A212D69B06300F72FAF /* DetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A202D69B06300F72FAF /* DetailMapView.swift */; };
+		BECC4A232D69B06B00F72FAF /* DetailMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A222D69B06B00F72FAF /* DetailMenuView.swift */; };
+		BECC4A252D69B07200F72FAF /* DetailReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A242D69B07200F72FAF /* DetailReviewView.swift */; };
+		BECC4A272D69B55500F72FAF /* DetailTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A262D69B55500F72FAF /* DetailTabView.swift */; };
+		BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = BECC4A4A2D6B42C300F72FAF /* NMapsMap */; };
+		BECD1DF22D6C0E9C00FDA113 /* KeywordClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */; };
+		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +204,18 @@
 		BE5F1AA22D51EC5D00D124DB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BE79E7742D61BCC9002D57D8 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		BE8299612D60B5E70081F979 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
+		BECC4A152D69A74B00F72FAF /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
+		BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailError.swift; sourceTree = "<group>"; };
+		BECC4A1A2D69AB4E00F72FAF /* DetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFeature.swift; sourceTree = "<group>"; };
+		BECC4A1C2D69AB5400F72FAF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		BECC4A1E2D69B05B00F72FAF /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
+		BECC4A202D69B06300F72FAF /* DetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapView.swift; sourceTree = "<group>"; };
+		BECC4A222D69B06B00F72FAF /* DetailMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuView.swift; sourceTree = "<group>"; };
+		BECC4A242D69B07200F72FAF /* DetailReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewView.swift; sourceTree = "<group>"; };
+		BECC4A262D69B55500F72FAF /* DetailTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabView.swift; sourceTree = "<group>"; };
+		BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordClient.swift; sourceTree = "<group>"; };
+		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8299602D60AFD00081F979 /* Shimmer in Frameworks */,
+				BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */,
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 			);
@@ -391,6 +417,7 @@
 				BE02D0982D607B5000F61E66 /* RestaurantClient.swift */,
 				BE20900E2D64B81E0041A173 /* LikeClient.swift */,
 				BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */,
+				BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -400,6 +427,7 @@
 			children = (
 				BE4F9B442D5A075300E7CC46 /* LoginError.swift */,
 				BE02D0A02D607E4600F61E66 /* RestaurantListError.swift */,
+				BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -411,6 +439,8 @@
 				BE4F9B482D5A076300E7CC46 /* ResponseModel.swift */,
 				BE3386402D5F8BDC00FF44CF /* RestaurantListModel.swift */,
 				BE02D09E2D607DAA00F61E66 /* RestaurantListRequestModel.swift */,
+				BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */,
+				BECC4A152D69A74B00F72FAF /* Blog.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -434,6 +464,7 @@
 				BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */,
 				BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */,
 				BE02D09C2D607D0C00F61E66 /* Sort.swift */,
+				BECD1DF32D6C0F4000FDA113 /* Keyword.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -453,6 +484,7 @@
 		BE5F1A9E2D51EB9300D124DB /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				BECC4A192D69AB4500F72FAF /* Detail */,
 				BE2090012D6497D10041A173 /* Profile */,
 				BE2090002D6497C60041A173 /* Like */,
 				BE208FFA2D6485DA0041A173 /* Reusable */,
@@ -463,6 +495,20 @@
 				2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */,
 			);
 			path = Feature;
+			sourceTree = "<group>";
+		};
+		BECC4A192D69AB4500F72FAF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BECC4A1A2D69AB4E00F72FAF /* DetailFeature.swift */,
+				BECC4A1C2D69AB5400F72FAF /* DetailView.swift */,
+				BECC4A1E2D69B05B00F72FAF /* DetailInfoView.swift */,
+				BECC4A262D69B55500F72FAF /* DetailTabView.swift */,
+				BECC4A202D69B06300F72FAF /* DetailMapView.swift */,
+				BECC4A222D69B06B00F72FAF /* DetailMenuView.swift */,
+				BECC4A242D69B07200F72FAF /* DetailReviewView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		BEFB83902D3D359F000D9537 = {
@@ -508,6 +554,7 @@
 				BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */,
 				BE4F9B2A2D59E8D600E7CC46 /* Alamofire */,
 				BE82995F2D60AFD00081F979 /* Shimmer */,
+				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -589,6 +636,7 @@
 				BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -699,18 +747,23 @@
 				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
+				BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */,
+				BECC4A1B2D69AB4E00F72FAF /* DetailFeature.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				BE2090112D64BE980041A173 /* LikeEmptyView.swift in Sources */,
 				2FE55C032D5E356D00BFE6F7 /* EmailLoginView.swift in Sources */,
 				BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
+				BECC4A212D69B06300F72FAF /* DetailMapView.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */,
 				BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */,
 				BE2090052D6497F00041A173 /* ProfileView.swift in Sources */,
+				BECC4A1D2D69AB5400F72FAF /* DetailView.swift in Sources */,
 				BE3DBB772D5E1C50007304C7 /* HomeHeaderView.swift in Sources */,
 				BE2090072D64B7E90041A173 /* LikeFeature.swift in Sources */,
+				BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
 				BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */,
 				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
@@ -719,6 +772,7 @@
 				BE20900F2D64B81E0041A173 /* LikeClient.swift in Sources */,
 				BE20900B2D64B8090041A173 /* LikeFilterView.swift in Sources */,
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
+				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
 				BE02D0A12D607E4600F61E66 /* RestaurantListError.swift in Sources */,
@@ -738,6 +792,11 @@
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,
 				BE208FF32D634DB60041A173 /* CategoryListView.swift in Sources */,
 				BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */,
+				BECC4A162D69A74B00F72FAF /* Blog.swift in Sources */,
+				BECC4A232D69B06B00F72FAF /* DetailMenuView.swift in Sources */,
+				BECC4A1F2D69B05B00F72FAF /* DetailInfoView.swift in Sources */,
+				BECC4A272D69B55500F72FAF /* DetailTabView.swift in Sources */,
+				BECD1DF22D6C0E9C00FDA113 /* KeywordClient.swift in Sources */,
 				BE2090092D64B7F10041A173 /* LikeHeaderView.swift in Sources */,
 				BE2090032D6497E90041A173 /* LikeView.swift in Sources */,
 				BE4F9B462D5A075300E7CC46 /* LoginError.swift in Sources */,
@@ -752,6 +811,7 @@
 				BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
+				BECC4A252D69B07200F72FAF /* DetailReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,6 +985,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -961,6 +1023,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1133,6 +1197,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1269,6 +1335,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1400,6 +1468,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1532,6 +1602,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "해당 앱은 지도 정보 조회를 위해 사용자의 현위치를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1671,6 +1743,14 @@
 				minimumVersion = 1.5.1;
 			};
 		};
+		BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.20.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1688,6 +1768,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		BECC4A4A2D6B42C300F72FAF /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
