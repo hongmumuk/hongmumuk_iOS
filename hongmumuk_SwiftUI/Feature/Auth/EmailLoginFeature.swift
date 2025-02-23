@@ -151,7 +151,7 @@ struct EmailLoginFeature: Reducer {
                 
                 if state.password.isEmpty {
                     state.passwordBackgroundColor = Color(hex: "FBFBFE")
-                    state.passwordBorderColor = Colors.Primary.normal
+                    state.passwordBorderColor = Colors.Border.strong
                     state.passwordTextColor = Colors.GrayScale.normal
                     state.passwordErrorMessage = nil
                     return .none
