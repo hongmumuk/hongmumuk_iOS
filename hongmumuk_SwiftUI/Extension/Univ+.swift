@@ -18,7 +18,7 @@ extension Univ {
     var emailRegex: String {
         switch self {
         case .hongik:
-            return "^[A-Z0-9a-z._%+-]+@\(emailDomain)$"
+            return "^[A-Za-z0-9]+$"
         }
     }
     
