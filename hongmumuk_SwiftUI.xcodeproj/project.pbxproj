@@ -41,6 +41,7 @@
 		2FA097CF2D42A11000D01792 /* stag.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C82D42A11000D01792 /* stag.xcconfig */; };
 		2FA097D02D42A11000D01792 /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C62D42A11000D01792 /* dev.xcconfig */; };
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
+		2FA7981E2D6AFC120093B6DA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7981D2D6AFC120093B6DA /* LoginView.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
 		BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */; };
@@ -113,6 +114,7 @@
 		2FA097C62D42A11000D01792 /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
 		2FA097C72D42A11000D01792 /* prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = prod.xcconfig; sourceTree = "<group>"; };
 		2FA097C82D42A11000D01792 /* stag.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = stag.xcconfig; sourceTree = "<group>"; };
+		2FA7981D2D6AFC120093B6DA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
 		BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				BE4F9B4E2D5A095D00E7CC46 /* LoginFeature.swift */,
+				2FA7981D2D6AFC120093B6DA /* LoginView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				BE3386412D5F8BDC00FF44CF /* RestaurantListModel.swift in Sources */,
 				BE4F9B4F2D5A095D00E7CC46 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
+				2FA7981E2D6AFC120093B6DA /* LoginView.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
 			);

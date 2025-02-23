@@ -20,29 +20,44 @@ struct LoginView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Spacer()
-                
                 Image("Logo_Blue")
                     .resizable()
                     .scaledToFit()
                     .frame(width: geometry.size.width * 0.23)
-                    .padding(.bottom, geometry.size.height * 0.2)
+                    .padding(.top, geometry.size.height * 0.28)
+                
+                Spacer()
                 
                 LoginButton(
-                    title: "이메일로 로그인",
-                    iconName: "LoginMailIcon",
+                    title: "이메일로 로그인하기",
+                    iconName: "LoginEmailIcon",
+                    backgroundColor: Colors.Primary.normal,
+                    textColor: .white,
                     action: {
                         viewStore.send(.signInButtonTapped)
                     }
                 )
-                .frame(height: geometry.size.height * 0.076)
+                .frame(height: 60)
                 .padding(.horizontal, 24)
-                .padding(.bottom, 20)
+                .padding(.bottom, 12)
+                
+                LoginButton(
+                    title: "회원가입",
+                    iconName: "SignupIcon",
+                    backgroundColor: Color(hex: "FBFBFE"),
+                    textColor: Colors.GrayScale.normal,
+                    action: {
+                        viewStore.send(.signUpButtonTapped)
+                    }
+                )
+                .frame(height: 60)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
                 
                 Button(action: {
-                    viewStore.send(.signUpButtonTapped)
+                    viewStore.send(.signInGuest)
                 }, label: {
-                    Text("회원 가입")
+                    Text("비회원으로 시작하기")
                         .fontStyle(Fonts.body1Medium)
                         .foregroundColor(Colors.GrayScale.alternative)
                 })
@@ -72,13 +87,15 @@ struct LoginView: View {
 struct LoginButton: View {
     let title: String
     let iconName: String
+    let backgroundColor: Color
+    let textColor: Color?
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(hex: "FBFBFE"))
+                    .fill(backgroundColor)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Colors.Border.normal, lineWidth: 1)
@@ -86,7 +103,7 @@ struct LoginButton: View {
                 
                 Text(title)
                     .fontStyle(Fonts.heading2Bold)
-                    .foregroundColor(Colors.GrayScale.normal)
+                    .foregroundColor(textColor)
                 
                 HStack {
                     Image(iconName)
