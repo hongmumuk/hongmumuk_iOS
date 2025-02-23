@@ -18,6 +18,7 @@ struct EmailLoginFeature: Reducer {
         var email: String = ""
         var emailFocused: Bool = false
         var emailValid: Bool = false
+        var emailErrorMessage: String? = nil
         
         var emailBackgroundColor: Color = .init(hex: "FAFBFE")
         var emailBorderColor: Color = Colors.Border.strong
@@ -27,6 +28,7 @@ struct EmailLoginFeature: Reducer {
         var passwordFocused: Bool = false
         var passwordValid: Bool = false
         var passwordVisible: Bool = false
+        var passwordErrorMessage: String? = nil
         
         var passwordBackgroundColor: Color = .init(hex: "FAFBFE")
         var passwordBorderColor: Color = Colors.Border.strong
@@ -44,20 +46,17 @@ struct EmailLoginFeature: Reducer {
         case emailChanged(String)
         case passwordChanged(String)
         
-        // empty 조건 필요
         case emailFocused(Bool)
         case passwordFocused(Bool)
         
-        // 밸리데이션 하러가세용 . . .
         case emailOnSubmit
         case passwordOnSubmit
         
-        // 클리어할게용.
         case emailTextClear
         case passwordTextClear
-        // 컬러 업뎃 할게용
-        case updateEmailTextFieldColor
-        case updatePasswordTextFieldColor
+        
+        case updateEmailTextField
+        case updatePasswordTextField
         
         case passwordVisibleToggled
         
@@ -75,31 +74,33 @@ struct EmailLoginFeature: Reducer {
             switch action {
             case let .emailChanged(email):
                 state.email = email
-                return .send(.updateEmailTextFieldColor)
+                return .send(.updateEmailTextField)
             
             case let .passwordChanged(password):
                 state.password = password
-                return .send(.updatePasswordTextFieldColor)
+                return .send(.updatePasswordTextField)
                 
             case let .emailFocused(isFocused):
                 state.emailFocused = isFocused
-                return .send(.updateEmailTextFieldColor)
+                state.emailErrorMessage = nil
+                return .send(.updateEmailTextField)
             
             case let .passwordFocused(isFocused):
                 state.passwordFocused = isFocused
-                return .send(.updatePasswordTextFieldColor)
+                state.passwordErrorMessage = nil
+                return .send(.updatePasswordTextField)
                 
             case .emailOnSubmit:
                 let isValid = validationClient.validateEmail(state.email)
                 state.emailFocused = false
                 state.emailValid = isValid
-                return .send(.updateEmailTextFieldColor)
+                return .send(.updateEmailTextField)
             
             case .passwordOnSubmit:
                 let isValid = validationClient.validatePassword(state.password)
                 state.passwordFocused = false
                 state.passwordValid = isValid
-                return .send(.updatePasswordTextFieldColor)
+                return .send(.updatePasswordTextField)
             
             case .emailTextClear:
                 state.email = ""
@@ -109,11 +110,12 @@ struct EmailLoginFeature: Reducer {
                 state.password = ""
                 return .none
                 
-            case .updateEmailTextFieldColor:
+            case .updateEmailTextField:
                 if state.emailFocused {
                     state.emailBackgroundColor = Color(hex: "FBFBFE")
                     state.emailBorderColor = Colors.Primary.normal
                     state.emailTextColor = Colors.GrayScale.normal
+                    state.emailErrorMessage = nil
                     return .none
                 }
                 
@@ -121,6 +123,7 @@ struct EmailLoginFeature: Reducer {
                     state.emailBackgroundColor = Color(hex: "FBFBFE")
                     state.emailBorderColor = Colors.Border.strong
                     state.emailTextColor = Colors.GrayScale.normal
+                    state.emailErrorMessage = nil
                     return .none
                 }
 
@@ -128,18 +131,21 @@ struct EmailLoginFeature: Reducer {
                     state.emailBackgroundColor = Color(hex: "FFE8E5")
                     state.emailBorderColor = Colors.SemanticColor.negative
                     state.emailTextColor = Colors.SemanticColor.negative
+                    state.emailErrorMessage = "올바르지 않은 이메일 형식입니다."
                 } else {
                     state.emailBackgroundColor = Color(hex: "FBFBFE")
                     state.emailBorderColor = Colors.Border.strong
                     state.emailTextColor = Colors.GrayScale.normal
+                    state.emailErrorMessage = nil
                 }
                 return .none
             
-            case .updatePasswordTextFieldColor:
+            case .updatePasswordTextField:
                 if state.passwordFocused {
                     state.passwordBackgroundColor = Color(hex: "FBFBFE")
                     state.passwordBorderColor = Colors.Primary.normal
                     state.passwordTextColor = Colors.GrayScale.normal
+                    state.passwordErrorMessage = nil
                     return .none
                 }
                 
@@ -147,6 +153,7 @@ struct EmailLoginFeature: Reducer {
                     state.passwordBackgroundColor = Color(hex: "FBFBFE")
                     state.passwordBorderColor = Colors.Primary.normal
                     state.passwordTextColor = Colors.GrayScale.normal
+                    state.passwordErrorMessage = nil
                     return .none
                 }
 
@@ -154,10 +161,12 @@ struct EmailLoginFeature: Reducer {
                     state.passwordBackgroundColor = Color(hex: "FFE8E5")
                     state.passwordBorderColor = Colors.SemanticColor.negative
                     state.passwordTextColor = Colors.SemanticColor.negative
+                    state.passwordErrorMessage = "올바르지 않은 비밀번호 형식입니다."
                 } else {
                     state.passwordBackgroundColor = Color(hex: "FBFBFE")
                     state.passwordBorderColor = Colors.Border.strong
                     state.passwordTextColor = Colors.GrayScale.normal
+                    state.passwordErrorMessage = nil
                 }
                 return .none
                 

@@ -119,69 +119,77 @@ struct EmailInputField: View {
     @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
     
     var body: some View {
-        HStack(alignment: .top) {
-            ZStack {
-                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                    .fill(viewStore.emailBackgroundColor)
-                    .frame(height: 47)
-                
-                Divider()
-                    .background(viewStore.emailBorderColor)
-                    .frame(height: 1)
-                    .padding(.top, 47)
-                
-                HStack {
-                    TextField("학교 이메일을 입력해 주세요", text: Binding(
-                        get: { viewStore.email },
-                        set: { viewStore.send(.emailChanged($0)) }
-                    ))
-                    .focused(isEmailFocused)
-                    .onSubmit { viewStore.send(.emailOnSubmit) }
-                    .onChange(of: isEmailFocused.wrappedValue) { isFocused in
-                        viewStore.send(.emailFocused(isFocused))
-                        
-                        if !isFocused {
-                            viewStore.send(.emailOnSubmit)
-                        }
-                    }
-                    .font(Fonts.body1Medium.toFont())
-                    .foregroundColor(viewStore.emailTextColor)
-                    .padding(.leading, 12)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                ZStack {
+                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+                        .fill(viewStore.emailBackgroundColor)
+                        .frame(height: 47)
                     
-                    if !viewStore.email.isEmpty, isEmailFocused.wrappedValue {
-                        Button(action: { viewStore.send(.emailTextClear) }) {
-                            Image("TextFieldClearIcon")
-                                .frame(width: 20, height: 20)
-                                .padding(.trailing, 12)
+                    Divider()
+                        .background(viewStore.emailBorderColor)
+                        .frame(height: 1)
+                        .padding(.top, 47)
+                    
+                    HStack {
+                        TextField("학교 이메일을 입력해 주세요", text: Binding(
+                            get: { viewStore.email },
+                            set: { viewStore.send(.emailChanged($0)) }
+                        ))
+                        .focused(isEmailFocused)
+                        .onSubmit { viewStore.send(.emailOnSubmit) }
+                        .onChange(of: isEmailFocused.wrappedValue) { isFocused in
+                            viewStore.send(.emailFocused(isFocused))
+                            
+                            if !isFocused {
+                                viewStore.send(.emailOnSubmit)
+                            }
+                        }
+                        .font(Fonts.body1Medium.toFont())
+                        .foregroundColor(viewStore.emailTextColor)
+                        .padding(.leading, 12)
+                        
+                        if !viewStore.email.isEmpty, isEmailFocused.wrappedValue {
+                            Button(action: { viewStore.send(.emailTextClear) }) {
+                                Image("TextFieldClearIcon")
+                                    .frame(width: 20, height: 20)
+                                    .padding(.trailing, 12)
+                            }
                         }
                     }
                 }
+                
+                Text("@")
+                    .fontStyle(Fonts.heading3Medium)
+                    .foregroundStyle(Colors.GrayScale.normal)
+                    .frame(minHeight: 48)
+                    .padding(.leading, 8)
+                
+                ZStack {
+                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+                        .fill(Color(hex: "FAFBFE"))
+                        .frame(height: 47)
+                    
+                    Divider()
+                        .background(Colors.Border.strong)
+                        .frame(height: 1)
+                        .padding(.top, 47)
+                    
+                    Text("g.hongik.ac.kr")
+                        .fontStyle(Fonts.body1Medium)
+                        .foregroundStyle(Colors.GrayScale.normal)
+                        .padding(.leading, 12)
+                        .padding(.trailing, 9)
+                }
+                .padding(.leading, 8)
+                .fixedSize(horizontal: true, vertical: false)
             }
             
-            Text("@")
-                .fontStyle(Fonts.heading3Medium)
-                .foregroundStyle(Colors.GrayScale.normal)
-                .frame(minHeight: 48)
-                .padding(.leading, 8)
-        
-            ZStack {
-                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                    .fill(Color(hex: "FAFBFE"))
-                    .frame(height: 47)
-                
-                Divider()
-                    .background(Colors.Border.strong)
-                    .frame(height: 1)
-                    .padding(.top, 47)
-                
-                Text("g.hongik.ac.kr")
-                    .fontStyle(Fonts.body1Medium)
-                    .foregroundStyle(Colors.GrayScale.normal)
-                    .padding(.leading, 12)
-                    .padding(.trailing, 9)
+            if let emailError = viewStore.emailErrorMessage {
+                Text(emailError)
+                    .fontStyle(Fonts.caption1Medium)
+                    .foregroundStyle(Colors.SemanticColor.negative)
             }
-            .padding(.leading, 8)
-            .fixedSize(horizontal: true, vertical: false)
         }
     }
 }
@@ -192,75 +200,83 @@ struct PasswordInputField: View {
     @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
     
     var body: some View {
-        HStack(alignment: .top) {
-            ZStack {
-                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                    .fill(viewStore.passwordBackgroundColor)
-                    .frame(height: 47)
-                
-                Divider()
-                    .background(viewStore.passwordBorderColor)
-                    .frame(height: 1)
-                    .padding(.top, 47)
-                
-                HStack {
-                    ZStack {
-                        TextField(
-                            "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
-                            text: Binding(
-                                get: { viewStore.password },
-                                set: { viewStore.send(.passwordChanged($0)) }
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                ZStack {
+                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+                        .fill(viewStore.passwordBackgroundColor)
+                        .frame(height: 47)
+                    
+                    Divider()
+                        .background(viewStore.passwordBorderColor)
+                        .frame(height: 1)
+                        .padding(.top, 47)
+                    
+                    HStack {
+                        ZStack {
+                            TextField(
+                                "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
+                                text: Binding(
+                                    get: { viewStore.password },
+                                    set: { viewStore.send(.passwordChanged($0)) }
+                                )
                             )
-                        )
-                        .focused(isPasswordFocused)
-                        .onSubmit { viewStore.send(.passwordOnSubmit) }
-                        .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
-                            viewStore.send(.passwordFocused(isFocused))
+                            .focused(isPasswordFocused)
+                            .onSubmit { viewStore.send(.passwordOnSubmit) }
+                            .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
+                                viewStore.send(.passwordFocused(isFocused))
+                                
+                                if !isFocused {
+                                    viewStore.send(.passwordOnSubmit)
+                                }
+                            }
+                            .font(Fonts.body1Medium.toFont())
+                            .foregroundColor(viewStore.passwordTextColor)
+                            .padding(.leading, 12)
+                            .opacity(viewStore.passwordVisible ? 1 : 0)
                             
-                            if !isFocused {
-                                viewStore.send(.passwordOnSubmit)
+                            SecureField(
+                                "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
+                                text: Binding(
+                                    get: { viewStore.password },
+                                    set: { viewStore.send(.passwordChanged($0)) }
+                                )
+                            )
+                            .focused(isPasswordFocused)
+                            .onSubmit { viewStore.send(.passwordOnSubmit) }
+                            .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
+                                viewStore.send(.passwordFocused(isFocused))
+                            }
+                            .font(Fonts.body1Medium.toFont())
+                            .foregroundColor(viewStore.passwordTextColor)
+                            .padding(.leading, 12)
+                            .opacity(viewStore.passwordVisible ? 0 : 1)
+                        }
+                        
+                        if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
+                            Button(action: { viewStore.send(.passwordTextClear) }) {
+                                Image("TextFieldClearIcon")
+                                    .frame(width: 20, height: 20)
+                                    .padding(.trailing, 12)
                             }
                         }
-                        .font(Fonts.body1Medium.toFont())
-                        .foregroundColor(viewStore.passwordTextColor)
-                        .padding(.leading, 12)
-                        .opacity(viewStore.passwordVisible ? 1 : 0)
-
-                        SecureField(
-                            "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
-                            text: Binding(
-                                get: { viewStore.password },
-                                set: { viewStore.send(.passwordChanged($0)) }
-                            )
-                        )
-                        .focused(isPasswordFocused)
-                        .onSubmit { viewStore.send(.passwordOnSubmit) }
-                        .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
-                            viewStore.send(.passwordFocused(isFocused))
-                        }
-                        .font(Fonts.body1Medium.toFont())
-                        .foregroundColor(viewStore.passwordTextColor)
-                        .padding(.leading, 12)
-                        .opacity(viewStore.passwordVisible ? 0 : 1)
-                    }
-
-                    if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
-                        Button(action: { viewStore.send(.passwordTextClear) }) {
-                            Image("TextFieldClearIcon")
-                                .frame(width: 20, height: 20)
-                                .padding(.trailing, 12)
-                        }
-                    }
-                    
-                    if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
-                        Button(action: { viewStore.send(.passwordVisibleToggled) }) {
-                            Image(viewStore.passwordVisible ? "TextFieldVisibleIcon" : "TextFieldInvisibleIcon")
-                                .frame(width: 20, height: 20)
-                                .padding(.trailing, 12)
-                                .animation(.none, value: viewStore.passwordVisible)
+                        
+                        if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
+                            Button(action: { viewStore.send(.passwordVisibleToggled) }) {
+                                Image(viewStore.passwordVisible ? "TextFieldVisibleIcon" : "TextFieldInvisibleIcon")
+                                    .frame(width: 20, height: 20)
+                                    .padding(.trailing, 12)
+                                    .animation(.none, value: viewStore.passwordVisible)
+                            }
                         }
                     }
                 }
+            }
+            
+            if let passwordError = viewStore.passwordErrorMessage {
+                Text(passwordError)
+                    .fontStyle(Fonts.caption1Medium)
+                    .foregroundStyle(Colors.SemanticColor.negative)
             }
         }
     }
