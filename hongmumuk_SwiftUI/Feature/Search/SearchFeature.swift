@@ -147,7 +147,7 @@ struct SearchFeature: Reducer {
                 return .none
                 
             case let .restrauntListLoaded(list):
-                let sorted = list.sorted { $0.name > $1.name }
+                let sorted = list.sorted { $0.name < $1.name }
                 state.restrauntList = sorted
                 state.searchedList = sorted
                 return .none
@@ -191,5 +191,3 @@ extension SearchFeature {
         return false
     }
 }
-
-
