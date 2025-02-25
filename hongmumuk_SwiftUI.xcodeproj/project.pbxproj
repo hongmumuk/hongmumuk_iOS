@@ -51,6 +51,16 @@
 		BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09C2D607D0C00F61E66 /* Sort.swift */; };
 		BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09E2D607DAA00F61E66 /* RestaurantListRequestModel.swift */; };
 		BE02D0A12D607E4600F61E66 /* RestaurantListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A02D607E4600F61E66 /* RestaurantListError.swift */; };
+		BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A42D60933700F61E66 /* SearchHeaderView.swift */; };
+		BE02D0A72D609BB200F61E66 /* SearchRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */; };
+		BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */; };
+		BE208FE92D633B9E0041A173 /* ListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FE82D633B9E0041A173 /* ListFeature.swift */; };
+		BE208FED2D633BB40041A173 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FEC2D633BB40041A173 /* ListView.swift */; };
+		BE208FEF2D633BBC0041A173 /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FEE2D633BBC0041A173 /* ListHeaderView.swift */; };
+		BE208FF12D633BD50041A173 /* ListFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FF02D633BD50041A173 /* ListFilterView.swift */; };
+		BE208FF32D634DB60041A173 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FF22D634DB60041A173 /* ListItemView.swift */; };
+		BE208FF52D6354C90041A173 /* ListRandomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FF42D6354C90041A173 /* ListRandomButton.swift */; };
+		BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FF62D6478520041A173 /* InquiryButton.swift */; };
 		BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE33863E2D5F8A5A00FF44CF /* SearchView.swift */; };
 		BE3386412D5F8BDC00FF44CF /* RestaurantListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3386402D5F8BDC00FF44CF /* RestaurantListModel.swift */; };
 		BE3DBB752D5E1C49007304C7 /* HomeCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB742D5E1C49007304C7 /* HomeCircleView.swift */; };
@@ -72,6 +82,8 @@
 		BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1AA22D51EC5D00D124DB /* HomeView.swift */; };
 		BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */; };
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
+		BE8299602D60AFD00081F979 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = BE82995F2D60AFD00081F979 /* Shimmer */; };
+		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +140,16 @@
 		BE02D09C2D607D0C00F61E66 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		BE02D09E2D607DAA00F61E66 /* RestaurantListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListRequestModel.swift; sourceTree = "<group>"; };
 		BE02D0A02D607E4600F61E66 /* RestaurantListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListError.swift; sourceTree = "<group>"; };
+		BE02D0A42D60933700F61E66 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentView.swift; sourceTree = "<group>"; };
+		BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		BE208FE82D633B9E0041A173 /* ListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFeature.swift; sourceTree = "<group>"; };
+		BE208FEC2D633BB40041A173 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		BE208FEE2D633BBC0041A173 /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		BE208FF02D633BD50041A173 /* ListFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterView.swift; sourceTree = "<group>"; };
+		BE208FF22D634DB60041A173 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		BE208FF42D6354C90041A173 /* ListRandomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRandomButton.swift; sourceTree = "<group>"; };
+		BE208FF62D6478520041A173 /* InquiryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryButton.swift; sourceTree = "<group>"; };
 		BE33863E2D5F8A5A00FF44CF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BE3386402D5F8BDC00FF44CF /* RestaurantListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListModel.swift; sourceTree = "<group>"; };
 		BE3DBB742D5E1C49007304C7 /* HomeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleView.swift; sourceTree = "<group>"; };
@@ -148,6 +170,7 @@
 		BE5F1AA02D51EBA000D124DB /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		BE5F1AA22D51EC5D00D124DB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BE79E7742D61BCC9002D57D8 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		BE8299612D60B5E70081F979 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8299602D60AFD00081F979 /* Shimmer in Frameworks */,
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 			);
@@ -198,6 +222,7 @@
 				2F435EA82D4FC19C005E1C84 /* Text+.swift */,
 				BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */,
 				BE79E7742D61BCC9002D57D8 /* Double+.swift */,
+				BE8299612D60B5E70081F979 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -272,11 +297,35 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		BE208FE72D633B860041A173 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				BE208FE82D633B9E0041A173 /* ListFeature.swift */,
+				BE208FEC2D633BB40041A173 /* ListView.swift */,
+				BE208FEE2D633BBC0041A173 /* ListHeaderView.swift */,
+				BE208FF02D633BD50041A173 /* ListFilterView.swift */,
+				BE208FF22D634DB60041A173 /* ListItemView.swift */,
+				BE208FF42D6354C90041A173 /* ListRandomButton.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		BE208FFA2D6485DA0041A173 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				BE208FF62D6478520041A173 /* InquiryButton.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		BE33863D2D5F8A4F00FF44CF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				BE33863E2D5F8A5A00FF44CF /* SearchView.swift */,
 				BE02D0962D607B3B00F61E66 /* SearchFeature.swift */,
+				BE33863E2D5F8A5A00FF44CF /* SearchView.swift */,
+				BE02D0A42D60933700F61E66 /* SearchHeaderView.swift */,
+				BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */,
+				BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -360,6 +409,8 @@
 		BE5F1A9E2D51EB9300D124DB /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				BE208FFA2D6485DA0041A173 /* Reusable */,
+				BE208FE72D633B860041A173 /* List */,
 				BE33863D2D5F8A4F00FF44CF /* Search */,
 				BE4F9B4D2D5A094F00E7CC46 /* Auth */,
 				BE5F1A9D2D51EB9300D124DB /* Home */,
@@ -410,6 +461,7 @@
 			packageProductDependencies = (
 				BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */,
 				BE4F9B2A2D59E8D600E7CC46 /* Alamofire */,
+				BE82995F2D60AFD00081F979 /* Shimmer */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -490,6 +542,7 @@
 			packageReferences = (
 				BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -595,6 +648,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE208FF52D6354C90041A173 /* ListRandomButton.swift in Sources */,
+				BE208FE92D633B9E0041A173 /* ListFeature.swift in Sources */,
 				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
@@ -608,27 +663,36 @@
 				BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */,
 				BE3DBB772D5E1C50007304C7 /* HomeHeaderView.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
+				BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */,
+				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
 				BE3DBB752D5E1C49007304C7 /* HomeCircleView.swift in Sources */,
 				BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */,
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
 				BE02D0A12D607E4600F61E66 /* RestaurantListError.swift in Sources */,
+				BE208FF12D633BD50041A173 /* ListFilterView.swift in Sources */,
+				BE208FED2D633BB40041A173 /* ListView.swift in Sources */,
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
+				BE208FEF2D633BBC0041A173 /* ListHeaderView.swift in Sources */,
+				BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,
+				BE208FF32D634DB60041A173 /* ListItemView.swift in Sources */,
 				BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */,
 				BE4F9B462D5A075300E7CC46 /* LoginError.swift in Sources */,
 				BE4F9B242D58FD9400E7CC46 /* ValidationClient.swift in Sources */,
+				BE02D0A72D609BB200F61E66 /* SearchRecentView.swift in Sources */,
 				BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */,
 				BE3386412D5F8BDC00FF44CF /* RestaurantListModel.swift in Sources */,
 				BE4F9B4F2D5A095D00E7CC46 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2FA7981E2D6AFC120093B6DA /* LoginView.swift in Sources */,
+				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
 				BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
@@ -796,7 +860,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -810,6 +874,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -831,7 +896,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -845,6 +910,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -864,7 +930,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -883,7 +949,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -901,7 +967,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -918,7 +984,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1002,7 +1068,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -1016,6 +1082,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1035,7 +1102,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1053,7 +1120,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1137,7 +1204,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -1151,6 +1218,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1170,7 +1238,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1188,7 +1256,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1266,7 +1334,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: dongwan ryoo (7HDHR2SNR7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -1281,6 +1349,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1301,7 +1370,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1319,7 +1388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1397,7 +1466,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: dongwan ryoo (7HDHR2SNR7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -1412,6 +1481,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1432,7 +1502,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1450,7 +1520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1537,6 +1607,14 @@
 				minimumVersion = 1.17.1;
 			};
 		};
+		BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1549,6 +1627,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		BE82995F2D60AFD00081F979 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

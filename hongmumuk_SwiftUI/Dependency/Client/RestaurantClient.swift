@@ -32,6 +32,10 @@ extension RestaurantClient: DependencyKey {
             return response.data!
         }
     )
+    
+    static var testValue: RestaurantClient = .init(
+        getRestaurantList: { _ in return RestaurantListModel.mock() }
+    )
 }
 
 extension DependencyValues {
