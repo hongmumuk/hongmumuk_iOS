@@ -20,3 +20,19 @@ extension View {
     }
 }
 
+struct FontStyleModifier: ViewModifier {
+    let fontStyle: FontStyle
+
+    func body(content: Content) -> some View {
+        content
+            .font(fontStyle.toFont())
+            .lineSpacing(fontStyle.lineHeight - fontStyle.size)
+            .tracking(fontStyle.letterSpacing)
+    }
+}
+
+extension View {
+    func fontStyle(_ fontStyle: FontStyle) -> some View {
+        modifier(FontStyleModifier(fontStyle: fontStyle))
+    }
+}
