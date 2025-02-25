@@ -67,16 +67,6 @@ struct SearchListItemView: View {
                             Text("\(item.likes)")
                                 .foregroundColor(Colors.GrayScale.grayscale55)
                         }
-                        
-                        // Distance
-                        HStack(spacing: 4) {
-                            Image("distanceIcon")
-                                .foregroundColor(Colors.GrayScale.grayscale55)
-                            Text("현위치에서")
-                                .foregroundColor(Colors.GrayScale.grayscale55)
-                            Text("\(String(format: "%.1f", item.distance))km")
-                                .foregroundColor(Colors.GrayScale.grayscale55)
-                        }
                     }
                     .font(.system(size: 14))
                 }
