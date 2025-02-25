@@ -13,6 +13,7 @@ struct LoginFeature: Reducer {
         case none
         case signIn
         case signUp
+        case main
     }
     
     struct State: Equatable {
@@ -22,6 +23,7 @@ struct LoginFeature: Reducer {
     enum Action: Equatable {
         case signInButtonTapped
         case signUpButtonTapped
+        case signInGuest
         case onDismiss
     }
     
@@ -33,6 +35,9 @@ struct LoginFeature: Reducer {
                 return .none
             case .signUpButtonTapped:
                 state.activeScreen = .signUp
+                return .none
+            case .signInGuest:
+                state.activeScreen = .main
                 return .none
             case .onDismiss:
                 state.activeScreen = .none
