@@ -53,6 +53,7 @@ struct CategoryView: View {
             isPresented: viewStore.binding(
                 get: {
                     if case .restrauntDetail = $0.activeScreen { return true }
+                    if case .random = $0.activeScreen { return true }
                     return false
                 },
                 send: .onDismiss
@@ -66,6 +67,19 @@ struct CategoryView: View {
                         withDependencies: {
                             $0.restaurantClient = RestaurantClient.testValue
                             $0.keywordClient = KeywordClient.liveValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
+            }
+            
+            if case .random = viewStore.activeScreen {
+                RandomView(
+                    store: Store(
+                        initialState: RandomFeature.State(),
+                        reducer: { RandomFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.testValue
                         }
                     )
                 )

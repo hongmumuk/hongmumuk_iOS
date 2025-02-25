@@ -29,14 +29,12 @@ struct HomeView: View {
             }
             .navigationDestination(
                 isPresented: viewStore.binding(
-                    get: { $0.activeScreen != .none },
+                    get: { $0.activeScreen != .none && $0.activeScreen != .random },
                     send: .onDismiss
                 )
             ) {
                 let screen = viewStore.activeScreen
-                if case .random = screen {
-                    // random View
-                } else if case .search = screen {
+                if case .search = screen {
                     SearchView(
                         store: Store(
                             initialState: SearchFeature.State(),
@@ -63,6 +61,25 @@ struct HomeView: View {
                     )
                     .navigationBarHidden(true)
                 }
+            }
+        }
+        .sheet(
+            isPresented: viewStore.binding(
+                get: { $0.activeScreen == .random },
+                send: .onDismiss
+            )
+        ) {
+            if case .random = viewStore.activeScreen {
+                RandomView(
+                    store: Store(
+                        initialState: RandomFeature.State(),
+                        reducer: { RandomFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.testValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
             }
         }
     }
