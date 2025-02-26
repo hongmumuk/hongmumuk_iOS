@@ -175,8 +175,19 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case .signInButtonTapped:
-    
-                return handleLogin(state.email, state.password)
+                let newEmail = "\(state.email)@g.hongik.ac.kr"
+                let body = LoginModel(email: newEmail, password: state.password)
+                return .run { send in
+                    do {
+                        if try await authClient.login(body) {
+                            await send(.successLogin)
+                        }
+                    } catch {
+                        if let loginError = error as? LoginError {
+                            await send(.failLogin(loginError))
+                        }
+                    }
+                }
                 
             case .signUpButtonTapped:
                 state.activeScreen = .signUp
@@ -195,33 +206,14 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case let .failLogin(error):
-                handleLoginError(error)
+                switch error {
+                case .invalid:
+                    print("invalid login")
+                case .unKnown:
+                    print("unknown error")
+                }
                 return .none
             }
-        }
-    }
-    
-    private func handleLogin(_ email: String, _ password: String) -> Effect<Action> {
-        let body = LoginModel(email: email, password: password)
-        return .run { send in
-            do {
-                if try await authClient.login(body) {
-                    await send(.successLogin)
-                }
-            } catch {
-                if let loginError = error as? LoginError {
-                    await send(.failLogin(loginError))
-                }
-            }
-        }
-    }
-    
-    private func handleLoginError(_ error: LoginError) {
-        switch error {
-        case .invalid:
-            print("invalid login")
-        case .unKnown:
-            print("unknown error")
         }
     }
 }
