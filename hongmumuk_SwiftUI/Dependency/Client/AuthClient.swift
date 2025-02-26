@@ -15,7 +15,7 @@ struct AuthClient {
 extension AuthClient: DependencyKey {
     static var liveValue: AuthClient = .init(
         login: { body in
-            let url = "\(Environment.baseUrl)/auth/login"
+            let url = "\(Environment.baseUrl)/api/auth/login"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
