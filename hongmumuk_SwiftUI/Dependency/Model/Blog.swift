@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct Blog: Codable, Equatable, Identifiable {
+    var id = UUID().uuidString
+    var url: String
+    var title: String
+    var subtitle: String
+    var date: String
+    var owner: String
+}
