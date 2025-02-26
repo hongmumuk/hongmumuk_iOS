@@ -33,4 +33,21 @@ extension String {
             return (0x3131 ... 0x314E).contains(scalar)
         }
     }
+    
+    // 주어진 부분 키워드가 문자열 내에 몇 번 등장하는지 반환
+    func countOccurrences(of keyword: Keyword, options: CompareOptions = .literal) -> Int {
+        let keywordString = keyword.rawValue
+        
+        guard !keywordString.isEmpty else { return 0 }
+        var count = 0
+        var searchRange = startIndex ..< endIndex
+        
+        while let foundRange = range(of: keywordString, options: options, range: searchRange) {
+            count += 1
+            // 검색 범위를 현재 발견한 범위의 바로 뒤로 이동
+            searchRange = foundRange.upperBound ..< endIndex
+        }
+        
+        return count
+    }
 }
