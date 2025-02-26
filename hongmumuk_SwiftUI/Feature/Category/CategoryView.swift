@@ -27,20 +27,12 @@ struct CategoryView: View {
                 }
                 CategoryRandomButton(viewStore: viewStore)
             }
-        }
-        .onAppear {
-            viewStore.send(.onAppear)
-        }
-        .navigationDestination(
-            isPresented: viewStore.binding(
-                get: { $0.activeScreen != .none },
-                send: .onDismiss
-            )
-        ) {
-            let screen = viewStore.activeScreen
-            if case .random = screen {
-                // random View
-            } else if case .search = screen {
+            .navigationDestination(
+                isPresented: viewStore.binding(
+                    get: { $0.activeScreen == .search },
+                    send: .onDismiss
+                )
+            ) {
                 SearchView(
                     store: Store(
                         initialState: SearchFeature.State(),
@@ -52,9 +44,32 @@ struct CategoryView: View {
                     )
                 )
                 .navigationBarHidden(true)
-                
-            } else if case let .restaurantDetail(id) = screen {
-                // 상세화면 전환
+            }
+        }
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
+        .sheet(
+            isPresented: viewStore.binding(
+                get: {
+                    if case .restrauntDetail = $0.activeScreen { return true }
+                    return false
+                },
+                send: .onDismiss
+            )
+        ) {
+            if case let .restrauntDetail(id) = viewStore.activeScreen {
+                DetailView(
+                    store: Store(
+                        initialState: DetailFeature.State(id: id),
+                        reducer: { DetailFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.testValue
+                            $0.keywordClient = KeywordClient.liveValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
             }
         }
     }
