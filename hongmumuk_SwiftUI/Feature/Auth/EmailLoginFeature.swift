@@ -20,25 +20,19 @@ struct EmailLoginFeature: Reducer {
         var emailValid: Bool = false
         var emailErrorMessage: String? = nil
         
-        var emailBackgroundColor: Color = .init(hex: "FAFBFE")
-        var emailBorderColor: Color = Colors.Border.strong
-        var emailTextColor: Color = Colors.GrayScale.normal
-        
         var password: String = ""
         var passwordFocused: Bool = false
         var passwordValid: Bool = false
         var passwordVisible: Bool = false
         var passwordErrorMessage: String? = nil
         
-        var passwordBackgroundColor: Color = .init(hex: "FAFBFE")
-        var passwordBorderColor: Color = Colors.Border.strong
-        var passwordTextColor: Color = Colors.GrayScale.normal
+        var loginError: LoginError? = nil
         
         var isLoginLoading: Bool = false
         var activeScreen: ActiveScreen = .none
         
         var isSigninEnabled: Bool {
-            emailValid && passwordValid
+            return !isLoginLoading && loginError == nil && emailValid && passwordValid
         }
     }
     
@@ -54,9 +48,6 @@ struct EmailLoginFeature: Reducer {
         
         case emailTextClear
         case passwordTextClear
-        
-        case updateEmailTextField
-        case updatePasswordTextField
         
         case passwordVisibleToggled
         
@@ -74,100 +65,54 @@ struct EmailLoginFeature: Reducer {
             switch action {
             case let .emailChanged(email):
                 state.email = email
-                return .send(.updateEmailTextField)
-            
+                return .none
+                
             case let .passwordChanged(password):
                 state.password = password
-                return .send(.updatePasswordTextField)
+                return .none
                 
             case let .emailFocused(isFocused):
                 state.emailFocused = isFocused
+                state.passwordValid = false
+                if state.loginError != nil {
+                    state.loginError = nil
+                    state.passwordErrorMessage = nil
+                }
                 state.emailErrorMessage = nil
-                return .send(.updateEmailTextField)
-            
+                return .none
+                
             case let .passwordFocused(isFocused):
                 state.passwordFocused = isFocused
+                state.passwordValid = false
+                if state.loginError != nil {
+                    state.loginError = nil
+                    state.emailErrorMessage = nil
+                }
                 state.passwordErrorMessage = nil
-                return .send(.updatePasswordTextField)
+                return .none
                 
             case .emailOnSubmit:
-                let isValid = validationClient.validateEmail(state.email)
                 state.emailFocused = false
-                state.emailValid = isValid
-                return .send(.updateEmailTextField)
-            
+                state.emailValid = validationClient.validateEmail(state.email)
+                if !state.email.isEmpty {
+                    state.emailErrorMessage = state.emailValid ? nil : "이메일 형식이 잘못되었습니다."
+                }
+                return .none
+                
             case .passwordOnSubmit:
-                let isValid = validationClient.validatePassword(state.password)
                 state.passwordFocused = false
-                state.passwordValid = isValid
-                return .send(.updatePasswordTextField)
-            
+                state.passwordValid = validationClient.validatePassword(state.password)
+                if !state.password.isEmpty {
+                    state.passwordErrorMessage = state.passwordValid ? nil : "비밀번호 형식이 잘못되었습니다."
+                }
+                return .none
+                
             case .emailTextClear:
                 state.email = ""
                 return .none
-            
+                
             case .passwordTextClear:
                 state.password = ""
-                return .none
-                
-            case .updateEmailTextField:
-                if state.emailFocused {
-                    state.emailBackgroundColor = Color(hex: "FBFBFE")
-                    state.emailBorderColor = Colors.Primary.normal
-                    state.emailTextColor = Colors.GrayScale.normal
-                    state.emailErrorMessage = nil
-                    return .none
-                }
-                
-                if state.email.isEmpty {
-                    state.emailBackgroundColor = Color(hex: "FBFBFE")
-                    state.emailBorderColor = Colors.Border.strong
-                    state.emailTextColor = Colors.GrayScale.normal
-                    state.emailErrorMessage = nil
-                    return .none
-                }
-
-                if !state.emailValid {
-                    state.emailBackgroundColor = Color(hex: "FFE8E5")
-                    state.emailBorderColor = Colors.SemanticColor.negative
-                    state.emailTextColor = Colors.SemanticColor.negative
-                    state.emailErrorMessage = "올바르지 않은 이메일 형식입니다."
-                } else {
-                    state.emailBackgroundColor = Color(hex: "FBFBFE")
-                    state.emailBorderColor = Colors.Border.strong
-                    state.emailTextColor = Colors.GrayScale.normal
-                    state.emailErrorMessage = nil
-                }
-                return .none
-            
-            case .updatePasswordTextField:
-                if state.passwordFocused {
-                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
-                    state.passwordBorderColor = Colors.Primary.normal
-                    state.passwordTextColor = Colors.GrayScale.normal
-                    state.passwordErrorMessage = nil
-                    return .none
-                }
-                
-                if state.password.isEmpty {
-                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
-                    state.passwordBorderColor = Colors.Border.strong
-                    state.passwordTextColor = Colors.GrayScale.normal
-                    state.passwordErrorMessage = nil
-                    return .none
-                }
-
-                if !state.passwordValid {
-                    state.passwordBackgroundColor = Color(hex: "FFE8E5")
-                    state.passwordBorderColor = Colors.SemanticColor.negative
-                    state.passwordTextColor = Colors.SemanticColor.negative
-                    state.passwordErrorMessage = "올바르지 않은 비밀번호 형식입니다."
-                } else {
-                    state.passwordBackgroundColor = Color(hex: "FBFBFE")
-                    state.passwordBorderColor = Colors.Border.strong
-                    state.passwordTextColor = Colors.GrayScale.normal
-                    state.passwordErrorMessage = nil
-                }
                 return .none
                 
             case .passwordVisibleToggled:
@@ -175,6 +120,9 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case .signInButtonTapped:
+                state.emailFocused = false
+                state.passwordFocused = false
+                state.isLoginLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = LoginModel(email: newEmail, password: state.password)
                 return .run { send in
@@ -202,16 +150,15 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case .successLogin:
+                state.isLoginLoading = false
                 state.activeScreen = .main
                 return .none
                 
             case let .failLogin(error):
-                switch error {
-                case .invalid:
-                    print("invalid login")
-                case .unKnown:
-                    print("unknown error")
-                }
+                state.loginError = error
+                state.isLoginLoading = false
+                state.emailErrorMessage = error == .unKnown ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
+                state.passwordErrorMessage = error == .invalid ? "비밀번호가 올바르지 않습니다." : nil
                 return .none
             }
         }

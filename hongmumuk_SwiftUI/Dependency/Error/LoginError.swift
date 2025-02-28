@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoginError: String, Error {
+public enum LoginError: String, Error {
     case unKnown
     case invalid
 }
