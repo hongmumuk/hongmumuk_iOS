@@ -175,8 +175,8 @@ struct EmailLoginFeature: Reducer {
                     state.emailState = .loginError
                     state.passwordState = .loginError
                 }
-                state.emailErrorMessage = error == .unKnown ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
-                state.passwordErrorMessage = error == .invalid ? "비밀번호가 올바르지 않습니다." : nil
+                state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
+                state.passwordErrorMessage = error == .invalidCredentials ? "비밀번호가 올바르지 않습니다." : nil
                 return .none
             }
         }
