@@ -30,17 +30,27 @@ struct EmailLoginView: View {
                     
                     Text("이메일")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(viewStore.emailTextColor)
+                        .foregroundStyle(CommonTextFieldStyle.textColor(
+                            isFocused: viewStore.emailFocused,
+                            isEmpty: viewStore.email.isEmpty,
+                            isValid: viewStore.emailValid,
+                            loginError: viewStore.loginError
+                        ))
                         .padding(.leading, 24)
                         .padding(.top, geometry.size.height * 0.04)
                     
-                    EmailInputField(isEmailFocused: $isEmailFocused, viewStore: viewStore)
+                    EmailTextFieldView(isEmailFocused: $isEmailFocused, viewStore: viewStore)
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                     
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(viewStore.passwordTextColor)
+                        .foregroundStyle(CommonTextFieldStyle.textColor(
+                            isFocused: viewStore.passwordFocused,
+                            isEmpty: viewStore.password.isEmpty,
+                            isValid: viewStore.passwordValid,
+                            loginError: viewStore.loginError
+                        ))
                         .padding(.leading, 24)
                         .padding(.top, 24)
                     
@@ -113,87 +123,6 @@ struct EmailLoginView: View {
     }
 }
 
-// Email Input Field
-struct EmailInputField: View {
-    var isEmailFocused: FocusState<Bool>.Binding
-    @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top) {
-                ZStack {
-                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                        .fill(viewStore.emailBackgroundColor)
-                        .frame(height: 47)
-                    
-                    Divider()
-                        .background(viewStore.emailBorderColor)
-                        .frame(height: 1)
-                        .padding(.top, 47)
-                    
-                    HStack {
-                        TextField("학교 이메일을 입력해 주세요", text: Binding(
-                            get: { viewStore.email },
-                            set: { viewStore.send(.emailChanged($0)) }
-                        ))
-                        .focused(isEmailFocused)
-                        .onSubmit { viewStore.send(.emailOnSubmit) }
-                        .onChange(of: isEmailFocused.wrappedValue) { isFocused in
-                            viewStore.send(.emailFocused(isFocused))
-                            
-                            if !isFocused {
-                                viewStore.send(.emailOnSubmit)
-                            }
-                        }
-                        .font(Fonts.body1Medium.toFont())
-                        .foregroundColor(viewStore.emailTextColor)
-                        .padding(.leading, 12)
-                        
-                        if !viewStore.email.isEmpty, isEmailFocused.wrappedValue {
-                            Button(action: { viewStore.send(.emailTextClear) }) {
-                                Image("TextFieldClearIcon")
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 12)
-                            }
-                        }
-                    }
-                }
-                
-                Text("@")
-                    .fontStyle(Fonts.heading3Medium)
-                    .foregroundStyle(Colors.GrayScale.normal)
-                    .frame(minHeight: 48)
-                    .padding(.leading, 8)
-                
-                ZStack {
-                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                        .fill(Color(hex: "FAFBFE"))
-                        .frame(height: 47)
-                    
-                    Divider()
-                        .background(Colors.Border.strong)
-                        .frame(height: 1)
-                        .padding(.top, 47)
-                    
-                    Text("g.hongik.ac.kr")
-                        .fontStyle(Fonts.body1Medium)
-                        .foregroundStyle(Colors.GrayScale.normal)
-                        .padding(.leading, 12)
-                        .padding(.trailing, 9)
-                }
-                .padding(.leading, 8)
-                .fixedSize(horizontal: true, vertical: false)
-            }
-            
-            if let emailError = viewStore.emailErrorMessage {
-                Text(emailError)
-                    .fontStyle(Fonts.caption1Medium)
-                    .foregroundStyle(Colors.SemanticColor.negative)
-            }
-        }
-    }
-}
-
 // Password Input Field
 struct PasswordInputField: View {
     var isPasswordFocused: FocusState<Bool>.Binding
@@ -204,11 +133,21 @@ struct PasswordInputField: View {
             HStack(alignment: .top) {
                 ZStack {
                     UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                        .fill(viewStore.passwordBackgroundColor)
+                        .fill(CommonTextFieldStyle.backgroundColor(
+                            isFocused: viewStore.passwordFocused,
+                            isEmpty: viewStore.password.isEmpty,
+                            isValid: viewStore.passwordValid,
+                            loginError: viewStore.loginError
+                        ))
                         .frame(height: 47)
                     
                     Divider()
-                        .background(viewStore.passwordBorderColor)
+                        .background(CommonTextFieldStyle.borderColor(
+                            isFocused: viewStore.passwordFocused,
+                            isEmpty: viewStore.password.isEmpty,
+                            isValid: viewStore.passwordValid,
+                            loginError: viewStore.loginError
+                        ))
                         .frame(height: 1)
                         .padding(.top, 47)
                     
@@ -231,7 +170,12 @@ struct PasswordInputField: View {
                                 }
                             }
                             .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(viewStore.passwordTextColor)
+                            .foregroundColor(CommonTextFieldStyle.textColor(
+                                isFocused: viewStore.passwordFocused,
+                                isEmpty: viewStore.password.isEmpty,
+                                isValid: viewStore.passwordValid,
+                                loginError: viewStore.loginError
+                            ))
                             .padding(.leading, 12)
                             .opacity(viewStore.passwordVisible ? 1 : 0)
                             
@@ -248,7 +192,12 @@ struct PasswordInputField: View {
                                 viewStore.send(.passwordFocused(isFocused))
                             }
                             .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(viewStore.passwordTextColor)
+                            .foregroundColor(CommonTextFieldStyle.textColor(
+                                isFocused: viewStore.passwordFocused,
+                                isEmpty: viewStore.password.isEmpty,
+                                isValid: viewStore.passwordValid,
+                                loginError: viewStore.loginError
+                            ))
                             .padding(.leading, 12)
                             .opacity(viewStore.passwordVisible ? 0 : 1)
                         }
