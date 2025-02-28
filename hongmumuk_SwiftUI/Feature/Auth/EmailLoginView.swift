@@ -30,12 +30,7 @@ struct EmailLoginView: View {
                     
                     Text("이메일")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(CommonTextFieldStyle.textColor(
-                            isFocused: viewStore.emailFocused,
-                            isEmpty: viewStore.email.isEmpty,
-                            isValid: viewStore.emailValid,
-                            loginError: viewStore.loginError
-                        ))
+                        .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
                         .padding(.top, geometry.size.height * 0.04)
                     
@@ -45,16 +40,11 @@ struct EmailLoginView: View {
                     
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(CommonTextFieldStyle.textColor(
-                            isFocused: viewStore.passwordFocused,
-                            isEmpty: viewStore.password.isEmpty,
-                            isValid: viewStore.passwordValid,
-                            loginError: viewStore.loginError
-                        ))
+                        .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
                         .padding(.leading, 24)
                         .padding(.top, 24)
                     
-                    PasswordInputField(isPasswordFocused: $isPasswordFocused, viewStore: viewStore)
+                    PasswordTextFieldView(isPasswordFocused: $isPasswordFocused, viewStore: viewStore)
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                     
@@ -118,114 +108,6 @@ struct EmailLoginView: View {
             .onTapGesture {
                 isEmailFocused = false
                 isPasswordFocused = false
-            }
-        }
-    }
-}
-
-// Password Input Field
-struct PasswordInputField: View {
-    var isPasswordFocused: FocusState<Bool>.Binding
-    @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top) {
-                ZStack {
-                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                        .fill(CommonTextFieldStyle.backgroundColor(
-                            isFocused: viewStore.passwordFocused,
-                            isEmpty: viewStore.password.isEmpty,
-                            isValid: viewStore.passwordValid,
-                            loginError: viewStore.loginError
-                        ))
-                        .frame(height: 47)
-                    
-                    Divider()
-                        .background(CommonTextFieldStyle.borderColor(
-                            isFocused: viewStore.passwordFocused,
-                            isEmpty: viewStore.password.isEmpty,
-                            isValid: viewStore.passwordValid,
-                            loginError: viewStore.loginError
-                        ))
-                        .frame(height: 1)
-                        .padding(.top, 47)
-                    
-                    HStack {
-                        ZStack {
-                            TextField(
-                                "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
-                                text: Binding(
-                                    get: { viewStore.password },
-                                    set: { viewStore.send(.passwordChanged($0)) }
-                                )
-                            )
-                            .focused(isPasswordFocused)
-                            .onSubmit { viewStore.send(.passwordOnSubmit) }
-                            .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
-                                viewStore.send(.passwordFocused(isFocused))
-                                
-                                if !isFocused {
-                                    viewStore.send(.passwordOnSubmit)
-                                }
-                            }
-                            .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(CommonTextFieldStyle.textColor(
-                                isFocused: viewStore.passwordFocused,
-                                isEmpty: viewStore.password.isEmpty,
-                                isValid: viewStore.passwordValid,
-                                loginError: viewStore.loginError
-                            ))
-                            .padding(.leading, 12)
-                            .opacity(viewStore.passwordVisible ? 1 : 0)
-                            
-                            SecureField(
-                                "영문, 숫자 포함 8-20자 이내로 입력해 주세요",
-                                text: Binding(
-                                    get: { viewStore.password },
-                                    set: { viewStore.send(.passwordChanged($0)) }
-                                )
-                            )
-                            .focused(isPasswordFocused)
-                            .onSubmit { viewStore.send(.passwordOnSubmit) }
-                            .onChange(of: isPasswordFocused.wrappedValue) { isFocused in
-                                viewStore.send(.passwordFocused(isFocused))
-                            }
-                            .font(Fonts.body1Medium.toFont())
-                            .foregroundColor(CommonTextFieldStyle.textColor(
-                                isFocused: viewStore.passwordFocused,
-                                isEmpty: viewStore.password.isEmpty,
-                                isValid: viewStore.passwordValid,
-                                loginError: viewStore.loginError
-                            ))
-                            .padding(.leading, 12)
-                            .opacity(viewStore.passwordVisible ? 0 : 1)
-                        }
-                        
-                        if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
-                            Button(action: { viewStore.send(.passwordTextClear) }) {
-                                Image("TextFieldClearIcon")
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 12)
-                            }
-                        }
-                        
-                        if !viewStore.password.isEmpty, isPasswordFocused.wrappedValue {
-                            Button(action: { viewStore.send(.passwordVisibleToggled) }) {
-                                Image(viewStore.passwordVisible ? "TextFieldVisibleIcon" : "TextFieldInvisibleIcon")
-                                    .frame(width: 20, height: 20)
-                                    .padding(.trailing, 12)
-                                    .animation(.none, value: viewStore.passwordVisible)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if let passwordError = viewStore.passwordErrorMessage {
-                Text(passwordError)
-                    .fontStyle(Fonts.caption1Medium)
-                    .foregroundStyle(Colors.SemanticColor.negative)
             }
         }
     }

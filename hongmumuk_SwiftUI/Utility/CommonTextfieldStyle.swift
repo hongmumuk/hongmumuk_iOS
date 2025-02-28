@@ -9,24 +9,44 @@ import Foundation
 import SwiftUI
 
 public enum CommonTextFieldStyle {
-    public static func backgroundColor(isFocused: Bool, isEmpty: Bool, isValid: Bool, loginError: LoginError?) -> Color {
-        if isFocused { return Colors.GrayScale.grayscale5 }
-        if isEmpty { return Colors.GrayScale.grayscale5 }
-        if loginError != nil { return Colors.SemanticColor.negative10 }
-        return isValid ? Colors.GrayScale.grayscale5 : Colors.SemanticColor.negative10
+    public static func backgroundColor(for state: TextFieldState) -> Color {
+        switch state {
+        case .focused, .empty, .valid:
+            return Colors.GrayScale.grayscale5
+        case .loginError, .invalid, .codeInvalid:
+            return Colors.SemanticColor.negative10
+        case .codeVerified:
+            return Colors.SemanticColor.positive10
+        default:
+            return Colors.GrayScale.grayscale5
+        }
     }
-    
-    public static func borderColor(isFocused: Bool, isEmpty: Bool, isValid: Bool, loginError: LoginError?) -> Color {
-        if isFocused { return Colors.Primary.normal }
-        if isEmpty { return Colors.Border.strong }
-        if loginError != nil { return Colors.SemanticColor.negative }
-        return isValid ? Colors.Border.strong : Colors.SemanticColor.negative
+
+    public static func borderColor(for state: TextFieldState) -> Color {
+        switch state {
+        case .focused:
+            return Colors.Primary.normal
+        case .empty, .valid:
+            return Colors.Border.strong
+        case .loginError, .invalid, .codeInvalid:
+            return Colors.SemanticColor.negative
+        case .codeVerified:
+            return Colors.SemanticColor.positive
+        case .normal:
+            return Colors.Border.strong
+        }
     }
-    
-    public static func textColor(isFocused: Bool, isEmpty: Bool, isValid: Bool, loginError: LoginError?) -> Color {
-        if isFocused { return Colors.GrayScale.normal }
-        if isEmpty { return Colors.GrayScale.normal }
-        if loginError != nil { return Colors.SemanticColor.negative }
-        return isValid ? Colors.GrayScale.normal : Colors.SemanticColor.negative
+
+    public static func textColor(for state: TextFieldState) -> Color {
+        switch state {
+        case .focused, .empty, .valid:
+            return Colors.GrayScale.normal
+        case .loginError, .invalid, .codeInvalid:
+            return Colors.SemanticColor.negative
+        case .codeVerified:
+            return Colors.SemanticColor.positive
+        case .normal:
+            return Colors.GrayScale.normal
+        }
     }
 }

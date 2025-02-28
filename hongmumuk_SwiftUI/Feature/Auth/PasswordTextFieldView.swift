@@ -58,23 +58,13 @@ struct PasswordTextFieldView: View {
     
     private var passwordBackgroundView: some View {
         UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-            .fill(CommonTextFieldStyle.backgroundColor(
-                isFocused: viewStore.passwordFocused,
-                isEmpty: viewStore.password.isEmpty,
-                isValid: viewStore.passwordValid,
-                loginError: viewStore.loginError
-            ))
+            .fill(CommonTextFieldStyle.backgroundColor(for: viewStore.passwordState))
             .frame(height: 47)
     }
     
     private var passwordBorderView: some View {
         Divider()
-            .background(CommonTextFieldStyle.borderColor(
-                isFocused: viewStore.passwordFocused,
-                isEmpty: viewStore.password.isEmpty,
-                isValid: viewStore.passwordValid,
-                loginError: viewStore.loginError
-            ))
+            .background(CommonTextFieldStyle.borderColor(for: viewStore.passwordState))
             .frame(height: 1)
     }
     
@@ -96,12 +86,7 @@ struct PasswordTextFieldView: View {
             }
         }
         .font(Fonts.body1Medium.toFont())
-        .foregroundColor(CommonTextFieldStyle.textColor(
-            isFocused: viewStore.passwordFocused,
-            isEmpty: viewStore.password.isEmpty,
-            isValid: viewStore.passwordValid,
-            loginError: viewStore.loginError
-        ))
+        .foregroundColor(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
     }
     
     private var passwordSecureTextField: some View {
@@ -118,12 +103,7 @@ struct PasswordTextFieldView: View {
             viewStore.send(.passwordFocused(isFocused))
         }
         .font(Fonts.body1Medium.toFont())
-        .foregroundColor(CommonTextFieldStyle.textColor(
-            isFocused: viewStore.passwordFocused,
-            isEmpty: viewStore.password.isEmpty,
-            isValid: viewStore.passwordValid,
-            loginError: viewStore.loginError
-        ))
+        .foregroundColor(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
     }
     
     private var passwordClearButton: some View {
