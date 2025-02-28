@@ -59,23 +59,13 @@ struct EmailTextFieldView: View {
     
     private var emailTextFieldBackgroundView: some View {
         UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-            .fill(CommonTextFieldStyle.backgroundColor(
-                isFocused: viewStore.emailFocused,
-                isEmpty: viewStore.email.isEmpty,
-                isValid: viewStore.emailValid,
-                loginError: viewStore.loginError
-            ))
+            .fill(CommonTextFieldStyle.backgroundColor(for: viewStore.emailState))
             .frame(height: 47)
     }
     
     private var emailTextFieldBorderView: some View {
         Divider()
-            .background(CommonTextFieldStyle.borderColor(
-                isFocused: viewStore.emailFocused,
-                isEmpty: viewStore.email.isEmpty,
-                isValid: viewStore.emailValid,
-                loginError: viewStore.loginError
-            ))
+            .background(CommonTextFieldStyle.borderColor(for: viewStore.emailState))
             .frame(height: 1)
     }
     
@@ -94,12 +84,7 @@ struct EmailTextFieldView: View {
             }
         }
         .font(Fonts.body1Medium.toFont())
-        .foregroundColor(CommonTextFieldStyle.textColor(
-            isFocused: viewStore.emailFocused,
-            isEmpty: viewStore.email.isEmpty,
-            isValid: viewStore.emailValid,
-            loginError: viewStore.loginError
-        ))
+        .foregroundColor(CommonTextFieldStyle.textColor(for: viewStore.emailState))
     }
     
     private var emailTextFieldClearButton: some View {

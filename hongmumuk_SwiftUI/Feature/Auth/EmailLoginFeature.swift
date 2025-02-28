@@ -16,15 +16,17 @@ struct EmailLoginFeature: Reducer {
     
     struct State: Equatable {
         var email: String = ""
-        var emailFocused: Bool = false
-        var emailValid: Bool = false
+        //        var emailFocused: Bool = false
+        //        var emailValid: Bool = false
         var emailErrorMessage: String? = nil
+        var emailState: TextFieldState = .empty
         
         var password: String = ""
-        var passwordFocused: Bool = false
-        var passwordValid: Bool = false
+        //        var passwordFocused: Bool = false
+        //        var passwordValid: Bool = false
         var passwordVisible: Bool = false
         var passwordErrorMessage: String? = nil
+        var passwordState: TextFieldState = .empty
         
         var loginError: LoginError? = nil
         
@@ -32,7 +34,7 @@ struct EmailLoginFeature: Reducer {
         var activeScreen: ActiveScreen = .none
         
         var isSigninEnabled: Bool {
-            return !isLoginLoading && loginError == nil && emailValid && passwordValid
+            return !isLoginLoading && loginError == nil && emailState == .valid && passwordState == .valid
         }
     }
     
@@ -72,47 +74,61 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case let .emailFocused(isFocused):
-                state.emailFocused = isFocused
-                state.passwordValid = false
+                state.emailState = isFocused ? .focused : (state.email.isEmpty ? .empty : .normal)
+                state.emailErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
+                    state.passwordState = .normal
                     state.passwordErrorMessage = nil
                 }
-                state.emailErrorMessage = nil
                 return .none
                 
             case let .passwordFocused(isFocused):
-                state.passwordFocused = isFocused
-                state.passwordValid = false
+                state.passwordState = isFocused ? .focused : (state.password.isEmpty ? .empty : .normal)
+                state.emailErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
+                    state.emailState = .normal
                     state.emailErrorMessage = nil
                 }
-                state.passwordErrorMessage = nil
                 return .none
                 
             case .emailOnSubmit:
-                state.emailFocused = false
-                state.emailValid = validationClient.validateEmail(state.email)
-                if !state.email.isEmpty {
-                    state.emailErrorMessage = state.emailValid ? nil : "이메일 형식이 잘못되었습니다."
+                if state.email.isEmpty {
+                    state.emailState = .empty
+                    state.emailErrorMessage = nil
+                } else if !validationClient.validateEmail(state.email) {
+                    state.emailState = .invalid
+                    state.emailErrorMessage = "이메일 형식이 잘못되었습니다."
+                } else {
+                    state.emailState = .valid
+                    state.emailErrorMessage = nil
                 }
                 return .none
                 
             case .passwordOnSubmit:
-                state.passwordFocused = false
-                state.passwordValid = validationClient.validatePassword(state.password)
-                if !state.password.isEmpty {
-                    state.passwordErrorMessage = state.passwordValid ? nil : "비밀번호 형식이 잘못되었습니다."
+                if state.password.isEmpty {
+                    state.passwordState = .empty
+                    state.passwordErrorMessage = nil
+                } else if !validationClient.validatePassword(state.password) {
+                    state.passwordState = .invalid
+                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                } else {
+                    state.passwordState = .valid
+                    state.passwordErrorMessage = nil
                 }
                 return .none
                 
             case .emailTextClear:
                 state.email = ""
+                state.emailState = .empty
+                state.emailErrorMessage = nil
                 return .none
                 
             case .passwordTextClear:
                 state.password = ""
+                state.passwordState = .empty
+                state.passwordErrorMessage = nil
                 return .none
                 
             case .passwordVisibleToggled:
@@ -120,8 +136,6 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case .signInButtonTapped:
-                state.emailFocused = false
-                state.passwordFocused = false
                 state.isLoginLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = LoginModel(email: newEmail, password: state.password)
@@ -155,8 +169,12 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case let .failLogin(error):
-                state.loginError = error
                 state.isLoginLoading = false
+                state.loginError = error
+                if state.loginError != nil {
+                    state.emailState = .loginError
+                    state.passwordState = .loginError
+                }
                 state.emailErrorMessage = error == .unKnown ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
                 state.passwordErrorMessage = error == .invalid ? "비밀번호가 올바르지 않습니다." : nil
                 return .none
