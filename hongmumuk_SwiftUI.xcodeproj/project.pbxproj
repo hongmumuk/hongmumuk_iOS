@@ -23,6 +23,7 @@
 		2F435EBD2D4FC26E005E1C84 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EB52D4FC26E005E1C84 /* Pretendard-Thin.otf */; };
 		2F435EBE2D4FC26E005E1C84 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EB12D4FC26E005E1C84 /* Pretendard-Light.otf */; };
 		2F65D3422D72EF66002BF6B5 /* SendVerifyCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */; };
+		2F65D35C2D745773002BF6B5 /* CommonTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */; };
 		2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */; };
 		2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4B02D717EBA00548850 /* TextFieldState.swift */; };
 		2F68B4BB2D72255100548850 /* VerifyEmailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */; };
@@ -31,6 +32,7 @@
 		2F68B4C12D72256C00548850 /* ResetPasswordFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4C02D72256C00548850 /* ResetPasswordFeature.swift */; };
 		2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */; };
 		2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4CC2D72315A00548850 /* VoidData.swift */; };
+		2F68B4D32D72474A00548850 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4D22D72474A00548850 /* BasicButton.swift */; };
 		2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */; };
 		2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097892D427FC900D01792 /* ContentView.swift */; };
 		2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */; };
@@ -154,6 +156,7 @@
 		2F435EB42D4FC26E005E1C84 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		2F435EB52D4FC26E005E1C84 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendVerifyCodeModel.swift; sourceTree = "<group>"; };
+		2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextFieldView.swift; sourceTree = "<group>"; };
 		2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextfieldStyle.swift; sourceTree = "<group>"; };
 		2F68B4B02D717EBA00548850 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailFeature.swift; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 		2F68B4C02D72256C00548850 /* ResetPasswordFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordFeature.swift; sourceTree = "<group>"; };
 		2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailModel.swift; sourceTree = "<group>"; };
 		2F68B4CC2D72315A00548850 /* VoidData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidData.swift; sourceTree = "<group>"; };
+		2F68B4D22D72474A00548850 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUITests.swift; sourceTree = "<group>"; };
 		2FA097862D427FC900D01792 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2FA097882D427FC900D01792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -390,7 +394,10 @@
 		BE208FFA2D6485DA0041A173 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */,
+				2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */,
 				BE208FF62D6478520041A173 /* InquiryButton.swift */,
+				2F68B4D22D72474A00548850 /* BasicButton.swift */,
 				BE208FFB2D648ED90041A173 /* ListItemView.swift */,
 				BE208FFD2D64908E0041A173 /* RandomButton.swift */,
 			);
@@ -838,6 +845,7 @@
 				BE208FED2D633BB40041A173 /* CategoryView.swift in Sources */,
 				BE208FFC2D648ED90041A173 /* ListItemView.swift in Sources */,
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
+				2F65D35C2D745773002BF6B5 /* CommonTextFieldView.swift in Sources */,
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* ListHeaderView.swift in Sources */,
 				2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */,
@@ -847,6 +855,7 @@
 				2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */,
 				2F68B4BB2D72255100548850 /* VerifyEmailFeature.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
+				2F68B4D32D72474A00548850 /* BasicButton.swift in Sources */,
 				BE208FFE2D64908E0041A173 /* RandomButton.swift in Sources */,
 				BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
