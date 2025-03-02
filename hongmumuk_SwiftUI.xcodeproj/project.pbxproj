@@ -24,6 +24,9 @@
 		2F435EBE2D4FC26E005E1C84 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EB12D4FC26E005E1C84 /* Pretendard-Light.otf */; };
 		2F65D3422D72EF66002BF6B5 /* SendVerifyCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */; };
 		2F65D35C2D745773002BF6B5 /* CommonTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */; };
+		2F65D35F2D7460C4002BF6B5 /* SignupFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D35E2D7460C4002BF6B5 /* SignupFeature.swift */; };
+		2F65D3612D7460C9002BF6B5 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D3602D7460C9002BF6B5 /* SignupView.swift */; };
+		2F65D3632D7462D4002BF6B5 /* SignupPolicyModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D3622D7462D4002BF6B5 /* SignupPolicyModalView.swift */; };
 		2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */; };
 		2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4B02D717EBA00548850 /* TextFieldState.swift */; };
 		2F68B4BB2D72255100548850 /* VerifyEmailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */; };
@@ -157,6 +160,9 @@
 		2F435EB52D4FC26E005E1C84 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendVerifyCodeModel.swift; sourceTree = "<group>"; };
 		2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextFieldView.swift; sourceTree = "<group>"; };
+		2F65D35E2D7460C4002BF6B5 /* SignupFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFeature.swift; sourceTree = "<group>"; };
+		2F65D3602D7460C9002BF6B5 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		2F65D3622D7462D4002BF6B5 /* SignupPolicyModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPolicyModalView.swift; sourceTree = "<group>"; };
 		2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextfieldStyle.swift; sourceTree = "<group>"; };
 		2F68B4B02D717EBA00548850 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailFeature.swift; sourceTree = "<group>"; };
@@ -498,6 +504,9 @@
 				2F68B4BC2D72255900548850 /* VerifyEmailView.swift */,
 				2F68B4BE2D72256300548850 /* ResetPasswordView.swift */,
 				2FE55C0A2D5E45EA00BFE6F7 /* ProgressButton.swift */,
+				2F65D35E2D7460C4002BF6B5 /* SignupFeature.swift */,
+				2F65D3602D7460C9002BF6B5 /* SignupView.swift */,
+				2F65D3622D7462D4002BF6B5 /* SignupPolicyModalView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -816,6 +825,7 @@
 				2F68B49F2D70D0F000548850 /* EmailTextFieldView.swift in Sources */,
 				BECC4A212D69B06300F72FAF /* DetailMapView.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
+				2F65D3632D7462D4002BF6B5 /* SignupPolicyModalView.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				2F68B4C12D72256C00548850 /* ResetPasswordFeature.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */,
@@ -861,6 +871,8 @@
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
 				BE20900D2D64B8100041A173 /* LikeListView.swift in Sources */,
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,
+				2F65D35F2D7460C4002BF6B5 /* SignupFeature.swift in Sources */,
+				BE208FF32D634DB60041A173 /* ListItemView.swift in Sources */,
 				BE208FF32D634DB60041A173 /* CategoryListView.swift in Sources */,
 				BEBB792F2D6EBF0900209F7E /* DetailTabView.swift in Sources */,
 				BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */,
@@ -880,6 +892,7 @@
 				2FA7981E2D6AFC120093B6DA /* LoginView.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
 				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
+				2F65D3612D7460C9002BF6B5 /* SignupView.swift in Sources */,
 				BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
