@@ -14,18 +14,19 @@ struct ResetPasswordFeature: Reducer {
         var password: String = ""
         var passwordErrorMessage: String? = nil
         var passwordState: TextFieldState = .empty
+        var passwordVisible: Bool = false
         
         var verifiedPassword: String = ""
-        var verifiedPasswordErrorMessage: String? = nil
+        var verifiedPasswordMessage: String? = nil
         var verifiedPasswordState: TextFieldState = .empty
+        var verifiedPasswordVisible: Bool = false
         
         var resetPasswordError: LoginError? = nil
         
         var isResetPasswordLoading: Bool = false
         
         var isResetPasswordButtonEnabled: Bool {
-            // 여기서 밸리드는 같냐 안같냐로 결정
-            passwordState == .valid && verifiedPasswordState == .valid
+            passwordState == .valid && verifiedPasswordState == .codeVerified
         }
     }
     
@@ -42,6 +43,9 @@ struct ResetPasswordFeature: Reducer {
         case passwordTextClear
         case verifiedPasswordTextClear
         
+        case passwordVisibleToggled
+        case verifiedVisibleToggled
+        
         case resetPasswordButtonTapped
         case backButtonTapped
         
@@ -51,6 +55,7 @@ struct ResetPasswordFeature: Reducer {
     
     @Dependency(\.validationClient) var validationClient
     @Dependency(\.authClient) var authClient
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -70,7 +75,7 @@ struct ResetPasswordFeature: Reducer {
                 
             case let .verifiedPasswordFocused(isFocueed):
                 state.verifiedPasswordState = isFocueed ? .focused : (state.verifiedPassword.isEmpty ? .empty : .normal)
-                state.verifiedPasswordErrorMessage = nil
+                state.verifiedPasswordMessage = nil
                 return .none
                 
             case .passwordOnSubmit:
@@ -79,7 +84,7 @@ struct ResetPasswordFeature: Reducer {
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "이메일 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil
@@ -89,13 +94,13 @@ struct ResetPasswordFeature: Reducer {
             case .verifiedPasswordOnSubmit:
                 if state.verifiedPassword.isEmpty {
                     state.verifiedPasswordState = .empty
-                    state.verifiedPasswordErrorMessage = nil
+                    state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
-                    state.passwordState = .valid
-                    state.passwordErrorMessage = nil
+                    state.verifiedPasswordState = .codeVerified
+                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
                 } else {
-                    state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호가 일치하지 않습니다."
+                    state.verifiedPasswordState = .invalid
+                    state.verifiedPasswordMessage = "비밀번호가 일치하지 않습니다."
                 }
                 return .none
                 
@@ -108,12 +113,35 @@ struct ResetPasswordFeature: Reducer {
             case .verifiedPasswordTextClear:
                 state.verifiedPassword = ""
                 state.verifiedPasswordState = .empty
-                state.verifiedPasswordErrorMessage = nil
+                state.verifiedPasswordMessage = nil
+                return .none
+                
+            case .passwordVisibleToggled:
+                state.passwordVisible.toggle()
+                return .none
+                
+            case .verifiedVisibleToggled:
+                state.verifiedPasswordVisible.toggle()
                 return .none
                 
             case .resetPasswordButtonTapped:
                 state.isResetPasswordLoading = true
-                return .none
+                
+                return .run { [password = state.password] send in
+                    do {
+                        let savedEmail = await userDefaultsClient.getString(.findPassword)
+                        let body = LoginModel(email: savedEmail, password: password)
+                        
+                        if try await authClient.resetPassword(body) {
+                            await send(.successReset)
+                        }
+                    } catch {
+                        if let resetError = error as? LoginError {
+                            print(resetError)
+                            await send(.failReset(resetError))
+                        }
+                    }
+                }
                 
             case .backButtonTapped, .onDismiss:
                 return .none
@@ -126,6 +154,8 @@ struct ResetPasswordFeature: Reducer {
                 
             case let .failReset(error):
                 state.isResetPasswordLoading = false
+                state.verifiedPasswordState = .invalid
+                state.verifiedPasswordMessage = error == .userNotFound ? "비밀번호를 바꿀 수 없습니다." : nil
                 
                 return .none
             }

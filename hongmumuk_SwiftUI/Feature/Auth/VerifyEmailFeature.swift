@@ -63,6 +63,7 @@ struct VerifyEmailFeature: Reducer {
     
     @Dependency(\.validationClient) var validationClient
     @Dependency(\.authClient) var authClient
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -133,10 +134,13 @@ struct VerifyEmailFeature: Reducer {
                 state.isSendCodeLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = SendVerifyCodeModel(email: newEmail, join: false)
+
                 return .run { send in
                     do {
-                        try await authClient.sendVerificationEmail(body)
-                        await send(.successSend)
+                        if try await authClient.sendVerificationEmail(body) {
+                            await userDefaultsClient.setString(newEmail, .findPassword)
+                            await send(.successSend)
+                        }
                     } catch {
                         if let sendError = error as? LoginError {
                             await send(.failSend(sendError))
@@ -148,14 +152,13 @@ struct VerifyEmailFeature: Reducer {
                 state.isVerifyCodeLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = VerifyEmailModel(email: newEmail, code: state.code)
+                
                 return .run { send in
                     do {
                         if try await authClient.verifyEmailCode(body) {
                             await send(.successVerify)
                         }
                     } catch {
-                        print(error)
-                        
                         if let loginError = error as?
                             LoginError
                         {
