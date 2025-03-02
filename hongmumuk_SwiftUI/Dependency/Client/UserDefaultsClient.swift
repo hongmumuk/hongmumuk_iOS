@@ -13,6 +13,7 @@ import Foundation
 /// UserDefaults에 저장할 키 정의
 enum UserDefaultsKey: String {
     case recentSearchList
+    case findPassword
 }
 
 struct UserDefaultsClient {
