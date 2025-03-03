@@ -61,8 +61,6 @@ struct SearchFeature: Reducer {
                             await send(.restrauntListError(error))
                         }
                     }
-                    
-                    try await Task.sleep(nanoseconds: 1_500_000_000) // 1.5초 지연
                     await send(.loadingCompleted)
                 }
                 

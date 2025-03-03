@@ -79,7 +79,7 @@ struct CategoryView: View {
                         initialState: RandomFeature.State(),
                         reducer: { RandomFeature() },
                         withDependencies: {
-                            $0.restaurantClient = RestaurantClient.testValue
+                            $0.restaurantClient = RestaurantClient.liveValue
                         }
                     )
                 )

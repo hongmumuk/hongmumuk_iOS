@@ -44,8 +44,7 @@ struct LikeFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList(for: state) { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
-                    await send(.initialLoadingCompleted)
+                    await send(.initailLoadingCompleted)
                 }
                 
             case .onDismiss:

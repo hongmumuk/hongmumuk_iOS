@@ -30,7 +30,6 @@ struct RandomFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
                     await send(.initailLoadingCompleted)
                 }
                 
