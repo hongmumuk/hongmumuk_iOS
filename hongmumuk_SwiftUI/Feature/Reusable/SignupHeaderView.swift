@@ -15,10 +15,6 @@ struct SignupHeaderView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Divider()
-                .background(Colors.Border.neutral)
-                .frame(height: 1)
-            
             activeStepView
                 .padding(.leading, 24)
                 .padding(.top, 40)

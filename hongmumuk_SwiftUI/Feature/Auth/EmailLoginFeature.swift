@@ -6,14 +6,9 @@
 //
 
 import ComposableArchitecture
-import Foundation
 import SwiftUI
 
 struct EmailLoginFeature: Reducer {
-    enum ActiveScreen {
-        case none, main, findPassword, signUp
-    }
-    
     struct State: Equatable {
         var email: String = ""
         //        var emailFocused: Bool = false
@@ -31,8 +26,7 @@ struct EmailLoginFeature: Reducer {
         var loginError: LoginError? = nil
         
         var isLoginLoading: Bool = false
-        var activeScreen: ActiveScreen = .none
-        
+            
         var isSigninEnabled: Bool {
             return !isLoginLoading && loginError == nil && emailState == .valid && passwordState == .valid
         }
@@ -61,6 +55,7 @@ struct EmailLoginFeature: Reducer {
     
     @Dependency(\.validationClient) var validationClient
     @Dependency(\.authClient) var authClient
+    @Dependency(\.keychainClient) var keychainClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -139,33 +134,36 @@ struct EmailLoginFeature: Reducer {
                 state.isLoginLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = LoginModel(email: newEmail, password: state.password)
+                
                 return .run { send in
                     do {
-                        if try await authClient.login(body) {
-                            await send(.successLogin)
-                        }
+                        let tokenData = try await authClient.login(body)
+                        
+                        print(tokenData)
+
+                        await keychainClient.setString(tokenData.accessToken, .accessToken)
+                        await keychainClient.setString(tokenData.refreshToken, .refreshToken)
+
+                        await send(.successLogin)
                     } catch {
-                        if let loginError = error as? LoginError {
-                            await send(.failLogin(loginError))
+                        if let signupError = error as? LoginError {
+                            print(signupError)
+                            await send(.failLogin(signupError))
                         }
                     }
                 }
                 
             case .signUpButtonTapped:
-                state.activeScreen = .signUp
                 return .none
                 
             case .findPasswordButtonTapped:
-                state.activeScreen = .findPassword
                 return .none
                 
             case .backButtonTapped, .onDismiss:
-                state.activeScreen = .none
                 return .none
                 
             case .successLogin:
                 state.isLoginLoading = false
-                state.activeScreen = .main
                 return .none
                 
             case let .failLogin(error):

@@ -10,129 +10,119 @@ import SwiftUI
 
 struct PrivacyView: View {
     let store: StoreOf<PrivacyFeature>
-    
+    let parentStore: StoreOf<LoginInitialFeature>
     @ObservedObject var viewStore: ViewStoreOf<PrivacyFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
     
-    init(store: StoreOf<PrivacyFeature>) {
+    init(store: StoreOf<PrivacyFeature>, parentStore: StoreOf<LoginInitialFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                VStack(alignment: .leading) {
-                    SignupHeaderView(
-                        activeStep: 1,
-                        title: "필수 약관에 동의해 주세요",
-                        subtitle: "서비스 이용을 위해서는 약관 동의가 필요합니다"
-                    )
-                    
-                    allAgreeButton
-                        .padding(.top, geometry.size.height * 0.056)
-                        .padding(.horizontal, 24)
-                    
-                    HStack(alignment: .center) {
-                        serviceAgreeButton
-                        
-                        Spacer()
-                        
-                        serviceModalButton
-                            .padding(.trailing, 20)
-                    }
-                    .padding(.top, 22)
+        GeometryReader { geometry in
+            VStack(alignment: .leading) {
+                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                
+                SignupHeaderView(
+                    activeStep: 1,
+                    title: "필수 약관에 동의해 주세요",
+                    subtitle: "서비스 이용을 위해서는 약관 동의가 필요합니다"
+                )
+                
+                allAgreeButton
+                    .padding(.top, geometry.size.height * 0.056)
                     .padding(.horizontal, 24)
-                    .frame(height: 56)
-                    
-                    HStack(alignment: .center) {
-                        privacyAgreeButton
-                        
-                        Spacer()
-                        
-                        privacyModalButton
-                            .padding(.trailing, 20)
-                    }
-                    .padding(.horizontal, 24)
-                    .frame(height: 56)
+                
+                HStack(alignment: .center) {
+                    serviceAgreeButton
                     
                     Spacer()
                     
-                    HStack {
-                        Spacer()
-                        
-                        SignupToastView(imageName: "checkWhiteIcon", title: "필수 약관 동의가 필요합니다")
-                            .opacity(viewStore.isToastShown ? 1 : 0)
-                            .animation(.easeOut(duration: 1.0), value: viewStore.isToastShown)
-                            .frame(width: geometry.size.width * 0.6, height: 44)
-                            .multilineTextAlignment(.center)
-                            .padding(.bottom, 24)
-                        
-                        Spacer()
-                    }
-                    
-                    NextButton(title: "다음으로",
-                               isActive: viewStore.isContinueButtonEnabled,
-                               action: { viewStore.send(.continueButtonTapped) })
-                        .frame(height: 60)
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, geometry.size.height * 0.1)
-                        .onTapGesture {
-                            if !viewStore.isContinueButtonEnabled {
-                                viewStore.send(.toastPresented)
-                            }
-                        }
+                    serviceModalButton
+                        .padding(.trailing, 20)
                 }
-            }
-            .navigationTitle("회원가입")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("회원가입")
-                        .fontStyle(Fonts.heading1Bold)
-                        .foregroundColor(Colors.GrayScale.normal)
+                .padding(.top, 22)
+                .padding(.horizontal, 24)
+                .frame(height: 56)
+                
+                HStack(alignment: .center) {
+                    privacyAgreeButton
+                    
+                    Spacer()
+                    
+                    privacyModalButton
+                        .padding(.trailing, 20)
+                }
+                .padding(.horizontal, 24)
+                .frame(height: 56)
+                
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    SignupToastView(imageName: "checkWhiteIcon", title: "필수 약관 동의가 필요합니다")
+                        .opacity(viewStore.isToastShown ? 1 : 0)
+                        .animation(.easeOut(duration: 1.0), value: viewStore.isToastShown)
+                        .frame(width: geometry.size.width * 0.6, height: 44)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 24)
+                    
+                    Spacer()
                 }
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { viewStore.send(.backButtonTapped) }) {
-                        Image("backButton")
-                            .resizable()
-                            .frame(width: 36, height: 36)
+                NextButton(
+                    title: "다음으로",
+                    isActive: viewStore.isContinueButtonEnabled,
+                    action: {
+                        viewStore.send(.continueButtonTapped)
+                        parentViewStore.send(.signUpEmailButtonTapped)
                     }
-                    .padding(.leading, 4)
+                )
+                .frame(height: 60)
+                .padding(.horizontal, 24)
+                .padding(.bottom, geometry.size.height * 0.1)
+                .onTapGesture {
+                    if !viewStore.isContinueButtonEnabled {
+                        viewStore.send(.toastPresented)
+                    }
                 }
             }
-            .sheet(isPresented: Binding(
-                get: { viewStore.isServiceModalPresented },
-                set: { _, _ in viewStore.send(.serviceModalDismissed) }
-            )) {
-                PrivacyModalView(
-                    title: "서비스 이용약관",
-                    content: "",
-                    onDismiss: {
-                        viewStore.send(.serviceModalDismissed)
-                    },
-                    agreeAction: {
-                        viewStore.send(.serviceAgree)
-                        viewStore.send(.serviceModalDismissed)
-                    }
-                )
-            }
-            .sheet(isPresented: Binding(
-                get: { viewStore.isPrivacyModalPresented },
-                set: { _, _ in viewStore.send(.privacyModalDismissed) }
-            )) {
-                PrivacyModalView(
-                    title: "서비스 이용약관",
-                    content: "",
-                    onDismiss: {
-                        viewStore.send(.privacyModalDismissed)
-                    },
-                    agreeAction: {
-                        viewStore.send(.privacyAgree)
-                        viewStore.send(.privacyModalDismissed)
-                    }
-                )
-            }
+        }
+        .sheet(isPresented: Binding(
+            get: { viewStore.isServiceModalPresented },
+            set: { _, _ in viewStore.send(.serviceModalDismissed) }
+        )) {
+            PrivacyModalView(
+                title: "서비스 이용약관",
+                content: "",
+                onDismiss: {
+                    viewStore.send(.serviceModalDismissed)
+                },
+                agreeAction: {
+                    viewStore.send(.serviceAgree)
+                    viewStore.send(.serviceModalDismissed)
+                }
+            )
+        }
+        .sheet(isPresented: Binding(
+            get: { viewStore.isPrivacyModalPresented },
+            set: { _, _ in viewStore.send(.privacyModalDismissed) }
+        )) {
+            PrivacyModalView(
+                title: "서비스 이용약관",
+                content: "",
+                onDismiss: {
+                    viewStore.send(.privacyModalDismissed)
+                },
+                agreeAction: {
+                    viewStore.send(.privacyAgree)
+                    viewStore.send(.privacyModalDismissed)
+                }
+            )
         }
     }
     

@@ -12,7 +12,15 @@ import SwiftUI
 struct Hongmumuk_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
+//            RootView()
+            LoginInitialView(
+                store: Store(
+                    initialState: LoginInitialFeature.State(),
+                    reducer: {
+                        LoginInitialFeature()
+                    }
+                )
+            )
         }
     }
 }

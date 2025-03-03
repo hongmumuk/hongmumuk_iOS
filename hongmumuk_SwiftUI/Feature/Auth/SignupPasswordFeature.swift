@@ -131,7 +131,7 @@ struct SignupPasswordFeature: Reducer {
                     do {
                         let savedEmail = await userDefaultsClient.getString(.signup)
                         let body = LoginModel(email: savedEmail, password: password)
-
+                        print(body)
                         let tokenData = try await authClient.signup(body)
                         
                         print(tokenData)

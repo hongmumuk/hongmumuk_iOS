@@ -10,62 +10,50 @@ import SwiftUI
 
 struct SignupEmailView: View {
     let store: StoreOf<SignupEmailFeature>
+    let parentStore: StoreOf<LoginInitialFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<SignupEmailFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
     
     @FocusState private var isEmailFocused: Bool
     @FocusState private var isCodeFocused: Bool
-    
-    init(store: StoreOf<SignupEmailFeature>) {
+
+    init(store: StoreOf<SignupEmailFeature>, parentStore: StoreOf<LoginInitialFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                ZStack {
-                    scrollView
-                    
-                    VStack {
-                        Spacer()
-                        
-                        NextButton(title: "다음으로", isActive: viewStore.isContinueButtonEnabled) {
-                            if viewStore.isContinueButtonEnabled {
-                                viewStore.send(.continueButtonTapped)
-                            }
-                        }
-                        .frame(height: 60)
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 60)
-                    }
-                    .ignoresSafeArea(.keyboard)
-                }
-            }
-            .navigationTitle("회원가입")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("회원가입")
-                        .fontStyle(Fonts.heading1Bold)
-                        .foregroundColor(Colors.GrayScale.normal)
-                }
+        GeometryReader { geometry in
+            ZStack(alignment: .top) {
+                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { viewStore.send(.backButtonTapped) }) {
-                        Image("backButton")
-                            .resizable()
-                            .frame(width: 36, height: 36)
+                scrollView
+                    .padding(.top, 56)
+                    
+                VStack {
+                    Spacer()
+                        
+                    NextButton(title: "다음으로", isActive: viewStore.isContinueButtonEnabled) {
+                        if viewStore.isContinueButtonEnabled {
+                            viewStore.send(.continueButtonTapped)
+                            parentViewStore.send(.signUpPasswordButtonTapped)
+                        }
                     }
-                    .padding(.leading, 4)
+                    .frame(height: 60)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 60)
                 }
+                .ignoresSafeArea(.keyboard)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                isEmailFocused = false
-                isCodeFocused = false
-            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isEmailFocused = false
+            isCodeFocused = false
         }
     }
 

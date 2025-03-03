@@ -9,14 +9,13 @@ import Alamofire
 import Dependencies
 
 struct AuthClient {
-    var login: @Sendable (_ body: LoginModel) async throws -> Bool
+    var login: @Sendable (_ body: LoginModel) async throws -> AuthTokenResponseModel
     var sendVerificationEmail: @Sendable (_ body: SendVerifyCodeModel) async throws -> Bool
     var verifyEmailCode: @Sendable (_ body: VerifyEmailModel) async throws -> Bool
     var resetPassword: @Sendable (_ body: LoginModel) async throws -> Bool
     var signup: @Sendable (_ body: LoginModel) async throws -> AuthTokenResponseModel
 }
 
-// 로그인 수정 필요!
 extension AuthClient: DependencyKey {
     static var liveValue: AuthClient = .init(
         login: { body in
@@ -30,11 +29,18 @@ extension AuthClient: DependencyKey {
                 encoder: .json,
                 headers: headers
             )
-            .serializingDecodable(ResponseModel<LoginModel>.self)
+            .serializingDecodable(ResponseModel<AuthTokenResponseModel>.self)
             .value
+            print(response.code)
+            guard response.isSuccess, let tokenData = response.data else {
+                switch response.code {
+                case "BAD400_1": throw LoginError.userNotFound
+                case "BAD400_2": throw LoginError.invalidCredentials
+                default: throw LoginError.unknown
+                }
+            }
         
-            guard response.isSuccess else { throw LoginError(rawValue: response.code) ?? .unknown }
-            return response.isSuccess
+            return tokenData
         },
         sendVerificationEmail: { body in
             let url = "\(Environment.baseUrl)/api/auth/send"

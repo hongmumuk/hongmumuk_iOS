@@ -214,6 +214,7 @@ struct SignupEmailFeature: Reducer {
                     state.emailState = .loginError
                 }
                 state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
+                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
                 return .none
                 
             case .successVerify:
