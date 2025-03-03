@@ -53,7 +53,7 @@ struct CategoryView: View {
                 )
                 .navigationBarHidden(true)
                 
-            } else if case let .restrauntDetail(id) = screen {
+            } else if case let .restaurantDetail(id) = screen {
                 // 상세화면 전환
             }
         }

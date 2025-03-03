@@ -35,7 +35,7 @@ struct CategoryFilterView: View {
     }
     
     private var restrauntCntText: some View {
-        Text("식당 \(viewStore.restrauntCount)개")
+        Text("식당 \(viewStore.restaurantCount)개")
             .fontStyle(Fonts.body1Medium)
             .foregroundColor(Colors.GrayScale.grayscal45)
     }

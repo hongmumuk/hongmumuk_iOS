@@ -23,7 +23,7 @@ struct CategoryListView: View {
                 } else {
                     ForEach(viewStore.sortedRestaurantList) { item in
                         ListItemView(item: item, sort: viewStore.sort) {
-                            viewStore.send(.restrauntTapped(id: $0.id))
+                            viewStore.send(.restaurantTapped(id: $0.id))
                         }
                     }
                     if !viewStore.isLastPage {
