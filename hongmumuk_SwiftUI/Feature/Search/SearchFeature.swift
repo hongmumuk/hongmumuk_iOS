@@ -21,6 +21,7 @@ struct SearchFeature: Reducer {
         var searchedList = [RestaurantListModel]()
         var recentSearchList = [String]()
         var isLoading = true
+        var showEptyView = false
     }
     
     enum Action: Equatable {
@@ -33,6 +34,7 @@ struct SearchFeature: Reducer {
         case recentSearchAllClearButtonTapped
         case recentSearchClearButtonTapped(String)
         case restrauntTapped(id: Int)
+        case inquryButtonTapped
         case loadingCompleted
         case recentSearchesLoaded([String])
         case restrauntListLoaded([RestaurantListModel])
@@ -72,6 +74,10 @@ struct SearchFeature: Reducer {
                 let query = state.searchText
                 state.searchedList = state.restrauntList.filter { filterSearchList($0.name, query: query) }
                 
+                if state.searchedList.isEmpty {
+                    state.showEptyView = true
+                }
+                
                 return .run { send in
                     
                     // 1. 빈텍스트 필터
@@ -98,6 +104,7 @@ struct SearchFeature: Reducer {
                 
             case let .searchBarOnChanged(searchText):
                 let isEmptyText = searchText.isEmpty
+                state.showEptyView = false
                 state.searchText = searchText
                 state.isVisibleClearButton = !isEmptyText
                 
@@ -118,6 +125,11 @@ struct SearchFeature: Reducer {
             case let .recentSearchTapped(searchText):
                 state.searchText = searchText
                 state.searchedList = state.restrauntList.filter { filterSearchList($0.name, query: searchText) }
+                
+                if state.searchedList.isEmpty {
+                    state.showEptyView = true
+                }
+                
                 return .none
                 
             case .recentSearchAllClearButtonTapped:
@@ -136,6 +148,10 @@ struct SearchFeature: Reducer {
                 
             case let .restrauntTapped(id):
                 state.activeScreen = .restrauntDetail(id)
+                return .none
+                
+            case .inquryButtonTapped:
+                // TODO: 링크 이동
                 return .none
                 
             case .loadingCompleted:

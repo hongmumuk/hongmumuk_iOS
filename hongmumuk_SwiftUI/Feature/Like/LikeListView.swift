@@ -27,7 +27,7 @@ struct LikeListView: View {
             if viewStore.sortedRestaurantList.isEmpty {
                 VStack {
                     Spacer()
-                    LikeEmptyView()
+                    EmptyView(type: .like)
                     Spacer()
                 }
             } else {
