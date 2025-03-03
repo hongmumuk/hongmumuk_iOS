@@ -27,12 +27,12 @@ struct HomeHeaderView: View {
         HStack(spacing: 0) {
             Image("navigationLogoIcon")
                 .resizable()
-                .frame( width: 32, height: 32)
+                .frame(width: 32, height: 32)
                 .padding(.trailing, 4)
             
             Image("navigationTypoIcon")
                 .resizable()
-                .frame( width: 68, height: 32)
+                .frame(width: 68, height: 32)
             
             Spacer()
             Button(action: {

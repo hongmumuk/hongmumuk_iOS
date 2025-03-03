@@ -26,19 +26,26 @@ struct CategoryListView: View {
                             viewStore.send(.restaurantTapped(id: $0.id))
                         }
                     }
+                    
                     if !viewStore.isLastPage {
-                        ProgressView()
+                        LoadingView()
                             .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     viewStore.send(.onNextPage)
                                 }
                             }
                     } else {
-                        InquiryButton {
-                            viewStore.send(.inquryButtonTapped)
-                        }
-                        .padding(.top, 72)
-                        .padding(.bottom, 117)
+                        LoadingView()
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    viewStore.send(.onNextPage)
+                                }
+                            }
+//                        InquiryButton {
+//                            viewStore.send(.inquryButtonTapped)
+//                        }
+//                        .padding(.top, 72)
+//                        .padding(.bottom, 117)
                     }
                 }
             }

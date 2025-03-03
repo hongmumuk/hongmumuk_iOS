@@ -117,9 +117,13 @@
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
 		BE8299602D60AFD00081F979 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = BE82995F2D60AFD00081F979 /* Shimmer */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
+		BE88C9FC2D75920100633B6F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE88C9FB2D75920100633B6F /* Lottie */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C2D2D757A760040F65F /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2C2D757A760040F65F /* SearchEmptyView.swift */; };
 		BEB42C2F2D757F710040F65F /* LikeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2E2D757F710040F65F /* LikeEmptyView.swift */; };
+		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
+		BEB42C342D758E530040F65F /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C332D758E530040F65F /* LottieView.swift */; };
+		BEB42C362D758E710040F65F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C352D758E710040F65F /* LoadingView.swift */; };
 		BEBB792F2D6EBF0900209F7E /* DetailTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */; };
 		BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */; };
 		BECC4A162D69A74B00F72FAF /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A152D69A74B00F72FAF /* Blog.swift */; };
@@ -258,6 +262,9 @@
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C2C2D757A760040F65F /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		BEB42C2E2D757F710040F65F /* LikeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeEmptyView.swift; sourceTree = "<group>"; };
+		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		BEB42C332D758E530040F65F /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		BEB42C352D758E710040F65F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabView.swift; sourceTree = "<group>"; };
 		BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		BECC4A152D69A74B00F72FAF /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
@@ -282,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE88C9FC2D75920100633B6F /* Lottie in Frameworks */,
 				BE8299602D60AFD00081F979 /* Shimmer in Frameworks */,
 				BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */,
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
@@ -381,6 +389,7 @@
 				2F435E9C2D4FBA3B005E1C84 /* DesignSystem */,
 				2FA097C52D42A0EC00D01792 /* Configuration */,
 				2FA097872D427FC900D01792 /* Preview Content */,
+				BEB42C302D758C0D0040F65F /* Loading.json */,
 				2FA097882D427FC900D01792 /* Assets.xcassets */,
 				2FA097892D427FC900D01792 /* ContentView.swift */,
 				2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */,
@@ -432,6 +441,8 @@
 				2F65D3762D747EBE002BF6B5 /* SignupHeaderView.swift */,
 				BE208FFB2D648ED90041A173 /* ListItemView.swift */,
 				BE208FFD2D64908E0041A173 /* RandomButton.swift */,
+				BEB42C332D758E530040F65F /* LottieView.swift */,
+				BEB42C352D758E710040F65F /* LoadingView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -655,6 +666,7 @@
 				BE4F9B2A2D59E8D600E7CC46 /* Alamofire */,
 				BE82995F2D60AFD00081F979 /* Shimmer */,
 				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
+				BE88C9FB2D75920100633B6F /* Lottie */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -737,6 +749,7 @@
 				BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
+				BE88C9FA2D75920100633B6F /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -757,6 +770,7 @@
 			files = (
 				2FA0978E2D427FC900D01792 /* Preview Assets.xcassets in Resources */,
 				2FA0978F2D427FC900D01792 /* Assets.xcassets in Resources */,
+				BEB42C312D758C0D0040F65F /* Loading.json in Resources */,
 				2FA097CC2D42A11000D01792 /* stag.xcconfig in Resources */,
 				2FA097CD2D42A11000D01792 /* dev.xcconfig in Resources */,
 				2FA097CE2D42A11000D01792 /* prod.xcconfig in Resources */,
@@ -846,6 +860,7 @@
 				BE208FE92D633B9E0041A173 /* ListFeature.swift in Sources */,
 				BE208FF52D6354C90041A173 /* CategoryRandomButton.swift in Sources */,
 				BE208FE92D633B9E0041A173 /* CategoryFeature.swift in Sources */,
+				BEB42C342D758E530040F65F /* LottieView.swift in Sources */,
 				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
@@ -866,6 +881,7 @@
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				2F68B4C12D72256C00548850 /* ResetPasswordFeature.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */,
+				BEB42C362D758E710040F65F /* LoadingView.swift in Sources */,
 				BEB42C2D2D757A760040F65F /* SearchEmptyView.swift in Sources */,
 				BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */,
 				BE2090052D6497F00041A173 /* ProfileView.swift in Sources */,
@@ -1877,6 +1893,14 @@
 				minimumVersion = 1.5.1;
 			};
 		};
+		BE88C9FA2D75920100633B6F /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 		BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
@@ -1902,6 +1926,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
+		};
+		BE88C9FB2D75920100633B6F /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE88C9FA2D75920100633B6F /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		BECC4A4A2D6B42C300F72FAF /* NMapsMap */ = {
 			isa = XCSwiftPackageProductDependency;
