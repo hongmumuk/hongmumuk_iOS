@@ -30,6 +30,8 @@
 		2F68B4BD2D72255900548850 /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4BC2D72255900548850 /* VerifyEmailView.swift */; };
 		2F68B4BF2D72256300548850 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4BE2D72256300548850 /* ResetPasswordView.swift */; };
 		2F68B4C12D72256C00548850 /* ResetPasswordFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4C02D72256C00548850 /* ResetPasswordFeature.swift */; };
+		2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */; };
+		2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4CC2D72315A00548850 /* VoidData.swift */; };
 		2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */; };
 		2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097892D427FC900D01792 /* ContentView.swift */; };
 		2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */; };
@@ -160,6 +162,8 @@
 		2F68B4BC2D72255900548850 /* VerifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
 		2F68B4BE2D72256300548850 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		2F68B4C02D72256C00548850 /* ResetPasswordFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordFeature.swift; sourceTree = "<group>"; };
+		2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailModel.swift; sourceTree = "<group>"; };
+		2F68B4CC2D72315A00548850 /* VoidData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidData.swift; sourceTree = "<group>"; };
 		2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUITests.swift; sourceTree = "<group>"; };
 		2FA097862D427FC900D01792 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2FA097882D427FC900D01792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -464,10 +468,12 @@
 		BE4F9B492D5A076300E7CC46 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */,
 				BE4F9B472D5A076300E7CC46 /* LoginModel.swift */,
 				BE4F9B482D5A076300E7CC46 /* ResponseModel.swift */,
 				BE3386402D5F8BDC00FF44CF /* RestaurantListModel.swift */,
 				BE02D09E2D607DAA00F61E66 /* RestaurantListRequestModel.swift */,
+				2F68B4CC2D72315A00548850 /* VoidData.swift */,
 				BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */,
 				BECC4A152D69A74B00F72FAF /* Blog.swift */,
 			);
@@ -827,6 +833,7 @@
 				BE20900B2D64B8090041A173 /* LikeFilterView.swift in Sources */,
 				BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */,
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
+				2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */,
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
@@ -836,6 +843,8 @@
 				BE208FFC2D648ED90041A173 /* ListItemView.swift in Sources */,
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
+				BE208FEF2D633BBC0041A173 /* ListHeaderView.swift in Sources */,
+				2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* CategoryHeaderView.swift in Sources */,
 				BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
