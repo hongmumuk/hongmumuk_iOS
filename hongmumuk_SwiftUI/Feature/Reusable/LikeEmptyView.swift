@@ -8,25 +8,50 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct LikeEmptyView: View {
+struct EmptyView: View {
+    let type: Empty
+    let action: (() -> Void)?
+
+    init(type: Empty, action: (() -> Void)? = nil) {
+        self.type = type
+        self.action = action
+    }
+    
     var body: some View {
-        emptyView
+        switch type {
+        case .search:
+            searchEmpty
+        case .like:
+            emptyView
+        case .likeUnAuth:
+            emptyView
+        }
+    }
+    
+    var searchEmpty: some View {
+        VStack {
+            emptyView
+                .padding(.top, 128)
+            Spacer()
+            if let action {
+                InquiryButton(action: action)
+                    .padding(.bottom, 60)
+            }
+        }
     }
     
     var emptyView: some View {
         VStack(spacing: 0) {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Colors.GrayScale.grayscale5)
-                .stroke(Colors.GrayScale.grayscale5)
-                .frame(width: 100, height: 100)
-                .padding(.bottom, 60)
+            Image("emptyIcon")
+                .frame(width: 180, height: 180)
+                .padding(.bottom, 12)
             
-            Text("아직 찜한 가게가 없습니다")
+            Text(type.title)
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
-                .padding(.bottom, 9)
+                .padding(.bottom, 8)
             
-            Text("좋아하는 가게에 찜을 누르고 한 번에 모아 보세요")
+            Text(type.subTitle)
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
