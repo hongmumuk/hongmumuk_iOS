@@ -11,7 +11,7 @@ import SwiftUI
 struct LikeFeature: Reducer {
     enum ActiveScreen: Equatable {
         case none
-        case restaurantDetail(String)
+        case restaurantDetail(Int)
     }
     
     struct State: Equatable {
@@ -22,12 +22,14 @@ struct LikeFeature: Reducer {
         var restrauntCount: Int = 0
         var sortedRestaurantList = [RestaurantListModel]()
         var originRestaurantList = [RestaurantListModel]()
+        var isAuthed = false
     }
     
     enum Action: Equatable {
         case onAppear
         case onDismiss
-        case restrauntTapped(id: String)
+        case emailLoginButtonTapped
+        case restrauntTapped(id: Int)
         case sortButtonTapped
         case sortChanged(Sort)
         case initialLoadingCompleted
@@ -42,13 +44,16 @@ struct LikeFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList(for: state) { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
                     await send(.initialLoadingCompleted)
                 }
                 
             case .onDismiss:
                 state.showSortSheet = false
                 state.activeScreen = .none
+                return .none
+                
+            case .emailLoginButtonTapped:
+                // TODO: 로그인 화면으로 이동
                 return .none
                 
             case let .restrauntTapped(id):

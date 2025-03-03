@@ -33,7 +33,7 @@ struct LikeView: View {
                 send: .onDismiss
             )
         ) {
-            if case let .restrauntDetail(id) = viewStore.activeScreen {
+            if case let .restaurantDetail(id) = viewStore.activeScreen {
                 DetailView(
                     store: Store(
                         initialState: DetailFeature.State(id: id),

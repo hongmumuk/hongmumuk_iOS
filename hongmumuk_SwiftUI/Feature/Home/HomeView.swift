@@ -40,7 +40,7 @@ struct HomeView: View {
                             initialState: SearchFeature.State(),
                             reducer: { SearchFeature() },
                             withDependencies: {
-                                $0.restaurantClient = RestaurantClient.testValue
+                                $0.restaurantClient = RestaurantClient.liveValue
                                 $0.userDefaultsClient = UserDefaultsClient.liveValue
                             }
                         )
@@ -55,7 +55,7 @@ struct HomeView: View {
                             ),
                             reducer: { CategoryFeature() },
                             withDependencies: {
-                                $0.restaurantClient = RestaurantClient.testValue
+                                $0.restaurantClient = RestaurantClient.liveValue
                             }
                         )
                     )
@@ -75,7 +75,7 @@ struct HomeView: View {
                         initialState: RandomFeature.State(),
                         reducer: { RandomFeature() },
                         withDependencies: {
-                            $0.restaurantClient = RestaurantClient.testValue
+                            $0.restaurantClient = RestaurantClient.liveValue
                         }
                     )
                 )

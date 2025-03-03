@@ -11,7 +11,7 @@ import SwiftUI
 struct CategoryFeature: Reducer {
     enum ActiveScreen: Equatable {
         case none
-        case restaurantDetail(String)
+        case restaurantDetail(Int)
         case search
         case random
     }
@@ -20,7 +20,7 @@ struct CategoryFeature: Reducer {
         var activeScreen: ActiveScreen = .none
         var showSortSheet = false
         var cateogry: Category
-        var page: Int = 1
+        var page: Int = 0
         var sort: Sort = .likes
         var isLastPage = false
         var showSkeletonLoading = true
@@ -36,7 +36,7 @@ struct CategoryFeature: Reducer {
         case randomButtonTapped
         case inquryButtonTapped
         case searchButtonTapped
-        case restaurantTapped(id: String)
+        case restaurantTapped(id: Int)
         case sortButtonTapped
         case sortChanged(Sort)
         case initailLoadingCompleted
@@ -51,7 +51,6 @@ struct CategoryFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList(for: state) { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
                     await send(.initailLoadingCompleted)
                 }
                 
@@ -133,10 +132,11 @@ struct CategoryFeature: Reducer {
         let body = RestaurantListRequestModel(category: state.cateogry, page: state.page, sort: state.sort)
         return .run { send in
             do {
-                let list = try await restaurantClient.getRestaurantList(body)
+                let list = try await restaurantClient.postRestaurantList(body)
                 await send(.restaurantListLoaded(list))
                 await extra(send)
             } catch {
+                print("error", error)
                 if let error = error as? RestaurantListError {
                     await send(.restaurantListError(error))
                 }

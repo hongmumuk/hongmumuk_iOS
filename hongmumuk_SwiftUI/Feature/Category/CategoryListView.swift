@@ -26,10 +26,11 @@ struct CategoryListView: View {
                             viewStore.send(.restaurantTapped(id: $0.id))
                         }
                     }
+                    
                     if !viewStore.isLastPage {
-                        ProgressView()
+                        LoadingView()
                             .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     viewStore.send(.onNextPage)
                                 }
                             }

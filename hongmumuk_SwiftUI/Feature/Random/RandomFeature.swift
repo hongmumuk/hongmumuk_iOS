@@ -30,7 +30,6 @@ struct RandomFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
                     await send(.initailLoadingCompleted)
                 }
                 
@@ -66,7 +65,7 @@ struct RandomFeature: Reducer {
         return .run { send in
             do {
                 let body = RestaurantListRequestModel(category: .all, page: -1, sort: .likes)
-                let list = try await restaurantClient.getRestaurantList(body)
+                let list = try await restaurantClient.postRestaurantList(body)
                 await send(.restrauntListLoaded(list))
                 await extra(send)
             } catch {

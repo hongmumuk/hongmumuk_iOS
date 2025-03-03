@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchFeature: Reducer {
     enum ActiveScreen: Equatable {
-        case none, restrauntDetail(String)
+        case none, restrauntDetail(Int)
     }
     
     struct State: Equatable {
@@ -21,6 +21,7 @@ struct SearchFeature: Reducer {
         var searchedList = [RestaurantListModel]()
         var recentSearchList = [String]()
         var isLoading = true
+        var showEptyView = false
     }
     
     enum Action: Equatable {
@@ -32,7 +33,8 @@ struct SearchFeature: Reducer {
         case recentSearchTapped(String)
         case recentSearchAllClearButtonTapped
         case recentSearchClearButtonTapped(String)
-        case restrauntTapped(id: String)
+        case restrauntTapped(id: Int)
+        case inquryButtonTapped
         case loadingCompleted
         case recentSearchesLoaded([String])
         case restrauntListLoaded([RestaurantListModel])
@@ -52,15 +54,13 @@ struct SearchFeature: Reducer {
 
                     do {
                         let body = RestaurantListRequestModel(category: .all, page: -1, sort: .name)
-                        let searchList = try await restaurantClient.getRestaurantList(body)
+                        let searchList = try await restaurantClient.postRestaurantList(body)
                         await send(.restrauntListLoaded(searchList))
                     } catch {
                         if let error = error as? RestaurantListError {
                             await send(.restrauntListError(error))
                         }
                     }
-                    
-                    try await Task.sleep(nanoseconds: 1_500_000_000) // 1.5초 지연
                     await send(.loadingCompleted)
                 }
                 
@@ -71,6 +71,10 @@ struct SearchFeature: Reducer {
             case .searchBarOnSubmit:
                 let query = state.searchText
                 state.searchedList = state.restrauntList.filter { filterSearchList($0.name, query: query) }
+                
+                if state.searchedList.isEmpty {
+                    state.showEptyView = true
+                }
                 
                 return .run { send in
                     
@@ -98,6 +102,7 @@ struct SearchFeature: Reducer {
                 
             case let .searchBarOnChanged(searchText):
                 let isEmptyText = searchText.isEmpty
+                state.showEptyView = false
                 state.searchText = searchText
                 state.isVisibleClearButton = !isEmptyText
                 
@@ -118,6 +123,11 @@ struct SearchFeature: Reducer {
             case let .recentSearchTapped(searchText):
                 state.searchText = searchText
                 state.searchedList = state.restrauntList.filter { filterSearchList($0.name, query: searchText) }
+                
+                if state.searchedList.isEmpty {
+                    state.showEptyView = true
+                }
+                
                 return .none
                 
             case .recentSearchAllClearButtonTapped:
@@ -136,6 +146,10 @@ struct SearchFeature: Reducer {
                 
             case let .restrauntTapped(id):
                 state.activeScreen = .restrauntDetail(id)
+                return .none
+                
+            case .inquryButtonTapped:
+                // TODO: 링크 이동
                 return .none
                 
             case .loadingCompleted:

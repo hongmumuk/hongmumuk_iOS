@@ -52,7 +52,7 @@ struct ListItemView: View {
                                 Text("정문에서")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
-                                Text("\(String(format: "%.1f", item.frontDistance))km")
+                                Text("\(Int(item.frontDistance))m")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                             case .back:
                                 Image("distanceIcon")
@@ -61,7 +61,7 @@ struct ListItemView: View {
                                 Text("후문에서")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
-                                Text("\(String(format: "%.1f", item.backDistance))km")
+                                Text("\(Int(item.backDistance))m")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                             case .name:
                                 Spacer()

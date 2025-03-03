@@ -9,19 +9,22 @@ import Alamofire
 import Dependencies
 
 struct RestaurantClient {
-    var getRestaurantList: @Sendable (_ body: RestaurantListRequestModel) async throws -> [RestaurantListModel]
-    var getRestaurantDetail: @Sendable (_ id: String) async throws -> RestaurantDetail
+    var postRestaurantList: @Sendable (_ body: RestaurantListRequestModel) async throws -> [RestaurantListModel]
+    var getRestaurantDetail: @Sendable (_ id: Int) async throws -> RestaurantDetail
 }
 
 extension RestaurantClient: DependencyKey {
     static var liveValue: RestaurantClient = .init(
-        getRestaurantList: { body in
+        postRestaurantList: { body in
             let url = "\(Environment.baseUrl)/api/category"
-            let headers: HTTPHeaders = ["Content-Type": "application/json"]
+            let headers: HTTPHeaders = [
+                "accept": "*/*",
+                "Content-Type": "application/json"
+            ]
             
             let response = try await AF.request(
                 url,
-                method: .get,
+                method: .post,
                 parameters: body,
                 encoder: .json,
                 headers: headers
@@ -53,7 +56,7 @@ extension RestaurantClient: DependencyKey {
     )
     
     static var testValue: RestaurantClient = .init(
-        getRestaurantList: { _ in return RestaurantListModel.mock() },
+        postRestaurantList: { _ in return RestaurantListModel.mock() },
         getRestaurantDetail: { _ in return RestaurantDetail.mock() }
     )
 }

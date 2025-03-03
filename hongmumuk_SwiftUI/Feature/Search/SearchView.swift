@@ -23,8 +23,12 @@ struct SearchView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 SearchHeaderView(viewStore: viewStore)
-                RecentSearchView(viewStore: viewStore)
-                SearchListView(viewStore: viewStore)
+                if viewStore.showEptyView {
+                    SearchEmptyView(viewStore: viewStore)
+                } else {
+                    RecentSearchView(viewStore: viewStore)
+                    SearchListView(viewStore: viewStore)
+                }
             }
         }
         .onAppear {

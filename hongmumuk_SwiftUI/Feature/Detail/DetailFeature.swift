@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailFeature: Reducer {
     struct State: Equatable {
-        var id: String
+        var id: Int
         var isLoading = true
         var keywords = [String]()
         var pickerSelection = 0

@@ -25,11 +25,7 @@ struct LikeListView: View {
             .padding(.top, 16)
         } else {
             if viewStore.sortedRestaurantList.isEmpty {
-                VStack {
-                    Spacer()
-                    LikeEmptyView()
-                    Spacer()
-                }
+                LikeEmptyView(viewStore: viewStore)
             } else {
                 VStack(spacing: 0) {
                     LikeFilterView(viewStore: viewStore)
