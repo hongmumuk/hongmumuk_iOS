@@ -33,6 +33,8 @@
 		2F65D36B2D7463C9002BF6B5 /* SignupPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D36A2D7463C9002BF6B5 /* SignupPasswordView.swift */; };
 		2F65D36D2D7463D1002BF6B5 /* SignupPasswordFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D36C2D7463D1002BF6B5 /* SignupPasswordFeature.swift */; };
 		2F65D36F2D7463DB002BF6B5 /* SignupDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D36E2D7463DB002BF6B5 /* SignupDoneView.swift */; };
+		2F65D3792D758063002BF6B5 /* AuthTokenResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D3782D758063002BF6B5 /* AuthTokenResponseModel.swift */; };
+		2F65D37B2D758896002BF6B5 /* KeychainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F65D37A2D758896002BF6B5 /* KeychainClient.swift */; };
 		2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */; };
 		2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4B02D717EBA00548850 /* TextFieldState.swift */; };
 		2F68B4BB2D72255100548850 /* VerifyEmailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */; };
@@ -175,6 +177,8 @@
 		2F65D36A2D7463C9002BF6B5 /* SignupPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordView.swift; sourceTree = "<group>"; };
 		2F65D36C2D7463D1002BF6B5 /* SignupPasswordFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordFeature.swift; sourceTree = "<group>"; };
 		2F65D36E2D7463DB002BF6B5 /* SignupDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupDoneView.swift; sourceTree = "<group>"; };
+		2F65D3782D758063002BF6B5 /* AuthTokenResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenResponseModel.swift; sourceTree = "<group>"; };
+		2F65D37A2D758896002BF6B5 /* KeychainClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainClient.swift; sourceTree = "<group>"; };
 		2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextfieldStyle.swift; sourceTree = "<group>"; };
 		2F68B4B02D717EBA00548850 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		2F68B4BA2D72255100548850 /* VerifyEmailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailFeature.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 				BE02D0982D607B5000F61E66 /* RestaurantClient.swift */,
 				BE20900E2D64B81E0041A173 /* LikeClient.swift */,
 				BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */,
+				2F65D37A2D758896002BF6B5 /* KeychainClient.swift */,
 				BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */,
 			);
 			path = Client;
@@ -492,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */,
+				2F65D3782D758063002BF6B5 /* AuthTokenResponseModel.swift */,
 				BE4F9B472D5A076300E7CC46 /* LoginModel.swift */,
 				BE4F9B482D5A076300E7CC46 /* ResponseModel.swift */,
 				BE3386402D5F8BDC00FF44CF /* RestaurantListModel.swift */,
@@ -855,6 +861,7 @@
 				BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
 				2F68B4BD2D72255900548850 /* VerifyEmailView.swift in Sources */,
+				2F65D3792D758063002BF6B5 /* AuthTokenResponseModel.swift in Sources */,
 				BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */,
 				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
 				BE3DBB752D5E1C49007304C7 /* HomeCircleView.swift in Sources */,
@@ -878,6 +885,7 @@
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* ListHeaderView.swift in Sources */,
 				2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */,
+				2F65D37B2D758896002BF6B5 /* KeychainClient.swift in Sources */,
 				2F65D36F2D7463DB002BF6B5 /* SignupDoneView.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* CategoryHeaderView.swift in Sources */,
 				BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */,
