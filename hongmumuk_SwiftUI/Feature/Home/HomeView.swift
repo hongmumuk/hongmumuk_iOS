@@ -55,7 +55,7 @@ struct HomeView: View {
                             ),
                             reducer: { CategoryFeature() },
                             withDependencies: {
-                                $0.restaurantClient = RestaurantClient.testValue
+                                $0.restaurantClient = RestaurantClient.liveValue
                             }
                         )
                     )

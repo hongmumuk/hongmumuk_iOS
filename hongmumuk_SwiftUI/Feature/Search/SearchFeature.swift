@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchFeature: Reducer {
     enum ActiveScreen: Equatable {
-        case none, restrauntDetail(String)
+        case none, restrauntDetail(Int)
     }
     
     struct State: Equatable {
@@ -32,7 +32,7 @@ struct SearchFeature: Reducer {
         case recentSearchTapped(String)
         case recentSearchAllClearButtonTapped
         case recentSearchClearButtonTapped(String)
-        case restrauntTapped(id: String)
+        case restrauntTapped(id: Int)
         case loadingCompleted
         case recentSearchesLoaded([String])
         case restrauntListLoaded([RestaurantListModel])
@@ -52,7 +52,7 @@ struct SearchFeature: Reducer {
 
                     do {
                         let body = RestaurantListRequestModel(category: .all, page: -1, sort: .name)
-                        let searchList = try await restaurantClient.getRestaurantList(body)
+                        let searchList = try await restaurantClient.postRestaurantList(body)
                         await send(.restrauntListLoaded(searchList))
                     } catch {
                         if let error = error as? RestaurantListError {

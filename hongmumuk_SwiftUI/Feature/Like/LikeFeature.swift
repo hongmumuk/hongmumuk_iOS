@@ -27,7 +27,7 @@ struct LikeFeature: Reducer {
     enum Action: Equatable {
         case onAppear
         case onDismiss
-        case restrauntTapped(id: String)
+        case restrauntTapped(id: Int)
         case sortButtonTapped
         case sortChanged(Sort)
         case initialLoadingCompleted

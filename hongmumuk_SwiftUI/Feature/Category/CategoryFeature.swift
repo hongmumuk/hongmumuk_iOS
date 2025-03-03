@@ -20,7 +20,7 @@ struct CategoryFeature: Reducer {
         var activeScreen: ActiveScreen = .none
         var showSortSheet = false
         var cateogry: Category
-        var page: Int = 1
+        var page: Int = 0
         var sort: Sort = .likes
         var isLastPage = false
         var showSkeletonLoading = true
@@ -137,6 +137,7 @@ struct CategoryFeature: Reducer {
                 await send(.restaurantListLoaded(list))
                 await extra(send)
             } catch {
+                print("error", error)
                 if let error = error as? RestaurantListError {
                     await send(.restaurantListError(error))
                 }

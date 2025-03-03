@@ -66,7 +66,7 @@ struct RandomFeature: Reducer {
         return .run { send in
             do {
                 let body = RestaurantListRequestModel(category: .all, page: -1, sort: .likes)
-                let list = try await restaurantClient.getRestaurantList(body)
+                let list = try await restaurantClient.postRestaurantList(body)
                 await send(.restrauntListLoaded(list))
                 await extra(send)
             } catch {
