@@ -22,11 +22,13 @@ struct LikeFeature: Reducer {
         var restrauntCount: Int = 0
         var sortedRestaurantList = [RestaurantListModel]()
         var originRestaurantList = [RestaurantListModel]()
+        var isAuthed = false
     }
     
     enum Action: Equatable {
         case onAppear
         case onDismiss
+        case emailLoginButtonTapped
         case restrauntTapped(id: Int)
         case sortButtonTapped
         case sortChanged(Sort)
@@ -49,6 +51,10 @@ struct LikeFeature: Reducer {
             case .onDismiss:
                 state.showSortSheet = false
                 state.activeScreen = .none
+                return .none
+                
+            case .emailLoginButtonTapped:
+                // TODO: 로그인 화면으로 이동
                 return .none
                 
             case let .restrauntTapped(id):

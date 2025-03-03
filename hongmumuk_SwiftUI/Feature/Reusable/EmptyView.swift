@@ -21,10 +21,8 @@ struct EmptyView: View {
         switch type {
         case .search:
             searchEmpty
-        case .like:
-            emptyView
-        case .likeUnAuth:
-            emptyView
+        case .like, .likeUnAuth:
+            likeEmpty
         }
     }
     
@@ -36,6 +34,16 @@ struct EmptyView: View {
             if let action {
                 InquiryButton(action: action)
                     .padding(.bottom, 60)
+            }
+        }
+    }
+    
+    var likeEmpty: some View {
+        VStack(spacing: 0) {
+            emptyView
+            if let action {
+                loginButton(action)
+                    .padding(.top, 48)
             }
         }
     }
@@ -55,5 +63,29 @@ struct EmptyView: View {
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
+    }
+    
+    private func loginButton(_ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            ZStack {
+                Text("이메일로 로그인하기")
+                    .fontStyle(Fonts.heading2Bold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                HStack {
+                    Image("homeIcon")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .padding(.leading, 20)
+                    Spacer()
+                }
+            }
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .background(Colors.Primary.primary55)
+            .cornerRadius(20)
+        }
+        .padding(.horizontal, 24)
     }
 }
