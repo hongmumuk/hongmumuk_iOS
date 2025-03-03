@@ -40,14 +40,15 @@ struct ResetPasswordView: View {
                         state: viewStore.passwordState,
                         message: viewStore.passwordErrorMessage,
                         placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
-                        isSecure: true,
+                        isSecure: viewStore.passwordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
                         suffixText: "",
                         onTextChanged: { viewStore.send(.passwordChanged($0)) },
                         onFocusedChanged: { viewStore.send(.passwordFocused($0)) },
                         onSubmit: { viewStore.send(.passwordOnSubmit) },
-                        onClear: { viewStore.send(.passwordTextClear) }
+                        onClear: { viewStore.send(.passwordTextClear) },
+                        onToggleVisibility: { viewStore.send(.passwordVisibleToggled) }
                     )
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
@@ -64,14 +65,15 @@ struct ResetPasswordView: View {
                         state: viewStore.verifiedPasswordState,
                         message: viewStore.verifiedPasswordMessage,
                         placeholder: "비밀번호를 한번 더 입력해 주세요",
-                        isSecure: true,
+                        isSecure: viewStore.verifiedPasswordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
                         suffixText: "",
                         onTextChanged: { viewStore.send(.verifiedPasswordChanged($0)) },
                         onFocusedChanged: { viewStore.send(.verifiedPasswordFocused($0)) },
                         onSubmit: { viewStore.send(.verifiedPasswordOnSubmit) },
-                        onClear: { viewStore.send(.verifiedPasswordTextClear) }
+                        onClear: { viewStore.send(.verifiedPasswordTextClear) },
+                        onToggleVisibility: { viewStore.send(.verifiedVisibleToggled) }
                     )
                     
                     .padding(.horizontal, 24)
