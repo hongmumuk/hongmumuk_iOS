@@ -52,7 +52,12 @@ struct VerifyEmailView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
                     
-                    BasicButton(title: "인증번호 발송", isActive: viewStore.isSendCodeButtonEnabled) {
+                    BasicButton(
+                        title: viewStore.isSendCodeLoading ? "보내는 중..." :
+                            viewStore.sendCodeTimerActive ? "\(viewStore.remainingTime)초 후에 재전송" :
+                            "인증번호 발송",
+                        isActive: viewStore.isSendCodeButtonEnabled
+                    ) {
                         if viewStore.isSendCodeButtonEnabled {
                             viewStore.send(.sendCodeButtonTapped)
                         }

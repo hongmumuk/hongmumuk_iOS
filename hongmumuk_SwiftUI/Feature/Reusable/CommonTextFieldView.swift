@@ -27,7 +27,7 @@ struct CommonTextFieldView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             textFieldView
-                .disabled(state == .disabled)
+                .disabled(state == .disabled || state == .codeVerified)
             
             if let message {
                 messageView(message, isError: state == .invalid || state == .codeInvalid || state == .loginError)

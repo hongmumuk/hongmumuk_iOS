@@ -25,15 +25,20 @@ struct SignupEmailFeature: Reducer {
         var isVerifyCodeLoading: Bool = false
         var isContinueLoading: Bool = false
         
+        var remainingTime: Int = 0
+        var sendCodeTimerActive: Bool = false
+        
         var isSendCodeButtonEnabled: Bool {
-            emailState == .valid
+            emailState == .valid && !sendCodeTimerActive && !isSendCodeLoading
         }
 
         var isVerifyCodeButtonEnabled: Bool {
             emailState == .valid && codeState == .valid
         }
 
-        var isContinueButtonEnabled: Bool = false
+        var isContinueButtonEnabled: Bool {
+            emailState == .codeVerified && codeState == .disabled
+        }
     }
     
     enum Action: Equatable {
@@ -53,6 +58,9 @@ struct SignupEmailFeature: Reducer {
         case verifyCodeButtonTapped
         case continueButtonTapped
         case backButtonTapped
+        
+        case stopSendCodeTimer
+        case updateSendCodeTimer(Int)
         
         case successSend, failSend(LoginError)
         case successVerify, failVerify(LoginError)
@@ -177,7 +185,26 @@ struct SignupEmailFeature: Reducer {
                 
             case .successSend:
                 state.isSendCodeLoading = false
-                // 보내고 UI 업데이트
+                state.sendCodeTimerActive = true
+                state.remainingTime = 180
+
+                return .run { send in
+                    var timeLeft = 180
+                    while timeLeft > 0 {
+                        try await Task.sleep(nanoseconds: 1_000_000_000)
+                        timeLeft -= 1
+                        await send(.updateSendCodeTimer(timeLeft))
+                    }
+                    await send(.stopSendCodeTimer)
+                }
+                
+            case let .updateSendCodeTimer(timeLeft):
+                state.remainingTime = timeLeft
+                return .none
+                
+            case .stopSendCodeTimer:
+                state.sendCodeTimerActive = false
+                state.remainingTime = 0
                 return .none
                 
             case let .failSend(error):
@@ -190,11 +217,10 @@ struct SignupEmailFeature: Reducer {
                 return .none
                 
             case .successVerify:
-                print("됨")
                 state.isVerifyCodeLoading = false
-                state.isContinueButtonEnabled = true
                 state.emailState = .codeVerified
                 state.codeState = .disabled
+                state.emailErrorMessage = "이메일 인증이 완료되었습니다"
                 
                 return .none
                 
