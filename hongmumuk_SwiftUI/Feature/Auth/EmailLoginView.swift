@@ -34,7 +34,21 @@ struct EmailLoginView: View {
                         .padding(.leading, 24)
                         .padding(.top, geometry.size.height * 0.04)
                     
-                    EmailTextFieldView(isEmailFocused: $isEmailFocused, viewStore: viewStore)
+                    CommonTextFieldView(
+                        isFocused: $isEmailFocused,
+                        text: viewStore.email,
+                        state: viewStore.emailState,
+                        message: viewStore.emailErrorMessage,
+                        placeholder: "학교 이메일을 입력해주세요",
+                        isSecure: false,
+                        showAtSymbol: true,
+                        showSuffix: true,
+                        suffixText: "g.hongik.ac.kr",
+                        onTextChanged: { viewStore.send(.emailChanged($0)) },
+                        onFocusedChanged: { viewStore.send(.emailFocused($0)) },
+                        onSubmit: { viewStore.send(.emailOnSubmit) },
+                        onClear: { viewStore.send(.emailTextClear) }
+                    )
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                     
@@ -44,7 +58,21 @@ struct EmailLoginView: View {
                         .padding(.leading, 24)
                         .padding(.top, 24)
                     
-                    PasswordTextFieldView(isPasswordFocused: $isPasswordFocused, viewStore: viewStore)
+                    CommonTextFieldView(
+                        isFocused: $isPasswordFocused,
+                        text: viewStore.password,
+                        state: viewStore.passwordState,
+                        message: viewStore.passwordErrorMessage,
+                        placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                        isSecure: true,
+                        showAtSymbol: false,
+                        showSuffix: false,
+                        suffixText: "",
+                        onTextChanged: { viewStore.send(.passwordChanged($0)) },
+                        onFocusedChanged: { viewStore.send(.passwordFocused($0)) },
+                        onSubmit: { viewStore.send(.passwordOnSubmit) },
+                        onClear: { viewStore.send(.passwordTextClear) }
+                    )
                         .padding(.horizontal, 24)
                         .padding(.top, 8)
                     
