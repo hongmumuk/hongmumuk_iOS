@@ -22,6 +22,10 @@
 		2F435EBC2D4FC26E005E1C84 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EAF2D4FC26E005E1C84 /* Pretendard-ExtraBold.otf */; };
 		2F435EBD2D4FC26E005E1C84 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EB52D4FC26E005E1C84 /* Pretendard-Thin.otf */; };
 		2F435EBE2D4FC26E005E1C84 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F435EB12D4FC26E005E1C84 /* Pretendard-Light.otf */; };
+		2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */; };
+		2F68B49F2D70D0F000548850 /* EmailTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B49E2D70D0F000548850 /* EmailTextFieldView.swift */; };
+		2F68B4A12D71699F00548850 /* PasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4A02D71699F00548850 /* PasswordTextFieldView.swift */; };
+		2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4B02D717EBA00548850 /* TextFieldState.swift */; };
 		2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */; };
 		2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097892D427FC900D01792 /* ContentView.swift */; };
 		2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */; };
@@ -144,6 +148,10 @@
 		2F435EB32D4FC26E005E1C84 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		2F435EB42D4FC26E005E1C84 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		2F435EB52D4FC26E005E1C84 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextfieldStyle.swift; sourceTree = "<group>"; };
+		2F68B49E2D70D0F000548850 /* EmailTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldView.swift; sourceTree = "<group>"; };
+		2F68B4A02D71699F00548850 /* PasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldView.swift; sourceTree = "<group>"; };
+		2F68B4B02D717EBA00548850 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUITests.swift; sourceTree = "<group>"; };
 		2FA097862D427FC900D01792 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2FA097882D427FC900D01792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -293,6 +301,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		2F68B49B2D70D05D00548850 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		2FA097842D427FC400D01792 /* hongmumuk_SwiftUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +328,7 @@
 		2FA0978B2D427FC900D01792 /* hongmumuk_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2F68B49B2D70D05D00548850 /* Utility */,
 				BE4F9B222D58FD8800E7CC46 /* Dependency */,
 				BE5F1A9E2D51EB9300D124DB /* Feature */,
 				BE5F1A942D51EB2500D124DB /* Enums */,
@@ -457,6 +474,8 @@
 				BE4F9B502D5A0D9200E7CC46 /* EmailLoginFeature.swift */,
 				2FE55C022D5E356D00BFE6F7 /* EmailLoginView.swift */,
 				2FE55C0A2D5E45EA00BFE6F7 /* ProgressButton.swift */,
+				2F68B49E2D70D0F000548850 /* EmailTextFieldView.swift */,
+				2F68B4A02D71699F00548850 /* PasswordTextFieldView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -468,6 +487,7 @@
 				BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */,
 				BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */,
 				BE02D09C2D607D0C00F61E66 /* Sort.swift */,
+				2F68B4B02D717EBA00548850 /* TextFieldState.swift */,
 				BECD1DF32D6C0F4000FDA113 /* Keyword.swift */,
 			);
 			path = Enums;
@@ -756,6 +776,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE208FF52D6354C90041A173 /* ListRandomButton.swift in Sources */,
+				2F68B4A12D71699F00548850 /* PasswordTextFieldView.swift in Sources */,
+				BE208FE92D633B9E0041A173 /* ListFeature.swift in Sources */,
 				BE208FF52D6354C90041A173 /* CategoryRandomButton.swift in Sources */,
 				BE208FE92D633B9E0041A173 /* CategoryFeature.swift in Sources */,
 				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
@@ -767,7 +790,9 @@
 				BE2090112D64BE980041A173 /* LikeEmptyView.swift in Sources */,
 				2FE55C032D5E356D00BFE6F7 /* EmailLoginView.swift in Sources */,
 				BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */,
+				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
+				2F68B49F2D70D0F000548850 /* EmailTextFieldView.swift in Sources */,
 				BECC4A212D69B06300F72FAF /* DetailMapView.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
@@ -823,6 +848,7 @@
 				BE4F9B4F2D5A095D00E7CC46 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2FA7981E2D6AFC120093B6DA /* LoginView.swift in Sources */,
+				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
 				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
 				BE4F9B512D5A0D9200E7CC46 /* EmailLoginFeature.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
