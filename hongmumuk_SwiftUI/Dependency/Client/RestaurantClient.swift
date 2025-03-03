@@ -10,6 +10,7 @@ import Dependencies
 
 struct RestaurantClient {
     var getRestaurantList: @Sendable (_ body: RestaurantListRequestModel) async throws -> [RestaurantListModel]
+    var getRestaurantDetail: @Sendable (_ id: String) async throws -> RestaurantDetail
 }
 
 extension RestaurantClient: DependencyKey {
@@ -30,11 +31,30 @@ extension RestaurantClient: DependencyKey {
             
             guard response.isSuccess else { throw RestaurantListError(rawValue: response.code) ?? .unknown }
             return response.data!
+        },
+        
+        getRestaurantDetail: { id in
+            let url = "\(Environment.baseUrl)/api/restaurant/\(id)"
+            // 토큰 추가해야 됨
+            let headers: HTTPHeaders = ["Content-Type": "application/json"]
+            
+            let response = try await AF.request(
+                url,
+                method: .get,
+                headers: headers
+            )
+            
+            .serializingDecodable(ResponseModel<RestaurantDetail>.self)
+            .value
+            
+            guard response.isSuccess else { throw RestaurantDetailError(rawValue: response.code) ?? .unknown }
+            return response.data!
         }
     )
     
     static var testValue: RestaurantClient = .init(
-        getRestaurantList: { _ in return RestaurantListModel.mock() }
+        getRestaurantList: { _ in return RestaurantListModel.mock() },
+        getRestaurantDetail: { _ in return RestaurantDetail.mock() }
     )
 }
 
