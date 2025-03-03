@@ -93,7 +93,5 @@ enum Colors {
         static let nagative80 = Color(hex: "#990D00")
         static let nagative90 = Color(hex: "#660900")
         static let nagative95 = Color(hex: "#330400")
-        
-        
     }
 }
