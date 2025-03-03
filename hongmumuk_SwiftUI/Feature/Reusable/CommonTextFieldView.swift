@@ -54,7 +54,7 @@ struct CommonTextFieldView: View {
                             .padding(.trailing, 12)
                     }
                     
-                    if isSecure, let onToggleVisibility {
+                    if !text.isEmpty, isFocused.wrappedValue, let onToggleVisibility {
                         visibilityToggleButton(action: onToggleVisibility)
                             .padding(.trailing, 12)
                     }
@@ -106,7 +106,7 @@ struct CommonTextFieldView: View {
     
     private func visibilityToggleButton(action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Image("TextFieldVisibleIcon")
+            Image(isSecure ? "TextFieldInvisibleIcon" : "TextFieldVisibleIcon")
                 .frame(width: 20, height: 20)
         }
     }
