@@ -11,7 +11,7 @@ import SwiftUI
 struct ListFeature: Reducer {
     enum ActiveScreen: Equatable {
         case none
-        case restrauntDetail(String)
+        case restaurantDetail(String)
         case search
         case random
     }
@@ -24,7 +24,7 @@ struct ListFeature: Reducer {
         var sort: Sort = .likes
         var isLastPage = false
         var showSkeletonLoading = true
-        var restrauntCount: Int = 0
+        var restaurantCount: Int = 0
         var sortedRestaurantList = [RestaurantListModel]()
         var originRestaurantList = [RestaurantListModel]()
     }
@@ -36,12 +36,12 @@ struct ListFeature: Reducer {
         case randomButtonTapped
         case inquryButtonTapped
         case searchButtonTapped
-        case restrauntTapped(id: String)
+        case restaurantTapped(id: String)
         case sortButtonTapped
         case sortChanged(Sort)
         case initailLoadingCompleted
-        case restrauntListLoaded([RestaurantListModel])
-        case restrauntListError(RestaurantListError)
+        case restaurantListLoaded([RestaurantListModel])
+        case restaurantListError(RestaurantListError)
     }
     
     @Dependency(\.restaurantClient) var restaurantClient
@@ -81,8 +81,8 @@ struct ListFeature: Reducer {
                 state.activeScreen = .search
                 return .none
                 
-            case let .restrauntTapped(id):
-                state.activeScreen = .restrauntDetail(id)
+            case let .restaurantTapped(id):
+                state.activeScreen = .restaurantDetail(id)
                 return .none
                 
             case .sortButtonTapped:
@@ -99,20 +99,20 @@ struct ListFeature: Reducer {
                 state.showSkeletonLoading = false
                 return .none
                 
-            case let .restrauntListLoaded(list):
+            case let .restaurantListLoaded(list):
                 state.originRestaurantList += list
-                state.restrauntCount = state.originRestaurantList.count
+                state.restaurantCount = state.originRestaurantList.count
                 state.sortedRestaurantList = sortList(state.sort, state.originRestaurantList)
                 state.isLastPage = list.count <= 10
                 return .none
                 
-            case let .restrauntListError(error):
+            case let .restaurantListError(error):
                 // TODO: 에러 처리
                 return .none
             }
         }
     }
-
+    
     private func sortList(_ sort: Sort, _ list: [RestaurantListModel]) -> [RestaurantListModel] {
         switch sort {
         case .likes:
@@ -134,11 +134,11 @@ struct ListFeature: Reducer {
         return .run { send in
             do {
                 let list = try await restaurantClient.getRestaurantList(body)
-                await send(.restrauntListLoaded(list))
+                await send(.restaurantListLoaded(list))
                 await extra(send)
             } catch {
                 if let error = error as? RestaurantListError {
-                    await send(.restrauntListError(error))
+                    await send(.restaurantListError(error))
                 }
             }
         }
