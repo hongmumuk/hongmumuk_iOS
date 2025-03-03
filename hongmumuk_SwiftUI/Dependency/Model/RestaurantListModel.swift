@@ -8,25 +8,58 @@
 import Foundation
 
 struct RestaurantListModel: Equatable, Codable, Identifiable {
-    var id: String
+    var id: Int
     var name: String
     var likes: Int
     var frontDistance: Double
     var backDistance: Double
     var category: String
-    let restrauntCnt: Int
 
     enum CodingKeys: String, CodingKey {
-        case id = "rid"
+        case id
         case name
         case likes
-        case frontDistance
-        case backDistance
+        case frontDistance = "front"
+        case backDistance = "back"
         case category
-        case restrauntCnt
     }
     
-    static func mock() -> [Self] {
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        likes = try container.decode(Int.self, forKey: .likes)
+        frontDistance = try container.decode(Double.self, forKey: .frontDistance)
+        backDistance = try container.decode(Double.self, forKey: .backDistance)
+        
+        // category 값을 디코딩 후, 소문자로 변환하여 Category 열거형으로 변환
+        let categoryRaw = try container.decode(String.self, forKey: .category)
+        let category = Category(rawValue: categoryRaw.lowercased()) ?? .all
+        let displayName = category.displayName
+        self.category = displayName
+    }
+    
+    init(
+        id: Int,
+        name: String,
+        likes: Int,
+        frontDistance: Double,
+        backDistance: Double,
+        category: String
+    ) {
+        self.id = id
+        self.name = name
+        self.likes = likes
+        self.frontDistance = frontDistance
+        self.backDistance = backDistance
+        self.category = category
+    }
+}
+
+extension RestaurantListModel {
+    /// 더미 데이터 생성을 위한 mock 함수
+    static func mock() -> [RestaurantListModel] {
         let restaurantNames = [
             "발바리네",
             "연남서가",
@@ -45,28 +78,15 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
             "히메시야"
         ]
         
-        return Array(
-            repeating: RestaurantListModel(
-                id: "1",
+        return (0 ..< 100).map { _ in
+            RestaurantListModel(
+                id: UUID().hashValue,
                 name: restaurantNames.randomElement() ?? "The Restaurant",
-                likes: 300,
-                frontDistance: 400,
-                backDistance: 400,
-                category: Category.allCases.randomElement()!.displayName,
-                
-                restrauntCnt: 99
-            ),
-            count: 100
-        )
-        .map { old in
-            var new = old
-            new.likes = (1 ... 100).randomElement() ?? 10
-            new.id = UUID().uuidString
-            new.name = restaurantNames.randomElement() ?? "The Restaurant"
-            new.category = Category.allCases.randomElement()!.displayName
-            new.frontDistance = Double((1 ... 500).randomElement() ?? 10)
-            new.backDistance = Double((1 ... 500).randomElement() ?? 10)
-            return new
+                likes: Int.random(in: 1 ... 100),
+                frontDistance: Double.random(in: 1 ... 500),
+                backDistance: Double.random(in: 1 ... 500),
+                category: Category.allCases.randomElement()!.displayName
+            )
         }
     }
 }
