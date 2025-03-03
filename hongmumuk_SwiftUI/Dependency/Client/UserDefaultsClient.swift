@@ -14,6 +14,7 @@ import Foundation
 enum UserDefaultsKey: String {
     case recentSearchList
     case findPassword
+    case signup
 }
 
 struct UserDefaultsClient {
