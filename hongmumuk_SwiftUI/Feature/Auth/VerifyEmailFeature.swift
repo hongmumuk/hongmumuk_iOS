@@ -138,7 +138,6 @@ struct VerifyEmailFeature: Reducer {
                 return .run { send in
                     do {
                         if try await authClient.sendVerificationEmail(body) {
-                            await userDefaultsClient.setString(newEmail, .findPassword)
                             await send(.successSend)
                         }
                     } catch {
@@ -168,7 +167,12 @@ struct VerifyEmailFeature: Reducer {
                 }
                 
             case .continueButtonTapped:
-                // 다음 화면으로 넘어가야하는데 이걸 부모뷰에서 조정할지...
+                let newEmail = "\(state.email)@g.hongik.ac.kr"
+
+                Task {
+                    await userDefaultsClient.setString(newEmail, .findPassword)
+                }
+
                 return .none
                 
             case .backButtonTapped, .onDismiss:
