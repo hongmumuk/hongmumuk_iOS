@@ -52,14 +52,14 @@ struct CategoryView: View {
         .sheet(
             isPresented: viewStore.binding(
                 get: {
-                    if case .restrauntDetail = $0.activeScreen { return true }
+                    if case .restaurantDetail = $0.activeScreen { return true }
                     if case .random = $0.activeScreen { return true }
                     return false
                 },
                 send: .onDismiss
             )
         ) {
-            if case let .restrauntDetail(id) = viewStore.activeScreen {
+            if case let .restaurantDetail(id) = viewStore.activeScreen {
                 DetailView(
                     store: Store(
                         initialState: DetailFeature.State(id: id),

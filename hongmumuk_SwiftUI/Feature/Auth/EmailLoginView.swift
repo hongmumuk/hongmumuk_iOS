@@ -49,8 +49,8 @@ struct EmailLoginView: View {
                         onSubmit: { viewStore.send(.emailOnSubmit) },
                         onClear: { viewStore.send(.emailTextClear) }
                     )
-                        .padding(.horizontal, 24)
-                        .padding(.top, 8)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
                     
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
@@ -73,8 +73,8 @@ struct EmailLoginView: View {
                         onSubmit: { viewStore.send(.passwordOnSubmit) },
                         onClear: { viewStore.send(.passwordTextClear) }
                     )
-                        .padding(.horizontal, 24)
-                        .padding(.top, 8)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
                     
                     NextButton(title: "로그인", isActive: viewStore.isSigninEnabled) {
                         if viewStore.isSigninEnabled {

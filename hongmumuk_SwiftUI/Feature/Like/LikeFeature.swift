@@ -11,7 +11,7 @@ import SwiftUI
 struct LikeFeature: Reducer {
     enum ActiveScreen: Equatable {
         case none
-        case restaurantDetail(String)
+        case restaurantDetail(Int)
     }
     
     struct State: Equatable {
@@ -44,7 +44,7 @@ struct LikeFeature: Reducer {
             switch action {
             case .onAppear:
                 return fetchRestaurantList(for: state) { send in
-                    await send(.initailLoadingCompleted)
+                    await send(.initialLoadingCompleted)
                 }
                 
             case .onDismiss:

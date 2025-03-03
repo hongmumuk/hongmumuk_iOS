@@ -35,17 +35,11 @@ struct CategoryListView: View {
                                 }
                             }
                     } else {
-                        LoadingView()
-                            .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    viewStore.send(.onNextPage)
-                                }
-                            }
-//                        InquiryButton {
-//                            viewStore.send(.inquryButtonTapped)
-//                        }
-//                        .padding(.top, 72)
-//                        .padding(.bottom, 117)
+                        InquiryButton {
+                            viewStore.send(.inquryButtonTapped)
+                        }
+                        .padding(.top, 72)
+                        .padding(.bottom, 117)
                     }
                 }
             }

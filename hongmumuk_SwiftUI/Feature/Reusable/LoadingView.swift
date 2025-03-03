@@ -11,7 +11,7 @@ struct LoadingView: View {
     var body: some View {
         VStack {
             LottieView(fileName: "Loading", loopMode: .loop)
-                .frame(width: 240, height: 240)
+                .frame(width: 200, height: 200)
         }
         .padding(.top, 20)
     }
