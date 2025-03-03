@@ -34,7 +34,7 @@ struct LikeView: View {
             )
         ) {
             let screen = viewStore.activeScreen
-            if case let .restrauntDetail(id) = screen {
+            if case let .restaurantDetail(id) = screen {
                 // 상세화면 전환
             }
         }
