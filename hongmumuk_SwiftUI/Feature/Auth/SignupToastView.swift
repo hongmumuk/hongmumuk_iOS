@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct SignupToastView: View {
+    var imageName: String
+    var title: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(Colors.GrayScale.normal.opacity(0.7))
+                .frame(height: 44)
+            
+            HStack(alignment: .center) {
+                Image(imageName)
+                    .frame(width: 20, height: 20)
+                
+                Spacer()
+                
+                Text(title)
+                    .foregroundStyle(Colors.SemanticColor.positive0)
+                    .fontStyle(Fonts.heading3Medium)
+            }
+            .padding(.horizontal, 16)
+        }
     }
-}
-
-#Preview {
-    SignupToastView()
 }
