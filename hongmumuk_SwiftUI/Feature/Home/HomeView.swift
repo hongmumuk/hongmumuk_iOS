@@ -48,7 +48,18 @@ struct HomeView: View {
                     .navigationBarHidden(true)
                     
                 } else if case let .cateogryList(category) = screen {
-                    // category List View
+                    ListView(
+                        store: Store(
+                            initialState: ListFeature.State(
+                                cateogry: category
+                            ),
+                            reducer: { ListFeature() },
+                            withDependencies: {
+                                $0.restaurantClient = RestaurantClient.testValue
+                            }
+                        )
+                    )
+                    .navigationBarHidden(true)
                 }
             }
         }
