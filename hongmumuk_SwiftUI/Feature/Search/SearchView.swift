@@ -30,15 +30,27 @@ struct SearchView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .navigationDestination(
+        .sheet(
             isPresented: viewStore.binding(
-                get: { $0.activeScreen != .none },
+                get: {
+                    if case .restrauntDetail = $0.activeScreen { return true }
+                    return false
+                },
                 send: .onDismiss
             )
         ) {
-            let screen = viewStore.activeScreen
-            if case let .restrauntDetail(id) = screen {
-                // 상세화면 전환
+            if case let .restrauntDetail(id) = viewStore.activeScreen {
+                DetailView(
+                    store: Store(
+                        initialState: DetailFeature.State(id: id),
+                        reducer: { DetailFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.testValue
+                            $0.keywordClient = KeywordClient.liveValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
             }
         }
     }
