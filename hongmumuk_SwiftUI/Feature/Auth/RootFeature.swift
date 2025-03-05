@@ -13,7 +13,7 @@ struct RootFeature: Reducer {
         case splash, login, emailLogin,
              signup, signupEmail, signupPassword, signupDone,
              verifyEmail, resetPassword,
-             home, random, search, categoryList(
+             home, like, random, search, categoryList(
                  Category
              )
     }
@@ -56,6 +56,9 @@ struct RootFeature: Reducer {
         Scope(state: \State.resetPassword, action: /Action.resetPassword) {
             ResetPasswordFeature()
         }
+        Scope(state: \State.resetPassword, action: /Action.resetPassword) {
+            ResetPasswordFeature()
+        }
         Reduce { state, action in
             switch action {
             case let .navigationTo(screen):
@@ -71,9 +74,7 @@ struct RootFeature: Reducer {
                 return .none
                 
             case .onDismiss:
-                if state.navigationPath.count > 1 {
-                    state.navigationPath.removeLast()
-                }
+                state.navigationPath.removeLast()
                 return .none
                 
             // emailLoginFeature
@@ -113,7 +114,6 @@ struct RootFeature: Reducer {
                         // 액세스 토큰이 유효한지 확인
                         if isValidAccessToken(accessToken) {
                             await send(.setLoginStatus(true))
-                            await send(.setNavigationRoot(.home))
                         } else {
                             // 액세스 토큰 만료
                             if let refreshToken, !refreshToken.isEmpty {
@@ -124,19 +124,20 @@ struct RootFeature: Reducer {
                                     await keychainClient.setString(newTokens.refreshToken, .refreshToken)
                                     
                                     await send(.setLoginStatus(true))
-                                    await send(.setNavigationRoot(.home))
                                 } catch {
+                                    // 리프레쉬 토큰 에러
                                     await send(.setLoginStatus(false))
-                                    await send(.setNavigationRoot(.login))
                                 }
                             } else {
+                                // 리프레쉬 토큰 없음
                                 await send(.setLoginStatus(false))
-                                await send(.setNavigationRoot(.login))
                             }
                         }
                     } else {
+                        // 둘다 empty
                         await send(.setLoginStatus(false))
                     }
+                    // 끝 끝
                     await send(.setLoadingStatus(false))
                 }
                 
@@ -154,6 +155,7 @@ struct RootFeature: Reducer {
         }
     }
 
+    // TODO: - 토큰 에러 확인..
     func isValidAccessToken(_ token: String) -> Bool {
         let components = token.components(separatedBy: ".")
         guard components.count == 3 else {

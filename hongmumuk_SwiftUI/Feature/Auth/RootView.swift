@@ -24,105 +24,113 @@ struct RootView: View {
             get: \.navigationPath,
             send: { RootFeature.Action.setNavigationPath($0) }
         )) {
-            SplashView()
-                .navigationDestination(for: RootFeature.ActiveScreen.self) { screen in
-                    switch screen {
-                    case .login:
-                        LoginView(
-                            store: Store(
-                                initialState: LoginFeature.State(),
-                                reducer: LoginFeature.init
-                            ),
-                            parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case .emailLogin:
-                        EmailLoginView(
-                            store: store
-                                .scope(
-                                    state: \.emailLogin,
-                                    action: RootFeature.Action.emailLogin
-                                ),
-                            parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case .signup:
-                        PrivacyView(
-                            store: Store(
-                                initialState: PrivacyFeature.State(),
-                                reducer: PrivacyFeature.init
-                            ), parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case .signupEmail:
-                        SignupEmailView(
-                            store: Store(
-                                initialState: SignupEmailFeature.State(),
-                                reducer: SignupEmailFeature.init
-                            ),
-                            parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case .signupPassword:
-                        SignupPasswordView(
-                            store: store
-                                .scope(
-                                    state: \.signupPassword,
-                                    action: RootFeature.Action.signupPassword
-                                ),
-                            parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case .signupDone:
-                        SignupDoneView(parentStore: store)
-                            .navigationBarHidden(true)
-                    case .home:
-                        HomeRootView()
-                            .navigationBarHidden(true)
-                    case .random:
-                        RandomView(store: Store(initialState: RandomFeature.State(), reducer: RandomFeature.init))
-                            .navigationBarHidden(true)
-                    case .verifyEmail:
-                        VerifyEmailView(store: Store(initialState: VerifyEmailFeature.State(), reducer: VerifyEmailFeature.init), parentStore: store)
-                            .navigationBarHidden(true)
-                    case .resetPassword:
-                        ResetPasswordView(
-                            store: store
-                                .scope(
-                                    state: \.resetPassword,
-                                    action: RootFeature.Action.resetPassword
-                                ), parentStore: store
-                        )
-                        .navigationBarHidden(true)
-                    case let .categoryList(category):
-                        CategoryView(
-                            store: Store(
-                                initialState: CategoryFeature.State(
-                                    cateogry: category
-                                ),
-                                reducer: { CategoryFeature() },
-                                withDependencies: {
-                                    $0.restaurantClient = RestaurantClient.liveValue
-                                }
-                            )
-                        )
-                        .navigationBarHidden(true)
-                    case .search:
-                        SearchView(
-                            store: Store(
-                                initialState: SearchFeature.State(),
-                                reducer: { SearchFeature() },
-                                withDependencies: {
-                                    $0.restaurantClient = RestaurantClient.liveValue
-                                    $0.userDefaultsClient = UserDefaultsClient.liveValue
-                                }
-                            )
-                        )
-                        .navigationBarHidden(true)
-                    default:
-                        Text("Error")
-                    }
+            Group {
+                if viewStore.isLoggedIn {
+                    HomeRootView(parentStore: store)
+                } else if viewStore.isLoading {
+                    SplashView()
+                } else {
+                    LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
                 }
+            }
+            .navigationDestination(for: RootFeature.ActiveScreen.self) { screen in
+                switch screen {
+                case .login:
+                    LoginView(
+                        store: Store(
+                            initialState: LoginFeature.State(),
+                            reducer: LoginFeature.init
+                        ),
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .emailLogin:
+                    EmailLoginView(
+                        store: store
+                            .scope(
+                                state: \.emailLogin,
+                                action: RootFeature.Action.emailLogin
+                            ),
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .signup:
+                    PrivacyView(
+                        store: Store(
+                            initialState: PrivacyFeature.State(),
+                            reducer: PrivacyFeature.init
+                        ), parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .signupEmail:
+                    SignupEmailView(
+                        store: Store(
+                            initialState: SignupEmailFeature.State(),
+                            reducer: SignupEmailFeature.init
+                        ),
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .signupPassword:
+                    SignupPasswordView(
+                        store: store
+                            .scope(
+                                state: \.signupPassword,
+                                action: RootFeature.Action.signupPassword
+                            ),
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .signupDone:
+                    SignupDoneView(parentStore: store)
+                        .navigationBarHidden(true)
+                case .home:
+                    HomeRootView(parentStore: store)
+                        .navigationBarHidden(true)
+                case .random:
+                    RandomView(store: Store(initialState: RandomFeature.State(), reducer: RandomFeature.init))
+                        .navigationBarHidden(true)
+                case .verifyEmail:
+                    VerifyEmailView(store: Store(initialState: VerifyEmailFeature.State(), reducer: VerifyEmailFeature.init), parentStore: store)
+                        .navigationBarHidden(true)
+                case .resetPassword:
+                    ResetPasswordView(
+                        store: store
+                            .scope(
+                                state: \.resetPassword,
+                                action: RootFeature.Action.resetPassword
+                            ), parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case let .categoryList(category):
+                    CategoryView(
+                        store: Store(
+                            initialState: CategoryFeature.State(
+                                cateogry: category
+                            ),
+                            reducer: { CategoryFeature() },
+                            withDependencies: {
+                                $0.restaurantClient = RestaurantClient.liveValue
+                            }
+                        )
+                    )
+                    .navigationBarHidden(true)
+                case .search:
+                    SearchView(
+                        store: Store(
+                            initialState: SearchFeature.State(),
+                            reducer: { SearchFeature() },
+                            withDependencies: {
+                                $0.restaurantClient = RestaurantClient.liveValue
+                                $0.userDefaultsClient = UserDefaultsClient.liveValue
+                            }
+                        )
+                    )
+                    .navigationBarHidden(true)
+                default:
+                    Text("Error")
+                }
+            }
         }
         .onAppear {
             viewStore.send(.checkLoginStatus)

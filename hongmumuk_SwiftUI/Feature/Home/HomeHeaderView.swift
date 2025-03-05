@@ -12,6 +12,7 @@ import SwiftUI
 
 struct HomeHeaderView: View {
     @ObservedObject var viewStore: ViewStoreOf<HomeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         VStack {
@@ -36,7 +37,7 @@ struct HomeHeaderView: View {
             
             Spacer()
             Button(action: {
-                viewStore.send(.searchButtonTapped)
+                parentViewStore.send(.navigationTo(.search))
             }) {
                 Image("searchIcon")
                     .frame(width: 36, height: 36)

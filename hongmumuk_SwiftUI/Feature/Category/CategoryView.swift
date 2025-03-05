@@ -18,33 +18,31 @@ struct CategoryView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                VStack(spacing: 0) {
-                    CategoryHeaderView(viewStore: viewStore)
-                    CategoryFilterView(viewStore: viewStore)
-                    CategoryListView(viewStore: viewStore)
-                }
-                CategoryRandomButton(viewStore: viewStore)
+        ZStack {
+            VStack(spacing: 0) {
+                CategoryHeaderView(viewStore: viewStore)
+                CategoryFilterView(viewStore: viewStore)
+                CategoryListView(viewStore: viewStore)
             }
-            .navigationDestination(
-                isPresented: viewStore.binding(
-                    get: { $0.activeScreen == .search },
-                    send: .onDismiss
+            CategoryRandomButton(viewStore: viewStore)
+        }
+        .navigationDestination(
+            isPresented: viewStore.binding(
+                get: { $0.activeScreen == .search },
+                send: .onDismiss
+            )
+        ) {
+            SearchView(
+                store: Store(
+                    initialState: SearchFeature.State(),
+                    reducer: { SearchFeature() },
+                    withDependencies: {
+                        $0.restaurantClient = RestaurantClient.liveValue
+                        $0.userDefaultsClient = UserDefaultsClient.liveValue
+                    }
                 )
-            ) {
-                SearchView(
-                    store: Store(
-                        initialState: SearchFeature.State(),
-                        reducer: { SearchFeature() },
-                        withDependencies: {
-                            $0.restaurantClient = RestaurantClient.liveValue
-                            $0.userDefaultsClient = UserDefaultsClient.liveValue
-                        }
-                    )
-                )
-                .navigationBarHidden(true)
-            }
+            )
+            .navigationBarHidden(true)
         }
         .onAppear {
             viewStore.send(.onAppear)

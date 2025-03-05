@@ -13,19 +13,28 @@ enum Tab {
 }
 
 struct HomeRootView: View {
+    let parentStore: StoreOf<RootFeature>
+    
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     @State private var selectedTab: Tab = .home
-
+    
+    init(parentStore: StoreOf<RootFeature>) {
+        self.parentStore = parentStore
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView(
                 store: Store(
                     initialState: HomeFeature.State(),
                     reducer: HomeFeature.init
-                ))
-                .tabItem {
-                    Image(selectedTab == .home ?"homeSelectedIcon" : "homeIcon")
-                }
-                .tag(Tab.home)
+                ), parentStore: parentStore
+            )
+            .tabItem {
+                Image(selectedTab == .home ?"homeSelectedIcon" : "homeIcon")
+            }
+            .tag(Tab.home)
             
             LikeView(
                 store: Store(

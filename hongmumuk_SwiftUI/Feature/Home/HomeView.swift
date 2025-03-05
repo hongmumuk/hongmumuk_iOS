@@ -10,17 +10,22 @@ import SwiftUI
 
 struct HomeView: View {
     private let store: StoreOf<HomeFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<HomeFeature>
+    private let parentStore: StoreOf<RootFeature>
     
-    init(store: StoreOf<HomeFeature>) {
+    @ObservedObject private var viewStore: ViewStoreOf<HomeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
+    
+    init(store: StoreOf<HomeFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
         ZStack {
-            HomeHeaderView(viewStore: viewStore)
-            HomeCircleView(viewStore: viewStore)
+            HomeHeaderView(viewStore: viewStore, parentViewStore: parentViewStore)
+            HomeCircleView(viewStore: viewStore, parentViewStore: parentViewStore)
             HomeRandomButton(viewStore: viewStore)
         }
         .onAppear {

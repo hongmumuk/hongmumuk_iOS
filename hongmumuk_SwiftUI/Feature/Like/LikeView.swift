@@ -18,11 +18,9 @@ struct LikeView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                LikeHeaderView(viewStore: viewStore)
-                LikeListView(viewStore: viewStore)
-            }
+        VStack(spacing: 0) {
+            LikeHeaderView(viewStore: viewStore)
+            LikeListView(viewStore: viewStore)
         }
         .onAppear {
             viewStore.send(.onAppear)

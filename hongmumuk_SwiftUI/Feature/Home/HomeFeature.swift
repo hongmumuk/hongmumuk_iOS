@@ -74,6 +74,7 @@ struct HomeFeature: Reducer {
         case .onDismiss:
             state.activeScreen = .none
             return .none
+        // 여기!
         case let .categoryItemTapped(category):
             state.activeScreen = .cateogryList(category)
 
