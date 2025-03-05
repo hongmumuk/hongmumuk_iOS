@@ -13,6 +13,7 @@
 		2F0D4FE52D761FFC0035D7A4 /* LoginInitialFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D4FE42D761FFC0035D7A4 /* LoginInitialFeature.swift */; };
 		2F0D50182D779D2A0035D7A4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50172D779D2A0035D7A4 /* RootView.swift */; };
 		2F0D50192D779D2A0035D7A4 /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50162D779D2A0035D7A4 /* RootFeature.swift */; };
+		2F0D50232D779FC20035D7A4 /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50222D779FC20035D7A4 /* ResetPasswordModel.swift */; };
 		2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F435E9D2D4FBC05005E1C84 /* Color+.swift */; };
 		2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F435EA12D4FBF35005E1C84 /* Colors.swift */; };
 		2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F435EA32D4FBF5A005E1C84 /* View+.swift */; };
@@ -171,6 +172,7 @@
 		2F0D4FE42D761FFC0035D7A4 /* LoginInitialFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInitialFeature.swift; sourceTree = "<group>"; };
 		2F0D50162D779D2A0035D7A4 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
 		2F0D50172D779D2A0035D7A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2F0D50222D779FC20035D7A4 /* ResetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
 		2F435E9D2D4FBC05005E1C84 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		2F435EA12D4FBF35005E1C84 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2F435EA32D4FBF5A005E1C84 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 		BE4F9B492D5A076300E7CC46 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2F0D50222D779FC20035D7A4 /* ResetPasswordModel.swift */,
 				2F68B4CA2D72315600548850 /* VerifyEmailModel.swift */,
 				2F65D3782D758063002BF6B5 /* AuthTokenResponseModel.swift */,
 				BE4F9B472D5A076300E7CC46 /* LoginModel.swift */,
@@ -881,6 +884,7 @@
 				BEB42C342D758E530040F65F /* LottieView.swift in Sources */,
 				2FE55C0B2D5E45EA00BFE6F7 /* ProgressButton.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
+				2F0D50232D779FC20035D7A4 /* ResetPasswordModel.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F0D4FE12D761DD70035D7A4 /* LoginButton.swift in Sources */,
 				BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */,
