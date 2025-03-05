@@ -68,7 +68,6 @@ struct EmailLoginFeature: Reducer {
                 state.emailErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
-                    state.passwordState = .normal
                     state.passwordErrorMessage = nil
                 }
                 return .none
@@ -78,7 +77,6 @@ struct EmailLoginFeature: Reducer {
                 state.passwordErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
-                    state.emailState = .normal
                     state.emailErrorMessage = nil
                 }
                 return .none
@@ -161,8 +159,13 @@ struct EmailLoginFeature: Reducer {
                 state.isLoginLoading = false
                 state.loginError = error
                 if state.loginError != nil {
-                    state.emailState = .loginError
-                    state.passwordState = .loginError
+                    if state.loginError == .invalidCredentials {
+                        state.passwordState = .loginError
+                    } else if state.loginError == .userNotFound {
+                        state.emailState = .loginError
+                    } else {
+                        state.emailState = .loginError
+                    }
                 }
                 state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
                 state.passwordErrorMessage = error == .invalidCredentials ? "비밀번호가 올바르지 않습니다." : nil
