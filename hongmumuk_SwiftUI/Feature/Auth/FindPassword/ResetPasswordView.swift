@@ -1,24 +1,24 @@
 //
-//  SignupPasswordView.swift
+//  ResetPasswordView.swift
 //  hongmumuk_SwiftUI
 //
-//  Created by Park Seyoung on 3/2/25.
+//  Created by Park Seyoung on 3/1/25.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct SignupPasswordView: View {
-    let store: StoreOf<SignupPasswordFeature>
-    let parentStore: StoreOf<LoginInitialFeature>
+struct ResetPasswordView: View {
+    let store: StoreOf<ResetPasswordFeature>
+    let parentStore: StoreOf<RootFeature>
     
-    @ObservedObject var viewStore: ViewStoreOf<SignupPasswordFeature>
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var viewStore: ViewStoreOf<ResetPasswordFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     @FocusState private var isPasswordFocused: Bool
     @FocusState private var isVerifiedPasswordFocused: Bool
     
-    init(store: StoreOf<SignupPasswordFeature>, parentStore: StoreOf<LoginInitialFeature>) {
+    init(store: StoreOf<ResetPasswordFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
@@ -28,7 +28,11 @@ struct SignupPasswordView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                VStack {
+                    LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                    
+                    Spacer()
+                }
                 
                 scrollView
                     .padding(.top, 56)
@@ -36,10 +40,9 @@ struct SignupPasswordView: View {
                 VStack {
                     Spacer()
                     
-                    NextButton(title: "가입하기", isActive: viewStore.isContinueButtonEnabled) {
-                        if viewStore.isContinueButtonEnabled {
+                    NextButton(title: "비밀번호 재설정하기", isActive: viewStore.isResetPasswordButtonEnabled) {
+                        if viewStore.isResetPasswordButtonEnabled {
                             viewStore.send(.continueButtonTapped)
-                            parentViewStore.send(.signUpDoneButtonTapped)
                         }
                     }
                     .frame(height: 60)
@@ -62,12 +65,6 @@ struct SignupPasswordView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    SignupHeaderView(
-                        activeStep: 3,
-                        title: "비밀번호를 입력해 주세요",
-                        subtitle: "다시 로그인할 때 비밀번호 입력이 필요합니다"
-                    )
-                    
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))

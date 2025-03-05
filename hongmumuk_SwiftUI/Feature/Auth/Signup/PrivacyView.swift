@@ -10,11 +10,11 @@ import SwiftUI
 
 struct PrivacyView: View {
     let store: StoreOf<PrivacyFeature>
-    let parentStore: StoreOf<LoginInitialFeature>
+    let parentStore: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<PrivacyFeature>
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<PrivacyFeature>, parentStore: StoreOf<LoginInitialFeature>) {
+    init(store: StoreOf<PrivacyFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
@@ -79,7 +79,7 @@ struct PrivacyView: View {
                     isActive: viewStore.isContinueButtonEnabled,
                     action: {
                         viewStore.send(.continueButtonTapped)
-                        parentViewStore.send(.signUpEmailButtonTapped)
+                        parentViewStore.send(.navigationTo(.signupEmail))
                     }
                 )
                 .frame(height: 60)

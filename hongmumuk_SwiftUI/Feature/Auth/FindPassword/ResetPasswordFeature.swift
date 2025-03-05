@@ -1,14 +1,14 @@
 //
-//  SignupPasswordFeature.swift
+//  ResetPasswordFeature.swift
 //  hongmumuk_SwiftUI
 //
-//  Created by Park Seyoung on 3/2/25.
+//  Created by Park Seyoung on 3/1/25.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct SignupPasswordFeature: Reducer {
+struct ResetPasswordFeature: Reducer {
     struct State: Equatable {
         var password: String = ""
         var passwordErrorMessage: String? = nil
@@ -22,10 +22,10 @@ struct SignupPasswordFeature: Reducer {
         
         var resetPasswordError: LoginError? = nil
         
-        var isContinueLoading: Bool = false
+        var isResetPasswordLoading: Bool = false
         
-        var isContinueButtonEnabled: Bool {
-            passwordState == .valid && verifiedPasswordState == .codeVerified
+        var isResetPasswordButtonEnabled: Bool {
+            return !isResetPasswordLoading && resetPasswordError == nil && passwordState == .valid && verifiedPasswordState == .passwordVerified
         }
     }
     
@@ -46,15 +46,13 @@ struct SignupPasswordFeature: Reducer {
         case verifiedVisibleToggled
         
         case continueButtonTapped
-        case backButtonTapped
         
-        case successJoin, failJoin(LoginError)
+        case successReset, failReset(LoginError)
     }
     
     @Dependency(\.validationClient) var validationClient
     @Dependency(\.authClient) var authClient
     @Dependency(\.userDefaultsClient) var userDefaultsClient
-    @Dependency(\.keychainClient) var keychainClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -78,6 +76,10 @@ struct SignupPasswordFeature: Reducer {
                 return .none
                 
             case .passwordOnSubmit:
+                if state.verifiedPassword == state.password {
+                    state.verifiedPasswordState = .passwordVerified
+                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                }
                 if state.password.isEmpty {
                     state.passwordState = .empty
                     state.passwordErrorMessage = nil
@@ -95,7 +97,7 @@ struct SignupPasswordFeature: Reducer {
                     state.verifiedPasswordState = .empty
                     state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
-                    state.verifiedPasswordState = .codeVerified
+                    state.verifiedPasswordState = .passwordVerified
                     state.verifiedPasswordMessage = "비밀번호가 일치합니다."
                 } else {
                     state.verifiedPasswordState = .invalid
@@ -124,43 +126,33 @@ struct SignupPasswordFeature: Reducer {
                 return .none
                 
             case .continueButtonTapped:
-                state.isContinueLoading = true
-                let password = state.password
+
+                state.isResetPasswordLoading = true
                 
-                return .run { send in
+                return .run { [password = state.password] send in
                     do {
-                        let savedEmail = await userDefaultsClient.getString(.signup)
-                        let body = LoginModel(email: savedEmail, password: password)
-                        print(body)
-                        let tokenData = try await authClient.signup(body)
+                        let savedEmail = await userDefaultsClient.getString(.findPassword)
+                        let body = ResetPasswordModel(email: savedEmail, newPassword: password)
                         
-                        print(tokenData)
-
-                        await keychainClient.setString(tokenData.accessToken, .accessToken)
-                        await keychainClient.setString(tokenData.refreshToken, .refreshToken)
-
-                        await send(.successJoin)
+                        if try await authClient.resetPassword(body) {
+                            await send(.successReset)
+                        }
                     } catch {
-                        if let signupError = error as? LoginError {
-                            print(signupError)
-                            await send(.failJoin(signupError))
+                        if let resetError = error as? LoginError {
+                            await send(.failReset(resetError))
                         }
                     }
                 }
                 
-            case .backButtonTapped:
+            case .successReset:
+                state.isResetPasswordLoading = false
                 return .none
                 
-            case .successJoin:
-                state.isContinueLoading = false
-                // 다음 화면
-                
-                return .none
-                
-            case let .failJoin(error):
-                state.isContinueLoading = false
-                state.verifiedPasswordState = .invalid
-                state.verifiedPasswordMessage = error == .userNotFound ? "회원가입에 실패했습니다" : nil
+            case let .failReset(error):
+                state.isResetPasswordLoading = false
+                state.resetPasswordError = error
+                print(error)
+                state.verifiedPasswordMessage = error == .unknown ? "비밀번호를 바꿀 수 없습니다." : nil
                 
                 return .none
             }

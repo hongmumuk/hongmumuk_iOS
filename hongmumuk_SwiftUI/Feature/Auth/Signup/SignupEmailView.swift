@@ -10,15 +10,15 @@ import SwiftUI
 
 struct SignupEmailView: View {
     let store: StoreOf<SignupEmailFeature>
-    let parentStore: StoreOf<LoginInitialFeature>
+    let parentStore: StoreOf<RootFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<SignupEmailFeature>
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     @FocusState private var isEmailFocused: Bool
     @FocusState private var isCodeFocused: Bool
 
-    init(store: StoreOf<SignupEmailFeature>, parentStore: StoreOf<LoginInitialFeature>) {
+    init(store: StoreOf<SignupEmailFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
@@ -39,7 +39,7 @@ struct SignupEmailView: View {
                     NextButton(title: "다음으로", isActive: viewStore.isContinueButtonEnabled) {
                         if viewStore.isContinueButtonEnabled {
                             viewStore.send(.continueButtonTapped)
-                            parentViewStore.send(.signUpPasswordButtonTapped)
+                            parentViewStore.send(.navigationTo(.signupPassword))
                         }
                     }
                     .frame(height: 60)

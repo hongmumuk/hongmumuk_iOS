@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  hongmumuk_SwiftUI
 //
-//  Created by Park Seyoung on 2/13/25.
+//  Created by Park Seyoung on 3/5/25.
 //
 
 import ComposableArchitecture
@@ -10,12 +10,12 @@ import SwiftUI
 
 struct LoginView: View {
     let store: StoreOf<LoginFeature>
-    let parentStore: StoreOf<LoginInitialFeature>
+    let parentStore: StoreOf<RootFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<LoginFeature>
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<LoginFeature>, parentStore: StoreOf<LoginInitialFeature>) {
+    init(store: StoreOf<LoginFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
@@ -40,7 +40,7 @@ struct LoginView: View {
                     textColor: .white,
                     action: {
                         viewStore.send(.signInButtonTapped)
-                        parentStore.send(.signInButtonTapped)
+                        parentStore.send(.navigationTo(.emailLogin))
                     }
                 )
                 .frame(height: 60)
@@ -54,7 +54,7 @@ struct LoginView: View {
                     textColor: Colors.GrayScale.normal,
                     action: {
                         viewStore.send(.signUpButtonTapped)
-                        parentStore.send(.signUpButtonTapped)
+                        parentStore.send(.navigationTo(.signup))
                     }
                 )
                 .frame(height: 60)
@@ -63,7 +63,7 @@ struct LoginView: View {
                     
                 Button(action: {
                     viewStore.send(.signInGuest)
-                    parentStore.send(.mainButtonTapped)
+                    parentStore.send(.setNavigationRoot(.home))
                 }, label: {
                     Text("비회원으로 시작하기")
                         .fontStyle(Fonts.body1Medium)

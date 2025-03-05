@@ -9,11 +9,11 @@ import ComposableArchitecture
 import SwiftUI
 
 struct SignupDoneView: View {
-    let parentStore: StoreOf<LoginInitialFeature>
+    let parentStore: StoreOf<RootFeature>
     
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(parentStore: StoreOf<LoginInitialFeature>) {
+    init(parentStore: StoreOf<RootFeature>) {
         self.parentStore = parentStore
         parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
@@ -32,15 +32,15 @@ struct SignupDoneView: View {
                     .foregroundStyle(Colors.GrayScale.normal)
                     .padding(.top, 12)
                 
-                Text("바로 홍무묵의 모든 서비스를 이용해 보세요")
+                Text("로그인 후 홍무묵의 모든 서비스를 이용해 보세요")
                     .fontStyle(Fonts.heading3Medium)
                     .foregroundStyle(Colors.GrayScale.alternative)
                     .padding(.top, 8)
                 
                 Spacer()
                 
-                NextButton(title: "시작하기", isActive: true) {
-                    parentStore.send(.mainButtonTapped)
+                NextButton(title: "로그인하러 가기", isActive: true) {
+                    parentStore.send(.setNavigationRoot(.login))
                 }
                 .frame(height: 60)
                 .padding(.horizontal, 24)

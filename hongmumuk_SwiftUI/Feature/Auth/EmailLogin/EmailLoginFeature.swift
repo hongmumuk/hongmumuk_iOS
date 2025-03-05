@@ -11,14 +11,10 @@ import SwiftUI
 struct EmailLoginFeature: Reducer {
     struct State: Equatable {
         var email: String = ""
-        //        var emailFocused: Bool = false
-        //        var emailValid: Bool = false
         var emailErrorMessage: String? = nil
         var emailState: TextFieldState = .empty
         
         var password: String = ""
-        //        var passwordFocused: Bool = false
-        //        var passwordValid: Bool = false
         var passwordVisible: Bool = false
         var passwordErrorMessage: String? = nil
         var passwordState: TextFieldState = .empty
@@ -48,9 +44,8 @@ struct EmailLoginFeature: Reducer {
         case passwordVisibleToggled
         
         case signInButtonTapped
-        case findPasswordButtonTapped, signUpButtonTapped, backButtonTapped
+        case findPasswordButtonTapped, signUpButtonTapped
         case successLogin, failLogin(LoginError)
-        case onDismiss
     }
     
     @Dependency(\.validationClient) var validationClient
@@ -80,7 +75,7 @@ struct EmailLoginFeature: Reducer {
                 
             case let .passwordFocused(isFocused):
                 state.passwordState = isFocused ? .focused : (state.password.isEmpty ? .empty : .normal)
-                state.emailErrorMessage = nil
+                state.passwordErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
                     state.emailState = .normal
@@ -147,7 +142,6 @@ struct EmailLoginFeature: Reducer {
                         await send(.successLogin)
                     } catch {
                         if let signupError = error as? LoginError {
-                            print(signupError)
                             await send(.failLogin(signupError))
                         }
                     }
@@ -157,9 +151,6 @@ struct EmailLoginFeature: Reducer {
                 return .none
                 
             case .findPasswordButtonTapped:
-                return .none
-                
-            case .backButtonTapped, .onDismiss:
                 return .none
                 
             case .successLogin:

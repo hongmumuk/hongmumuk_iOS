@@ -10,29 +10,61 @@ import SwiftUI
 
 struct VerifyEmailView: View {
     let store: StoreOf<VerifyEmailFeature>
+    let parentStore: StoreOf<RootFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<VerifyEmailFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     @FocusState private var isEmailFocused: Bool
     @FocusState private var isCodeFocused: Bool
     
-    init(store: StoreOf<VerifyEmailFeature>) {
+    init(store: StoreOf<VerifyEmailFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                VStack(alignment: .leading) {
-                    Divider()
-                        .background(Colors.Border.neutral)
-                        .frame(height: 1)
+        GeometryReader { geometry in
+            ZStack(alignment: .top) {
+                LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                
+                scrollView
+                    .padding(.top, 56)
                     
+                VStack {
+                    Spacer()
+                        
+                    NextButton(title: "비밀번호 재설정", isActive: viewStore.isContinueButtonEnabled) {
+                        if viewStore.isContinueButtonEnabled {
+                            viewStore.send(.continueButtonTapped)
+                            parentViewStore.send(.navigationTo(.resetPassword))
+                        }
+                    }
+                    .frame(height: 60)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 60)
+                }
+                .ignoresSafeArea(.keyboard)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isEmailFocused = false
+            isCodeFocused = false
+        }
+    }
+
+    private var scrollView: some View {
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(alignment: .leading) {
                     Text("이메일")
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
-                        .padding(.top, geometry.size.height * 0.04)
+                        .padding(.top, geometry.size.height * 0.056)
                     
                     CommonTextFieldView(
                         isFocused: $isEmailFocused,
@@ -102,40 +134,7 @@ struct VerifyEmailView: View {
                     .padding(.top, 8)
                     
                     Spacer()
-                    
-                    NextButton(title: "비밀번호 재설정하러 가기", isActive: viewStore.isContinueButtonEnabled) {
-                        if viewStore.isContinueButtonEnabled {
-                            viewStore.send(.continueButtonTapped)
-                        }
-                    }
-                    .frame(height: 60)
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, geometry.size.height * 0.1)
                 }
-            }
-            .navigationTitle("비밀번호 찾기")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("비밀번호 찾기")
-                        .fontStyle(Fonts.heading1Bold)
-                        .foregroundColor(Colors.GrayScale.normal)
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { viewStore.send(.backButtonTapped) }) {
-                        Image("backButton")
-                            .resizable()
-                            .frame(width: 36, height: 36)
-                    }
-                    .padding(.leading, 4)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                isEmailFocused = false
-                isCodeFocused = false
             }
         }
     }

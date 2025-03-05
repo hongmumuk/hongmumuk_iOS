@@ -1,15 +1,14 @@
 //
-//  ResetPasswordFeature.swift
+//  SignupPasswordFeature.swift
 //  hongmumuk_SwiftUI
 //
-//  Created by Park Seyoung on 3/1/25.
+//  Created by Park Seyoung on 3/2/25.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct ResetPasswordFeature: Reducer {
-    // ActiveScreen은 EmailLoginFeature에서 관리
+struct SignupPasswordFeature: Reducer {
     struct State: Equatable {
         var password: String = ""
         var passwordErrorMessage: String? = nil
@@ -21,12 +20,12 @@ struct ResetPasswordFeature: Reducer {
         var verifiedPasswordState: TextFieldState = .empty
         var verifiedPasswordVisible: Bool = false
         
-        var resetPasswordError: LoginError? = nil
+        var signupPasswordError: LoginError? = nil
         
-        var isResetPasswordLoading: Bool = false
+        var isContinueLoading: Bool = false
         
-        var isResetPasswordButtonEnabled: Bool {
-            passwordState == .valid && verifiedPasswordState == .codeVerified
+        var isContinueButtonEnabled: Bool {
+            return !isContinueLoading && signupPasswordError == nil && passwordState == .valid && verifiedPasswordState == .passwordVerified
         }
     }
     
@@ -46,11 +45,9 @@ struct ResetPasswordFeature: Reducer {
         case passwordVisibleToggled
         case verifiedVisibleToggled
         
-        case resetPasswordButtonTapped
-        case backButtonTapped
+        case continueButtonTapped
         
-        case successReset, failReset(LoginError)
-        case onDismiss
+        case successJoin, failJoin(LoginError)
     }
     
     @Dependency(\.validationClient) var validationClient
@@ -73,12 +70,16 @@ struct ResetPasswordFeature: Reducer {
                 state.passwordErrorMessage = nil
                 return .none
                 
-            case let .verifiedPasswordFocused(isFocueed):
-                state.verifiedPasswordState = isFocueed ? .focused : (state.verifiedPassword.isEmpty ? .empty : .normal)
+            case let .verifiedPasswordFocused(isFocused):
+                state.verifiedPasswordState = isFocused ? .focused : (state.verifiedPassword.isEmpty ? .empty : .normal)
                 state.verifiedPasswordMessage = nil
                 return .none
                 
             case .passwordOnSubmit:
+                if state.verifiedPassword == state.password {
+                    state.verifiedPasswordState = .passwordVerified
+                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                }
                 if state.password.isEmpty {
                     state.passwordState = .empty
                     state.passwordErrorMessage = nil
@@ -96,7 +97,7 @@ struct ResetPasswordFeature: Reducer {
                     state.verifiedPasswordState = .empty
                     state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
-                    state.verifiedPasswordState = .codeVerified
+                    state.verifiedPasswordState = .passwordVerified
                     state.verifiedPasswordMessage = "비밀번호가 일치합니다."
                 } else {
                     state.verifiedPasswordState = .invalid
@@ -124,39 +125,43 @@ struct ResetPasswordFeature: Reducer {
                 state.verifiedPasswordVisible.toggle()
                 return .none
                 
-            case .resetPasswordButtonTapped:
-                state.isResetPasswordLoading = true
+            case .continueButtonTapped:
+                state.isContinueLoading = true
+                let password = state.password
                 
-                return .run { [password = state.password] send in
+                return .run { send in
                     do {
-                        let savedEmail = await userDefaultsClient.getString(.findPassword)
+                        let savedEmail = await userDefaultsClient.getString(.signup)
                         let body = LoginModel(email: savedEmail, password: password)
-                        
-                        if try await authClient.resetPassword(body) {
-                            await send(.successReset)
-                        }
+                        let tokenData = try await authClient.signup(body)
+
+                        await send(.successJoin)
                     } catch {
-                        if let resetError = error as? LoginError {
-                            print(resetError)
-                            await send(.failReset(resetError))
+                        if let signupError = error as? LoginError {
+                            print(signupError)
+                            await send(.failJoin(signupError))
                         }
                     }
                 }
                 
-            case .backButtonTapped, .onDismiss:
+            case .successJoin:
+                state.isContinueLoading = false
+
                 return .none
                 
-            case .successReset:
-                state.isResetPasswordLoading = false
-                // 다음 화면
-                
-                return .none
-                
-            case let .failReset(error):
-                state.isResetPasswordLoading = false
-                state.verifiedPasswordState = .invalid
-                state.verifiedPasswordMessage = error == .userNotFound ? "비밀번호를 바꿀 수 없습니다." : nil
-                
+            case let .failJoin(error):
+                state.isContinueLoading = false
+                state.signupPasswordError = error
+                print(error)
+                if state.signupPasswordError != nil {
+                    state.passwordState = .loginError
+                }
+                if error == .alreadyExists {
+                    state.passwordErrorMessage = "이미 존재하는 회원입니다."
+                } else {
+                    state.passwordErrorMessage = "회원가입에 실패했습니다."
+                }
+                print(state.passwordErrorMessage)
                 return .none
             }
         }

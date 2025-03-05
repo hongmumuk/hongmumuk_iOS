@@ -1,14 +1,15 @@
 //
-//  SignupEmailFeature.swift
+//  VerifyEmailFeature.swift
 //  hongmumuk_SwiftUI
 //
-//  Created by Park Seyoung on 3/2/25.
+//  Created by Park Seyoung on 3/1/25.
 //
 
 import ComposableArchitecture
 import SwiftUI
 
-struct SignupEmailFeature: Reducer {
+struct VerifyEmailFeature: Reducer {
+    // ActiveScreen은 EmailLoginFeature에서 관리
     struct State: Equatable {
         var email: String = ""
         var emailErrorMessage: String? = nil
@@ -18,6 +19,7 @@ struct SignupEmailFeature: Reducer {
         var codeErrorMessage: String? = nil
         var codeState: TextFieldState = .empty
         
+        // loginError에 따라 인증 됐는지 여부 파악
         var sendCodeError: LoginError? = nil
         var verifyCodeError: LoginError? = nil
         
@@ -57,7 +59,6 @@ struct SignupEmailFeature: Reducer {
         case sendCodeButtonTapped
         case verifyCodeButtonTapped
         case continueButtonTapped
-        case backButtonTapped
         
         case stopSendCodeTimer
         case updateSendCodeTimer(Int)
@@ -138,7 +139,7 @@ struct SignupEmailFeature: Reducer {
             case .sendCodeButtonTapped:
                 state.isSendCodeLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
-                let body = SendVerifyCodeModel(email: newEmail, join: true)
+                let body = SendVerifyCodeModel(email: newEmail, join: false)
 
                 return .run { send in
                     do {
@@ -175,12 +176,11 @@ struct SignupEmailFeature: Reducer {
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
 
                 Task {
-                    await userDefaultsClient.setString(newEmail, .signup)
+                    await userDefaultsClient.setString(newEmail, .findPassword)
+                    let savedEmail = await userDefaultsClient.getString(.findPassword)
+                    print(savedEmail)
                 }
 
-                return .none
-                
-            case .backButtonTapped:
                 return .none
                 
             case .successSend:
@@ -213,7 +213,6 @@ struct SignupEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
                 state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
                 return .none
                 
@@ -227,10 +226,17 @@ struct SignupEmailFeature: Reducer {
                 
             case let .failVerify(error):
                 state.isVerifyCodeLoading = false
-                state.codeState = .codeInvalid
-                state.codeErrorMessage = error == .invalidCode ? "인증번호가 잘못 입력되었습니다." : nil
-                state.codeErrorMessage = error == .noVerificationRecord ? "인증번호가 전송되지 않았습니다." : nil
-                
+                state.verifyCodeError = error
+                if state.verifyCodeError != nil {
+                    state.codeState = .loginError
+                }
+                if error == .invalidCode {
+                    state.codeErrorMessage = "인증번호가 틀렸습니다."
+                } else if error == .expiredCode {
+                    state.codeErrorMessage = "인증번호가 만료되었습니다."
+                } else if error == .noVerificationRecord {
+                    state.codeErrorMessage = "인증번호가 전송되지 않았습니다."
+                }
                 return .none
             }
         }

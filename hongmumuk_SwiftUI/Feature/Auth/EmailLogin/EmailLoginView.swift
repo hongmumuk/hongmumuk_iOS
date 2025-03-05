@@ -10,14 +10,14 @@ import SwiftUI
 
 struct EmailLoginView: View {
     let store: StoreOf<EmailLoginFeature>
-    let parentStore: StoreOf<LoginInitialFeature>
+    let parentStore: StoreOf<RootFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<EmailLoginFeature>
-    @ObservedObject var parentViewStore: ViewStoreOf<LoginInitialFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     @FocusState private var isEmailFocused: Bool
     @FocusState private var isPasswordFocused: Bool
     
-    init(store: StoreOf<EmailLoginFeature>, parentStore: StoreOf<LoginInitialFeature>) {
+    init(store: StoreOf<EmailLoginFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
@@ -72,14 +72,15 @@ struct EmailLoginView: View {
                     state: viewStore.passwordState,
                     message: viewStore.passwordErrorMessage,
                     placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
-                    isSecure: true,
+                    isSecure: !viewStore.passwordVisible,
                     showAtSymbol: false,
                     showSuffix: false,
                     suffixText: "",
                     onTextChanged: { viewStore.send(.passwordChanged($0)) },
                     onFocusedChanged: { viewStore.send(.passwordFocused($0)) },
                     onSubmit: { viewStore.send(.passwordOnSubmit) },
-                    onClear: { viewStore.send(.passwordTextClear) }
+                    onClear: { viewStore.send(.passwordTextClear) },
+                    onToggleVisibility: { viewStore.send(.passwordVisibleToggled) }
                 )
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
@@ -87,17 +88,6 @@ struct EmailLoginView: View {
                 NextButton(title: "로그인", isActive: viewStore.isSigninEnabled) {
                     if viewStore.isSigninEnabled {
                         viewStore.send(.signInButtonTapped)
-                        
-                        // Check if login is successful (after isLoginLoading is false)
-                        Task {
-                            // Wait for login to complete
-                            await viewStore.send(.successLogin) // Ensure this is triggered only after a successful login
-                            
-                            // Proceed to the next screen only if login is successful
-                            if !viewStore.isLoginLoading { // If loading is false, then it's a success
-                                parentViewStore.send(.mainButtonTapped) // Navigate to the main screen
-                            }
-                        }
                     }
                 }
                 .frame(height: 60)
@@ -107,7 +97,7 @@ struct EmailLoginView: View {
                 HStack(alignment: .center, spacing: 12) {
                     Spacer()
                     
-                    Button(action: { parentViewStore.send(.signUpButtonTapped) }) {
+                    Button(action: { parentViewStore.send(.navigationTo(.signup)) }) {
                         Text("회원가입")
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)
@@ -118,7 +108,7 @@ struct EmailLoginView: View {
                         .background(Colors.GrayScale.alternative)
                         .frame(width: 1, height: 12)
                     
-                    Button(action: { parentViewStore.send(.verifyEmailButtonTapped) }) {
+                    Button(action: { parentViewStore.send(.navigationTo(.verifyEmail)) }) {
                         Text("비밀번호 찾기")
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)

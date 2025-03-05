@@ -18,50 +18,13 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                HomeHeaderView(viewStore: viewStore)
-                HomeCircleView(viewStore: viewStore)
-                HomeRandomButton(viewStore: viewStore)
-            }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
-            .navigationDestination(
-                isPresented: viewStore.binding(
-                    get: { $0.activeScreen != .none && $0.activeScreen != .random },
-                    send: .onDismiss
-                )
-            ) {
-                let screen = viewStore.activeScreen
-                if case .search = screen {
-                    SearchView(
-                        store: Store(
-                            initialState: SearchFeature.State(),
-                            reducer: { SearchFeature() },
-                            withDependencies: {
-                                $0.restaurantClient = RestaurantClient.liveValue
-                                $0.userDefaultsClient = UserDefaultsClient.liveValue
-                            }
-                        )
-                    )
-                    .navigationBarHidden(true)
-                    
-                } else if case let .cateogryList(category) = screen {
-                    CategoryView(
-                        store: Store(
-                            initialState: CategoryFeature.State(
-                                cateogry: category
-                            ),
-                            reducer: { CategoryFeature() },
-                            withDependencies: {
-                                $0.restaurantClient = RestaurantClient.liveValue
-                            }
-                        )
-                    )
-                    .navigationBarHidden(true)
-                }
-            }
+        ZStack {
+            HomeHeaderView(viewStore: viewStore)
+            HomeCircleView(viewStore: viewStore)
+            HomeRandomButton(viewStore: viewStore)
+        }
+        .onAppear {
+            viewStore.send(.onAppear)
         }
         .sheet(
             isPresented: viewStore.binding(
