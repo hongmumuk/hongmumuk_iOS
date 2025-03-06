@@ -17,11 +17,11 @@ struct HomeFeature: Reducer {
     }
 
     struct State: Equatable {
-        var categories: [Category] = []
+        var categories: [Category] = Category.allCases.filter { $0 != .all }
         var activeScreen: ActiveScreen = .none
-        var rotation: Double = 0
-        var outerRadius: CGFloat = 0
-        var innerRadius: CGFloat = 0
+        var rotation: Double = -360.0 / Double(Category.allCases.filter { $0 != .all }.count) * 3
+        var outerRadius: CGFloat = UIScreen.main.bounds.width / 2 - 24
+        var innerRadius: CGFloat = 65
         var chordLength: CGFloat = 0
         var startAngle: Double? = nil
 
@@ -64,12 +64,6 @@ struct HomeFeature: Reducer {
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .onAppear:
-            state.categories = Category.allCases.filter { $0 != .all }
-            state.activeScreen = .none
-            state.rotation = -state.sliceAngle * 3
-            state.outerRadius = UIScreen.main.bounds.width / 2 - 24
-            state.innerRadius = 65
-
             return .none
         case .onDismiss:
             state.activeScreen = .none
