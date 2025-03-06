@@ -19,9 +19,13 @@ struct DetailView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            DetailInfoView(viewStore: viewStore)
-            DetailTabButtonView(viewStore: viewStore)
-            DetailTabView(viewStore: viewStore)
+            if viewStore.isLoading {
+                DetailSkeletonView()
+            } else {
+                DetailInfoView(viewStore: viewStore)
+                DetailTabButtonView(viewStore: viewStore)
+                DetailTabView(viewStore: viewStore)
+            }
         }
         .onAppear {
             viewStore.send(.onAppear)
