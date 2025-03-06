@@ -9,4 +9,5 @@ import Foundation
 
 enum RestaurantListError: String, Error {
     case unknown
+    case empty = "BAD400_6"
 }

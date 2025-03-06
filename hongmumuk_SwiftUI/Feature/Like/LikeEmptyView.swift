@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 struct LikeEmptyView: View {
     @ObservedObject var viewStore: ViewStoreOf<LikeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         VStack {
@@ -19,7 +20,8 @@ struct LikeEmptyView: View {
                 EmptyView(type: .like)
             } else {
                 EmptyView(type: .likeUnAuth) {
-                    viewStore.send(.emailLoginButtonTapped)
+//                    viewStore.send(.emailLoginButtonTapped)
+                    parentViewStore.send(.setNavigationRoot(.emailLogin))
                 }
             }
             Spacer()
