@@ -41,9 +41,9 @@ struct HomeRootView: View {
                     initialState: LikeFeature.State(),
                     reducer: { LikeFeature() },
                     withDependencies: {
-                        $0.likeClient = .testValue
+                        $0.likeClient = .liveValue
                     }
-                )
+                ), parentStore: parentStore
             )
             .tabItem {
                 Image(selectedTab == .like ? "likeSelectedIcon" : "likeIcon")
