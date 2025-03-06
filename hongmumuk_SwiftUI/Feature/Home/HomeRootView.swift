@@ -49,12 +49,20 @@ struct HomeRootView: View {
                 Image(selectedTab == .like ? "likeSelectedIcon" : "likeIcon")
             }
             .tag(Tab.like)
-
-            ProfileView()
-                .tabItem {
-                    Image(selectedTab == .profile ? "profileSelectedIcon" : "profileIcon")
-                }
-                .tag(Tab.profile)
+            
+            ProfileView(
+                store: Store(
+                    initialState: ProfileFeature.State(),
+                    reducer: { ProfileFeature() },
+                    withDependencies: {
+                        $0.likeClient = .liveValue
+                    }
+                ), parentStore: parentStore
+            )
+            .tabItem {
+                Image(selectedTab == .profile ? "profileSelectedIcon" : "profileIcon")
+            }
+            .tag(Tab.profile)
         }
     }
 }
