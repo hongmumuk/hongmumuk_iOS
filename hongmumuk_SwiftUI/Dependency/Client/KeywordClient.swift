@@ -15,6 +15,7 @@ extension KeywordClient: DependencyKey {
     static var liveValue = KeywordClient.init { review in
         return Keyword.allCases
             .map { KeywordCount(keyword: $0, count: review.countOccurrences(of: $0)) }
+            .filter { $0.count > 1 }
             .sorted { $0.count > $1.count }
             .map(\.keyword.rawValue)
     }
