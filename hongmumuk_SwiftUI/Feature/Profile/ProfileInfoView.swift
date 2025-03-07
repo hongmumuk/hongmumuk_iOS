@@ -27,6 +27,7 @@ struct ProfileInfoView: View {
     var body: some View {
         VStack {
             WebViewHeader(title: "내정보", showBottomLine: false, parentViewStore: parentViewStore)
+            ProfileInfoTapButtonView(viewStore: viewStore)
         }
         .onAppear {
             viewStore.send(.onAppear)

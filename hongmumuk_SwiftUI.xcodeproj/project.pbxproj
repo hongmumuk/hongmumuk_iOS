@@ -144,6 +144,8 @@
 		BEBB792F2D6EBF0900209F7E /* DetailTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */; };
 		BEC950562D7B0FA8002B02BB /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950552D7B0FA8002B02BB /* ProfileInfoView.swift */; };
 		BEC950582D7B0FFC002B02BB /* ProfileInfoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950572D7B0FFC002B02BB /* ProfileInfoFeature.swift */; };
+		BEC9505C2D7B1226002B02BB /* ProfileInfoTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9505B2D7B1226002B02BB /* ProfileInfoTapView.swift */; };
+		BEC9505E2D7B12DB002B02BB /* ProfileInfoTapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9505D2D7B12DB002B02BB /* ProfileInfoTapButtonView.swift */; };
 		BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */; };
 		BECC4A162D69A74B00F72FAF /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A152D69A74B00F72FAF /* Blog.swift */; };
 		BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */; };
@@ -304,6 +306,8 @@
 		BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTabView.swift; sourceTree = "<group>"; };
 		BEC950552D7B0FA8002B02BB /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		BEC950572D7B0FFC002B02BB /* ProfileInfoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoFeature.swift; sourceTree = "<group>"; };
+		BEC9505B2D7B1226002B02BB /* ProfileInfoTapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTapView.swift; sourceTree = "<group>"; };
+		BEC9505D2D7B12DB002B02BB /* ProfileInfoTapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoTapButtonView.swift; sourceTree = "<group>"; };
 		BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		BECC4A152D69A74B00F72FAF /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailError.swift; sourceTree = "<group>"; };
@@ -560,6 +564,8 @@
 				BE25DCFA2D79BE8B006B819E /* ProfileSetView.swift */,
 				BEC950552D7B0FA8002B02BB /* ProfileInfoView.swift */,
 				BEC950572D7B0FFC002B02BB /* ProfileInfoFeature.swift */,
+				BEC9505D2D7B12DB002B02BB /* ProfileInfoTapButtonView.swift */,
+				BEC9505B2D7B1226002B02BB /* ProfileInfoTapView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1000,6 +1006,7 @@
 				BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */,
 				BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */,
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
+				BEC9505C2D7B1226002B02BB /* ProfileInfoTapView.swift in Sources */,
 				2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */,
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
@@ -1030,6 +1037,7 @@
 				2F0D50112D779D200035D7A4 /* PrivacyModalView.swift in Sources */,
 				2F0D50122D779D200035D7A4 /* SignupDoneView.swift in Sources */,
 				2F0D50132D779D200035D7A4 /* SignupEmailView.swift in Sources */,
+				BEC9505E2D7B12DB002B02BB /* ProfileInfoTapButtonView.swift in Sources */,
 				2F0D50142D779D200035D7A4 /* PrivacyView.swift in Sources */,
 				2F0D50152D779D200035D7A4 /* SignupPasswordView.swift in Sources */,
 				2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */,
