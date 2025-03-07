@@ -25,13 +25,36 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            ProfileHeaderView(viewStore: viewStore)
-            ProfileSetListView(viewStore: viewStore, parentViewStore: parentViewStore)
-            Spacer()
+        ZStack {
+            VStack(spacing: 0) {
+                ProfileHeaderView(viewStore: viewStore)
+                ProfileSetListView(viewStore: viewStore, parentViewStore: parentViewStore)
+                Spacer()
+            }
+            
+            VStack(spacing: 0) {
+                Spacer()
+                InquiryButton(action: {
+                    parentStore.send(.inquryButtonTapped)
+                }, showText: false)
+            }
+            .padding(.bottom, 52)
         }
         .onAppear {
             viewStore.send(.onAppear)
         }
+        .alert("로그인이 필요한 서비스입니다", isPresented: viewStore.binding(
+            get: \.showLoginAlert,
+            send: .loginAlertDismissed
+        ),
+        actions: {
+            Button("취소", role: .none) {}
+            
+            Button("로그인", role: .none) {
+                parentStore.send(.navigationTo(.emailLogin))
+            }
+        }, message: {
+            Text("홍무묵의 모든 서비스를 이용하려면\n로그인이 필요합니다.")
+        })
     }
 }

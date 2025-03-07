@@ -34,7 +34,6 @@ struct ProfileHeaderView: View {
             likeText
             Spacer()
         }
-        .padding(.horizontal, 24)
     }
     
     private var likeText: some View {
