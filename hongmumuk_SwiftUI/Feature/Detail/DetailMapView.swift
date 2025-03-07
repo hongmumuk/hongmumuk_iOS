@@ -27,20 +27,19 @@ struct UIMapView: UIViewRepresentable {
         let view = NMFNaverMapView()
         view.showCompass = true
         view.showZoomControls = true
-        view.showLocationButton = true
 
         return view
     }
 
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
         let position = NMGLatLng(
-            lat: viewStore.restaurantDetail.latitude,
-            lng: viewStore.restaurantDetail.longitude
+            lat: viewStore.restaurantDetail.longitude,
+            lng: viewStore.restaurantDetail.latitude
         )
 
         let marker = NMFMarker(position: position)
         marker.mapView = uiView.mapView
-        
+
         let cameraUpdate = NMFCameraUpdate(scrollTo: position)
         uiView.mapView.moveCamera(cameraUpdate)
     }

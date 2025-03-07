@@ -12,6 +12,7 @@ struct DetailFeature: Reducer {
     struct State: Equatable {
         var id: Int
         var isLoading = true
+        var isUser = false
         var keywords = [String]()
         var pickerSelection = 0
         var restaurantDetail = RestaurantDetail.mock()
@@ -23,23 +24,43 @@ struct DetailFeature: Reducer {
         case restrauntDetailLoad(RestaurantDetail)
         case restaurantDetailError(RestaurantDetailError)
         case copyAddressButtonTapped
+        case likeButtonTapped
         case reviewTapped(String)
+        case checkIsUser(String?)
+    }
+    
+    enum DebounceID {
+        case likeButton
     }
     
     @Dependency(\.restaurantClient) var restaurantClient
     @Dependency(\.keywordClient) var keywordClient
+    @Dependency(\.keychainClient) var keychainClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                return .run { send in
+                    let accessToken = await keychainClient.getString(.accessToken)
+                    await send(.checkIsUser(accessToken))
+                }
+                
+            case let .checkIsUser(token):
+                state.isUser = token != nil
                 let rid = state.id
                 
                 return .run { send in
                     do {
-                        let restaurantDetail = try await restaurantClient.getRestaurantDetail(rid)
+                        let restaurantDetail: RestaurantDetail = if let token {
+                            try await restaurantClient.getAuthedRestaurantDetail(rid, token)
+                        } else {
+                            try await restaurantClient.getRestaurantDetail(rid)
+                        }
+                        
                         await send(.restrauntDetailLoad(restaurantDetail))
                     } catch {
+                        print(error)
                         if let error = error as? RestaurantDetailError {
                             await send(.restaurantDetailError(error))
                         }
@@ -68,6 +89,15 @@ struct DetailFeature: Reducer {
                 let address = state.restaurantDetail.address
                 UIPasteboard.general.string = address
                 return .none
+                
+            case .likeButtonTapped:
+                state.restaurantDetail.hasLiked.toggle()
+                state.restaurantDetail.likes += state.restaurantDetail.hasLiked ? 1 : -1
+                
+                return .run { send in
+                    // 좋아요 요청
+                }
+                .debounce(id: DebounceID.likeButton, for: 0.5, scheduler: DispatchQueue.main)
                 
             case let .reviewTapped(link):
                 guard let url = URL(string: link) else { return .none }

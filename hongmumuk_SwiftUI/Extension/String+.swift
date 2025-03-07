@@ -50,4 +50,26 @@ extension String {
         
         return count
     }
+    
+    // HTML 태그 제거
+    var removingHTMLTags: String {
+        // HTML 태그 제거 (정규표현식)
+        let withoutTags = replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        
+        // HTML 엔티티 디코딩
+        guard let data = withoutTags.data(using: .utf8) else { return withoutTags }
+        do {
+            let attributed = try NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ],
+                documentAttributes: nil
+            )
+            return attributed.string
+        } catch {
+            return withoutTags
+        }
+    }
 }
