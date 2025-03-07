@@ -16,6 +16,8 @@ struct ProfileInfoFeature: Reducer {
         var nickName: String = ""
         var nickNameState: TextFieldState = .empty
         var nickNameErrorMessage: String? = nil
+        
+        var todayString = ""
     }
     
     enum Action: Equatable {
@@ -40,6 +42,12 @@ struct ProfileInfoFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                let today = Date()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy. MM. dd"
+                let formattedDate = formatter.string(from: today)
+                state.todayString = formattedDate
+                
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
                         await send(.checkUser(token))
