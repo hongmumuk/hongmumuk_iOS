@@ -18,6 +18,7 @@ struct ProfileInfoFeature: Reducer {
         var nickNameErrorMessage: String? = nil
         
         var todayString = ""
+        var token: String = ""
     }
     
     enum Action: Equatable {
@@ -26,6 +27,7 @@ struct ProfileInfoFeature: Reducer {
         case pickerSelectionChanged(Int)
         case checkUser(String)
         case profileLoaded(TaskResult<ProfileModel>)
+        case nickNameLoaded(TaskResult<Bool>)
         
         case nickNameChanged(String)
         case nickNameFocused(Bool)
@@ -58,6 +60,7 @@ struct ProfileInfoFeature: Reducer {
                 return .none
                 
             case let .checkUser(token):
+                state.token = token
                 return .run { [token = token] send in
                     let result = await TaskResult {
                         try await profileClient.getProfile(token)
@@ -96,7 +99,7 @@ struct ProfileInfoFeature: Reducer {
                     state.nickNameErrorMessage = "기존 닉네임과 동일합니다."
                 } else {
                     state.nickNameState = .nicknameVerified
-                    state.nickNameErrorMessage = "이메일 인증이 완료되었습니다."
+                    state.nickNameErrorMessage = "사용 가능한 닉네임입니다."
                 }
                 
                 return .none
@@ -109,6 +112,28 @@ struct ProfileInfoFeature: Reducer {
                 return .none
 
             case .changeButtonTapped:
+                let nickname = state.nickName
+                let token = state.token
+                
+                return .run { send in
+                    let result = await TaskResult {
+                        try await profileClient.patchNickName(token, nickname)
+                    }
+                    
+                    await send(.nickNameLoaded(result))
+                }
+                
+            case let .nickNameLoaded(.success(_)):
+                state.profile.nickName = state.nickName
+                return .none
+                
+            case let .nickNameLoaded(.failure(error)):
+                let error = error as? NickNameError ?? .unknown
+                
+                if error == .duplicate {
+                    state.nickNameState = .invalid
+                    state.nickNameErrorMessage = "이미 사용 중인 닉네임입니다."
+                }
                 
                 return .none
             }

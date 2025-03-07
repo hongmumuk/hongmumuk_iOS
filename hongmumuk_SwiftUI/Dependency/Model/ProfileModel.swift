@@ -8,8 +8,8 @@
 import Foundation
 
 struct ProfileModel: Codable, Equatable {
-    let nickName: String
-    let email: String
+    var nickName: String
+    var email: String
 }
 
 extension ProfileModel {
