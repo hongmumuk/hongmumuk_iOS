@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct ProfileModel: Codable {
+struct ProfileModel: Codable, Equatable {
     let nickName: String
     let email: String
+}
+
+extension ProfileModel {
+    static func mock() -> Self {
+        return .init(nickName: "", email: "")
+    }
 }
