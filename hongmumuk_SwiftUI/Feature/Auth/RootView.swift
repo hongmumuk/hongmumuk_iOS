@@ -27,6 +27,7 @@ struct RootView: View {
             Group {
                 if viewStore.isLoggedIn {
                     HomeRootView(parentStore: store)
+                        .navigationBarHidden(true)
                 } else if viewStore.isLoading {
                     SplashView()
                 } else {
@@ -112,7 +113,8 @@ struct RootView: View {
                             withDependencies: {
                                 $0.restaurantClient = RestaurantClient.liveValue
                             }
-                        )
+                        ),
+                        parentStore: store
                     )
                     .navigationBarHidden(true)
                 case .search:
@@ -125,6 +127,21 @@ struct RootView: View {
                                 $0.userDefaultsClient = UserDefaultsClient.liveValue
                             }
                         )
+                    )
+                    .navigationBarHidden(true)
+                case let .profile(type):
+                    WebView(
+                        title: type.title,
+                        urlString: type.urlString,
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
+                case .inqury:
+                    let urlString = "https://forms.gle/e8X1RPPJCDWkwj5JA"
+                    WebView(
+                        title: "문의하기",
+                        urlString: urlString,
+                        parentStore: store
                     )
                     .navigationBarHidden(true)
                 default:

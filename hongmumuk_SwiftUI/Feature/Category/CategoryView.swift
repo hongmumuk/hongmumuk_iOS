@@ -10,11 +10,16 @@ import SwiftUI
 
 struct CategoryView: View {
     private let store: StoreOf<CategoryFeature>
-    @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
+    private let parentStore: StoreOf<RootFeature>
     
-    init(store: StoreOf<CategoryFeature>) {
+    @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
+    
+    init(store: StoreOf<CategoryFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
@@ -22,7 +27,7 @@ struct CategoryView: View {
             VStack(spacing: 0) {
                 CategoryHeaderView(viewStore: viewStore)
                 CategoryFilterView(viewStore: viewStore)
-                CategoryListView(viewStore: viewStore)
+                CategoryListView(viewStore: viewStore, parentViewStore: parentViewStore)
             }
             CategoryRandomButton(viewStore: viewStore)
         }
