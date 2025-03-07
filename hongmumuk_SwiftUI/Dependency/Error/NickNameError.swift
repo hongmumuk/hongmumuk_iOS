@@ -9,5 +9,5 @@ import Foundation
 
 enum NickNameError: String, Error {
     case unknown
-    case duplicate
+    case duplicate = "COMMON400_2"
 }
