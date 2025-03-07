@@ -9,11 +9,14 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ProfileInfoFeature: Reducer {
-    struct State: Equatable {}
+    struct State: Equatable {
+        var pickerSelection = 0
+    }
     
     enum Action: Equatable {
         case onAppear
         case onDismiss
+        case pickerSelectionChanged(Int)
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -25,6 +28,10 @@ struct ProfileInfoFeature: Reducer {
                 return .none
                 
             case .onDismiss:
+                return .none
+                
+            case let .pickerSelectionChanged(index):
+                state.pickerSelection = index
                 return .none
             }
         }
