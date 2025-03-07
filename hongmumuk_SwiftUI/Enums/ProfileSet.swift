@@ -46,4 +46,17 @@ extension ProfileSet {
         
         return false
     }
+    
+    var urlString: String {
+        switch self {
+        case .privacy:
+            return "https://akaseoyoung.notion.site/1ac630c6c92f80629108c2d5f946008d"
+            
+        case .service:
+            return "https://akaseoyoung.notion.site/1ac630c6c92f806b9dd7fd918b0356bb"
+            
+        default:
+            return ""
+        }
+    }
 }

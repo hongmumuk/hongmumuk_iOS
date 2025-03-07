@@ -10,9 +10,10 @@ import SwiftUI
 
 struct ProfileFeature: Reducer {
     struct State: Equatable {
-        var isUser: Bool = false
+        var isUser = false
         var token: String = ""
         var currentVersion = ""
+        var showLoginAlert = false
     }
     
     enum Action: Equatable {
@@ -20,7 +21,7 @@ struct ProfileFeature: Reducer {
         case onDismiss
         case checkUser(String?)
         case loginButtonTapped
-        case setButtonTapped(ProfileSet)
+        case loginAlertDismissed
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -48,20 +49,11 @@ struct ProfileFeature: Reducer {
                 return .none
                 
             case .loginButtonTapped:
+                state.showLoginAlert = true
                 return .none
                 
-            case let .setButtonTapped(type):
-                switch type {
-                case .info:
-                    print("info")
-                case .service:
-                    print("service")
-                case .privacy:
-                    print("privacy")
-                case .version:
-                    print("version")
-                }
-                
+            case .loginAlertDismissed:
+                state.showLoginAlert = false
                 return .none
             }
         }
