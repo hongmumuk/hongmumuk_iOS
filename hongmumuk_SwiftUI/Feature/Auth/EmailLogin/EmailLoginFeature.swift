@@ -6,24 +6,15 @@
 //
 
 import ComposableArchitecture
-import Foundation
 import SwiftUI
 
 struct EmailLoginFeature: Reducer {
-    enum ActiveScreen {
-        case none, main, findPassword, signUp
-    }
-    
     struct State: Equatable {
         var email: String = ""
-        //        var emailFocused: Bool = false
-        //        var emailValid: Bool = false
         var emailErrorMessage: String? = nil
         var emailState: TextFieldState = .empty
         
         var password: String = ""
-        //        var passwordFocused: Bool = false
-        //        var passwordValid: Bool = false
         var passwordVisible: Bool = false
         var passwordErrorMessage: String? = nil
         var passwordState: TextFieldState = .empty
@@ -31,8 +22,7 @@ struct EmailLoginFeature: Reducer {
         var loginError: LoginError? = nil
         
         var isLoginLoading: Bool = false
-        var activeScreen: ActiveScreen = .none
-        
+            
         var isSigninEnabled: Bool {
             return !isLoginLoading && loginError == nil && emailState == .valid && passwordState == .valid
         }
@@ -54,13 +44,13 @@ struct EmailLoginFeature: Reducer {
         case passwordVisibleToggled
         
         case signInButtonTapped
-        case findPasswordButtonTapped, signUpButtonTapped, backButtonTapped
+        case findPasswordButtonTapped, signUpButtonTapped
         case successLogin, failLogin(LoginError)
-        case onDismiss
     }
     
     @Dependency(\.validationClient) var validationClient
     @Dependency(\.authClient) var authClient
+    @Dependency(\.keychainClient) var keychainClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -78,17 +68,15 @@ struct EmailLoginFeature: Reducer {
                 state.emailErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
-                    state.passwordState = .normal
                     state.passwordErrorMessage = nil
                 }
                 return .none
                 
             case let .passwordFocused(isFocused):
                 state.passwordState = isFocused ? .focused : (state.password.isEmpty ? .empty : .normal)
-                state.emailErrorMessage = nil
+                state.passwordErrorMessage = nil
                 if state.loginError != nil {
                     state.loginError = nil
-                    state.emailState = .normal
                     state.emailErrorMessage = nil
                 }
                 return .none
@@ -139,41 +127,45 @@ struct EmailLoginFeature: Reducer {
                 state.isLoginLoading = true
                 let newEmail = "\(state.email)@g.hongik.ac.kr"
                 let body = LoginModel(email: newEmail, password: state.password)
+                
                 return .run { send in
                     do {
-                        if try await authClient.login(body) {
-                            await send(.successLogin)
-                        }
+                        let tokenData = try await authClient.login(body)
+                        
+                        print(tokenData)
+
+                        await keychainClient.setString(tokenData.accessToken, .accessToken)
+                        await keychainClient.setString(tokenData.refreshToken, .refreshToken)
+
+                        await send(.successLogin)
                     } catch {
-                        if let loginError = error as? LoginError {
-                            await send(.failLogin(loginError))
+                        if let signupError = error as? LoginError {
+                            await send(.failLogin(signupError))
                         }
                     }
                 }
                 
             case .signUpButtonTapped:
-                state.activeScreen = .signUp
                 return .none
                 
             case .findPasswordButtonTapped:
-                state.activeScreen = .findPassword
-                return .none
-                
-            case .backButtonTapped, .onDismiss:
-                state.activeScreen = .none
                 return .none
                 
             case .successLogin:
                 state.isLoginLoading = false
-                state.activeScreen = .main
                 return .none
                 
             case let .failLogin(error):
                 state.isLoginLoading = false
                 state.loginError = error
                 if state.loginError != nil {
-                    state.emailState = .loginError
-                    state.passwordState = .loginError
+                    if state.loginError == .invalidCredentials {
+                        state.passwordState = .loginError
+                    } else if state.loginError == .userNotFound {
+                        state.emailState = .loginError
+                    } else {
+                        state.emailState = .loginError
+                    }
                 }
                 state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
                 state.passwordErrorMessage = error == .invalidCredentials ? "비밀번호가 올바르지 않습니다." : nil

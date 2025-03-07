@@ -20,15 +20,13 @@ struct SearchView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                SearchHeaderView(viewStore: viewStore)
-                if viewStore.showEptyView {
-                    SearchEmptyView(viewStore: viewStore)
-                } else {
-                    RecentSearchView(viewStore: viewStore)
-                    SearchListView(viewStore: viewStore)
-                }
+        VStack(spacing: 0) {
+            SearchHeaderView(viewStore: viewStore)
+            if viewStore.showEptyView {
+                SearchEmptyView(viewStore: viewStore)
+            } else {
+                RecentSearchView(viewStore: viewStore)
+                SearchListView(viewStore: viewStore)
             }
         }
         .onAppear {

@@ -10,62 +10,54 @@ import SwiftUI
 
 struct SignupPasswordView: View {
     let store: StoreOf<SignupPasswordFeature>
+    let parentStore: StoreOf<RootFeature>
     
     @ObservedObject var viewStore: ViewStoreOf<SignupPasswordFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     @FocusState private var isPasswordFocused: Bool
     @FocusState private var isVerifiedPasswordFocused: Bool
     
-    init(store: StoreOf<SignupPasswordFeature>) {
+    init(store: StoreOf<SignupPasswordFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
-
+    
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                ZStack {
-                    scrollView
+        GeometryReader { geometry in
+            ZStack {
+                VStack {
+                    LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
                     
-                    VStack {
-                        Spacer()
-                        
-                        NextButton(title: "가입하기", isActive: viewStore.isContinueButtonEnabled) {
-                            if viewStore.isContinueButtonEnabled {
-                                viewStore.send(.continueButtonTapped)
-                            }
-                        }
-                        .frame(height: 60)
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 60)
-                    }
-                    .ignoresSafeArea(.keyboard)
-                }
-            }
-            .navigationTitle("회원가입")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("회원가입")
-                        .fontStyle(Fonts.heading1Bold)
-                        .foregroundColor(Colors.GrayScale.normal)
+                    Spacer()
                 }
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { viewStore.send(.backButtonTapped) }) {
-                        Image("backButton")
-                            .resizable()
-                            .frame(width: 36, height: 36)
+                scrollView
+                    .padding(.top, 56)
+                
+                VStack {
+                    Spacer()
+                    
+                    NextButton(title: "가입하기", isActive: viewStore.isContinueButtonEnabled) {
+                        if viewStore.isContinueButtonEnabled {
+                            viewStore.send(.continueButtonTapped)
+                        }
                     }
-                    .padding(.leading, 4)
+                    .frame(height: 60)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 60)
                 }
+                .ignoresSafeArea(.keyboard)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                isPasswordFocused = false
-                isVerifiedPasswordFocused = false
-            }
+        }
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isPasswordFocused = false
+            isVerifiedPasswordFocused = false
         }
     }
     

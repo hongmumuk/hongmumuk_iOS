@@ -9,20 +9,20 @@ import Alamofire
 import Dependencies
 
 struct AuthClient {
-    var login: @Sendable (_ body: LoginModel) async throws -> Bool
+    var login: @Sendable (_ body: LoginModel) async throws -> AuthTokenResponseModel
     var sendVerificationEmail: @Sendable (_ body: SendVerifyCodeModel) async throws -> Bool
     var verifyEmailCode: @Sendable (_ body: VerifyEmailModel) async throws -> Bool
-    var resetPassword: @Sendable (_ body: LoginModel) async throws -> Bool
-    var signup: @Sendable (_ body: LoginModel) async throws -> AuthTokenResponseModel
+    var resetPassword: @Sendable (_ body: ResetPasswordModel) async throws -> Bool
+    var signup: @Sendable (_ body: LoginModel) async throws -> Bool
+    var token: @Sendable (_ accessToken: String, _ refreshToken: String) async throws -> AuthTokenResponseModel
 }
 
-// 로그인 수정 필요!
 extension AuthClient: DependencyKey {
     static var liveValue: AuthClient = .init(
         login: { body in
             let url = "\(Environment.baseUrl)/api/auth/login"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
+            
             let response = try await AF.request(
                 url,
                 method: .post,
@@ -30,16 +30,23 @@ extension AuthClient: DependencyKey {
                 encoder: .json,
                 headers: headers
             )
-            .serializingDecodable(ResponseModel<LoginModel>.self)
+            .serializingDecodable(ResponseModel<AuthTokenResponseModel>.self)
             .value
-        
-            guard response.isSuccess else { throw LoginError(rawValue: response.code) ?? .unknown }
-            return response.isSuccess
+            print(response.code)
+            guard response.isSuccess, let tokenData = response.data else {
+                switch response.code {
+                case "BAD400_1": throw LoginError.userNotFound
+                case "BAD400_2": throw LoginError.invalidCredentials
+                default: throw LoginError.unknown
+                }
+            }
+            
+            return tokenData
         },
         sendVerificationEmail: { body in
             let url = "\(Environment.baseUrl)/api/auth/send"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
+            
             let response = try await AF.request(
                 url,
                 method: .post,
@@ -49,7 +56,7 @@ extension AuthClient: DependencyKey {
             )
             .serializingDecodable(ResponseModel<VoidData>.self)
             .value
-        
+            
             guard response.isSuccess else {
                 if response.code == "CONFLICT409_1" {
                     throw LoginError.alreadyExists
@@ -63,7 +70,7 @@ extension AuthClient: DependencyKey {
         verifyEmailCode: { body in
             let url = "\(Environment.baseUrl)/api/auth/verify"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
+            
             let response = try await AF.request(
                 url,
                 method: .post,
@@ -73,7 +80,7 @@ extension AuthClient: DependencyKey {
             )
             .serializingDecodable(ResponseModel<VoidData>.self)
             .value
-        
+            
             guard response.isSuccess else {
                 switch response.code {
                 case "BAD400": throw LoginError.noVerificationRecord
@@ -82,13 +89,13 @@ extension AuthClient: DependencyKey {
                 default: throw LoginError.unknown
                 }
             }
-        
+            
             return response.isSuccess
         },
         resetPassword: { body in
             let url = "\(Environment.baseUrl)/api/auth/password"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
+            
             let response = try await AF.request(
                 url,
                 method: .patch,
@@ -98,7 +105,7 @@ extension AuthClient: DependencyKey {
             )
             .serializingDecodable(ResponseModel<VoidData>.self)
             .value
-        
+            
             guard response.isSuccess else {
                 if response.code == "BAD400_1" {
                     throw LoginError.userNotFound
@@ -110,7 +117,7 @@ extension AuthClient: DependencyKey {
         signup: { body in
             let url = "\(Environment.baseUrl)/api/auth/join"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
-        
+            
             let response = try await AF.request(
                 url,
                 method: .post,
@@ -120,8 +127,8 @@ extension AuthClient: DependencyKey {
             )
             .serializingDecodable(ResponseModel<AuthTokenResponseModel>.self)
             .value
-        
-            guard response.isSuccess, let tokenData = response.data else {
+            
+            guard response.isSuccess else {
                 switch response.code {
                 case "BAD400": throw LoginError.noVerificationRecord
                 case "BAD400_3": throw LoginError.expiredCode
@@ -129,7 +136,31 @@ extension AuthClient: DependencyKey {
                 default: throw LoginError.unknown
                 }
             }
-        
+            
+            return response.isSuccess
+        },
+        token: { accessToken, refreshToken in
+            let url = "\(Environment.baseUrl)/api/auth/token"
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(accessToken)",
+                "refreshToken": refreshToken
+            ]
+            
+            // API 요청을 보내는 부분
+            let response = try await AF.request(
+                url,
+                method: .get,
+                headers: headers
+            )
+            .serializingDecodable(ResponseModel<AuthTokenResponseModel>.self)
+            .value
+            
+            guard response.isSuccess, let tokenData = response.data else {
+                // 실패한 경우
+                throw LoginError(rawValue: response.code) ?? .unknown
+            }
+            
             return tokenData
         }
     )

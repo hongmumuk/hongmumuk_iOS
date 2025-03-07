@@ -31,7 +31,7 @@ struct VerifyEmailFeature: Reducer {
         var sendCodeTimerActive: Bool = false
         
         var isSendCodeButtonEnabled: Bool {
-            emailState == .valid && !sendCodeTimerActive
+            emailState == .valid && !sendCodeTimerActive && !isSendCodeLoading
         }
 
         var isVerifyCodeButtonEnabled: Bool {
@@ -59,14 +59,12 @@ struct VerifyEmailFeature: Reducer {
         case sendCodeButtonTapped
         case verifyCodeButtonTapped
         case continueButtonTapped
-        case backButtonTapped
         
         case stopSendCodeTimer
         case updateSendCodeTimer(Int)
         
         case successSend, failSend(LoginError)
         case successVerify, failVerify(LoginError)
-        case onDismiss
     }
     
     @Dependency(\.validationClient) var validationClient
@@ -179,11 +177,10 @@ struct VerifyEmailFeature: Reducer {
 
                 Task {
                     await userDefaultsClient.setString(newEmail, .findPassword)
+                    let savedEmail = await userDefaultsClient.getString(.findPassword)
+                    print(savedEmail)
                 }
 
-                return .none
-                
-            case .backButtonTapped, .onDismiss:
                 return .none
                 
             case .successSend:
@@ -216,23 +213,30 @@ struct VerifyEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
+                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
                 return .none
                 
             case .successVerify:
                 state.isVerifyCodeLoading = false
                 state.emailState = .codeVerified
                 state.codeState = .disabled
-                state.codeErrorMessage = "이메일 인증이 완료되었습니다"
+                state.emailErrorMessage = "이메일 인증이 완료되었습니다"
                 
                 return .none
                 
             case let .failVerify(error):
                 state.isVerifyCodeLoading = false
-                state.codeState = .codeInvalid
-                state.codeErrorMessage = error == .invalidCode ? "인증번호가 잘못 입력되었습니다." : nil
-                state.codeErrorMessage = error == .noVerificationRecord ? "인증번호가 전송되지 않았습니다." : nil
-                
+                state.verifyCodeError = error
+                if state.verifyCodeError != nil {
+                    state.codeState = .loginError
+                }
+                if error == .invalidCode {
+                    state.codeErrorMessage = "인증번호가 틀렸습니다."
+                } else if error == .expiredCode {
+                    state.codeErrorMessage = "인증번호가 만료되었습니다."
+                } else if error == .noVerificationRecord {
+                    state.codeErrorMessage = "인증번호가 전송되지 않았습니다."
+                }
                 return .none
             }
         }

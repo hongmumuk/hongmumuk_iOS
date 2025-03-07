@@ -18,12 +18,10 @@ struct DetailView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                DetailInfoView(viewStore: viewStore)
-                DetailTabButtonView(viewStore: viewStore)
-                DetailTabView(viewStore: viewStore)
-            }
+        VStack(spacing: 0) {
+            DetailInfoView(viewStore: viewStore)
+            DetailTabButtonView(viewStore: viewStore)
+            DetailTabView(viewStore: viewStore)
         }
         .onAppear {
             viewStore.send(.onAppear)

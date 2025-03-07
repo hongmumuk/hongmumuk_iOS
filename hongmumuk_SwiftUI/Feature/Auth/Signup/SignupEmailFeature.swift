@@ -57,7 +57,6 @@ struct SignupEmailFeature: Reducer {
         case sendCodeButtonTapped
         case verifyCodeButtonTapped
         case continueButtonTapped
-        case backButtonTapped
         
         case stopSendCodeTimer
         case updateSendCodeTimer(Int)
@@ -89,8 +88,8 @@ struct SignupEmailFeature: Reducer {
                 }
                 return .none
                 
-            case let .codeFocused(isFocueed):
-                state.codeState = isFocueed ? .focused : (state.code.isEmpty ? .empty : .normal)
+            case let .codeFocused(isFocused):
+                state.codeState = isFocused ? .focused : (state.code.isEmpty ? .empty : .normal)
                 state.codeErrorMessage = nil
                 if state.verifyCodeError != nil {
                     state.verifyCodeError = nil
@@ -166,6 +165,7 @@ struct SignupEmailFeature: Reducer {
                         if let loginError = error as?
                             LoginError
                         {
+                            print(loginError)
                             await send(.failVerify(loginError))
                         }
                     }
@@ -178,9 +178,6 @@ struct SignupEmailFeature: Reducer {
                     await userDefaultsClient.setString(newEmail, .signup)
                 }
 
-                return .none
-                
-            case .backButtonTapped:
                 return .none
                 
             case .successSend:
@@ -213,7 +210,7 @@ struct SignupEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
+                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
                 return .none
                 
             case .successVerify:
@@ -226,10 +223,17 @@ struct SignupEmailFeature: Reducer {
                 
             case let .failVerify(error):
                 state.isVerifyCodeLoading = false
-                state.codeState = .codeInvalid
-                state.codeErrorMessage = error == .invalidCode ? "인증번호가 잘못 입력되었습니다." : nil
-                state.codeErrorMessage = error == .noVerificationRecord ? "인증번호가 전송되지 않았습니다." : nil
-                
+                state.verifyCodeError = error
+                if state.verifyCodeError != nil {
+                    state.codeState = .loginError
+                }
+                if error == .invalidCode {
+                    state.codeErrorMessage = "인증번호가 틀렸습니다."
+                } else if error == .expiredCode {
+                    state.codeErrorMessage = "인증번호가 만료되었습니다."
+                } else if error == .noVerificationRecord {
+                    state.codeErrorMessage = "인증번호가 전송되지 않았습니다."
+                }
                 return .none
             }
         }

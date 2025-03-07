@@ -12,49 +12,14 @@ import SwiftUI
 struct Hongmumuk_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView()
-        }
-    }
-}
-
-enum Tab {
-    case home, like, profile
-}
-
-struct RootView: View {
-    @State private var selectedTab: Tab = .home
-
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView(
+            RootView(
                 store: Store(
-                    initialState: HomeFeature.State(),
-                    reducer: HomeFeature.init
-                ))
-                .tabItem {
-                    Image(selectedTab == .home ?"homeSelectedIcon" : "homeIcon")
-                }
-                .tag(Tab.home)
-            
-            LikeView(
-                store: Store(
-                    initialState: LikeFeature.State(),
-                    reducer: { LikeFeature() },
-                    withDependencies: {
-                        $0.likeClient = .testValue
+                    initialState: RootFeature.State(),
+                    reducer: {
+                        RootFeature()
                     }
                 )
             )
-            .tabItem {
-                Image(selectedTab == .like ? "likeSelectedIcon" : "likeIcon")
-            }
-            .tag(Tab.like)
-
-            ProfileView()
-                .tabItem {
-                    Image(selectedTab == .profile ? "profileSelectedIcon" : "profileIcon")
-                }
-                .tag(Tab.profile)
         }
     }
 }

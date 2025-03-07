@@ -52,7 +52,7 @@ struct PrivacyFeature: Reducer {
                 state.serviceAgree.toggle()
                 state.allAgree = state.serviceAgree && state.privacyAgree
                 return .none
-            
+                
             case .serviceAgree:
                 state.serviceAgree = true
                 state.allAgree = state.serviceAgree && state.privacyAgree
@@ -87,11 +87,11 @@ struct PrivacyFeature: Reducer {
             case .serviceModalDismissed:
                 state.isServiceModalPresented = false
                 return .none
-            
+                
             case .privacyModalPresented:
                 state.isPrivacyModalPresented = true
                 return .none
-            
+                
             case .privacyModalDismissed:
                 state.isPrivacyModalPresented = false
                 return .none
@@ -102,7 +102,7 @@ struct PrivacyFeature: Reducer {
                     try await Task.sleep(nanoseconds: 3_000_000_000)
                     await send(.toastDismissed)
                 }
-            
+                
             case .toastDismissed:
                 withAnimation(.easeOut(duration: 1.0)) {
                     state.isToastShown = false
@@ -110,6 +110,7 @@ struct PrivacyFeature: Reducer {
                 return .none
                 
             case .continueButtonTapped:
+               
                 return .none
                 
             case .backButtonTapped:

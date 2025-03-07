@@ -10,10 +10,11 @@ import SwiftUI
 
 struct HomeCircleView: View {
     @ObservedObject var viewStore: ViewStoreOf<HomeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
 
     var body: some View {
         ZStack {
-            CircleSection(viewStore: viewStore)
+            CircleSection(viewStore: viewStore, parentViewStore: parentViewStore)
             CenterButton(viewStore: viewStore)
         }
         .frame(width: viewStore.diameter, height: viewStore.diameter)
@@ -34,6 +35,7 @@ struct HomeCircleView: View {
 
 private struct CircleSection: View {
     @ObservedObject var viewStore: ViewStoreOf<HomeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         ZStack {
@@ -60,7 +62,7 @@ private struct CircleSection: View {
                             + viewStore.midRadius * sin(midAngle.toRadians)
                     )
                     .onTapGesture {
-                        viewStore.send(.categoryItemTapped(viewStore.categories[i]))
+                        parentViewStore.send(.navigationTo(.categoryList(viewStore.categories[i])))
                     }
             }
         }
