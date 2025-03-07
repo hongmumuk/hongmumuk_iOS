@@ -12,6 +12,10 @@ struct ProfileInfoFeature: Reducer {
     struct State: Equatable {
         var pickerSelection = 0
         var profile: ProfileModel = .mock()
+        
+        var nickName: String = ""
+        var nickNameState: TextFieldState = .empty
+        var nickNameErrorMessage: String? = nil
     }
     
     enum Action: Equatable {
@@ -20,6 +24,13 @@ struct ProfileInfoFeature: Reducer {
         case pickerSelectionChanged(Int)
         case checkUser(String)
         case profileLoaded(TaskResult<ProfileModel>)
+        
+        case nickNameChanged(String)
+        case nickNameFocused(Bool)
+        case nickNameOnSubmit
+        case nickNameTextClear
+        
+        case changeButtonTapped
     }
     
     @Dependency(\.profileClient) var profileClient
@@ -53,11 +64,44 @@ struct ProfileInfoFeature: Reducer {
                 
             case let .profileLoaded(.success(profile)):
                 state.profile = profile
+                state.nickName = profile.nickName
+                
                 return .none
                 
             case let .profileLoaded(.failure(error)):
                 print(error)
                 // TODO: 에러 처리
+                return .none
+                
+            case let .nickNameChanged(nickName):
+                state.nickName = nickName
+                return .none
+
+            case let .nickNameFocused(isFocused):
+                state.nickNameState = isFocused ? .focused : (state.nickName.isEmpty ? .empty : .normal)
+                state.nickNameErrorMessage = nil
+                return .none
+
+            case .nickNameOnSubmit:
+                if state.profile.nickName == state.nickName {
+                    state.nickNameState = .invalid
+                    state.nickNameErrorMessage = "기존 닉네임과 동일합니다."
+                } else {
+                    state.nickNameState = .nicknameVerified
+                    state.nickNameErrorMessage = "이메일 인증이 완료되었습니다."
+                }
+                
+                return .none
+
+            case .nickNameTextClear:
+                state.nickName = ""
+                state.nickNameState = .empty
+                state.nickNameErrorMessage = nil
+                
+                return .none
+
+            case .changeButtonTapped:
+                
                 return .none
             }
         }

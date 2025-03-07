@@ -18,4 +18,5 @@ public enum TextFieldState {
     case codeVerified
     case passwordVerified // 인증이 완료된 경우
     case disabled // 인증코드 입력 후 인증이 완료된 코드 텍스트 필드
+    case nicknameVerified // 유효한 닉네임
 }
