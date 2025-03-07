@@ -17,11 +17,11 @@ struct ProfileInfoTapView: View {
             get: { $0.pickerSelection },
             send: ProfileInfoFeature.Action.pickerSelectionChanged
         )) {
-//            DetailMapView(viewStore: viewStore)
-//                .tag(0)
-//
-//            DetailReviewView(viewStore: viewStore)
-//                .tag(1)
+            InfoView(viewStore: viewStore)
+                .tag(0)
+
+            PasswordView(viewStore: viewStore)
+                .tag(1)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
     }
