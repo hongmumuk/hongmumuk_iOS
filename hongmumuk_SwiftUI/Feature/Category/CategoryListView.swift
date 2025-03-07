@@ -11,6 +11,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     @ObservedObject var viewStore: ViewStoreOf<CategoryFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         ScrollView {
@@ -36,7 +37,7 @@ struct CategoryListView: View {
                             }
                     } else {
                         InquiryButton {
-                            viewStore.send(.inquryButtonTapped)
+                            parentViewStore.send(.inquryButtonTapped)
                         }
                         .padding(.top, 72)
                         .padding(.bottom, 117)
