@@ -152,6 +152,8 @@
 		BEC950662D7B152A002B02BB /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950652D7B152A002B02BB /* ProfileModel.swift */; };
 		BEC950682D7B155D002B02BB /* ProfileError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950672D7B155D002B02BB /* ProfileError.swift */; };
 		BEC9506A2D7B26D2002B02BB /* NickNameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950692D7B26D2002B02BB /* NickNameError.swift */; };
+		BEC950772D7C0577002B02BB /* GrayPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC950762D7C0577002B02BB /* GrayPlainButton.swift */; };
+		BEC9507D2D7C15E2002B02BB /* DeleteAccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */; };
 		BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */; };
 		BECC4A162D69A74B00F72FAF /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A152D69A74B00F72FAF /* Blog.swift */; };
 		BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */; };
@@ -320,6 +322,8 @@
 		BEC950652D7B152A002B02BB /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		BEC950672D7B155D002B02BB /* ProfileError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileError.swift; sourceTree = "<group>"; };
 		BEC950692D7B26D2002B02BB /* NickNameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameError.swift; sourceTree = "<group>"; };
+		BEC950762D7C0577002B02BB /* GrayPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayPlainButton.swift; sourceTree = "<group>"; };
+		BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountError.swift; sourceTree = "<group>"; };
 		BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		BECC4A152D69A74B00F72FAF /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailError.swift; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 				BE25DD0A2D79CEA8006B819E /* WebView.swift */,
 				BE25DD0C2D79D05B006B819E /* WebViewHeader.swift */,
 				BE25DD062D79CB28006B819E /* WebContentView.swift */,
+				BEC950762D7C0577002B02BB /* GrayPlainButton.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -630,6 +635,7 @@
 				BECC4A172D69A86400F72FAF /* RestaurantDetailError.swift */,
 				BEC950672D7B155D002B02BB /* ProfileError.swift */,
 				BEC950692D7B26D2002B02BB /* NickNameError.swift */,
+				BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1040,6 +1046,7 @@
 				BE208FF12D633BD50041A173 /* CategoryFilterView.swift in Sources */,
 				BE208FED2D633BB40041A173 /* CategoryView.swift in Sources */,
 				BE208FFC2D648ED90041A173 /* ListItemView.swift in Sources */,
+				BEC950772D7C0577002B02BB /* GrayPlainButton.swift in Sources */,
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				2F65D35C2D745773002BF6B5 /* CommonTextFieldView.swift in Sources */,
 				BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */,
@@ -1047,6 +1054,7 @@
 				BE25DCFB2D79BE8B006B819E /* ProfileSetView.swift in Sources */,
 				BE25DD032D79C840006B819E /* Bundle+.swift in Sources */,
 				2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */,
+				BEC9507D2D7C15E2002B02BB /* DeleteAccountError.swift in Sources */,
 				2F65D37B2D758896002BF6B5 /* KeychainClient.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* CategoryHeaderView.swift in Sources */,
 				BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */,
