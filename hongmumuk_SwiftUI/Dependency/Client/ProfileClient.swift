@@ -11,6 +11,7 @@ import Dependencies
 struct ProfileClient {
     var getProfile: @Sendable (_ token: String) async throws -> ProfileModel
     var patchNickName: @Sendable (_ token: String, _ nickname: String) async throws -> Bool
+    var deleteAccount: @Sendable (_ token: String) async throws -> Bool
 }
 
 extension ProfileClient: DependencyKey {
@@ -51,6 +52,26 @@ extension ProfileClient: DependencyKey {
             .value
             
             guard response.isSuccess else { throw NickNameError(rawValue: response.code) ?? .unknown }
+            return response.isSuccess
+        },
+        
+        deleteAccount: { token in
+            let url = "\(Environment.baseUrl)/api/profile/quit"
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(token)"
+            ]
+
+            let response = try await AF.request(
+                url,
+                method: .delete,
+                headers: headers
+            )
+            .serializingDecodable(ResponseModel<String>.self)
+            .value
+            
+            guard response.isSuccess else { throw DeleteAccountError(rawValue: response.code) ?? .unknown }
             return response.isSuccess
         }
     )
