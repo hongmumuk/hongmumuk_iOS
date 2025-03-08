@@ -19,6 +19,11 @@ struct ProfileInfoFeature: Reducer {
         
         var todayString = ""
         var token: String = ""
+        
+        var showLogoutAlert = false
+        var showWithdrawAlert = false
+        
+        var pop = false
     }
     
     enum Action: Equatable {
@@ -26,8 +31,12 @@ struct ProfileInfoFeature: Reducer {
         case onDismiss
         case pickerSelectionChanged(Int)
         case checkUser(String)
+        
         case profileLoaded(TaskResult<ProfileModel>)
         case nickNameLoaded(TaskResult<Bool>)
+        case deleteAccountLoaded(TaskResult<Bool>)
+        case logoutLoaded
+        case toRoot
         
         case nickNameChanged(String)
         case nickNameFocused(Bool)
@@ -35,6 +44,11 @@ struct ProfileInfoFeature: Reducer {
         case nickNameTextClear
         
         case changeButtonTapped
+        case logoutButtonTapped
+        case logoutConfirmButtonTapped
+        case withdrawButtonTapped
+        case withdrawConfirmButtonTapped
+        case alertDismiss
     }
     
     @Dependency(\.profileClient) var profileClient
@@ -135,6 +149,59 @@ struct ProfileInfoFeature: Reducer {
                     state.nickNameErrorMessage = "이미 사용 중인 닉네임입니다."
                 }
                 
+                return .none
+                
+            case .logoutButtonTapped:
+                state.showLogoutAlert = true
+                return .none
+                
+            case .logoutConfirmButtonTapped:
+                return .run { send in
+                    await keychainClient.remove(.accessToken)
+                    await keychainClient.remove(.refreshToken)
+                    
+                    await send(.logoutLoaded)
+                }
+
+            case .withdrawButtonTapped:
+                state.showWithdrawAlert = true
+                return .none
+                
+            case .withdrawConfirmButtonTapped:
+                let token = state.token
+                
+                return .run { send in
+                    let result = await TaskResult {
+                        try await profileClient.deleteAccount(token)
+                    }
+                    
+                    await send(.deleteAccountLoaded(result))
+                }
+                
+            case .deleteAccountLoaded(.success(_)):
+                print("탈퇴 성공")
+                return .run { send in
+                    await keychainClient.remove(.accessToken)
+                    await keychainClient.remove(.refreshToken)
+                    await send(.toRoot)
+                }
+                
+            case .toRoot:
+                state.pop = true
+                return .none
+                
+            case let .deleteAccountLoaded(.failure(error)):
+                print("탈퇴 실패", error)
+                // TODO: 에러 처리
+                return .none
+                
+            case .alertDismiss:
+                state.showLogoutAlert = false
+                state.showWithdrawAlert = false
+                return .none
+                
+            case .logoutLoaded:
+                state.pop = true
                 return .none
             }
         }

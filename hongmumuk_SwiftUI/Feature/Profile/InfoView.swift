@@ -11,6 +11,7 @@ import ComposableArchitecture
 
 struct InfoView: View {
     @ObservedObject var viewStore: ViewStoreOf<ProfileInfoFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     @FocusState private var isNickNameFocused: Bool
     
     var body: some View {
@@ -20,6 +21,36 @@ struct InfoView: View {
             emailTitle
             emailTextFieldStack
             Spacer()
+            buttonStack
+        }
+        .alert("로그아웃하시겠습니까?", isPresented: viewStore.binding(
+            get: \.showLogoutAlert,
+            send: .alertDismiss
+        ),
+        actions: {
+            Button("취소", role: .none) {}
+            
+            Button("확인", role: .none) {
+                viewStore.send(.logoutConfirmButtonTapped)
+            }
+        }, message: {
+            Text("로그아웃 후에도 언제든 다시 로그인\n할 수 있습니다.")
+        })
+        .alert("정말 탈퇴하시겠습니까?", isPresented: viewStore.binding(
+            get: \.showWithdrawAlert,
+            send: .alertDismiss
+        ),
+        actions: {
+            Button("취소", role: .none) {}
+            
+            Button("확인", role: .none) {
+                viewStore.send(.withdrawConfirmButtonTapped)
+            }
+        }, message: {
+            Text("탈퇴 시 계정 및 모든 데이터가 삭제되며\n복구되지 않습니다.")
+        })
+        .onChange(of: viewStore.pop) { _, _ in
+            parentViewStore.send(.onDismiss)
         }
     }
     
@@ -110,5 +141,29 @@ struct InfoView: View {
                 .resizable()
                 .frame(width: 12, height: 12)
         }
+    }
+    
+    private var buttonStack: some View {
+        ZStack {
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                GrayPlainButton(title: "로그아웃") {
+                    viewStore.send(.logoutButtonTapped)
+                }
+                GrayPlainButton(title: "회원탈퇴") {
+                    viewStore.send(.withdrawButtonTapped)
+                }
+                Spacer()
+            }
+            
+            verticalDivider
+        }
+        .padding(.bottom, 40)
+    }
+    
+    private var verticalDivider: some View {
+        Rectangle()
+            .fill(Colors.GrayScale.grayscal45)
+            .frame(width: 1, height: 12)
     }
 }
