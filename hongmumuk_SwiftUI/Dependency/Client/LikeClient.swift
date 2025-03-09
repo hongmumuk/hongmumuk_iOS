@@ -9,14 +9,18 @@ import Alamofire
 import Dependencies
 
 struct LikeClient {
-    var getLikeList: @Sendable () async throws -> [RestaurantListModel]
+    var getLikeList: @Sendable (_ token: String) async throws -> [RestaurantListModel]
 }
 
 extension LikeClient: DependencyKey {
     static var liveValue: LikeClient = .init(
-        getLikeList: {
-            let url = "\(Environment.baseUrl)/api/liked"
-            let headers: HTTPHeaders = ["Content-Type": "application/json"]
+        getLikeList: { token in
+            let url = "\(Environment.baseUrl)/api/profile/liked"
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(token)"
+            ]
             
             let response = try await AF.request(
                 url,
@@ -32,7 +36,7 @@ extension LikeClient: DependencyKey {
     )
     
     static var testValue: LikeClient = .init(
-        getLikeList: { return RestaurantListModel.mock() }
+        getLikeList: { _ in return RestaurantListModel.mock() }
     )
 }
 

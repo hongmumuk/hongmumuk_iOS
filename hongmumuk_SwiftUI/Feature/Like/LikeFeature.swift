@@ -28,6 +28,7 @@ struct LikeFeature: Reducer {
     enum Action: Equatable {
         case onAppear
         case onDismiss
+        case checkIsUser(String?)
         case emailLoginButtonTapped
         case restrauntTapped(id: Int)
         case sortButtonTapped
@@ -38,13 +39,15 @@ struct LikeFeature: Reducer {
     }
     
     @Dependency(\.likeClient) var likeClient
+    @Dependency(\.keychainClient) var keychainClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return fetchRestaurantList(for: state) { send in
-                    await send(.initialLoadingCompleted)
+                return .run { send in
+                    let accessToken = await keychainClient.getString(.accessToken)
+                    await send(.checkIsUser(accessToken))
                 }
                 
             case .onDismiss:
@@ -52,6 +55,17 @@ struct LikeFeature: Reducer {
                 state.activeScreen = .none
                 return .none
                 
+            case let .checkIsUser(token):
+                if let token {
+                    state.isAuthed = true
+                    return fetchRestaurantList(for: state, token: token) { send in
+                        await send(.initialLoadingCompleted)
+                    }
+                } else {
+                    state.showSkeletonLoading = false
+                    return .none
+                }
+
             case .emailLoginButtonTapped:
                 // TODO: 로그인 화면으로 이동
                 return .none
@@ -78,13 +92,10 @@ struct LikeFeature: Reducer {
                 state.originRestaurantList += list
                 state.restrauntCount = state.originRestaurantList.count
                 state.sortedRestaurantList = sortList(state.sort, state.originRestaurantList)
-                
-                // TODO: 삭제
-                state.sortedRestaurantList = []
                 return .none
                 
             case let .restrauntListError(error):
-                // TODO: 에러 처리
+                state.showSkeletonLoading = false
                 return .none
             }
         }
@@ -105,11 +116,12 @@ struct LikeFeature: Reducer {
     
     func fetchRestaurantList(
         for state: State,
+        token: String,
         extra: @escaping (Send<LikeFeature.Action>) async -> Void = { _ in }
     ) -> Effect<Action> {
         return .run { send in
             do {
-                let list = try await likeClient.getLikeList()
+                let list = try await likeClient.getLikeList(token)
                 await send(.restrauntListLoaded(list))
                 await extra(send)
             } catch {
