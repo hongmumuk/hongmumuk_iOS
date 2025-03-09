@@ -30,7 +30,7 @@ struct CommonTextFieldView: View {
                 .disabled(state == .disabled || state == .codeVerified)
             
             if let message {
-                messageView(message, isError: state == .invalid || state == .codeInvalid || state == .loginError)
+                messageView(message, massegeColor: CommonTextFieldStyle.massegeColor(for: state))
             }
         }
     }
@@ -137,9 +137,9 @@ struct CommonTextFieldView: View {
         }
     }
     
-    private func messageView(_ message: String, isError: Bool) -> some View {
-        Text(message)
+    private func messageView(_ message: String, massegeColor: Color) -> some View {
+        return Text(message)
             .fontStyle(Fonts.caption1Medium)
-            .foregroundStyle(isError ? Colors.SemanticColor.negative : Colors.SemanticColor.positive)
+            .foregroundStyle(massegeColor)
     }
 }

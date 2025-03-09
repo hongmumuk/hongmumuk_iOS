@@ -55,4 +55,15 @@ public enum CommonTextFieldStyle {
             return Colors.GrayScale.normal
         }
     }
+    
+    public static func massegeColor(for state: TextFieldState) -> Color {
+        switch state {
+        case .invalid, .codeInvalid, .loginError:
+            return Colors.SemanticColor.negative
+        case .empty:
+            return Colors.GrayScale.grayscal45
+        default:
+            return Colors.SemanticColor.positive
+        }
+    }
 }
