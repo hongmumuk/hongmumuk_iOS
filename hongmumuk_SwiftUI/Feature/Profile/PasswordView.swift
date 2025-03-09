@@ -14,6 +14,7 @@ struct PasswordView: View {
     
     @FocusState private var isCurrentPasswordFocused: Bool
     @FocusState private var newCurrentPasswordFocused: Bool
+    @FocusState private var newCurrentPasswordConfirmFocused: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -23,6 +24,9 @@ struct PasswordView: View {
             if viewStore.currentPasswordState == .codeVerified {
                 newPasswordTitle
                 newPasswordTextFieldStack
+                
+                newPasswordConfirmTitle
+                newPasswordConfirmTextFieldStack
             }
             
             Spacer()
@@ -95,12 +99,43 @@ struct PasswordView: View {
             text: viewStore.newPassword,
             state: viewStore.newPasswordState,
             message: viewStore.newPasswordErrorMessage,
-            placeholder: "새로운 비밀번호를 입력해 주세요",
+            placeholder: "새로운 비밀번호를 한 번 더 입력해 주세요",
             isSecure: true,
             onTextChanged: { viewStore.send(.newPasswordChanged($0)) },
             onFocusedChanged: { viewStore.send(.newPasswordFocused($0)) },
             onSubmit: { viewStore.send(.newPasswordOnSubmit) },
             onClear: { viewStore.send(.newPasswordTextClear) }
+        )
+    }
+    
+    private var newPasswordConfirmTitle: some View {
+        Text("새로운 비밀번호 확인")
+            .fontStyle(Fonts.heading2Bold)
+            .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.newPasswordConfirmState))
+            .padding(.leading, 24)
+            .padding(.top, 24)
+    }
+    
+    private var newPasswordConfirmTextFieldStack: some View {
+        HStack(alignment: .top, spacing: 8) {
+            newPasswordConfirmTextField
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 8)
+    }
+    
+    private var newPasswordConfirmTextField: some View {
+        CommonTextFieldView(
+            isFocused: $newCurrentPasswordConfirmFocused,
+            text: viewStore.newPasswordConfirm,
+            state: viewStore.newPasswordConfirmState,
+            message: viewStore.newPasswordConfirmErrorMessage,
+            placeholder: "새로운 비밀번호를 입력해 주세요",
+            isSecure: true,
+            onTextChanged: { viewStore.send(.newPasswordConfirmChanged($0)) },
+            onFocusedChanged: { viewStore.send(.newPasswordConfirmFocused($0)) },
+            onSubmit: { viewStore.send(.newPasswordConfirmOnSubmit) },
+            onClear: { viewStore.send(.newPasswordConfirmTextClear) }
         )
     }
 }

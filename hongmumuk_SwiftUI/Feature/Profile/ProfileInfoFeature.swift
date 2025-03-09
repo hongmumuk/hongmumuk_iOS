@@ -28,6 +28,10 @@ struct ProfileInfoFeature: Reducer {
         var newPasswordState: TextFieldState = .empty
         var newPasswordErrorMessage: String? = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
         
+        var newPasswordConfirm: String = ""
+        var newPasswordConfirmState: TextFieldState = .empty
+        var newPasswordConfirmErrorMessage: String? = nil
+
         var todayString = ""
         var token: String = ""
         
@@ -66,12 +70,18 @@ struct ProfileInfoFeature: Reducer {
         case newPasswordOnSubmit
         case newPasswordTextClear
         
+        case newPasswordConfirmChanged(String)
+        case newPasswordConfirmFocused(Bool)
+        case newPasswordConfirmOnSubmit
+        case newPasswordConfirmTextClear
+
         case changeButtonTapped
         case passwordConfirmButtonTapped
         case logoutButtonTapped
         case logoutConfirmButtonTapped
         case withdrawButtonTapped
         case withdrawConfirmButtonTapped
+        
         case alertDismiss
     }
     
@@ -91,6 +101,7 @@ struct ProfileInfoFeature: Reducer {
                 
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
+                        print("token", token)
                         await send(.checkUser(token))
                     }
                 }
@@ -281,17 +292,14 @@ struct ProfileInfoFeature: Reducer {
                 return .none
                 
             case let .newPasswordChanged(password):
-                print("newPasswordChanged")
                 state.newPassword = password
                 
                 return .none
 
             case .newPasswordFocused:
-                print("newPasswordFocused")
                 return .none
 
             case .newPasswordOnSubmit:
-                print("newPasswordOnSubmit")
                 if !validationClient.validatePassword(state.newPassword) {
                     state.newPasswordState = .invalid
                 }
@@ -299,9 +307,31 @@ struct ProfileInfoFeature: Reducer {
                 return .none
 
             case .newPasswordTextClear:
-                print("newPasswordTextClear")
                 state.newPassword = ""
                 state.newPasswordState = .empty
+                
+                return .none
+                
+            case let .newPasswordConfirmChanged(password):
+                state.newPasswordConfirm = password
+                return .none
+
+            case .newPasswordConfirmFocused:
+                return .none
+
+            case .newPasswordConfirmOnSubmit:
+                if state.newPasswordConfirm != state.newPassword {
+                    state.newPasswordState = .invalid
+                    state.newPasswordConfirmState = .invalid
+                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치하지 않습니다."
+                }
+                
+                return .none
+
+            case .newPasswordConfirmTextClear:
+                state.newPasswordConfirm = ""
+                state.newPasswordConfirmState = .empty
+                state.newPasswordConfirmErrorMessage = nil
                 
                 return .none
             }
