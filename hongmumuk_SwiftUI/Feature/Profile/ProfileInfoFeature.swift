@@ -24,6 +24,10 @@ struct ProfileInfoFeature: Reducer {
         var validChangeButton = false
         var changeButtonText = "비밀번호 확인"
         
+        var newPassword: String = ""
+        var newPasswordState: TextFieldState = .empty
+        var newPasswordErrorMessage: String? = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+        
         var todayString = ""
         var token: String = ""
         
@@ -56,6 +60,11 @@ struct ProfileInfoFeature: Reducer {
         case currentPasswordOnSubmit
         case currentPasswordTextClear
         case currentpasswordVisibleToggled
+        
+        case newPasswordChanged(String)
+        case newPasswordFocused(Bool)
+        case newPasswordOnSubmit
+        case newPasswordTextClear
         
         case changeButtonTapped
         case passwordConfirmButtonTapped
@@ -268,6 +277,31 @@ struct ProfileInfoFeature: Reducer {
             case let .postPasswordLoaded(.failure(error)):
                 state.currentPasswordErrorMessage = "현재 비밀번호와 일치하지 않습니다."
                 state.currentPasswordState = .invalid
+                
+                return .none
+                
+            case let .newPasswordChanged(password):
+                print("newPasswordChanged")
+                state.newPassword = password
+                
+                return .none
+
+            case .newPasswordFocused:
+                print("newPasswordFocused")
+                return .none
+
+            case .newPasswordOnSubmit:
+                print("newPasswordOnSubmit")
+                if !validationClient.validatePassword(state.newPassword) {
+                    state.newPasswordState = .invalid
+                }
+                
+                return .none
+
+            case .newPasswordTextClear:
+                print("newPasswordTextClear")
+                state.newPassword = ""
+                state.newPasswordState = .empty
                 
                 return .none
             }
