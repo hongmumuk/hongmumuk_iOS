@@ -49,13 +49,13 @@ struct CommonTextFieldView: View {
                         TextField(placeholder, text: Binding(get: { text }, set: onTextChanged))
                     }
                     
-                    if !text.isEmpty, isFocused.wrappedValue {
-                        clearButton
-                            .padding(.trailing, 12)
-                    }
-                    
                     if !text.isEmpty, isFocused.wrappedValue, let onToggleVisibility {
                         visibilityToggleButton(action: onToggleVisibility)
+                            .padding(.trailing, 6)
+                    }
+                    
+                    if !text.isEmpty, isFocused.wrappedValue {
+                        clearButton
                             .padding(.trailing, 12)
                     }
                 }
