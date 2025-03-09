@@ -10,10 +10,18 @@ import SwiftUI
 
 struct InquiryButton: View {
     let action: () -> Void
+    let showText: Bool
+    
+    init(action: @escaping () -> Void, showText: Bool = true) {
+        self.action = action
+        self.showText = showText
+    }
     
     var body: some View {
         VStack(spacing: 0) {
-            inquryText
+            if showText {
+                inquryText
+            }
             inquryBoxButton
         }
     }

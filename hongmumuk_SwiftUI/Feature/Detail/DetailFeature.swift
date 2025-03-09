@@ -42,9 +42,6 @@ struct DetailFeature: Reducer {
             switch action {
             case .onAppear:
                 return .run { send in
-                    await keychainClient.remove(.accessToken)
-                    await keychainClient.remove(.refreshToken)
-                    
                     let accessToken = await keychainClient.getString(.accessToken)
                     await send(.checkIsUser(accessToken))
                 }

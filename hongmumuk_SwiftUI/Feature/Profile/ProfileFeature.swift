@@ -10,14 +10,18 @@ import SwiftUI
 
 struct ProfileFeature: Reducer {
     struct State: Equatable {
-        var isUser: Bool = false
+        var isUser = false
         var token: String = ""
+        var currentVersion = ""
+        var showLoginAlert = false
     }
     
     enum Action: Equatable {
         case onAppear
         case onDismiss
         case checkUser(String?)
+        case loginButtonTapped
+        case loginAlertDismissed
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -26,6 +30,8 @@ struct ProfileFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                state.currentVersion = "v" + Bundle.main.fullVersion
+                
                 return .run { send in
                     let token = await keychainClient.getString(.accessToken)
                     await send(.checkUser(token))
@@ -40,6 +46,14 @@ struct ProfileFeature: Reducer {
                     state.token = token
                 }
                 
+                return .none
+                
+            case .loginButtonTapped:
+                state.showLoginAlert = true
+                return .none
+                
+            case .loginAlertDismissed:
+                state.showLoginAlert = false
                 return .none
             }
         }
