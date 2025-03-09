@@ -12,6 +12,7 @@ struct DetailFeature: Reducer {
     struct State: Equatable {
         var id: Int
         var isLoading = true
+        var token = ""
         var isUser = false
         var keywords = [String]()
         var pickerSelection = 0
@@ -23,6 +24,7 @@ struct DetailFeature: Reducer {
         case pickerSelectionChanged(Int)
         case restrauntDetailLoad(RestaurantDetail)
         case restaurantDetailError(RestaurantDetailError)
+        case likeLoaded(TaskResult<Bool>)
         case copyAddressButtonTapped
         case likeButtonTapped
         case reviewTapped(String)
@@ -34,6 +36,7 @@ struct DetailFeature: Reducer {
     }
     
     @Dependency(\.restaurantClient) var restaurantClient
+    @Dependency(\.likeClient) var likeClient
     @Dependency(\.keywordClient) var keywordClient
     @Dependency(\.keychainClient) var keychainClient
     
@@ -48,6 +51,11 @@ struct DetailFeature: Reducer {
                 
             case let .checkIsUser(token):
                 state.isUser = token != nil
+                
+                if let token {
+                    state.token = token
+                }
+                
                 let rid = state.id
                 
                 return .run { send in
@@ -60,7 +68,6 @@ struct DetailFeature: Reducer {
                         
                         await send(.restrauntDetailLoad(restaurantDetail))
                     } catch {
-                        print(error)
                         if let error = error as? RestaurantDetailError {
                             await send(.restaurantDetailError(error))
                         }
@@ -94,14 +101,32 @@ struct DetailFeature: Reducer {
                 state.restaurantDetail.hasLiked.toggle()
                 state.restaurantDetail.likes += state.restaurantDetail.hasLiked ? 1 : -1
                 
+                let likeState = state.restaurantDetail.hasLiked
+                let id = state.id
+                let token = state.token
+                
                 return .run { send in
-                    // 좋아요 요청
+                    let result = await TaskResult {
+                        if likeState {
+                            try await likeClient.postLike(token, id)
+                        } else {
+                            try await likeClient.postDislike(token, id)
+                        }
+                    }
+                    
+                    await send(.likeLoaded(result))
                 }
-                .debounce(id: DebounceID.likeButton, for: 0.5, scheduler: DispatchQueue.main)
+                .debounce(id: DebounceID.likeButton, for: 0.3, scheduler: DispatchQueue.main)
                 
             case let .reviewTapped(link):
                 guard let url = URL(string: link) else { return .none }
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                return .none
+                
+            case .likeLoaded(.success):
+                return .none
+
+            case let .likeLoaded(.failure(error)):
                 return .none
             }
         }

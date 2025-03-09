@@ -169,6 +169,7 @@
 		BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */; };
 		BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF82D6D767F00FDA113 /* RandomView.swift */; };
 		BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE88742D7D529500C3345B /* PostPasswordError.swift */; };
+		BEFE887B2D7DC2AA00C3345B /* LikeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE887A2D7DC2AA00C3345B /* LikeError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +343,7 @@
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFE88742D7D529500C3345B /* PostPasswordError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPasswordError.swift; sourceTree = "<group>"; };
+		BEFE887A2D7DC2AA00C3345B /* LikeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,6 +641,7 @@
 				BEC950692D7B26D2002B02BB /* NickNameError.swift */,
 				BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */,
 				BEFE88742D7D529500C3345B /* PostPasswordError.swift */,
+				BEFE887A2D7DC2AA00C3345B /* LikeError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1083,6 +1086,7 @@
 				BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
 				BE20900D2D64B8100041A173 /* LikeListView.swift in Sources */,
+				BEFE887B2D7DC2AA00C3345B /* LikeError.swift in Sources */,
 				BEB42C2F2D757F710040F65F /* LikeEmptyView.swift in Sources */,
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,
 				BEC950562D7B0FA8002B02BB /* ProfileInfoView.swift in Sources */,
