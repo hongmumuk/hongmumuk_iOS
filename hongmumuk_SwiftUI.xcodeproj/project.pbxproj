@@ -168,6 +168,7 @@
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */; };
 		BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF82D6D767F00FDA113 /* RandomView.swift */; };
+		BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE88742D7D529500C3345B /* PostPasswordError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -340,6 +341,7 @@
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEFE88742D7D529500C3345B /* PostPasswordError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPasswordError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,6 +638,7 @@
 				BEC950672D7B155D002B02BB /* ProfileError.swift */,
 				BEC950692D7B26D2002B02BB /* NickNameError.swift */,
 				BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */,
+				BEFE88742D7D529500C3345B /* PostPasswordError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				2F0D4FF62D779D110035D7A4 /* EmailLoginFeature.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F0D4FE12D761DD70035D7A4 /* LoginButton.swift in Sources */,
+				BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */,
 				BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */,
 				BECC4A1B2D69AB4E00F72FAF /* DetailFeature.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
