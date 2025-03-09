@@ -10,14 +10,24 @@ import SwiftUI
 
 struct RootFeature: Reducer {
     enum ActiveScreen: Equatable, Hashable {
-        case splash, login, emailLogin,
-             signup, signupEmail, signupPassword, signupDone,
-             verifyEmail, resetPassword,
-             home, like, random, search, categoryList(
-                 Category
-             ), profile(ProfileSet), inqury
+        case splash
+        case login
+        case emailLogin
+        case signup
+        case signupEmail
+        case signupPassword
+        case signupDone
+        case verifyEmail
+        case resetPassword
+        case home
+        case like
+        case random
+        case search
+        case categoryList(Category)
+        case profile(ProfileSet)
+        case inqury
     }
-    
+
     struct State: Equatable {
         var navigationPath: [ActiveScreen] = []
         var emailLogin = EmailLoginFeature.State()
@@ -37,6 +47,8 @@ struct RootFeature: Reducer {
         case signupPassword(SignupPasswordFeature.Action)
         case resetPassword(ResetPasswordFeature.Action)
         case resetAllFeatureStates
+        
+        case resetStackAndLoadHome
         
         case checkLoginStatus
         case setLoginStatus(Bool)
@@ -84,8 +96,13 @@ struct RootFeature: Reducer {
             case .emailLogin(.successLogin):
                 return .concatenate(
                     .send(.resetAllFeatureStates),
-                    .send(.setNavigationRoot(.home))
+                    .send(.setNavigationPath([])),
+                    .send(.resetStackAndLoadHome)
                 )
+                
+            case .resetStackAndLoadHome:
+                state.isLoggedIn = true
+                return .none
                 
             // signupPasswordFeature
             case .signupPassword(.successJoin):

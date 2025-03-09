@@ -101,7 +101,6 @@ struct ProfileInfoFeature: Reducer {
                 
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
-                        print("token", token)
                         await send(.checkUser(token))
                     }
                 }
