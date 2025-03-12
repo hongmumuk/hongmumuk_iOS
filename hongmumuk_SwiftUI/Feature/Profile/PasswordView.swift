@@ -30,6 +30,13 @@ struct PasswordView: View {
             }
             
             Spacer()
+            
+            NextButton(title: "비밀번호 변경하기", isActive: viewStore.isButtonEnabled) {
+                viewStore.send(.newPasswordConfirmButtonTapped)
+            }
+            .frame(height: 60)
+            .padding(.horizontal, 24)
+            .padding(.bottom, 60)
         }
     }
     
