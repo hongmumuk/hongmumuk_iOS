@@ -55,9 +55,9 @@ struct RandomView: View {
     }
     
     var image: some View {
-        RoundedRectangle(cornerRadius: 24)
-            .fill(Colors.GrayScale.grayscale5)
-            .stroke(Colors.Border.normal)
+        Image("thumbnailBigIcon")
+            .resizable()
+            .cornerRadius(24)
             .frame(width: 240, height: 240)
     }
     
