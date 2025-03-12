@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "networkErrorIcon.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
