@@ -149,7 +149,9 @@ struct SearchFeature: Reducer {
                 return .none
                 
             case .inquryButtonTapped:
-                // TODO: 링크 이동
+                if let url = URL(string: "https://forms.gle/e8X1RPPJCDWkwj5JA") {
+                    UIApplication.shared.open(url)
+                }
                 return .none
                 
             case .loadingCompleted:

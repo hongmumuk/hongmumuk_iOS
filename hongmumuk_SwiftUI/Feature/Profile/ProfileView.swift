@@ -35,7 +35,7 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 Spacer()
                 InquiryButton(action: {
-                    parentStore.send(.inquryButtonTapped)
+                    viewStore.send(.inquryButtonTapped)
                 }, showText: false)
             }
             .padding(.bottom, 52)

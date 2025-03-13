@@ -37,7 +37,7 @@ struct CategoryListView: View {
                             }
                     } else {
                         InquiryButton {
-                            parentViewStore.send(.inquryButtonTapped)
+                            viewStore.send(.inquryButtonTapped)
                         }
                         .padding(.top, 72)
                         .padding(.bottom, 117)

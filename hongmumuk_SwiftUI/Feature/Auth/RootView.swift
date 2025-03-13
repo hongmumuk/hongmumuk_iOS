@@ -156,14 +156,6 @@ struct RootView: View {
                         )
                         .navigationBarHidden(true)
                     }
-                case .inqury:
-                    let urlString = "https://forms.gle/e8X1RPPJCDWkwj5JA"
-                    WebView(
-                        title: "문의하기",
-                        urlString: urlString,
-                        parentStore: store
-                    )
-                    .navigationBarHidden(true)
                 default:
                     Text("Error")
                 }

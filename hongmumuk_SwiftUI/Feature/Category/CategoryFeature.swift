@@ -77,8 +77,9 @@ struct CategoryFeature: Reducer {
                 return .none
                 
             case .inquryButtonTapped:
-                // TODO: 문의하기 이동
-                /// 링크 나오면 처리
+                if let url = URL(string: "https://forms.gle/e8X1RPPJCDWkwj5JA") {
+                    UIApplication.shared.open(url)
+                }
                 return .none
                 
             case .searchButtonTapped:
