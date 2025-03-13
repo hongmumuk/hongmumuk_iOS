@@ -17,6 +17,7 @@ struct DetailFeature: Reducer {
         var keywords = [String]()
         var pickerSelection = 0
         var restaurantDetail = RestaurantDetail.mock()
+        var showToast = false
     }
     
     enum Action: Equatable {
@@ -29,6 +30,9 @@ struct DetailFeature: Reducer {
         case likeButtonTapped
         case reviewTapped(String)
         case checkIsUser(String?)
+        case kakaoMapButtonTapped
+        case naverMapButtonTapped
+        case showCopyToast(Bool)
     }
     
     enum DebounceID {
@@ -89,13 +93,26 @@ struct DetailFeature: Reducer {
                 
             case let .restaurantDetailError(error):
                 state.isLoading = false
-                // TODO: 에러 처리
                 return .none
                 
             case .copyAddressButtonTapped:
                 let address = state.restaurantDetail.address
                 UIPasteboard.general.string = address
-                return .none
+                return .run { send in
+                    await send(.showCopyToast(true), animation: .default)
+                }
+                
+            case let .showCopyToast(isShow):
+                state.showToast = isShow
+                
+                if isShow {
+                    return .run { send in
+                        try await Task.sleep(for: .seconds(2.0))
+                        await send(.showCopyToast(false), animation: .default)
+                    }
+                } else {
+                    return .none
+                }
                 
             case .likeButtonTapped:
                 state.restaurantDetail.hasLiked.toggle()
@@ -127,6 +144,22 @@ struct DetailFeature: Reducer {
                 return .none
 
             case let .likeLoaded(.failure(error)):
+                return .none
+                
+            case .kakaoMapButtonTapped:
+                let urlString = state.restaurantDetail.kakaoLink
+                if let url = URL(string: urlString) {
+                    UIApplication.shared.open(url)
+                }
+                
+                return .none
+                
+            case .naverMapButtonTapped:
+                let urlString = state.restaurantDetail.naverLink
+                if let url = URL(string: urlString) {
+                    UIApplication.shared.open(url)
+                }
+                
                 return .none
             }
         }
