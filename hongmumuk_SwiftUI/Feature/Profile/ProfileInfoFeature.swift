@@ -40,6 +40,8 @@ struct ProfileInfoFeature: Reducer {
         
         var pop = false
         
+        var showToast = false
+        
         var isButtonEnabled: Bool {
             return newPasswordState == .nicknameVerified &&
                 newPasswordConfirmState == .nicknameVerified &&
@@ -91,6 +93,7 @@ struct ProfileInfoFeature: Reducer {
         case newPasswordConfirmButtonTapped
         
         case alertDismiss
+        case showCopyToast(Bool)
     }
     
     @Dependency(\.profileClient) var profileClient
@@ -182,7 +185,22 @@ struct ProfileInfoFeature: Reducer {
                 
             case let .nickNameLoaded(.success(_)):
                 state.profile.nickName = state.nickName
-                return .none
+                
+                return .run { send in
+                    await send(.showCopyToast(true), animation: .default)
+                }
+                
+            case let .showCopyToast(isShow):
+                state.showToast = isShow
+                
+                if isShow {
+                    return .run { send in
+                        try await Task.sleep(for: .seconds(2.0))
+                        await send(.showCopyToast(false), animation: .default)
+                    }
+                } else {
+                    return .none
+                }
                 
             case let .nickNameLoaded(.failure(error)):
                 let error = error as? NickNameError ?? .unknown
