@@ -54,7 +54,7 @@ struct RandomView: View {
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 133)
+        .padding(.top, 80)
         .padding(.horizontal, 24)
     }
     
