@@ -23,12 +23,16 @@ struct RandomView: View {
                 title
                 Spacer()
             }
-        
-            VStack(spacing: 20) {
-                image
-                restaurantInfo
-            }
             
+            if viewStore.isAnimating {
+                RandomAnimationView(viewStore: viewStore)
+            } else {
+                VStack(spacing: 20) {
+                    image
+                    restaurantInfo
+                }
+            }
+
             VStack {
                 Spacer()
                 retryButton
@@ -41,11 +45,11 @@ struct RandomView: View {
     
     var title: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("오늘은 이 메뉴 어때요?")
+            Text(viewStore.title)
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
-            Text("메뉴가 마음에 들지 않으면 다시 뽑아 보세요")
+            Text(viewStore.subTitle)
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
@@ -75,9 +79,9 @@ struct RandomView: View {
     
     var retryButton: some View {
         Button(action: {
-            viewStore.send(.retryButtonTapped)
+            viewStore.send(.randomButtonTapped, animation: .default)
         }) {
-            Text("다시 뽑기")
+            Text(viewStore.buttonTitle)
                 .fontStyle(Fonts.heading2Bold)
                 .foregroundColor(Color.white)
                 .frame(height: 60)
