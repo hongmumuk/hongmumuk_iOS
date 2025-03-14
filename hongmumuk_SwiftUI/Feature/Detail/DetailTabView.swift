@@ -40,7 +40,7 @@ struct DetailTabView: View {
                 .resizable()
                 .frame(width: 20, height: 20)
             
-            Text("가계 주소를 복사했어요")
+            Text("가게 주소를 복사했어요")
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(.white)
         }
