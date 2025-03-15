@@ -73,7 +73,7 @@ struct SignupPasswordView: View {
                     
                     Text("비밀번호")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
+                        .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)
                         .padding(.top, geometry.size.height * 0.056)
                     
@@ -98,7 +98,7 @@ struct SignupPasswordView: View {
                     
                     Text("비밀번호 확인")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.verifiedPasswordState))
+                        .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)
                         .padding(.top, 24)
                     

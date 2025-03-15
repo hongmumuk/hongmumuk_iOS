@@ -127,6 +127,7 @@ struct SignupEmailView: View {
                             onSubmit: { viewStore.send(.codeOnSubmit) },
                             onClear: { viewStore.send(.codeTextClear) }
                         )
+                        .keyboardType(.numberPad)
                         .frame(width: geometry.size.width * 0.62)
                         
                         BasicButton(title: "인증하기", isActive: viewStore.isVerifyCodeButtonEnabled) {
