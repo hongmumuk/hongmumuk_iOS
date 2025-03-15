@@ -213,7 +213,15 @@ struct VerifyEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
+                
+                if error == .alreadyExists {
+                    state.emailErrorMessage = "가입되지 않은 계정입니다."
+                } else if error == .userNotFound {
+                    state.emailErrorMessage = "이미 가입된 계정입니다."
+                } else {
+                    state.emailErrorMessage = "전송할 수 없습니다."
+                }
+   
                 return .none
                 
             case .successVerify:
