@@ -11,6 +11,7 @@ import SwiftUI
 struct RootFeature: Reducer {
     enum ActiveScreen: Equatable, Hashable {
         case splash
+        case onboarding
         case login
         case emailLogin
         case signup
@@ -26,7 +27,7 @@ struct RootFeature: Reducer {
         case categoryList(Category)
         case profile(ProfileSet)
     }
-
+    
     struct State: Equatable {
         var navigationPath: [ActiveScreen] = []
         var emailLogin = EmailLoginFeature.State()
@@ -35,6 +36,7 @@ struct RootFeature: Reducer {
         
         var isLoggedIn: Bool = false
         var isLoading: Bool = true
+        var isFirstLaunch: Bool = true
     }
     
     enum Action: Equatable {
@@ -52,6 +54,7 @@ struct RootFeature: Reducer {
         case checkLoginStatus
         case setLoginStatus(Bool)
         case setLoadingStatus(Bool)
+        case setFirstLaunch(Bool)
         
         case profileButtonTapped(ProfileSet)
         case inquryButtonTapped
@@ -59,6 +62,7 @@ struct RootFeature: Reducer {
     
     @Dependency(\.keychainClient) var keychainClient
     @Dependency(\.authClient) var authClient
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     
     var body: some ReducerOf<Self> {
         Scope(state: \State.emailLogin, action: /Action.emailLogin) {
@@ -78,7 +82,7 @@ struct RootFeature: Reducer {
             case let .navigationTo(screen):
                 state.navigationPath.append(screen)
                 return .none
-            
+                
             case let .setNavigationPath(path):
                 state.navigationPath = path
                 return .none
@@ -95,7 +99,7 @@ struct RootFeature: Reducer {
             case .emailLogin(.successLogin):
                 return .concatenate(
                     .send(.resetAllFeatureStates),
-                    .send(.setNavigationPath([])),
+                    .send(.setNavigationPath([.home])),
                     .send(.resetStackAndLoadHome)
                 )
                 
@@ -125,6 +129,19 @@ struct RootFeature: Reducer {
                 
             case .checkLoginStatus:
                 return .run { send in
+                    let isNotFirstLaunch = await userDefaultsClient.getBool(.isNotFirstLaunch) ?? false
+                    
+                    if isNotFirstLaunch {
+                        await send(.setFirstLaunch(false))
+                    } else {
+                        // 첫 실행임을 기록하고, isFirstLaunch를 true로 설정
+                        await keychainClient.remove(.accessToken)
+                        await keychainClient.remove(.refreshToken)
+                        await userDefaultsClient.setBool(true, .isNotFirstLaunch)
+                        await send(.setFirstLaunch(true))
+                        return
+                    }
+
                     let accessToken = await keychainClient.getString(.accessToken)
                     let refreshToken = await keychainClient.getString(.refreshToken)
                     print("accessToken: \(accessToken), refreshToken: \(refreshToken)")
@@ -163,9 +180,13 @@ struct RootFeature: Reducer {
             case let .setLoginStatus(isLoggedIn):
                 state.isLoggedIn = isLoggedIn
                 return .none
-
+                
             case let .setLoadingStatus(isLoading):
                 state.isLoading = isLoading
+                return .none
+                
+            case let .setFirstLaunch(isFirstLaunch):
+                state.isFirstLaunch = isFirstLaunch
                 return .none
                 
             case let .profileButtonTapped(type):
@@ -177,7 +198,7 @@ struct RootFeature: Reducer {
             }
         }
     }
-
+    
     // TODO: - 토큰 에러 확인..
     func isValidAccessToken(_ token: String) -> Bool {
         let components = token.components(separatedBy: ".")
