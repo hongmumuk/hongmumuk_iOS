@@ -27,10 +27,7 @@ struct RandomView: View {
             if viewStore.isAnimating {
                 RandomAnimationView(viewStore: viewStore)
             } else {
-                VStack(spacing: 20) {
-                    image
-                    restaurantInfo
-                }
+                detailButton
             }
 
             VStack {
@@ -40,6 +37,37 @@ struct RandomView: View {
         }
         .onAppear {
             viewStore.send(.onAppear)
+        }
+        .sheet(
+            isPresented: viewStore.binding(
+                get: { $0.activeScreen != .none },
+                send: .onDismiss
+            )
+        ) {
+            if case let .restaurantDetail(id) = viewStore.activeScreen {
+                DetailView(
+                    store: Store(
+                        initialState: DetailFeature.State(id: id),
+                        reducer: { DetailFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.liveValue
+                            $0.keywordClient = KeywordClient.liveValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
+            }
+        }
+    }
+    
+    var detailButton: some View {
+        Button {
+            viewStore.send(.detailButtonTapped)
+        } label: {
+            VStack(spacing: 20) {
+                image
+                restaurantInfo
+            }
         }
     }
     

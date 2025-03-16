@@ -8,10 +8,16 @@
 import ComposableArchitecture
 
 struct RandomFeature: Reducer {
+    enum ActiveScreen: Equatable {
+        case restaurantDetail(Int)
+        case none
+    }
+    
     struct State: Equatable {
         var isLoading = true
         var restaurantName: String = ""
         var restaurantCategory: String = ""
+        var restaurantId: Int = 0
         var restrauntList = [RestaurantListModel]()
         
         var title: String = "메뉴 선택에 고민이 되시나요?"
@@ -20,11 +26,15 @@ struct RandomFeature: Reducer {
         
         var startPick = false
         var isAnimating = true
+        
+        var activeScreen: ActiveScreen = .none
     }
     
     enum Action: Equatable {
         case onAppear
+        case onDismiss
         case randomButtonTapped
+        case detailButtonTapped
         case initailLoadingCompleted
         case restrauntListLoaded([RestaurantListModel])
         case restrauntListError(RestaurantListError)
@@ -41,6 +51,10 @@ struct RandomFeature: Reducer {
                     await send(.initailLoadingCompleted)
                 }
                 
+            case .onDismiss:
+                state.activeScreen = .none
+                return .none
+                
             case .randomButtonTapped:
                 if !state.startPick {
                     state.startPick = true
@@ -51,7 +65,13 @@ struct RandomFeature: Reducer {
                     let randomItem = getRandom(state: state)
                     state.restaurantName = randomItem.name
                     state.restaurantCategory = randomItem.category
+                    state.restaurantId = randomItem.id
                 }
+                
+                return .none
+                
+            case .detailButtonTapped:
+                state.activeScreen = .restaurantDetail(state.restaurantId)
                 
                 return .none
                 
@@ -68,6 +88,7 @@ struct RandomFeature: Reducer {
                 let randomItem = getRandom(state: state)
                 state.restaurantName = randomItem.name
                 state.restaurantCategory = randomItem.category
+                state.restaurantId = randomItem.id
                 
                 return .none
                 
