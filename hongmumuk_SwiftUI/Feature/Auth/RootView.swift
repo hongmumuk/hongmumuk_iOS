@@ -43,7 +43,9 @@ struct RootView: View {
                 }
             }
             .onChange(of: networkManager.isConnected) { _, isConnected in
-                isPresented = !isConnected
+                if !isConnected {
+                    isPresented = true
+                }
             }
             .fullScreenCover(isPresented: $isPresented) {
                 NetworkErrorView()
