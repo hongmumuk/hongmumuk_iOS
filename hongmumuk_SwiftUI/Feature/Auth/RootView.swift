@@ -27,18 +27,14 @@ struct RootView: View {
             send: { RootFeature.Action.setNavigationPath($0) }
         )) {
             Group {
-                if viewStore.isFirstLaunch {
-                    // firstlaunch인 경우
+                if viewStore.isLoading {
+                    SplashView()
+                } else if viewStore.isFirstLaunch {
                     OnboardingView(store: Store(initialState: OnboardingFeature.State(), reducer: OnboardingFeature.init), parentStore: store)
                 } else if viewStore.isLoggedIn {
-                    // 로그인이 되어있을 경우
                     HomeRootView(parentStore: store)
                         .navigationBarHidden(true)
-                } else if viewStore.isLoading {
-                    // 로그인이 되어있지 않고, 로딩중일 경우
-                    SplashView()
                 } else {
-                    // 로그인 안되어있고, 로딩중이 아닐 경우
                     LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
                 }
             }
@@ -174,43 +170,40 @@ struct RootView: View {
                 }
             }
         }
-        .onAppear {
-            viewStore.send(.checkLoginStatus)
-        }
     }
+    
+    //    .navigationDestination(
+    //        isPresented: viewStore.binding(
+    //            get: { $0.activeScreen != .none && $0.activeScreen != .random },
+    //            send: .onDismiss
+    //        )
+    //    ) {
+    //        let screen = viewStore.activeScreen
+    //        if case .search = screen {
+    //            SearchView(
+    //                store: Store(
+    //                    initialState: SearchFeature.State(),
+    //                    reducer: { SearchFeature() },
+    //                    withDependencies: {
+    //                        $0.restaurantClient = RestaurantClient.liveValue
+    //                        $0.userDefaultsClient = UserDefaultsClient.liveValue
+    //                    }
+    //                )
+    //            )
+    //            .navigationBarHidden(true)
+    //
+    //        } else if case let .cateogryList(category) = screen {
+    //            CategoryView(
+    //                store: Store(
+    //                    initialState: CategoryFeature.State(
+    //                        cateogry: category
+    //                    ),
+    //                    reducer: { CategoryFeature() },
+    //                    withDependencies: {
+    //                        $0.restaurantClient = RestaurantClient.liveValue
+    //                    }
+    //                )
+    //            )
+    //            .navigationBarHidden(true)
+    //        }
 }
-
-//    .navigationDestination(
-//        isPresented: viewStore.binding(
-//            get: { $0.activeScreen != .none && $0.activeScreen != .random },
-//            send: .onDismiss
-//        )
-//    ) {
-//        let screen = viewStore.activeScreen
-//        if case .search = screen {
-//            SearchView(
-//                store: Store(
-//                    initialState: SearchFeature.State(),
-//                    reducer: { SearchFeature() },
-//                    withDependencies: {
-//                        $0.restaurantClient = RestaurantClient.liveValue
-//                        $0.userDefaultsClient = UserDefaultsClient.liveValue
-//                    }
-//                )
-//            )
-//            .navigationBarHidden(true)
-//
-//        } else if case let .cateogryList(category) = screen {
-//            CategoryView(
-//                store: Store(
-//                    initialState: CategoryFeature.State(
-//                        cateogry: category
-//                    ),
-//                    reducer: { CategoryFeature() },
-//                    withDependencies: {
-//                        $0.restaurantClient = RestaurantClient.liveValue
-//                    }
-//                )
-//            )
-//            .navigationBarHidden(true)
-//        }

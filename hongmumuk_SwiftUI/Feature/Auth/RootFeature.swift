@@ -129,51 +129,39 @@ struct RootFeature: Reducer {
                 
             case .checkLoginStatus:
                 return .run { send in
-                    let isNotFirstLaunch = await userDefaultsClient.getBool(.isNotFirstLaunch) ?? false
-                    
-                    if isNotFirstLaunch {
-                        await send(.setFirstLaunch(false))
-                    } else {
-                        // 첫 실행임을 기록하고, isFirstLaunch를 true로 설정
+                    await send(.setLoadingStatus(true))
+
+                    let isFirstLaunch = await !(userDefaultsClient.getBool(.isNotFirstLaunch))
+                    if isFirstLaunch {
                         await keychainClient.remove(.accessToken)
                         await keychainClient.remove(.refreshToken)
                         await userDefaultsClient.setBool(true, .isNotFirstLaunch)
                         await send(.setFirstLaunch(true))
+                        await send(.setLoginStatus(false))
+                        await send(.setLoadingStatus(false))
                         return
                     }
 
+                    await send(.setFirstLaunch(false))
+
                     let accessToken = await keychainClient.getString(.accessToken)
                     let refreshToken = await keychainClient.getString(.refreshToken)
-                    print("accessToken: \(accessToken), refreshToken: \(refreshToken)")
-                    
-                    if let accessToken, !accessToken.isEmpty {
-                        // 액세스 토큰이 유효한지 확인
-                        if isValidAccessToken(accessToken) {
+
+                    if let accessToken, !accessToken.isEmpty, isValidAccessToken(accessToken) {
+                        await send(.setLoginStatus(true))
+                    } else if let refreshToken, !refreshToken.isEmpty {
+                        do {
+                            let newTokens: AuthTokenResponseModel = try await authClient.token(accessToken!, refreshToken)
+                            await keychainClient.setString(newTokens.accessToken, .accessToken)
+                            await keychainClient.setString(newTokens.refreshToken, .refreshToken)
                             await send(.setLoginStatus(true))
-                        } else {
-                            // 액세스 토큰 만료
-                            if let refreshToken, !refreshToken.isEmpty {
-                                do {
-                                    // 토큰 재발급 및 키체인 저장
-                                    let newTokens: AuthTokenResponseModel = try await authClient.token(accessToken, refreshToken)
-                                    await keychainClient.setString(newTokens.accessToken, .accessToken)
-                                    await keychainClient.setString(newTokens.refreshToken, .refreshToken)
-                                    
-                                    await send(.setLoginStatus(true))
-                                } catch {
-                                    // 리프레쉬 토큰 에러
-                                    await send(.setLoginStatus(false))
-                                }
-                            } else {
-                                // 리프레쉬 토큰 없음
-                                await send(.setLoginStatus(false))
-                            }
+                        } catch {
+                            await send(.setLoginStatus(false))
                         }
                     } else {
-                        // 둘다 empty
                         await send(.setLoginStatus(false))
                     }
-                    // 끝 끝
+
                     await send(.setLoadingStatus(false))
                 }
                 
