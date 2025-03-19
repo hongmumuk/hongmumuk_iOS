@@ -128,7 +128,7 @@
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
 		BE4F9B242D58FD9400E7CC46 /* ValidationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */; };
 		BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE4F9B2A2D59E8D600E7CC46 /* Alamofire */; };
-		BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */; };
+		BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */; };
 		BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B302D59F0C800E7CC46 /* AuthClient.swift */; };
 		BE4F9B462D5A075300E7CC46 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B442D5A075300E7CC46 /* LoginError.swift */; };
 		BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B472D5A076300E7CC46 /* LoginModel.swift */; };
@@ -307,7 +307,7 @@
 		BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Univ+.swift"; sourceTree = "<group>"; };
 		BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationClient.swift; sourceTree = "<group>"; };
 		BE4F9B2D2D59EE2C00E7CC46 /* hongmumuk-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hongmumuk-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
-		BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BE4F9B302D59F0C800E7CC46 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		BE4F9B442D5A075300E7CC46 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		BE4F9B472D5A076300E7CC46 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -706,7 +706,7 @@
 			children = (
 				BE5F1A932D51EB2500D124DB /* Cateogory.swift */,
 				BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */,
-				BE4F9B2E2D59EEBB00E7CC46 /* Environment.swift */,
+				BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */,
 				BE02D09C2D607D0C00F61E66 /* Sort.swift */,
 				2F68B4B02D717EBA00548850 /* TextFieldState.swift */,
 				BECD1DF32D6C0F4000FDA113 /* Keyword.swift */,
@@ -1043,7 +1043,7 @@
 				2F0D4FF12D779CE90035D7A4 /* HomeRootView.swift in Sources */,
 				2F0D501D2D779D840035D7A4 /* LoginHeaderView.swift in Sources */,
 				BEC950642D7B149E002B02BB /* ProfileClient.swift in Sources */,
-				BE4F9B2F2D59EEBB00E7CC46 /* Environment.swift in Sources */,
+				BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */,
 				BEB42C362D758E710040F65F /* LoadingView.swift in Sources */,
 				BEB42C2D2D757A760040F65F /* SearchEmptyView.swift in Sources */,
 				BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */,

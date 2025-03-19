@@ -18,7 +18,7 @@ struct ProfileClient {
 extension ProfileClient: DependencyKey {
     static var liveValue: ProfileClient = .init(
         getProfile: { token in
-            let url = "\(Environment.baseUrl)/api/profile"
+            let url = "\(Constant.baseUrl)/api/profile"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
@@ -37,7 +37,7 @@ extension ProfileClient: DependencyKey {
             return response.data!
         },
         patchNickName: { token, nickname in
-            let url = "\(Environment.baseUrl)/api/profile/nickname/\(nickname)"
+            let url = "\(Constant.baseUrl)/api/profile/nickname/\(nickname)"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
@@ -57,7 +57,7 @@ extension ProfileClient: DependencyKey {
         },
         
         deleteAccount: { token in
-            let url = "\(Environment.baseUrl)/api/profile/quit"
+            let url = "\(Constant.baseUrl)/api/profile/quit"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ extension ProfileClient: DependencyKey {
         },
         
         postPassword: { token, password in
-            let url = "\(Environment.baseUrl)/api/profile/check"
+            let url = "\(Constant.baseUrl)/api/profile/check"
             
             let headers: HTTPHeaders = [
                 //                "accept": "*/*",

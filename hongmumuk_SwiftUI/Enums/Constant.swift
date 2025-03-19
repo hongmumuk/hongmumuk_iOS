@@ -1,5 +1,5 @@
 //
-//  Environment.swift
+//  Constant.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 2/10/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Environment {
+enum Constant {
     // config 파일에 정의한 key
     enum Keys {
         enum Plist {
@@ -24,7 +24,7 @@ enum Environment {
     
     // config 파일에 정의한 value
     static let baseUrl: URL = {
-        guard let baseUrlString = Environment.infoDictionary[Keys.Plist.baseUrl] as? String else {
+        guard let baseUrlString = Constant.infoDictionary[Keys.Plist.baseUrl] as? String else {
             fatalError("Root URL not set in plist for this environment")
         }
         
