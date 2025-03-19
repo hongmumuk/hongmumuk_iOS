@@ -11,8 +11,8 @@ import SwiftUI
 struct RootView: View {
     let store: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<RootFeature>
-    @StateObject private var networkManager = NetworkManager.shared
-    @State private var isPresented: Bool = false
+//    @StateObject private var networkManager = NetworkManager.shared
+//    @State private var isPresented: Bool = false
     
     init(store: StoreOf<RootFeature>) {
         self.store = store
@@ -42,14 +42,19 @@ struct RootView: View {
                     LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
                 }
             }
-            .onChange(of: networkManager.isConnected) { _, isConnected in
-                if !isConnected {
-                    isPresented = true
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    viewStore.send(.checkLoginStatus)
                 }
             }
-            .fullScreenCover(isPresented: $isPresented) {
-                NetworkErrorView()
-            }
+//            .onChange(of: networkManager.isConnected) { _, isConnected in
+//                if !isConnected {
+//                    isPresented = true
+//                }
+//            }
+//            .fullScreenCover(isPresented: $isPresented) {
+//                NetworkErrorView()
+//            }
             .navigationDestination(for: RootFeature.ActiveScreen.self) { screen in
                 switch screen {
                 case .login:
