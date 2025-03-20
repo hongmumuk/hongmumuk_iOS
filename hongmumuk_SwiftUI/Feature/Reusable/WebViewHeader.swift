@@ -10,7 +10,18 @@ import SwiftUI
 
 struct WebViewHeader: View {
     let title: String
+    let showBottomLine: Bool
     @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
+    
+    init(
+        title: String,
+        showBottomLine: Bool = true,
+        parentViewStore: ViewStoreOf<RootFeature>
+    ) {
+        self.title = title
+        self.showBottomLine = showBottomLine
+        self.parentViewStore = parentViewStore
+    }
     
     var body: some View {
         VStack {
@@ -18,7 +29,9 @@ struct WebViewHeader: View {
                 .frame(height: 60)
                 .padding(.horizontal, 24)
                 .overlay(alignment: .bottom, content: {
-                    bottomBorderLine
+                    if showBottomLine {
+                        bottomBorderLine
+                    }
                 })
         }
     }

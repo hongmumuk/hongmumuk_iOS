@@ -15,7 +15,7 @@ public enum CommonTextFieldStyle {
             return Colors.GrayScale.grayscale5
         case .loginError, .invalid, .codeInvalid:
             return Colors.SemanticColor.negative10
-        case .codeVerified, .passwordVerified:
+        case .codeVerified, .passwordVerified, .nicknameVerified:
             return Colors.SemanticColor.positive10
         case .disabled:
             return Colors.GrayScale.disable
@@ -32,7 +32,7 @@ public enum CommonTextFieldStyle {
             return Colors.Border.strong
         case .loginError, .invalid, .codeInvalid:
             return Colors.SemanticColor.negative
-        case .codeVerified, .passwordVerified:
+        case .codeVerified, .passwordVerified, .nicknameVerified:
             return Colors.SemanticColor.positive
         case .disabled:
             return Colors.Border.strong
@@ -47,7 +47,7 @@ public enum CommonTextFieldStyle {
             return Colors.GrayScale.normal
         case .loginError, .invalid, .codeInvalid:
             return Colors.SemanticColor.negative
-        case .codeVerified, .passwordVerified:
+        case .codeVerified, .passwordVerified, .nicknameVerified:
             return Colors.SemanticColor.positive
         case .disabled:
             return Colors.GrayScale.assistive

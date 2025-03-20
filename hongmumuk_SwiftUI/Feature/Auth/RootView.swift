@@ -130,12 +130,24 @@ struct RootView: View {
                     )
                     .navigationBarHidden(true)
                 case let .profile(type):
-                    WebView(
-                        title: type.title,
-                        urlString: type.urlString,
-                        parentStore: store
-                    )
-                    .navigationBarHidden(true)
+                    if type == .info {
+                        ProfileInfoView(
+                            store: Store(
+                                initialState: ProfileInfoFeature.State(),
+                                reducer: { ProfileInfoFeature() }
+                            ),
+                            parentStore: store
+                        )
+                        .navigationBarHidden(true)
+                        
+                    } else {
+                        WebView(
+                            title: type.title,
+                            urlString: type.urlString,
+                            parentStore: store
+                        )
+                        .navigationBarHidden(true)
+                    }
                 case .inqury:
                     let urlString = "https://forms.gle/e8X1RPPJCDWkwj5JA"
                     WebView(
