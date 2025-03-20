@@ -101,7 +101,7 @@ struct ResetPasswordView: View {
                         text: viewStore.verifiedPassword,
                         state: viewStore.verifiedPasswordState,
                         message: viewStore.verifiedPasswordMessage,
-                        placeholder: "비밀번호를 한번 더 입력해 주세요",
+                        placeholder: "비밀번호를 한 번 더 입력해 주세요",
                         isSecure: !viewStore.verifiedPasswordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
