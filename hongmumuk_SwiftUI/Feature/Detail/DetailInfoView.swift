@@ -104,6 +104,8 @@ struct DetailInfoView: View {
                     .background(itemBackgroundView)
                 }
             }
+            .padding(.horizontal, 2)
+            .padding(.vertical, 2)
         }
     }
     
