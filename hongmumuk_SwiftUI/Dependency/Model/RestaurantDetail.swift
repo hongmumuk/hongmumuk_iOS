@@ -19,6 +19,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
     var address: String
     var hasLiked: Bool
     var blogs: [Blog]
+    var naverLink: String
+    var kakaoLink: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,6 +34,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         case address
         case hasLiked
         case blogs
+        case naverLink
+        case kakaoLink
     }
     
     init(from decoder: Decoder) throws {
@@ -52,6 +56,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         address = try container.decode(String.self, forKey: .address)
         hasLiked = try container.decode(Bool.self, forKey: .hasLiked)
         blogs = try container.decode([Blog].self, forKey: .blogs)
+        naverLink = try container.decode(String.self, forKey: .naverLink)
+        kakaoLink = try container.decode(String.self, forKey: .kakaoLink)
     }
     
     // 직접 초기화할 수 있는 이니셜라이저 (테스트나 다른 용도에 사용)
@@ -65,7 +71,9 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
          category: String,
          address: String,
          hasLiked: Bool,
-         blogs: [Blog])
+         blogs: [Blog],
+         naverLink: String,
+         kakaoLink: String)
     {
         self.id = id
         self.name = name
@@ -78,6 +86,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         self.address = address
         self.hasLiked = hasLiked
         self.blogs = blogs
+        self.naverLink = naverLink
+        self.kakaoLink = kakaoLink
     }
 }
 
@@ -129,7 +139,9 @@ extension RestaurantDetail {
             category: "한식",
             address: "서울 마포구 와우산로 51-6",
             hasLiked: true,
-            blogs: blogs
+            blogs: blogs,
+            naverLink: "",
+            kakaoLink: ""
         )
     }
 }

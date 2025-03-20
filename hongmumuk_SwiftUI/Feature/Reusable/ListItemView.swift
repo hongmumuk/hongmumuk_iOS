@@ -24,6 +24,7 @@ struct ListItemView: View {
                 
                 VStack(alignment: .leading) {
                     Text(item.name)
+                        .lineLimit(1)
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(Colors.GrayScale.grayscale95)
                         .padding(.bottom, 4)

@@ -105,7 +105,8 @@ struct PrivacyView: View {
                 agreeAction: {
                     viewStore.send(.serviceAgree)
                     viewStore.send(.serviceModalDismissed)
-                }
+                },
+                urlString: ProfileSet.privacy.urlString
             )
         }
         .sheet(isPresented: Binding(
@@ -113,7 +114,7 @@ struct PrivacyView: View {
             set: { _, _ in viewStore.send(.privacyModalDismissed) }
         )) {
             PrivacyModalView(
-                title: "서비스 이용약관",
+                title: "개인정보 처리방침",
                 content: "",
                 onDismiss: {
                     viewStore.send(.privacyModalDismissed)
@@ -121,7 +122,8 @@ struct PrivacyView: View {
                 agreeAction: {
                     viewStore.send(.privacyAgree)
                     viewStore.send(.privacyModalDismissed)
-                }
+                },
+                urlString: ProfileSet.service.urlString
             )
         }
     }
@@ -140,8 +142,9 @@ struct PrivacyView: View {
                             .fill(Color.clear)
                     )
                 
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 12) {
                     Image(viewStore.allAgree ? "checkBlueIcon" : "checkIcon")
+                        .resizable()
                         .frame(width: 32, height: 32)
                     
                     Text("약관 전체 동의 하기")
@@ -162,7 +165,8 @@ struct PrivacyView: View {
             ZStack {
                 HStack(alignment: .top) {
                     Image(viewStore.serviceAgree ? "checkBlueIcon" : "checkIcon")
-                        .frame(width: 20, height: 20)
+                        .resizable()
+                        .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
                     Text("서비스 이용약관 동의")
@@ -190,7 +194,8 @@ struct PrivacyView: View {
             ZStack {
                 HStack(alignment: .top) {
                     Image(viewStore.privacyAgree ? "checkBlueIcon" : "checkIcon")
-                        .frame(width: 20, height: 20)
+                        .resizable()
+                        .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
                     Text("개인정보 수집 및 이용 동의")

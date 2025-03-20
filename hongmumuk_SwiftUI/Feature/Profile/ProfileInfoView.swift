@@ -26,7 +26,7 @@ struct ProfileInfoView: View {
 
     var body: some View {
         VStack {
-            WebViewHeader(title: "내정보", showBottomLine: false, parentViewStore: parentViewStore)
+            WebViewHeader(title: "내 정보", showBottomLine: false, parentViewStore: parentViewStore)
             ProfileInfoTapButtonView(viewStore: viewStore)
             ProfileInfoTapView(viewStore: viewStore, parentViewStore: parentViewStore)
         }

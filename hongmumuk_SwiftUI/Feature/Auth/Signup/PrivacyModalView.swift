@@ -12,6 +12,7 @@ struct PrivacyModalView: View {
     var content: String
     var onDismiss: () -> Void
     var agreeAction: () -> Void
+    let urlString: String
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,22 +22,7 @@ struct PrivacyModalView: View {
                     .padding(.horizontal, 20)
                 
                 ZStack {
-                    scrollView
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, geometry.size.height * 0.2)
-                    
-                    VStack {
-                        Spacer()
-                        
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.white.opacity(0.15), Color.white.opacity(0.8)]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                        .frame(height: geometry.size.height * 0.3)
-                        .padding(.bottom, geometry.size.height * 0.1)
-                    }
-                    .allowsHitTesting(false)
+                    WebContentView(urlString: urlString)
                     
                     VStack {
                         Spacer()
@@ -48,7 +34,7 @@ struct PrivacyModalView: View {
                     }
                 }
             }
-            .presentationDetents([.medium])
+            .presentationDetents([.medium, .large])
         }
     }
     
@@ -58,8 +44,9 @@ struct PrivacyModalView: View {
             
             Button(action: onDismiss) {
                 Image("modalCloseIcon")
+                    .resizable()
+                    .frame(width: 30, height: 30)
             }
-            .frame(width: 30, height: 30)
         }
     }
     

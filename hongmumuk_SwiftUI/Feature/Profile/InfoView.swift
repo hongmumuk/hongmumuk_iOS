@@ -15,13 +15,20 @@ struct InfoView: View {
     @FocusState private var isNickNameFocused: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            nickNameTitle
-            nickNameTextFieldStack
-            emailTitle
-            emailTextFieldStack
-            Spacer()
-            buttonStack
+        ZStack(alignment: .bottom) {
+            if viewStore.showToast {
+                copyToast
+                    .padding(.bottom, 144)
+            }
+            
+            VStack(alignment: .leading, spacing: 0) {
+                nickNameTitle
+                nickNameTextFieldStack
+                emailTitle
+                emailTextFieldStack
+                Spacer()
+                buttonStack
+            }
         }
         .alert("로그아웃하시겠습니까?", isPresented: viewStore.binding(
             get: \.showLogoutAlert,
@@ -165,5 +172,23 @@ struct InfoView: View {
         Rectangle()
             .fill(Colors.GrayScale.grayscal45)
             .frame(width: 1, height: 12)
+    }
+    
+    private var copyToast: some View {
+        HStack(spacing: 10) {
+            Image("CheckWhiteIcon")
+                .resizable()
+                .frame(width: 20, height: 20)
+            
+            Text("닉네임을 수정했어요")
+                .fontStyle(Fonts.heading3Medium)
+                .foregroundColor(.white)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.black.opacity(0.7))
+        )
     }
 }

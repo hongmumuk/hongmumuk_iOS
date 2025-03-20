@@ -21,19 +21,22 @@ struct WebContentView: View {
 
 struct WKWebViewPresentable: UIViewRepresentable {
     let urlString: String
-
+    
     init(_ urlString: String) {
         self.urlString = urlString
     }
-
+    
     func makeUIView(context: Context) -> WKWebView {
         WKWebView()
     }
-
+    
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let url = URL(string: urlString) {
+        guard let url = URL(string: urlString) else { return }
+        if uiView.url != url {
             let request = URLRequest(url: url)
-            uiView.load(request)
+            DispatchQueue.main.async {
+                uiView.load(request)
+            }
         }
     }
 }
