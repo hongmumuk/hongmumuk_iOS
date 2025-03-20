@@ -17,8 +17,28 @@ struct ProfileInfoFeature: Reducer {
         var nickNameState: TextFieldState = .empty
         var nickNameErrorMessage: String? = nil
         
+        var currentPassword: String = ""
+        var currentPasswordState: TextFieldState = .empty
+        var currentPasswordErrorMessage: String? = nil
+        var currentPasswordVisible = false
+        var validChangeButton = false
+        var changeButtonText = "비밀번호 확인"
+        
+        var newPassword: String = ""
+        var newPasswordState: TextFieldState = .empty
+        var newPasswordErrorMessage: String? = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+        
+        var newPasswordConfirm: String = ""
+        var newPasswordConfirmState: TextFieldState = .empty
+        var newPasswordConfirmErrorMessage: String? = nil
+
         var todayString = ""
         var token: String = ""
+        
+        var showLogoutAlert = false
+        var showWithdrawAlert = false
+        
+        var pop = false
     }
     
     enum Action: Equatable {
@@ -26,19 +46,48 @@ struct ProfileInfoFeature: Reducer {
         case onDismiss
         case pickerSelectionChanged(Int)
         case checkUser(String)
+        
         case profileLoaded(TaskResult<ProfileModel>)
         case nickNameLoaded(TaskResult<Bool>)
+        case deleteAccountLoaded(TaskResult<Bool>)
+        case postPasswordLoaded(TaskResult<Bool>)
+        case logoutLoaded
+        case toRoot
         
         case nickNameChanged(String)
         case nickNameFocused(Bool)
         case nickNameOnSubmit
         case nickNameTextClear
         
+        case currentPasswordChanged(String)
+        case currentPasswordFocused(Bool)
+        case currentPasswordOnSubmit
+        case currentPasswordTextClear
+        case currentpasswordVisibleToggled
+        
+        case newPasswordChanged(String)
+        case newPasswordFocused(Bool)
+        case newPasswordOnSubmit
+        case newPasswordTextClear
+        
+        case newPasswordConfirmChanged(String)
+        case newPasswordConfirmFocused(Bool)
+        case newPasswordConfirmOnSubmit
+        case newPasswordConfirmTextClear
+
         case changeButtonTapped
+        case passwordConfirmButtonTapped
+        case logoutButtonTapped
+        case logoutConfirmButtonTapped
+        case withdrawButtonTapped
+        case withdrawConfirmButtonTapped
+        
+        case alertDismiss
     }
     
     @Dependency(\.profileClient) var profileClient
     @Dependency(\.keychainClient) var keychainClient
+    @Dependency(\.validationClient) var validationClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -52,6 +101,7 @@ struct ProfileInfoFeature: Reducer {
                 
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
+                        print("token", token)
                         await send(.checkUser(token))
                     }
                 }
@@ -80,7 +130,6 @@ struct ProfileInfoFeature: Reducer {
                 return .none
                 
             case let .profileLoaded(.failure(error)):
-                print(error)
                 // TODO: 에러 처리
                 return .none
                 
@@ -134,6 +183,155 @@ struct ProfileInfoFeature: Reducer {
                     state.nickNameState = .invalid
                     state.nickNameErrorMessage = "이미 사용 중인 닉네임입니다."
                 }
+                
+                return .none
+                
+            case .logoutButtonTapped:
+                state.showLogoutAlert = true
+                return .none
+                
+            case .logoutConfirmButtonTapped:
+                return .run { send in
+                    await keychainClient.remove(.accessToken)
+                    await keychainClient.remove(.refreshToken)
+                    
+                    await send(.logoutLoaded)
+                }
+
+            case .withdrawButtonTapped:
+                state.showWithdrawAlert = true
+                return .none
+                
+            case .withdrawConfirmButtonTapped:
+                let token = state.token
+                
+                return .run { send in
+                    let result = await TaskResult {
+                        try await profileClient.deleteAccount(token)
+                    }
+                    
+                    await send(.deleteAccountLoaded(result))
+                }
+                
+            case .deleteAccountLoaded(.success(_)):
+                return .run { send in
+                    await keychainClient.remove(.accessToken)
+                    await keychainClient.remove(.refreshToken)
+                    await send(.toRoot)
+                }
+                
+            case .toRoot:
+                state.pop = true
+                return .none
+                
+            case let .deleteAccountLoaded(.failure(error)):
+                // TODO: 에러 처리
+                return .none
+                
+            case .alertDismiss:
+                state.showLogoutAlert = false
+                state.showWithdrawAlert = false
+                return .none
+                
+            case .logoutLoaded:
+                state.pop = true
+                return .none
+                
+            case let .currentPasswordChanged(password):
+                state.currentPassword = password
+                
+                return .none
+                
+            case let .currentPasswordFocused(isFocused):
+                state.currentPasswordErrorMessage = nil
+                
+                return .none
+                
+            case .currentPasswordOnSubmit:
+                state.validChangeButton = validationClient.validatePassword(state.currentPassword)
+                
+                return .none
+
+            case .currentPasswordTextClear:
+                state.currentPassword = ""
+                state.currentPasswordState = .empty
+                state.currentPasswordErrorMessage = nil
+                state.validChangeButton = validationClient.validatePassword(state.currentPassword)
+                
+                return .none
+                
+            case .currentpasswordVisibleToggled:
+                state.currentPasswordVisible.toggle()
+                
+                return .none
+                
+            case .passwordConfirmButtonTapped:
+                let passowrd = state.currentPassword
+                let token = state.token
+                
+                return .run { send in
+                    let result = await TaskResult {
+                        try await profileClient.postPassword(token, passowrd)
+                    }
+                    
+                    await send(.postPasswordLoaded(result))
+                }
+                
+            case .postPasswordLoaded(.success):
+                state.validChangeButton = false
+                state.changeButtonText = "확인 완료"
+                state.currentPasswordErrorMessage = "현재 비밀번호와 일치합니다."
+                state.currentPasswordState = .codeVerified
+                
+                return .none
+                
+            case let .postPasswordLoaded(.failure(error)):
+                state.currentPasswordErrorMessage = "현재 비밀번호와 일치하지 않습니다."
+                state.currentPasswordState = .invalid
+                
+                return .none
+                
+            case let .newPasswordChanged(password):
+                state.newPassword = password
+                
+                return .none
+
+            case .newPasswordFocused:
+                return .none
+
+            case .newPasswordOnSubmit:
+                if !validationClient.validatePassword(state.newPassword) {
+                    state.newPasswordState = .invalid
+                }
+                
+                return .none
+
+            case .newPasswordTextClear:
+                state.newPassword = ""
+                state.newPasswordState = .empty
+                
+                return .none
+                
+            case let .newPasswordConfirmChanged(password):
+                state.newPasswordConfirm = password
+                return .none
+
+            case .newPasswordConfirmFocused:
+                return .none
+
+            case .newPasswordConfirmOnSubmit:
+                if state.newPasswordConfirm != state.newPassword {
+                    state.newPasswordState = .invalid
+                    state.newPasswordConfirmState = .invalid
+                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치하지 않습니다."
+                }
+                
+                return .none
+
+            case .newPasswordConfirmTextClear:
+                state.newPasswordConfirm = ""
+                state.newPasswordConfirmState = .empty
+                state.newPasswordConfirmErrorMessage = nil
                 
                 return .none
             }

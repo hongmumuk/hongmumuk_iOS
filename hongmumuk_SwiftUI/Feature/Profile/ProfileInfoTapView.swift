@@ -11,13 +11,14 @@ import ComposableArchitecture
 
 struct ProfileInfoTapView: View {
     @ObservedObject var viewStore: ViewStoreOf<ProfileInfoFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         TabView(selection: viewStore.binding(
             get: { $0.pickerSelection },
             send: ProfileInfoFeature.Action.pickerSelectionChanged
         )) {
-            InfoView(viewStore: viewStore)
+            InfoView(viewStore: viewStore, parentViewStore: parentViewStore)
                 .tag(0)
 
             PasswordView(viewStore: viewStore)
