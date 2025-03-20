@@ -13,8 +13,7 @@ struct DetailInfoView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            detailTitle
-            address
+            titleArea
             if !viewStore.keywords.isEmpty {
                 keywordItem
             }
@@ -22,16 +21,49 @@ struct DetailInfoView: View {
         .padding(.horizontal, 24)
     }
     
+    private var titleArea: some View {
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 12) {
+                detailTitle
+                address
+            }
+            
+            Spacer()
+            
+            if viewStore.isUser {
+                likeButton
+            }
+        }
+    }
+    
     private var detailTitle: some View {
         HStack(spacing: 8) {
-            Text("발바리네")
+            Text(viewStore.restaurantDetail.name)
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
-            Text("한식")
+            Text(viewStore.restaurantDetail.category)
                 .fontStyle(Fonts.heading3Bold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
+        .padding(.top, 42)
+    }
+    
+    private var likeButton: some View {
+        VStack(spacing: 0) {
+            Button(action: {
+                viewStore.send(.likeButtonTapped)
+            }) {
+                Image(viewStore.restaurantDetail.hasLiked ? "likeFilledIcon" : "likeIcon")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+            }
+            
+            Text("\(viewStore.restaurantDetail.likes)")
+                .fontStyle(Fonts.body2Medium)
+                .foregroundColor(Colors.GrayScale.grayscal45)
+        }
+        .frame(width: 28, height: 46)
         .padding(.top, 42)
     }
     
@@ -40,7 +72,7 @@ struct DetailInfoView: View {
             Image("distanceIcon")
                 .frame(width: 20, height: 20)
             
-            Text("서울 마포구 와우산로 51-6")
+            Text(viewStore.restaurantDetail.address)
                 .fontStyle(Fonts.body1Medium)
                 .foregroundColor(Colors.GrayScale.grayscale55)
             

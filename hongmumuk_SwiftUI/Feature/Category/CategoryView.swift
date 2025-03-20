@@ -63,7 +63,7 @@ struct CategoryView: View {
                         initialState: DetailFeature.State(id: id),
                         reducer: { DetailFeature() },
                         withDependencies: {
-                            $0.restaurantClient = RestaurantClient.testValue
+                            $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
                         }
                     )

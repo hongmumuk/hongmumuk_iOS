@@ -25,7 +25,6 @@ disabled_rules:
 opt_in_rules:
   - indentation_width                      # 인덴트 룰 적용
   - closure_end_indentation                # 클로저의 끝 괄호를 시작한 행과의 들여쓰기 맞춤
-  - empty_count                            # count보다 isEmpty 선호
   - empty_string                           # == ""보다 isEmpty 선호
   - sorted_imports                         # import 시 알파벳 순 정렬
   - sorted_enum_cases                      # enum 케이스 알파벳 순 정렬
