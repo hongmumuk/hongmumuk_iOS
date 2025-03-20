@@ -11,6 +11,7 @@ import SwiftUI
 
 struct LikeListView: View {
     @ObservedObject var viewStore: ViewStoreOf<LikeFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         if viewStore.showSkeletonLoading {
@@ -25,7 +26,7 @@ struct LikeListView: View {
             .padding(.top, 16)
         } else {
             if viewStore.sortedRestaurantList.isEmpty {
-                LikeEmptyView(viewStore: viewStore)
+                LikeEmptyView(viewStore: viewStore, parentViewStore: parentViewStore)
             } else {
                 VStack(spacing: 0) {
                     LikeFilterView(viewStore: viewStore)
