@@ -17,7 +17,7 @@ struct LikeClient {
 extension LikeClient: DependencyKey {
     static var liveValue: LikeClient = .init(
         getLikeList: { token in
-            let url = "\(Environment.baseUrl)/api/profile/liked"
+            let url = "\(Constant.baseUrl)/api/profile/liked"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ extension LikeClient: DependencyKey {
             return response.data!
         },
         postLike: { token, id in
-            let url = "\(Environment.baseUrl)/api/restaurant/like"
+            let url = "\(Constant.baseUrl)/api/restaurant/like"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
@@ -59,7 +59,7 @@ extension LikeClient: DependencyKey {
             return response.isSuccess
         },
         postDislike: { token, id in
-            let url = "\(Environment.baseUrl)/api/restaurant/dislike"
+            let url = "\(Constant.baseUrl)/api/restaurant/dislike"
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",

@@ -20,7 +20,7 @@ struct AuthClient {
 extension AuthClient: DependencyKey {
     static var liveValue: AuthClient = .init(
         login: { body in
-            let url = "\(Environment.baseUrl)/api/auth/login"
+            let url = "\(Constant.baseUrl)/api/auth/login"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
@@ -44,7 +44,7 @@ extension AuthClient: DependencyKey {
             return tokenData
         },
         sendVerificationEmail: { body in
-            let url = "\(Environment.baseUrl)/api/auth/send"
+            let url = "\(Constant.baseUrl)/api/auth/send"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
@@ -68,7 +68,7 @@ extension AuthClient: DependencyKey {
             return response.isSuccess
         },
         verifyEmailCode: { body in
-            let url = "\(Environment.baseUrl)/api/auth/verify"
+            let url = "\(Constant.baseUrl)/api/auth/verify"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
@@ -93,7 +93,7 @@ extension AuthClient: DependencyKey {
             return response.isSuccess
         },
         resetPassword: { body in
-            let url = "\(Environment.baseUrl)/api/auth/password"
+            let url = "\(Constant.baseUrl)/api/auth/password"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
@@ -115,7 +115,7 @@ extension AuthClient: DependencyKey {
             return response.isSuccess
         },
         signup: { body in
-            let url = "\(Environment.baseUrl)/api/auth/join"
+            let url = "\(Constant.baseUrl)/api/auth/join"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
             let response = try await AF.request(
@@ -140,7 +140,7 @@ extension AuthClient: DependencyKey {
             return response.isSuccess
         },
         token: { accessToken, refreshToken in
-            let url = "\(Environment.baseUrl)/api/auth/token"
+            let url = "\(Constant.baseUrl)/api/auth/token"
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
                 "Authorization": "Bearer \(accessToken)",

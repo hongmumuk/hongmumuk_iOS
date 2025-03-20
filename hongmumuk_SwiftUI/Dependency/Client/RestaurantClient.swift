@@ -17,7 +17,7 @@ struct RestaurantClient {
 extension RestaurantClient: DependencyKey {
     static var liveValue: RestaurantClient = .init(
         postRestaurantList: { body in
-            let url = "\(Environment.baseUrl)/api/category"
+            let url = "\(Constant.baseUrl)/api/category"
             let headers: HTTPHeaders = [
                 "accept": "*/*",
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ extension RestaurantClient: DependencyKey {
         },
         
         getRestaurantDetail: { id in
-            let url = "\(Environment.baseUrl)/api/restaurant"
+            let url = "\(Constant.baseUrl)/api/restaurant"
             
             let parameters: [String: Any] = [
                 "restaurantId": id,
@@ -67,7 +67,7 @@ extension RestaurantClient: DependencyKey {
         },
         
         getAuthedRestaurantDetail: { id, token in
-            let url = "\(Environment.baseUrl)/api/restaurant"
+            let url = "\(Constant.baseUrl)/api/restaurant"
             
             let parameters: [String: Any] = [
                 "restaurantId": id,
