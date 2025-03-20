@@ -37,7 +37,7 @@ extension Empty {
         case .likeUnAuth:
             "로그인 후 찜한 가게를 모아 보세요"
         case .networkError:
-            "인터넷 연결을 확인해 주세요"
+            "인터넷 연결 확인 후 앱을 재실행해 주세요"
         }
     }
     
