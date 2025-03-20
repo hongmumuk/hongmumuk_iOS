@@ -76,6 +76,8 @@
 		2FA097CF2D42A11000D01792 /* stag.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C82D42A11000D01792 /* stag.xcconfig */; };
 		2FA097D02D42A11000D01792 /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C62D42A11000D01792 /* dev.xcconfig */; };
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
+		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
+		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
@@ -254,6 +256,8 @@
 		2FA097C62D42A11000D01792 /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
 		2FA097C72D42A11000D01792 /* prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = prod.xcconfig; sourceTree = "<group>"; };
 		2FA097C82D42A11000D01792 /* stag.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = stag.xcconfig; sourceTree = "<group>"; };
+		2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
@@ -532,6 +536,15 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		2FA7B2462D85B97F00D847D8 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */,
+				2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		BE208FE72D633B860041A173 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +692,7 @@
 				2F0D50162D779D2A0035D7A4 /* RootFeature.swift */,
 				2F0D50172D779D2A0035D7A4 /* RootView.swift */,
 				2F0D501E2D779F080035D7A4 /* SplashView.swift */,
+				2FA7B2462D85B97F00D847D8 /* Onboarding */,
 				2F0D500C2D779D200035D7A4 /* Signup */,
 				2F0D4FFE2D779D1B0035D7A4 /* FindPassword */,
 				2F0D4FF82D779D160035D7A4 /* Login */,
@@ -1003,6 +1017,7 @@
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				2F0D50232D779FC20035D7A4 /* ResetPasswordModel.swift in Sources */,
 				2F0D4FF52D779D110035D7A4 /* EmailLoginView.swift in Sources */,
+				2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */,
 				2F0D4FF62D779D110035D7A4 /* EmailLoginFeature.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F0D4FE12D761DD70035D7A4 /* LoginButton.swift in Sources */,
@@ -1052,6 +1067,7 @@
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
 				BEC9505C2D7B1226002B02BB /* ProfileInfoTapView.swift in Sources */,
 				2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */,
+				2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */,
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
