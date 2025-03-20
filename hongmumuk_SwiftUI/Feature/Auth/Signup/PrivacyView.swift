@@ -163,7 +163,7 @@ struct PrivacyView: View {
             viewStore.send(.serviceAgreeToggled)
         }) {
             ZStack {
-                HStack(alignment: .top) {
+                HStack(alignment: .center) {
                     Image(viewStore.serviceAgree ? "checkBlueIcon" : "checkIcon")
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -192,7 +192,7 @@ struct PrivacyView: View {
             viewStore.send(.privacyAgreeToggled)
         }) {
             ZStack {
-                HStack(alignment: .top) {
+                HStack(alignment: .center) {
                     Image(viewStore.privacyAgree ? "checkBlueIcon" : "checkIcon")
                         .resizable()
                         .frame(width: 24, height: 24)
