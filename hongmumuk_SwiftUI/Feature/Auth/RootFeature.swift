@@ -25,7 +25,6 @@ struct RootFeature: Reducer {
         case search
         case categoryList(Category)
         case profile(ProfileSet)
-        case inqury
     }
 
     struct State: Equatable {
@@ -171,10 +170,6 @@ struct RootFeature: Reducer {
                 
             case let .profileButtonTapped(type):
                 state.navigationPath.append(.profile(type))
-                return .none
-                
-            case .inquryButtonTapped:
-                state.navigationPath.append(.inqury)
                 return .none
                 
             default:

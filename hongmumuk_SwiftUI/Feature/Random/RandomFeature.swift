@@ -13,14 +13,22 @@ struct RandomFeature: Reducer {
         var restaurantName: String = ""
         var restaurantCategory: String = ""
         var restrauntList = [RestaurantListModel]()
+        
+        var title: String = "메뉴 선택에 고민이 되시나요?"
+        var subTitle: String = "아래 랜덤 뽑기 버튼을 누르고 추천 받아 보세요"
+        var buttonTitle: String = "랜덤 뽑기"
+        
+        var startPick = false
+        var isAnimating = true
     }
     
     enum Action: Equatable {
         case onAppear
-        case retryButtonTapped
+        case randomButtonTapped
         case initailLoadingCompleted
         case restrauntListLoaded([RestaurantListModel])
         case restrauntListError(RestaurantListError)
+        case endAnimation
     }
     
     @Dependency(\.restaurantClient) var restaurantClient
@@ -33,11 +41,22 @@ struct RandomFeature: Reducer {
                     await send(.initailLoadingCompleted)
                 }
                 
-            case .retryButtonTapped:
-                let randomItem = getRandom(state: state)
-                state.restaurantName = randomItem.name
-                state.restaurantCategory = randomItem.category
+            case .randomButtonTapped:
+                if !state.startPick {
+                    state.startPick = true
+                    state.title = "오늘은 이 메뉴 어때요?"
+                    state.subTitle = "메뉴가 마음에 들지 않으면 다시 뽑아 보세요"
+                    state.buttonTitle = "다시 뽑기"
+                } else {
+                    let randomItem = getRandom(state: state)
+                    state.restaurantName = randomItem.name
+                    state.restaurantCategory = randomItem.category
+                }
                 
+                return .none
+                
+            case .endAnimation:
+                state.isAnimating = false
                 return .none
                 
             case .initailLoadingCompleted:

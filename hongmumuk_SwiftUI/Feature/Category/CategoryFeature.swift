@@ -50,9 +50,13 @@ struct CategoryFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                // TODO: - 좋아요 변경하고 SSOT 처리 해줘야. 리스트에 반영 됨
-                return fetchRestaurantList(for: state) { send in
-                    await send(.initailLoadingCompleted)
+                if state.showSkeletonLoading {
+                    // TODO: - 좋아요 변경하고 SSOT 처리 해줘야. 리스트에 반영 됨
+                    return fetchRestaurantList(for: state) { send in
+                        await send(.initailLoadingCompleted)
+                    }
+                } else {
+                    return .none
                 }
                 
             case .onDismiss:
@@ -73,8 +77,9 @@ struct CategoryFeature: Reducer {
                 return .none
                 
             case .inquryButtonTapped:
-                // TODO: 문의하기 이동
-                /// 링크 나오면 처리
+                if let url = URL(string: "https://forms.gle/e8X1RPPJCDWkwj5JA") {
+                    UIApplication.shared.open(url)
+                }
                 return .none
                 
             case .searchButtonTapped:

@@ -22,6 +22,7 @@ struct ProfileFeature: Reducer {
         case checkUser(String?)
         case loginButtonTapped
         case loginAlertDismissed
+        case inquryButtonTapped
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -54,6 +55,13 @@ struct ProfileFeature: Reducer {
                 
             case .loginAlertDismissed:
                 state.showLoginAlert = false
+                return .none
+                
+            case .inquryButtonTapped:
+                if let url = URL(string: "https://forms.gle/e8X1RPPJCDWkwj5JA") {
+                    UIApplication.shared.open(url)
+                }
+                
                 return .none
             }
         }

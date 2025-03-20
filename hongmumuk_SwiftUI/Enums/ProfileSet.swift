@@ -50,10 +50,10 @@ extension ProfileSet {
     var urlString: String {
         switch self {
         case .privacy:
-            return "https://akaseoyoung.notion.site/1ac630c6c92f80629108c2d5f946008d"
+            return "https://hongmumuk.notion.site/1ad0ca5d0d2580d6b94adcd47c7ec0da"
             
         case .service:
-            return "https://akaseoyoung.notion.site/1ac630c6c92f806b9dd7fd918b0356bb"
+            return "https://hongmumuk.notion.site/1ae0ca5d0d258062a937f648b35e4b00"
             
         default:
             return ""

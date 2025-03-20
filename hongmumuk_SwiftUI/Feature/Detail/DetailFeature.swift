@@ -120,7 +120,7 @@ struct DetailFeature: Reducer {
                 
             case let .reviewTapped(link):
                 guard let url = URL(string: link) else { return .none }
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url)
                 return .none
                 
             case .likeLoaded(.success):

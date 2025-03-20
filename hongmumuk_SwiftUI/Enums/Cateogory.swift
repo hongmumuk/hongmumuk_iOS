@@ -33,11 +33,11 @@ extension Category {
         case .western:
             return "양식"
         case .asian:
-            return "아시아"
+            return "아시안"
         case .fast:
             return "패·푸"
         case .snack:
-            return "간식"
+            return "분식"
         case .etc:
             return "기타"
         }
