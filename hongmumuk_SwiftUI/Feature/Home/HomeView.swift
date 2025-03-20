@@ -15,7 +15,10 @@ struct HomeView: View {
     @ObservedObject private var viewStore: ViewStoreOf<HomeFeature>
     @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<HomeFeature>, parentStore: StoreOf<RootFeature>) {
+    init(
+        store: StoreOf<HomeFeature>,
+        parentStore: StoreOf<RootFeature>
+    ) {
         self.store = store
         self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })

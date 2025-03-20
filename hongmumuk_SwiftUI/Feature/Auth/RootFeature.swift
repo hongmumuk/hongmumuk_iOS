@@ -15,7 +15,7 @@ struct RootFeature: Reducer {
              verifyEmail, resetPassword,
              home, like, random, search, categoryList(
                  Category
-             )
+             ), profile(ProfileSet), inqury
     }
     
     struct State: Equatable {
@@ -41,6 +41,9 @@ struct RootFeature: Reducer {
         case checkLoginStatus
         case setLoginStatus(Bool)
         case setLoadingStatus(Bool)
+        
+        case profileButtonTapped(ProfileSet)
+        case inquryButtonTapped
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -147,6 +150,14 @@ struct RootFeature: Reducer {
 
             case let .setLoadingStatus(isLoading):
                 state.isLoading = isLoading
+                return .none
+                
+            case let .profileButtonTapped(type):
+                state.navigationPath.append(.profile(type))
+                return .none
+                
+            case .inquryButtonTapped:
+                state.navigationPath.append(.inqury)
                 return .none
                 
             default:
