@@ -17,9 +17,9 @@ struct ListItemView: View {
             action(item)
         }) {
             HStack(spacing: 12) {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Colors.GrayScale.grayscale5)
-                    .stroke(Colors.GrayScale.grayscale5)
+                Image("thumbnailSmallIcon")
+                    .resizable()
+                    .cornerRadius(16)
                     .frame(width: 100, height: 100)
                 
                 VStack(alignment: .leading) {

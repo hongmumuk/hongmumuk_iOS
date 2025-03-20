@@ -50,6 +50,7 @@ struct CategoryFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                // TODO: - 좋아요 변경하고 SSOT 처리 해줘야. 리스트에 반영 됨
                 return fetchRestaurantList(for: state) { send in
                     await send(.initailLoadingCompleted)
                 }
@@ -136,7 +137,6 @@ struct CategoryFeature: Reducer {
                 await send(.restaurantListLoaded(list))
                 await extra(send)
             } catch {
-                print("error", error)
                 if let error = error as? RestaurantListError {
                     await send(.restaurantListError(error))
                 }

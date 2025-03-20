@@ -39,6 +39,12 @@ struct ProfileInfoFeature: Reducer {
         var showWithdrawAlert = false
         
         var pop = false
+        
+        var isButtonEnabled: Bool {
+            return newPasswordState == .nicknameVerified &&
+                newPasswordConfirmState == .nicknameVerified &&
+                currentPasswordState == .codeVerified
+        }
     }
     
     enum Action: Equatable {
@@ -51,6 +57,7 @@ struct ProfileInfoFeature: Reducer {
         case nickNameLoaded(TaskResult<Bool>)
         case deleteAccountLoaded(TaskResult<Bool>)
         case postPasswordLoaded(TaskResult<Bool>)
+        case resetPasswordLoaded(TaskResult<Bool>)
         case logoutLoaded
         case toRoot
         
@@ -81,11 +88,13 @@ struct ProfileInfoFeature: Reducer {
         case logoutConfirmButtonTapped
         case withdrawButtonTapped
         case withdrawConfirmButtonTapped
+        case newPasswordConfirmButtonTapped
         
         case alertDismiss
     }
     
     @Dependency(\.profileClient) var profileClient
+    @Dependency(\.authClient) var authClient
     @Dependency(\.keychainClient) var keychainClient
     @Dependency(\.validationClient) var validationClient
     
@@ -101,7 +110,6 @@ struct ProfileInfoFeature: Reducer {
                 
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
-                        print("token", token)
                         await send(.checkUser(token))
                     }
                 }
@@ -297,11 +305,16 @@ struct ProfileInfoFeature: Reducer {
                 return .none
 
             case .newPasswordFocused:
+                state.newPasswordState = .empty
+                state.newPasswordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+                
                 return .none
 
             case .newPasswordOnSubmit:
                 if !validationClient.validatePassword(state.newPassword) {
                     state.newPasswordState = .invalid
+                } else {
+                    state.newPasswordErrorMessage = ""
                 }
                 
                 return .none
@@ -314,16 +327,23 @@ struct ProfileInfoFeature: Reducer {
                 
             case let .newPasswordConfirmChanged(password):
                 state.newPasswordConfirm = password
+                state.newPasswordConfirmErrorMessage = ""
+                
                 return .none
 
             case .newPasswordConfirmFocused:
+                state.newPasswordConfirmState = .empty
+                
                 return .none
 
             case .newPasswordConfirmOnSubmit:
                 if state.newPasswordConfirm != state.newPassword {
-                    state.newPasswordState = .invalid
                     state.newPasswordConfirmState = .invalid
                     state.newPasswordConfirmErrorMessage = "비밀번호가 일치하지 않습니다."
+                } else {
+                    state.newPasswordState = .nicknameVerified
+                    state.newPasswordConfirmState = .nicknameVerified
+                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치합니다."
                 }
                 
                 return .none
@@ -333,6 +353,27 @@ struct ProfileInfoFeature: Reducer {
                 state.newPasswordConfirmState = .empty
                 state.newPasswordConfirmErrorMessage = nil
                 
+                return .none
+
+            case .newPasswordConfirmButtonTapped:
+                let email = state.profile.email
+                let password = state.newPasswordConfirm
+                
+                let body = ResetPasswordModel(email: email, newPassword: password)
+                
+                return .run { send in
+                    let result = await TaskResult {
+                        try await authClient.resetPassword(body)
+                    }
+                    
+                    await send(.resetPasswordLoaded(result))
+                }
+                
+            case .resetPasswordLoaded(.success):
+                state.pop = true
+                return .none
+
+            case let .resetPasswordLoaded(.failure(error)):
                 return .none
             }
         }

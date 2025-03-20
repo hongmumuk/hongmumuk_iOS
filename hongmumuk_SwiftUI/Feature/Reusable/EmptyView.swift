@@ -21,8 +21,18 @@ struct EmptyView: View {
         switch type {
         case .search:
             searchEmpty
+        case .networkError:
+            networkError
         case .like, .likeUnAuth:
             likeEmpty
+        }
+    }
+    
+    var networkError: some View {
+        VStack {
+            Spacer()
+            emptyView
+            Spacer()
         }
     }
     
@@ -50,7 +60,7 @@ struct EmptyView: View {
     
     var emptyView: some View {
         VStack(spacing: 0) {
-            Image("emptyIcon")
+            Image(type.iconName)
                 .frame(width: 180, height: 180)
                 .padding(.bottom, 12)
             
