@@ -25,24 +25,18 @@ struct RootView: View {
             send: { RootFeature.Action.setNavigationPath($0) }
         )) {
             Group {
-                if viewStore.isFirstLaunch {
-                    // firstlaunch인 경우
+                if viewStore.isLoading {
+                    SplashView()
+                        .onAppear {
+                            viewStore.send(.checkLoginStatus)
+                        }
+                } else if viewStore.isFirstLaunch {
                     OnboardingView(store: Store(initialState: OnboardingFeature.State(), reducer: OnboardingFeature.init), parentStore: store)
                 } else if viewStore.isLoggedIn {
-                    // 로그인이 되어있을 경우
                     HomeRootView(parentStore: store)
                         .navigationBarHidden(true)
-                } else if viewStore.isLoading {
-                    // 로그인이 되어있지 않고, 로딩중일 경우
-                    SplashView()
                 } else {
-                    // 로그인 안되어있고, 로딩중이 아닐 경우
                     LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
-                }
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    viewStore.send(.checkLoginStatus)
                 }
             }
             .fullScreenCover(isPresented: Binding(
@@ -171,7 +165,6 @@ struct RootView: View {
             }
         }
         .onAppear {
-            viewStore.send(.checkLoginStatus)
             viewStore.send(.onAppear)
         }
     }
