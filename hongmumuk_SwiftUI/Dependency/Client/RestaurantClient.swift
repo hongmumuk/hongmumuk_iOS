@@ -49,7 +49,7 @@ extension RestaurantClient: DependencyKey {
                 "Content-Type": "application/json"
             ]
             
-            let request = AF.request(
+            let request = APIClient.plain.request(
                 url,
                 method: .get,
                 parameters: parameters,
@@ -79,7 +79,7 @@ extension RestaurantClient: DependencyKey {
                 "Authorization": "Bearer \(token)"
             ]
             
-            let request = AF.request(
+            let request = APIClient.authorized.request(
                 url,
                 method: .get,
                 parameters: parameters,

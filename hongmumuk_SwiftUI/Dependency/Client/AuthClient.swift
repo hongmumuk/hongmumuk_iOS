@@ -23,7 +23,7 @@ extension AuthClient: DependencyKey {
             let url = "\(Constant.baseUrl)/api/auth/login"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
-            let response = try await AF.request(
+            let response = try await APIClient.plain.request(
                 url,
                 method: .post,
                 parameters: body,
@@ -32,7 +32,6 @@ extension AuthClient: DependencyKey {
             )
             .serializingDecodable(ResponseModel<AuthTokenResponseModel>.self)
             .value
-            print(response.code)
             guard response.isSuccess, let tokenData = response.data else {
                 switch response.code {
                 case "BAD400_1": throw LoginError.userNotFound
@@ -47,7 +46,7 @@ extension AuthClient: DependencyKey {
             let url = "\(Constant.baseUrl)/api/auth/send"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
-            let response = try await AF.request(
+            let response = try await APIClient.plain.request(
                 url,
                 method: .post,
                 parameters: body,
@@ -71,7 +70,7 @@ extension AuthClient: DependencyKey {
             let url = "\(Constant.baseUrl)/api/auth/verify"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
-            let response = try await AF.request(
+            let response = try await APIClient.plain.request(
                 url,
                 method: .post,
                 parameters: body,
@@ -96,7 +95,7 @@ extension AuthClient: DependencyKey {
             let url = "\(Constant.baseUrl)/api/auth/password"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
-            let response = try await AF.request(
+            let response = try await APIClient.plain.request(
                 url,
                 method: .patch,
                 parameters: body,
@@ -118,7 +117,7 @@ extension AuthClient: DependencyKey {
             let url = "\(Constant.baseUrl)/api/auth/join"
             let headers: HTTPHeaders = ["Content-Type": "application/json"]
             
-            let response = try await AF.request(
+            let response = try await APIClient.plain.request(
                 url,
                 method: .post,
                 parameters: body,
@@ -148,7 +147,7 @@ extension AuthClient: DependencyKey {
             ]
             
             // API 요청을 보내는 부분
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .get,
                 headers: headers
