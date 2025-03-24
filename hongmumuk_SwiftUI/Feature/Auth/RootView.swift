@@ -11,8 +11,6 @@ import SwiftUI
 struct RootView: View {
     let store: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<RootFeature>
-//    @StateObject private var networkManager = NetworkManager.shared
-//    @State private var isPresented: Bool = false
     
     init(store: StoreOf<RootFeature>) {
         self.store = store
@@ -47,14 +45,12 @@ struct RootView: View {
                     viewStore.send(.checkLoginStatus)
                 }
             }
-//            .onChange(of: networkManager.isConnected) { _, isConnected in
-//                if !isConnected {
-//                    isPresented = true
-//                }
-//            }
-//            .fullScreenCover(isPresented: $isPresented) {
-//                NetworkErrorView()
-//            }
+            .fullScreenCover(isPresented: Binding(
+                get: { viewStore.showNetworkError },
+                set: { viewStore.send(.setShowNetworkError($0)) }
+            )) {
+                NetworkErrorView()
+            }
             .navigationDestination(for: RootFeature.ActiveScreen.self) { screen in
                 switch screen {
                 case .login:
@@ -176,41 +172,7 @@ struct RootView: View {
         }
         .onAppear {
             viewStore.send(.checkLoginStatus)
+            viewStore.send(.onAppear)
         }
     }
 }
-
-//    .navigationDestination(
-//        isPresented: viewStore.binding(
-//            get: { $0.activeScreen != .none && $0.activeScreen != .random },
-//            send: .onDismiss
-//        )
-//    ) {
-//        let screen = viewStore.activeScreen
-//        if case .search = screen {
-//            SearchView(
-//                store: Store(
-//                    initialState: SearchFeature.State(),
-//                    reducer: { SearchFeature() },
-//                    withDependencies: {
-//                        $0.restaurantClient = RestaurantClient.liveValue
-//                        $0.userDefaultsClient = UserDefaultsClient.liveValue
-//                    }
-//                )
-//            )
-//            .navigationBarHidden(true)
-//
-//        } else if case let .cateogryList(category) = screen {
-//            CategoryView(
-//                store: Store(
-//                    initialState: CategoryFeature.State(
-//                        cateogry: category
-//                    ),
-//                    reducer: { CategoryFeature() },
-//                    withDependencies: {
-//                        $0.restaurantClient = RestaurantClient.liveValue
-//                    }
-//                )
-//            )
-//            .navigationBarHidden(true)
-//        }

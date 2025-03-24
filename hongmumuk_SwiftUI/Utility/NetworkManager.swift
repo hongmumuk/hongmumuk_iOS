@@ -14,12 +14,14 @@ final class NetworkManager: ObservableObject {
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "NetworkManager")
 
-    @Published var isConnected: Bool = false
+    @Published var isConnected: Bool = true
 
     private init() {
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
-                self?.isConnected = (path.status == .satisfied)
+                if path.status != .satisfied {
+                    self?.isConnected = false
+                }
             }
         }
         
