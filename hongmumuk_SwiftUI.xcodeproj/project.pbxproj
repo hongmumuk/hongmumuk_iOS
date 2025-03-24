@@ -483,6 +483,7 @@
 				2F68B49C2D70D09A00548850 /* CommonTextfieldStyle.swift */,
 				BE2D70C92D818710002FA07C /* NetworkManager.swift */,
 				2F85BD572D9163590049FA77 /* NetworkInterceptor.swift */,
+				2F85BD5B2D916BFF0049FA77 /* Notification.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1032,6 +1033,7 @@
 				BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */,
 				BECC4A182D69A86400F72FAF /* RestaurantDetailError.swift in Sources */,
 				BECC4A1B2D69AB4E00F72FAF /* DetailFeature.swift in Sources */,
+				2F85BD5C2D916BFF0049FA77 /* Notification.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				BE2090112D64BE980041A173 /* EmptyView.swift in Sources */,
 				BE25DD0D2D79D05B006B819E /* WebViewHeader.swift in Sources */,
