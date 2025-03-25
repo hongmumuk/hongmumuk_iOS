@@ -14,6 +14,7 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
     var frontDistance: Double
     var backDistance: Double
     var category: String
+    var imageUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -22,6 +23,7 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
         case frontDistance = "front"
         case backDistance = "back"
         case category
+        case imageUrl
     }
     
     init(from decoder: any Decoder) throws {
@@ -32,6 +34,7 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
         likes = try container.decode(Int.self, forKey: .likes)
         frontDistance = try container.decode(Double.self, forKey: .frontDistance)
         backDistance = try container.decode(Double.self, forKey: .backDistance)
+        imageUrl = try container.decode(String?.self, forKey: .imageUrl)
         
         // category 값을 디코딩 후, 소문자로 변환하여 Category 열거형으로 변환
         let categoryRaw = try container.decode(String.self, forKey: .category)
@@ -46,7 +49,8 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
         likes: Int,
         frontDistance: Double,
         backDistance: Double,
-        category: String
+        category: String,
+        imageUrl: String?
     ) {
         self.id = id
         self.name = name
@@ -54,6 +58,7 @@ struct RestaurantListModel: Equatable, Codable, Identifiable {
         self.frontDistance = frontDistance
         self.backDistance = backDistance
         self.category = category
+        self.imageUrl = imageUrl
     }
 }
 
@@ -85,7 +90,8 @@ extension RestaurantListModel {
                 likes: Int.random(in: 1 ... 100),
                 frontDistance: Double.random(in: 1 ... 500),
                 backDistance: Double.random(in: 1 ... 500),
-                category: Category.allCases.randomElement()!.displayName
+                category: Category.allCases.randomElement()!.displayName,
+                imageUrl: "https://hongmumuk.s3.ap-northeast-2.amazonaws.com/da2f8019-ffcd-4d63-9167-c4d0c5748508.webp"
             )
         }
     }
