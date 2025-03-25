@@ -16,7 +16,9 @@ struct RandomFeature: Reducer {
     struct State: Equatable {
         var isLoading = true
         var restaurantName: String = ""
-        var restaurantCategory: String = ""
+        var restaurantCategory: Category = .korean
+        var restaurantCategoryName: String = ""
+        var restaurantImageUrl: String = ""
         var restaurantId: Int = 0
         var restrauntList = [RestaurantListModel]()
         
@@ -64,7 +66,9 @@ struct RandomFeature: Reducer {
                 } else {
                     let randomItem = getRandom(state: state)
                     state.restaurantName = randomItem.name
-                    state.restaurantCategory = randomItem.category.displayName
+                    state.restaurantCategoryName = randomItem.category.displayName
+                    state.restaurantCategory = randomItem.category
+                    state.restaurantImageUrl = randomItem.imageUrl ?? ""
                     state.restaurantId = randomItem.id
                 }
                 
@@ -87,7 +91,9 @@ struct RandomFeature: Reducer {
                 state.restrauntList = list
                 let randomItem = getRandom(state: state)
                 state.restaurantName = randomItem.name
-                state.restaurantCategory = randomItem.category.displayName
+                state.restaurantCategoryName = randomItem.category.displayName
+                state.restaurantCategory = randomItem.category
+                state.restaurantImageUrl = randomItem.imageUrl ?? ""
                 state.restaurantId = randomItem.id
                 
                 return .none

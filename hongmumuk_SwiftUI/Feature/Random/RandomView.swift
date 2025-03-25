@@ -87,10 +87,34 @@ struct RandomView: View {
     }
     
     var image: some View {
-        Image("thumbnailBigIcon")
-            .resizable()
-            .cornerRadius(24)
-            .frame(width: 240, height: 240)
+        OptimizedAsyncImage(url: URL(string: viewStore.restaurantImageUrl),
+                            targetSize: .init(width: 500, height: 500))
+        { image in
+            image
+                .resizable()
+                .scaledToFill()
+                .frame(width: 240, height: 240)
+        } placeholder: {
+            ZStack {
+                Color.clear
+                    .frame(width: 240, height: 240)
+                
+                Image(viewStore.restaurantCategory.rawValue)
+                    .resizable()
+                    .frame(width: 48, height: 48)
+            }
+        }
+        .cornerRadius(24)
+        .background(
+            RoundedRectangle(cornerRadius: 24)
+                .fill(Colors.GrayScale.grayscale5)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 24)
+                .strokeBorder(Colors.Border.neutral, lineWidth: 1)
+        )
+        .frame(width: 240, height: 240)
+        .id(viewStore.restaurantImageUrl)
     }
     
     var restaurantInfo: some View {
@@ -99,7 +123,7 @@ struct RandomView: View {
                 .fontStyle(Fonts.heading2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
-            Text(viewStore.restaurantCategory)
+            Text(viewStore.restaurantCategoryName)
                 .fontStyle(Fonts.body2SemiBold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
