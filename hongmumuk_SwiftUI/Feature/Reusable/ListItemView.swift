@@ -17,11 +17,17 @@ struct ListItemView: View {
             action(item)
         }) {
             HStack(spacing: 12) {
-                Image("thumbnailSmallIcon")
-                    .resizable()
-                    .cornerRadius(16)
-                    .frame(width: 100, height: 100)
-                
+                AsyncImage(url: URL(string: item.imageUrl ?? "")) { image in
+                    image.resizable()
+                } placeholder: {
+                    Image("thumbnailSmallIcon")
+                        .resizable()
+                        .cornerRadius(16)
+                        .frame(width: 100, height: 100)
+                }
+                .cornerRadius(16)
+                .frame(width: 100, height: 100)
+
                 VStack(alignment: .leading) {
                     Text(item.name)
                         .lineLimit(1)
