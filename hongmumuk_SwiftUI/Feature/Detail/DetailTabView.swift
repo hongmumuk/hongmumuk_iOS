@@ -36,7 +36,7 @@ struct DetailTabView: View {
     
     private var copyToast: some View {
         HStack(spacing: 10) {
-            Image("CheckWhiteIcon")
+            Image("checkWhiteIcon")
                 .resizable()
                 .frame(width: 20, height: 20)
             
