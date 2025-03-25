@@ -51,7 +51,10 @@ struct OnboardingView: View {
                     backgroundColor: Colors.Primary.normal,
                     textColor: .white,
                     action: {
-                        parentStore.send(.setNavigationRoot(.login))
+                        Task {
+                            await parentStore.send(.onboardingCompleted)
+                            await parentStore.send(.setNavigationRoot(.home))
+                        }
                     }
                 )
                 .frame(height: 60)
@@ -59,7 +62,10 @@ struct OnboardingView: View {
                 .padding(.bottom, 28)
                 
                 Button(action: {
-                    parentStore.send(.setNavigationRoot(.home))
+                    Task {
+                        await parentStore.send(.onboardingCompleted)
+                        await parentStore.send(.setNavigationRoot(.home))
+                    }
                 }, label: {
                     Text("비회원으로 시작하기")
                         .fontStyle(Fonts.body1Medium)

@@ -25,7 +25,7 @@ extension ProfileClient: DependencyKey {
                 "Authorization": "Bearer \(token)"
             ]
             
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .get,
                 headers: headers
@@ -44,7 +44,7 @@ extension ProfileClient: DependencyKey {
                 "Authorization": "Bearer \(token)"
             ]
 
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .patch,
                 headers: headers
@@ -64,7 +64,7 @@ extension ProfileClient: DependencyKey {
                 "Authorization": "Bearer \(token)"
             ]
 
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .delete,
                 headers: headers
@@ -87,7 +87,7 @@ extension ProfileClient: DependencyKey {
             
             let parameters = ["password": password]
             
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .post,
                 parameters: parameters,

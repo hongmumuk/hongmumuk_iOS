@@ -24,7 +24,7 @@ extension LikeClient: DependencyKey {
                 "Authorization": "Bearer \(token)"
             ]
             
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .get,
                 headers: headers
@@ -45,7 +45,7 @@ extension LikeClient: DependencyKey {
             
             let parameters = ["id": id]
             
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .post,
                 parameters: parameters,
@@ -68,7 +68,7 @@ extension LikeClient: DependencyKey {
             
             let parameters = ["id": id]
             
-            let response = try await AF.request(
+            let response = try await APIClient.authorized.request(
                 url,
                 method: .post,
                 parameters: parameters,

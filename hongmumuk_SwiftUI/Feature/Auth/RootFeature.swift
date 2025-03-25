@@ -55,6 +55,8 @@ struct RootFeature: Reducer {
         case signupPassword(SignupPasswordFeature.Action)
         case resetPassword(ResetPasswordFeature.Action)
         case resetAllFeatureStates
+        case logout
+        case onboardingCompleted
         
         case resetStackAndLoadHome
         
@@ -83,9 +85,7 @@ struct RootFeature: Reducer {
         Scope(state: \State.resetPassword, action: /Action.resetPassword) {
             ResetPasswordFeature()
         }
-        Scope(state: \State.resetPassword, action: /Action.resetPassword) {
-            ResetPasswordFeature()
-        }
+        
         Reduce { state, action in
             switch action {
             case let .navigationTo(screen):
@@ -101,24 +101,34 @@ struct RootFeature: Reducer {
                 return .none
                 
             case .onAppear:
-                let stream = AsyncStream<Bool> { continuation in
-                    let cancellable = NetworkManager.shared.$isConnected
-                        .filter { !$0 }
-                        .sink { isConnected in
-                            continuation.yield(isConnected)
+                return .merge(
+                    // 로그아웃 알림 수신
+                    .run { send in
+                        for await _ in NotificationCenter.default.notifications(named: .shouldLogout) {
+                            await send(.logout)
                         }
+                    },
                     
-                    continuation.onTermination = { _ in
-                        cancellable.cancel()
+                    // 네트워크 끊김 감지
+                    .run { send in
+                        let stream = AsyncStream<Bool> { continuation in
+                            let cancellable = NetworkManager.shared.$isConnected
+                                .filter { !$0 }
+                                .sink { isConnected in
+                                    continuation.yield(isConnected)
+                                }
+                            
+                            continuation.onTermination = { _ in
+                                cancellable.cancel()
+                            }
+                        }
+                        
+                        for await isConnected in stream {
+                            await send(.setShowNetworkError(!isConnected))
+                        }
                     }
-                }
+                )
                 
-                return .run { send in
-                    for await isConnected in stream {
-                        await send(.setShowNetworkError(!isConnected))
-                    }
-                }
-
             case let .setShowNetworkError(isShow):
                 if isShow {
                     state.showNetworkError = true
@@ -162,53 +172,65 @@ struct RootFeature: Reducer {
                 state.resetPassword = ResetPasswordFeature.State()
                 return .none
                 
+            // onboarding
+            case .onboardingCompleted:
+                state.isFirstLaunch = false
+                return .run { _ in
+                    await userDefaultsClient.setBool(true, .isNotFirstLaunch)
+                }
+                
+            case .logout:
+                state.isLoggedIn = false
+                state.navigationPath = [.login]
+                return .run { _ in
+                    await keychainClient.remove(.accessToken)
+                    await keychainClient.remove(.refreshToken)
+                }
+                
             case .checkLoginStatus:
                 return .run { send in
-                    let isNotFirstLaunch = await userDefaultsClient.getBool(.isNotFirstLaunch) ?? false
+                    await send(.setLoadingStatus(true))
                     
-                    if isNotFirstLaunch {
-                        await send(.setFirstLaunch(false))
-                    } else {
-                        // 첫 실행임을 기록하고, isFirstLaunch를 true로 설정
+                    try? await Task.sleep(nanoseconds: 1_000_000_000)
+                    
+                    let isNotFirstLaunch = await userDefaultsClient.getBool(.isNotFirstLaunch) ?? false
+                    let isFirstLaunch = !isNotFirstLaunch
+                    await send(.setFirstLaunch(isFirstLaunch))
+                    
+                    // 앱 첫 실행
+                    if isFirstLaunch {
                         await keychainClient.remove(.accessToken)
                         await keychainClient.remove(.refreshToken)
-                        await userDefaultsClient.setBool(true, .isNotFirstLaunch)
-                        await send(.setFirstLaunch(true))
+                        await send(.setLoginStatus(false))
+                        await send(.setLoadingStatus(false))
                         return
                     }
-
+                    
+                    // 앱 첫 실행 아닐 경우
                     let accessToken = await keychainClient.getString(.accessToken)
                     let refreshToken = await keychainClient.getString(.refreshToken)
-                    print("accessToken: \(accessToken), refreshToken: \(refreshToken)")
                     
                     if let accessToken, !accessToken.isEmpty {
-                        // 액세스 토큰이 유효한지 확인
                         if isValidAccessToken(accessToken) {
                             await send(.setLoginStatus(true))
-                        } else {
-                            // 액세스 토큰 만료
-                            if let refreshToken, !refreshToken.isEmpty {
-                                do {
-                                    // 토큰 재발급 및 키체인 저장
-                                    let newTokens: AuthTokenResponseModel = try await authClient.token(accessToken, refreshToken)
-                                    await keychainClient.setString(newTokens.accessToken, .accessToken)
-                                    await keychainClient.setString(newTokens.refreshToken, .refreshToken)
-                                    
-                                    await send(.setLoginStatus(true))
-                                } catch {
-                                    // 리프레쉬 토큰 에러
-                                    await send(.setLoginStatus(false))
-                                }
-                            } else {
-                                // 리프레쉬 토큰 없음
+                        } else if let refreshToken, !refreshToken.isEmpty {
+                            do {
+                                let newToken = try await authClient.token(accessToken, refreshToken)
+                                await keychainClient.setString(newToken.accessToken, .accessToken)
+                                await keychainClient.setString(newToken.refreshToken, .refreshToken)
+                                await send(.setLoginStatus(true))
+                            } catch {
+                                await keychainClient.remove(.accessToken)
+                                await keychainClient.remove(.refreshToken)
                                 await send(.setLoginStatus(false))
                             }
+                        } else {
+                            await send(.setLoginStatus(false))
                         }
                     } else {
-                        // 둘다 empty
                         await send(.setLoginStatus(false))
                     }
-                    // 끝 끝
+                    
                     await send(.setLoadingStatus(false))
                 }
                 
@@ -234,7 +256,7 @@ struct RootFeature: Reducer {
         }
     }
     
-    // TODO: - 토큰 에러 확인..
+    // 토큰 만료 앱 진입시 확인
     func isValidAccessToken(_ token: String) -> Bool {
         let components = token.components(separatedBy: ".")
         guard components.count == 3 else {
