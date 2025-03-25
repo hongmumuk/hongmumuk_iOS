@@ -64,7 +64,7 @@ struct RandomFeature: Reducer {
                 } else {
                     let randomItem = getRandom(state: state)
                     state.restaurantName = randomItem.name
-                    state.restaurantCategory = randomItem.category
+                    state.restaurantCategory = randomItem.category.displayName
                     state.restaurantId = randomItem.id
                 }
                 
@@ -87,7 +87,7 @@ struct RandomFeature: Reducer {
                 state.restrauntList = list
                 let randomItem = getRandom(state: state)
                 state.restaurantName = randomItem.name
-                state.restaurantCategory = randomItem.category
+                state.restaurantCategory = randomItem.category.displayName
                 state.restaurantId = randomItem.id
                 
                 return .none

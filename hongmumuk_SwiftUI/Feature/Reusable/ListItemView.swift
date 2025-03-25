@@ -17,15 +17,33 @@ struct ListItemView: View {
             action(item)
         }) {
             HStack(spacing: 12) {
-                AsyncImage(url: URL(string: item.imageUrl ?? "")) { image in
-                    image.resizable()
-                } placeholder: {
-                    Image("thumbnailSmallIcon")
+                OptimizedAsyncImage(
+                    url: URL(string: item.imageUrl ?? ""),
+                    targetSize: CGSize(width: 300, height: 300)
+                ) { image in
+                    image
                         .resizable()
-                        .cornerRadius(16)
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
+                } placeholder: {
+                    ZStack {
+                        Color.clear
+                            .frame(width: 100, height: 100)
+                        
+                        Image(item.category.rawValue)
+                            .resizable()
+                            .frame(width: 48, height: 48)
+                    }
                 }
                 .cornerRadius(16)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Colors.GrayScale.grayscale5)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .strokeBorder(Colors.Border.neutral, lineWidth: 1)
+                )
                 .frame(width: 100, height: 100)
 
                 VStack(alignment: .leading) {
@@ -35,7 +53,7 @@ struct ListItemView: View {
                         .foregroundColor(Colors.GrayScale.grayscale95)
                         .padding(.bottom, 4)
                     
-                    Text(item.category)
+                    Text(item.category.displayName)
                         .fontStyle(Fonts.body2SemiBold)
                         .foregroundColor(Colors.GrayScale.grayscal45)
                         .padding(.bottom, 16)
