@@ -5,10 +5,14 @@
 //  Created by Park Seyoung on 3/4/25.
 //
 
-import ComposableArchitecture
+import Combine
 import SwiftUI
 
+import ComposableArchitecture
+
 struct RootFeature: Reducer {
+    @StateObject private var networkManager = NetworkManager.shared
+    
     enum ActiveScreen: Equatable, Hashable {
         case splash
         case onboarding
@@ -37,11 +41,14 @@ struct RootFeature: Reducer {
         var isLoggedIn: Bool = false
         var isLoading: Bool = true
         var isFirstLaunch: Bool = true
+        
+        var showNetworkError: Bool = false
     }
     
     enum Action: Equatable {
         case navigationTo(ActiveScreen)
         case setNavigationRoot(ActiveScreen)
+        case onAppear
         case onDismiss
         case setNavigationPath([ActiveScreen])
         case emailLogin(EmailLoginFeature.Action)
@@ -58,6 +65,8 @@ struct RootFeature: Reducer {
         
         case profileButtonTapped(ProfileSet)
         case inquryButtonTapped
+        
+        case setShowNetworkError(Bool)
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -89,6 +98,32 @@ struct RootFeature: Reducer {
                 
             case let .setNavigationRoot(path):
                 state.navigationPath = [path]
+                return .none
+                
+            case .onAppear:
+                let stream = AsyncStream<Bool> { continuation in
+                    let cancellable = NetworkManager.shared.$isConnected
+                        .filter { !$0 }
+                        .sink { isConnected in
+                            continuation.yield(isConnected)
+                        }
+                    
+                    continuation.onTermination = { _ in
+                        cancellable.cancel()
+                    }
+                }
+                
+                return .run { send in
+                    for await isConnected in stream {
+                        await send(.setShowNetworkError(!isConnected))
+                    }
+                }
+
+            case let .setShowNetworkError(isShow):
+                if isShow {
+                    state.showNetworkError = true
+                }
+                
                 return .none
                 
             case .onDismiss:
