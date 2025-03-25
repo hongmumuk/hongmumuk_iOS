@@ -101,7 +101,7 @@ struct RandomView: View {
                 
                 Image(viewStore.restaurantCategory.rawValue)
                     .resizable()
-                    .frame(width: 48, height: 48)
+                    .frame(width: 115, height: 115)
             }
         }
         .cornerRadius(24)
