@@ -53,7 +53,6 @@ struct OnboardingView: View {
                     action: {
                         Task {
                             await parentStore.send(.onboardingCompleted)
-                            await parentStore.send(.setNavigationRoot(.home))
                         }
                     }
                 )
