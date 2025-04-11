@@ -109,5 +109,6 @@ iOSInjectionProject/
 
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
+hongmumuk_SwiftUI/Localization/Script/hongmumuk-localization-456509-c03bc9f5eaee.json
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
