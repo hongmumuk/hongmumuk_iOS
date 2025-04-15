@@ -35,7 +35,6 @@ struct LikeFilterView: View {
     }
     
     private var restrauntCntText: some View {
-        
         Text("restaurant_count".localized(variables: viewStore.restrauntCount))
             .fontStyle(Fonts.body1Medium)
             .foregroundColor(Colors.GrayScale.grayscal45)

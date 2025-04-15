@@ -36,7 +36,7 @@ extension String {
     
     // 주어진 부분 키워드가 문자열 내에 몇 번 등장하는지 반환
     func countOccurrences(of keyword: Keyword, options: CompareOptions = .literal) -> Int {
-        let keywordString = keyword.rawValue
+        let keywordString = keyword.koreanValue
         
         guard !keywordString.isEmpty else { return 0 }
         var count = 0
