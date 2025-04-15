@@ -43,7 +43,7 @@ struct DetailReviewView: View {
             Image("naverIcon")
                 .frame(width: 16, height: 16)
             
-            Text("네이버 블로그 검색 기반 결과입니다")
+            Text("source_from_naverBlog".localized())
                 .fontStyle(Fonts.body1SemiBold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
