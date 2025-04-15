@@ -22,7 +22,7 @@ struct ProfileInfoFeature: Reducer {
         var currentPasswordErrorMessage: String? = nil
         var currentPasswordVisible = false
         var validChangeButton = false
-        var changeButtonText = "비밀번호 확인"
+        var changeButtonText = "confirm_password".localized()
         
         var newPassword: String = ""
         var newPasswordState: TextFieldState = .empty
@@ -207,7 +207,7 @@ struct ProfileInfoFeature: Reducer {
                 
                 if error == .duplicate {
                     state.nickNameState = .invalid
-                    state.nickNameErrorMessage = "이미 사용 중인 닉네임입니다."
+                    state.nickNameErrorMessage = "nickname_already_used".localized()
                 }
                 
                 return .none
@@ -306,13 +306,13 @@ struct ProfileInfoFeature: Reducer {
             case .postPasswordLoaded(.success):
                 state.validChangeButton = false
                 state.changeButtonText = "확인 완료"
-                state.currentPasswordErrorMessage = "현재 비밀번호와 일치합니다."
+                state.currentPasswordErrorMessage = "same_as_current_password".localized()
                 state.currentPasswordState = .codeVerified
                 
                 return .none
                 
             case let .postPasswordLoaded(.failure(error)):
-                state.currentPasswordErrorMessage = "현재 비밀번호와 일치하지 않습니다."
+                state.currentPasswordErrorMessage = "not_same_as_current_password".localized()
                 state.currentPasswordState = .invalid
                 
                 return .none
@@ -361,7 +361,7 @@ struct ProfileInfoFeature: Reducer {
                 } else {
                     state.newPasswordState = .nicknameVerified
                     state.newPasswordConfirmState = .nicknameVerified
-                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치합니다."
+                    state.newPasswordConfirmErrorMessage = "passwords_match".localized()
                 }
                 
                 return .none

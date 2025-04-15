@@ -71,7 +71,7 @@ struct EmailLoginView: View {
                     text: viewStore.password,
                     state: viewStore.passwordState,
                     message: viewStore.passwordErrorMessage,
-                    placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                    placeholder: "enter_password_with_rules_2".localized(),
                     isSecure: !viewStore.passwordVisible,
                     showAtSymbol: false,
                     showSuffix: false,

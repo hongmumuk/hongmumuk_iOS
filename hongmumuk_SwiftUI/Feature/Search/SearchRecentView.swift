@@ -44,7 +44,7 @@ struct RecentSearchView: View {
     private var recentSearchEmptyTextView: some View {
         HStack {
             Spacer()
-            Text("최근 검색 결과가 없습니다.")
+            Text("no_recent_search_results".localized())
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
             Spacer()

@@ -75,7 +75,7 @@ struct PrivacyView: View {
                 }
                 
                 NextButton(
-                    title: "다음으로",
+                    title: "next".localized(),
                     isActive: viewStore.isContinueButtonEnabled,
                     action: {
                         viewStore.send(.continueButtonTapped)

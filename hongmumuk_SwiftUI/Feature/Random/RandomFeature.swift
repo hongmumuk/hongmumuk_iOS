@@ -61,7 +61,7 @@ struct RandomFeature: Reducer {
                 if !state.startPick {
                     state.startPick = true
                     state.title = "menu_suggestion_today".localized()
-                    state.subTitle = "메뉴가 마음에 들지 않으면 다시 뽑아 보세요"
+                    state.subTitle = "retry_random_menu".localized()
                     state.buttonTitle = "다시 뽑기"
                 } else {
                     let randomItem = getRandom(state: state)

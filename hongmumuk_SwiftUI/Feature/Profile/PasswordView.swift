@@ -106,7 +106,7 @@ struct PasswordView: View {
             text: viewStore.newPassword,
             state: viewStore.newPasswordState,
             message: viewStore.newPasswordErrorMessage,
-            placeholder: "새로운 비밀번호를 한 번 더 입력해 주세요",
+            placeholder: "reenter_new_password".localized(),
             isSecure: true,
             onTextChanged: { viewStore.send(.newPasswordChanged($0)) },
             onFocusedChanged: { viewStore.send(.newPasswordFocused($0)) },

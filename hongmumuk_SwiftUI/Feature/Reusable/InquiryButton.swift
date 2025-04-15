@@ -27,7 +27,7 @@ struct InquiryButton: View {
     }
     
     private var inquryText: some View {
-        Text("지금 찾고 있는 식당이 없다면?")
+        Text("no_matching_restaurant".localized())
             .fontStyle(Fonts.heading3Medium)
             .foregroundColor(Colors.GrayScale.grayscal45)
             .padding(.bottom, 12)

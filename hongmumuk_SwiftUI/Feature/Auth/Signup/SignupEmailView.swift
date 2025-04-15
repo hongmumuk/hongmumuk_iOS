@@ -36,7 +36,7 @@ struct SignupEmailView: View {
                 VStack {
                     Spacer()
                         
-                    NextButton(title: "다음으로", isActive: viewStore.isContinueButtonEnabled) {
+                    NextButton(title: "next".localized(), isActive: viewStore.isContinueButtonEnabled) {
                         if viewStore.isContinueButtonEnabled {
                             viewStore.send(.continueButtonTapped)
                             parentViewStore.send(.navigationTo(.signupPassword))
@@ -94,7 +94,7 @@ struct SignupEmailView: View {
                     BasicButton(
                         title: viewStore.isSendCodeLoading ? "보내는 중..." :
                             viewStore.sendCodeTimerActive ? "\(viewStore.remainingTime)초 후에 재전송" :
-                            "인증번호 발송",
+                            "send_verification_code".localized(),
                         isActive: viewStore.isSendCodeButtonEnabled
                     ) {
                         if viewStore.isSendCodeButtonEnabled {
@@ -130,7 +130,7 @@ struct SignupEmailView: View {
                         .keyboardType(.numberPad)
                         .frame(width: geometry.size.width * 0.62)
                         
-                        BasicButton(title: "인증하기", isActive: viewStore.isVerifyCodeButtonEnabled) {
+                        BasicButton(title: "verify".localized(), isActive: viewStore.isVerifyCodeButtonEnabled) {
                             if viewStore.isVerifyCodeButtonEnabled {
                                 viewStore.send(.verifyCodeButtonTapped)
                             }

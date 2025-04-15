@@ -78,7 +78,7 @@ struct ResetPasswordFeature: Reducer {
             case .passwordOnSubmit:
                 if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 }
                 if state.password.isEmpty {
                     state.passwordState = .empty
@@ -98,7 +98,7 @@ struct ResetPasswordFeature: Reducer {
                     state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 } else {
                     state.verifiedPasswordState = .invalid
                     state.verifiedPasswordMessage = "passwords_do_not_match".localized()

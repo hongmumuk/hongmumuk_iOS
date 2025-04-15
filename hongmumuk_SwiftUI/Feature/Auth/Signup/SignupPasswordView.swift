@@ -82,7 +82,7 @@ struct SignupPasswordView: View {
                         text: viewStore.password,
                         state: viewStore.passwordState,
                         message: viewStore.passwordErrorMessage,
-                        placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                        placeholder: "enter_password_with_rules_2".localized(),
                         isSecure: !viewStore.passwordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
@@ -96,7 +96,7 @@ struct SignupPasswordView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
                     
-                    Text("비밀번호 확인")
+                    Text("confirm_password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)

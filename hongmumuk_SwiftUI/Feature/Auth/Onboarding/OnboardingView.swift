@@ -66,7 +66,7 @@ struct OnboardingView: View {
                         await parentStore.send(.setNavigationRoot(.home))
                     }
                 }, label: {
-                    Text("비회원으로 시작하기")
+                    Text("start_as_guest".localized())
                         .fontStyle(Fonts.body1Medium)
                         .foregroundColor(Colors.GrayScale.alternative)
                 })
