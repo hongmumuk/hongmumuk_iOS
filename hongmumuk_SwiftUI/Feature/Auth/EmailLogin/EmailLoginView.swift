@@ -47,7 +47,7 @@ struct EmailLoginView: View {
                     text: viewStore.email,
                     state: viewStore.emailState,
                     message: viewStore.emailErrorMessage,
-                    placeholder: "학교 이메일을 입력해주세요",
+                    placeholder: "enter_school_email".localized(),
                     isSecure: false,
                     showAtSymbol: true,
                     showSuffix: true,
