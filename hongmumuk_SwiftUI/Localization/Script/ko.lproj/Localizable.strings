@@ -77,7 +77,7 @@
 로그인이 필요합니다.";
 "snack" = "분식";
 "nickname_available" = "사용 가능한 닉네임입니다.";
-"fastfood" = "패스트푸드";
+"fastfood" = "패·푸";
 "nickname_updated" = "닉네임을 수정했어요";
 "asian" = "아시안";
 "confirm_logout" = "로그아웃하시겠습니까?";
@@ -123,6 +123,36 @@
 "confirm_new_password" = "새로운 비밀번호 확인";
 "update_password" = "비밀번호 변경하기";
 "confirm" = "확인";
+"current_nickname" = "기존 닉네임과 동일합니다.";
+"complete_confirm" = "확인 완료";
+"login_required" = "로그인이 필요합니다";
+"from_front" = "후문에서";
+"from_back" = "정문에서";
+"source_from_naverBlog" = "네이버 블로그 검색 기반 결과입니다";
+// 키워드
+"honbap" = "혼밥";
+"hongdaeStudent" = "홍대생";
+"matjip" = "맛집";
+"sumeun" = "숨은";
+"sangsu" = "상수";
+"yeonnamDong" = "연남동";
+"hotple" = "핫플";
+"atmosphere" = "분위기 좋은";
+"gasungbi" = "가성비";
+"date" = "데이트";
+"suljip" = "술집";
+"sulanju" = "술안주";
+"localMatjip" = "로컬맛집";
+"instaGamsung" = "인스타 감성";
+"waiting" = "웨이팅";
+"brunch" = "브런치";
+"recommendation" = "추천";
+"honsul" = "혼술";
+"dangaol" = "단골";
+"pujumhan" = "푸짐한";
+"spicy" = "매운맛";
+"specialMenu" = "특별한 메뉴";
+"twentyFourHours" = "24시간";
 // 식당
 "res_1" = "집밥김치찌개";
 "res_2" = "한석화";

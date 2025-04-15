@@ -117,6 +117,36 @@
 "confirm_new_password" = "确认新密码";
 "update_password" = "更新密码";
 "confirm" = "确认";
+"current_nickname" = "你与之前的昵称相同。";
+"complete_confirm" = "确认完成";
+"login_required" = "需要登录";
+"from_front" = "从后门";
+"from_back" = "从前门";
+"source_from_naverBlog" = "这是基于Naver博客搜索的结果。";
+// 키워드
+"honbap" = "独自用餐";
+"hongdaeStudent" = "弘大学生";
+"matjip" = "热门地点";
+"sumeun" = "隐藏的";
+"sangsu" = "上水";
+"yeonnamDong" = "延南洞";
+"hotple" = "火热场所";
+"atmosphere" = "良好氛围";
+"gasungbi" = "性价比";
+"date" = "约会";
+"suljip" = "酒吧";
+"sulanju" = "下酒菜";
+"localMatjip" = "当地美食";
+"instaGamsung" = "网红场所";
+"waiting" = "排队";
+"brunch" = "早午餐";
+"recommendation" = "推荐";
+"honsul" = "独饮";
+"dangaol" = "常客";
+"pujumhan" = "丰盛";
+"spicy" = "辣味";
+"specialMenu" = "特别菜单";
+"twentyFourHours" = "24小时";
 // 식당
 "res_1" = "家常泡菜汤";
 "res_2" = "韩锡华";

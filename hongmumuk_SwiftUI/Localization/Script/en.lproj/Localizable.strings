@@ -117,6 +117,36 @@
 "confirm_new_password" = "Confirm New Password";
 "update_password" = "Update Password";
 "confirm" = "Confirm";
+"current_nickname" = "You have the same nickname as before";
+"complete_confirm" = "Checked";
+"login_required" = "Login Required";
+"from_front" = "From the Back Entrance";
+"from_back" = "From the Front Entrance";
+"source_from_naverBlog" = "This is a result based on Naver Blog";
+// 키워드
+"honbap" = "Eating Alone";
+"hongdaeStudent" = "Hongdae Student";
+"matjip" = "Hot Place";
+"sumeun" = "Hidden";
+"sangsu" = "Sangsu";
+"yeonnamDong" = "Yeonnam-dong";
+"hotple" = "Hot Spot";
+"atmosphere" = "Good Atmosphere";
+"gasungbi" = "Good Value";
+"date" = "Date";
+"suljip" = "Bar";
+"sulanju" = "Finger Food";
+"localMatjip" = "Local Eats";
+"instaGamsung" = "Insta-worthy";
+"waiting" = "Waiting";
+"brunch" = "Brunch";
+"recommendation" = "Recommendation";
+"honsul" = "Solo Drinking";
+"dangaol" = "Regular";
+"pujumhan" = "Generous";
+"spicy" = "Spicy";
+"specialMenu" = "Special Menu";
+"twentyFourHours" = "24 Hours";
 // 식당
 "res_1" = "Homestyle Kimchi Stew";
 "res_2" = "Han Seok Hwa";
