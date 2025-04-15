@@ -72,4 +72,14 @@ extension String {
             return withoutTags
         }
     }
+    
+    // Localization 적용
+    func localized(_ comment: String = "") -> String {
+        return NSLocalizedString(self, comment: comment)
+    }
+    
+    // Localization 적용 + 변수 삽입
+    func localized(comment: String = "", variables: CVarArg...) -> String {
+        return String(format: NSLocalizedString(self, comment: comment), arguments: variables)
+    }
 }
