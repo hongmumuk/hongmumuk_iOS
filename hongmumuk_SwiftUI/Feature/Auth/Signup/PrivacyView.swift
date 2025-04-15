@@ -97,7 +97,7 @@ struct PrivacyView: View {
             set: { _, _ in viewStore.send(.serviceModalDismissed) }
         )) {
             PrivacyModalView(
-                title: "서비스 이용약관",
+                title: "terms_of_service".localized(),
                 content: "",
                 onDismiss: {
                     viewStore.send(.serviceModalDismissed)
@@ -114,7 +114,7 @@ struct PrivacyView: View {
             set: { _, _ in viewStore.send(.privacyModalDismissed) }
         )) {
             PrivacyModalView(
-                title: "개인정보 처리방침",
+                title: "privacy_policy".localized(),
                 content: "",
                 onDismiss: {
                     viewStore.send(.privacyModalDismissed)

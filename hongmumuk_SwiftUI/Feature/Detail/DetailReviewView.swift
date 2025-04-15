@@ -31,7 +31,7 @@ struct DetailReviewView: View {
     
     private var sourceTextView: some View {
         HStack {
-            Text("출처")
+            Text("source".localized())
                 .fontStyle(Fonts.body1SemiBold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
             

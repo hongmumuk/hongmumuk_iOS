@@ -156,7 +156,7 @@ struct ProfileInfoFeature: Reducer {
             case .nickNameOnSubmit:
                 if state.profile.nickName == state.nickName {
                     state.nickNameState = .invalid
-                    state.nickNameErrorMessage = "기존 닉네임과 동일합니다."
+                    state.nickNameErrorMessage = "current_nickname".localized()
                 } else {
                     state.nickNameState = .nicknameVerified
                     state.nickNameErrorMessage = "nickname_available".localized()
@@ -305,7 +305,7 @@ struct ProfileInfoFeature: Reducer {
                 
             case .postPasswordLoaded(.success):
                 state.validChangeButton = false
-                state.changeButtonText = "확인 완료"
+                state.changeButtonText = "complete_confirm".localized()
                 state.currentPasswordErrorMessage = "same_as_current_password".localized()
                 state.currentPasswordState = .codeVerified
                 

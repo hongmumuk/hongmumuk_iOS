@@ -31,7 +31,7 @@ struct PasswordView: View {
             
             Spacer()
             
-            NextButton(title: "비밀번호 변경하기", isActive: viewStore.isButtonEnabled) {
+            NextButton(title: "update_password".localized(), isActive: viewStore.isButtonEnabled) {
                 viewStore.send(.newPasswordConfirmButtonTapped)
             }
             .frame(height: 60)
@@ -41,7 +41,7 @@ struct PasswordView: View {
     }
     
     private var currentPasswordTitle: some View {
-        Text("현재 비밀번호")
+        Text("current_password".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.currentPasswordState))
             .padding(.leading, 24)
@@ -85,7 +85,7 @@ struct PasswordView: View {
     }
     
     private var newPasswordTitle: some View {
-        Text("새로운 비밀번호")
+        Text("new_password".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.newPasswordState))
             .padding(.leading, 24)
@@ -116,7 +116,7 @@ struct PasswordView: View {
     }
     
     private var newPasswordConfirmTitle: some View {
-        Text("새로운 비밀번호 확인")
+        Text("confirm_new_password".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.newPasswordConfirmState))
             .padding(.leading, 24)

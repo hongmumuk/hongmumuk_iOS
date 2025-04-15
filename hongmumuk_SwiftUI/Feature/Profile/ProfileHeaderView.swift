@@ -37,7 +37,7 @@ struct ProfileHeaderView: View {
     }
     
     private var likeText: some View {
-        Text("마이페이지")
+        Text("my_page".localized())
             .fontStyle(Fonts.title2Bold)
             .foregroundColor(Colors.GrayScale.grayscale95)
     }

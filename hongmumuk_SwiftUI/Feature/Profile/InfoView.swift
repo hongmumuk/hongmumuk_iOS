@@ -37,7 +37,7 @@ struct InfoView: View {
         actions: {
             Button("cancel".localized(), role: .none) {}
             
-            Button("확인", role: .none) {
+            Button("confirm".localized(), role: .none) {
                 viewStore.send(.logoutConfirmButtonTapped)
             }
         }, message: {
@@ -50,7 +50,7 @@ struct InfoView: View {
         actions: {
             Button("cancel".localized(), role: .none) {}
             
-            Button("확인", role: .none) {
+            Button("confirm".localized(), role: .none) {
                 viewStore.send(.withdrawConfirmButtonTapped)
             }
         }, message: {
@@ -62,7 +62,7 @@ struct InfoView: View {
     }
     
     private var nickNameTitle: some View {
-        Text("닉네임")
+        Text("nickname".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.nickNameState))
             .padding(.leading, 24)
@@ -95,7 +95,7 @@ struct InfoView: View {
     
     private var changeButton: some View {
         BasicButton(
-            title: "수정하기",
+            title: "edit".localized(),
             isActive: viewStore.nickNameState == .nicknameVerified
         ) {
             viewStore.send(.changeButtonTapped)
@@ -140,7 +140,7 @@ struct InfoView: View {
         HStack(spacing: 4) {
             Spacer()
             
-            Text("\(viewStore.todayString) 인증 완료")
+            Text("\(viewStore.todayString)" + "verification_complete".localized())
                 .fontStyle(Fonts.caption1Medium)
                 .foregroundStyle(Colors.GrayScale.grayscal45)
             
@@ -154,10 +154,10 @@ struct InfoView: View {
         ZStack {
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
-                GrayPlainButton(title: "로그아웃") {
+                GrayPlainButton(title: "logout".localized()) {
                     viewStore.send(.logoutButtonTapped)
                 }
-                GrayPlainButton(title: "회원탈퇴") {
+                GrayPlainButton(title: "delete_account".localized()) {
                     viewStore.send(.withdrawButtonTapped)
                 }
                 Spacer()

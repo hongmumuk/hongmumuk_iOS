@@ -25,11 +25,11 @@ struct DetailMapView: View {
     private var appLinkButton: some View {
         ZStack(alignment: .center) {
             HStack(spacing: 0) {
-                mpaButton("네이버", "naverMapIcon") {
+                mpaButton("naver".localized(), "naverMapIcon") {
                     viewStore.send(.naverMapButtonTapped)
                 }
                 
-                mpaButton("카카오", "kakaoMapIcon") {
+                mpaButton("kakao".localized(), "kakaoMapIcon") {
                     viewStore.send(.kakaoMapButtonTapped)
                 }
             }
