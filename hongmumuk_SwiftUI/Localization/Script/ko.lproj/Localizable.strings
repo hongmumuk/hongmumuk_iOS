@@ -126,9 +126,10 @@
 "current_nickname" = "기존 닉네임과 동일합니다.";
 "complete_confirm" = "확인 완료";
 "login_required" = "로그인이 필요합니다";
-"from_front" = "후문에서";
-"from_back" = "정문에서";
+"from_back" = "후문에서";
+"from_front" = "정문에서";
 "source_from_naverBlog" = "네이버 블로그 검색 기반 결과입니다";
+"verification_code" = "인증번호";
 // 키워드
 "honbap" = "혼밥";
 "hongdaeStudent" = "홍대생";

@@ -120,9 +120,10 @@
 "current_nickname" = "你与之前的昵称相同。";
 "complete_confirm" = "确认完成";
 "login_required" = "需要登录";
-"from_front" = "从后门";
-"from_back" = "从前门";
+"from_back" = "从后门";
+"from_front" = "从前门";
 "source_from_naverBlog" = "这是基于Naver博客搜索的结果。";
+"verification_code" = "验证码";
 // 키워드
 "honbap" = "独自用餐";
 "hongdaeStudent" = "弘大学生";
