@@ -53,7 +53,7 @@ struct SearchHeaderView: View {
     }
     
     private var searchTextField: some View {
-        TextField("직접 검색해서 찾아보기", text:
+        TextField("search_manually".localized(), text:
             viewStore.binding(
                 get: \.searchText,
                 send: SearchFeature.Action.searchBarOnChanged

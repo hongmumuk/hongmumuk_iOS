@@ -48,7 +48,7 @@ struct LoginView: View {
                 .padding(.bottom, 12)
                     
                 LoginButton(
-                    title: "회원가입",
+                    title: "sign_up".localized(),
                     iconName: "SignupIcon",
                     backgroundColor: Color(hex: "FBFBFE"),
                     textColor: Colors.GrayScale.normal,

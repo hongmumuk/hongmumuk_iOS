@@ -101,7 +101,7 @@ struct ResetPasswordFeature: Reducer {
                     state.verifiedPasswordMessage = "비밀번호가 일치합니다."
                 } else {
                     state.verifiedPasswordState = .invalid
-                    state.verifiedPasswordMessage = "비밀번호가 일치하지 않습니다."
+                    state.verifiedPasswordMessage = "passwords_do_not_match".localized()
                 }
                 return .none
                 

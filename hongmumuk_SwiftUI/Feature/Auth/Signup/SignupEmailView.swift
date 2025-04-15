@@ -28,7 +28,7 @@ struct SignupEmailView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 scrollView
                     .padding(.top, 56)

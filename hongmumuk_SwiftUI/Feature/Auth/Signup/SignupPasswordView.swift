@@ -29,7 +29,7 @@ struct SignupPasswordView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                    LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                     
                     Spacer()
                 }

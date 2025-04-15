@@ -29,7 +29,7 @@ struct ResetPasswordView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                    LoginHeaderView(title: "find_password".localized(), action: { parentViewStore.send(.onDismiss) })
                     
                     Spacer()
                 }
@@ -101,7 +101,7 @@ struct ResetPasswordView: View {
                         text: viewStore.verifiedPassword,
                         state: viewStore.verifiedPasswordState,
                         message: viewStore.verifiedPasswordMessage,
-                        placeholder: "비밀번호를 한 번 더 입력해 주세요",
+                        placeholder: "reenter_password".localized(),
                         isSecure: !viewStore.verifiedPasswordVisible,
                         showAtSymbol: false,
                         showSuffix: false,

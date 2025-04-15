@@ -30,7 +30,7 @@ struct OnboardingView: View {
     let tabItems: [TabItem] = [
         TabItem(title: "category_recommendation_description".localized(), imageName: "onboarding1"),
         TabItem(title: "random_recommendation_description".localized(), imageName: "onboarding2"),
-        TabItem(title: "위치, 키워드, 리뷰까지\n한 번에 확인해요!", imageName: "onboarding3")
+        TabItem(title: "check_location_keyword_review".localized(), imageName: "onboarding3")
     ]
 
     var body: some View {
@@ -46,7 +46,7 @@ struct OnboardingView: View {
                 Spacer()
                 
                 LoginButton(
-                    title: "홍무묵 시작하기",
+                    title: "start_hongmumuk".localized(),
                     iconName: "whiteIcon",
                     backgroundColor: Colors.Primary.normal,
                     textColor: .white,

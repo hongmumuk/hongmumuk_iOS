@@ -22,8 +22,8 @@ struct RandomFeature: Reducer {
         var restaurantId: Int = 0
         var restrauntList = [RestaurantListModel]()
         
-        var title: String = "메뉴 선택에 고민이 되시나요?"
-        var subTitle: String = "아래 랜덤 뽑기 버튼을 누르고 추천 받아 보세요"
+        var title: String = "menu_selection_help".localized()
+        var subTitle: String = "press_random_button".localized()
         var buttonTitle: String = "랜덤 뽑기"
         
         var startPick = false
@@ -60,7 +60,7 @@ struct RandomFeature: Reducer {
             case .randomButtonTapped:
                 if !state.startPick {
                     state.startPick = true
-                    state.title = "오늘은 이 메뉴 어때요?"
+                    state.title = "menu_suggestion_today".localized()
                     state.subTitle = "메뉴가 마음에 들지 않으면 다시 뽑아 보세요"
                     state.buttonTitle = "다시 뽑기"
                 } else {

@@ -26,7 +26,7 @@ struct ProfileInfoFeature: Reducer {
         
         var newPassword: String = ""
         var newPasswordState: TextFieldState = .empty
-        var newPasswordErrorMessage: String? = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+        var newPasswordErrorMessage: String? = "enter_password_with_rules".localized()
         
         var newPasswordConfirm: String = ""
         var newPasswordConfirmState: TextFieldState = .empty
@@ -324,7 +324,7 @@ struct ProfileInfoFeature: Reducer {
 
             case .newPasswordFocused:
                 state.newPasswordState = .empty
-                state.newPasswordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+                state.newPasswordErrorMessage = "enter_password_with_rules".localized()
                 
                 return .none
 
@@ -357,7 +357,7 @@ struct ProfileInfoFeature: Reducer {
             case .newPasswordConfirmOnSubmit:
                 if state.newPasswordConfirm != state.newPassword {
                     state.newPasswordConfirmState = .invalid
-                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치하지 않습니다."
+                    state.newPasswordConfirmErrorMessage = "passwords_do_not_match".localized()
                 } else {
                     state.newPasswordState = .nicknameVerified
                     state.newPasswordConfirmState = .nicknameVerified

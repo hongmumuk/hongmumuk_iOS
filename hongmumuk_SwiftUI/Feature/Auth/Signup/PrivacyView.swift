@@ -24,7 +24,7 @@ struct PrivacyView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 SignupHeaderView(
                     activeStep: 1,
@@ -169,7 +169,7 @@ struct PrivacyView: View {
                         .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
-                    Text("서비스 이용약관 동의")
+                    Text("agree_to_terms_of_service".localized())
                         .fontStyle(Fonts.heading3Medium)
                         .foregroundColor(Colors.GrayScale.normal)
                         .padding(.leading, 8)
@@ -198,7 +198,7 @@ struct PrivacyView: View {
                         .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
-                    Text("개인정보 수집 및 이용 동의")
+                    Text("agree_to_privacy_policy".localized())
                         .fontStyle(Fonts.heading3Medium)
                         .foregroundColor(Colors.GrayScale.normal)
                         .padding(.leading, 8)

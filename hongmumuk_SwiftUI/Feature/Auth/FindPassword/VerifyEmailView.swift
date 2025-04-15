@@ -27,7 +27,7 @@ struct VerifyEmailView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "find_password".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 scrollView
                     .padding(.top, 56)

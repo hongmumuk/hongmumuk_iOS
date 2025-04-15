@@ -217,7 +217,7 @@ struct SignupEmailFeature: Reducer {
                 state.isVerifyCodeLoading = false
                 state.emailState = .codeVerified
                 state.codeState = .disabled
-                state.emailErrorMessage = "이메일 인증이 완료되었습니다"
+                state.emailErrorMessage = "email_verification_complete".localized()
                 
                 return .none
                 

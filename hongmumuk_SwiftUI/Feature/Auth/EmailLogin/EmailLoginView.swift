@@ -28,7 +28,7 @@ struct EmailLoginView: View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
                 LoginHeaderView(
-                    title: "이메일로 로그인",
+                    title: "email_login".localized(),
                     action: {
                         parentViewStore.send(
                             .onDismiss
@@ -98,7 +98,7 @@ struct EmailLoginView: View {
                     Spacer()
                     
                     Button(action: { parentViewStore.send(.navigationTo(.signup)) }) {
-                        Text("회원가입")
+                        Text("sign_up".localized())
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)
                     }
@@ -109,7 +109,7 @@ struct EmailLoginView: View {
                         .frame(width: 1, height: 12)
                     
                     Button(action: { parentViewStore.send(.navigationTo(.verifyEmail)) }) {
-                        Text("비밀번호 찾기")
+                        Text("find_password".localized())
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)
                     }
