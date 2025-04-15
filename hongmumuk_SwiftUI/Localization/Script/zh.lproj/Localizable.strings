@@ -11,12 +11,12 @@
 "unregistered_email" = "未注册的电子邮件";
 "terms_agreement_required" = "您需要同意服务条款";
 "random_recommendation_description" = "结束菜单烦恼！通过随机推荐发现新餐厅";
-"welcome_to_hongmumook" = "欢迎来到Hongmumook！";
+"welcome_to_hongmumuk" = "欢迎来到hongmumuk！";
 "login" = "登录";
 "enter_password" = "请输入密码";
 "account_not_found_check_email" = "找不到帐户。请再次检查您的电子邮件。";
 "agree_all_terms" = "同意所有条款";
-"use_all_services_now" = "立即使用Hongmumook的所有服务";
+"use_all_services_now" = "立即使用hongmumuk的所有服务";
 "check_location_keyword_review" = "一次查看位置、关键字和评论！";
 "email_login" = "用电子邮件登录";
 "reenter_password" = "重新输入您的密码";
@@ -33,7 +33,7 @@
 "enter_password_with_rules" = "输入8-20个字符，包括字母和数字。";
 "agree_to_terms" = "我同意条款";
 "menu_suggestion_today" = "今天这个菜单怎么样？";
-"start_hongmumook" = "开始使用Hongmumook";
+"start_hongmumuk" = "开始使用hongmumuk";
 "enter_current_password" = "输入您当前的密码";
 "passwords_do_not_match" = "密码不一致";
 "school_email_signup_available" = "即使不是学生，只要是学校邮箱验证也可以注册。";
@@ -70,7 +70,7 @@
 "japanese" = "日餐";
 "login_required_service" = "此服务需要登录";
 "western" = "西餐";
-"login_required_all_services" = "需要登录才能使用Hongmumook的所有服务。";
+"login_required_all_services" = "需要登录才能使用hongmumuk的所有服务。";
 "snack" = "小吃";
 "nickname_available" = "昵称可用";
 "fastfood" = "快餐";
@@ -86,9 +86,8 @@
 "delete_all" = "删除全部";
 "restaurant_inquiry" = "餐厅查询 (额外注册，关闭报告)";
 "contact_us" = "联系我们";
-"hongmumook" = "Hongmumuk";
-"restaurant" = "餐厅";
-"items" = "项目";
+"hongmumuk" = "Hongmumuk";
+"restaurant_count" = "餐厅 %d 家";
 "sort_by_likes" = "按喜欢最多排序";
 "sort_by_front_gate" = "按距离前门最近排序";
 "sort_by_back_gate" = "按距离后门最近排序";
