@@ -24,7 +24,7 @@ extension Empty {
         case .likeUnAuth:
             "로그인이 필요한 기능입니다"
         case .networkError:
-            "네트워크 연결에 실패했습니다"
+            "network_connection_failed".localized()
         }
     }
     
@@ -37,7 +37,7 @@ extension Empty {
         case .likeUnAuth:
             "로그인 후 찜한 가게를 모아 보세요"
         case .networkError:
-            "인터넷 연결 확인 후 앱을 재실행해 주세요"
+            "check_connection_and_restart_app".localized()
         }
     }
     

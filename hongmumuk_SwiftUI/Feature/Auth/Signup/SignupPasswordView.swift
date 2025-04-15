@@ -68,10 +68,10 @@ struct SignupPasswordView: View {
                     SignupHeaderView(
                         activeStep: 3,
                         title: "비밀번호를 입력해 주세요",
-                        subtitle: "다시 로그인할 때 비밀번호 입력이 필요합니다"
+                        subtitle: "password_required_on_relogin".localized()
                     )
                     
-                    Text("비밀번호")
+                    Text("password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)

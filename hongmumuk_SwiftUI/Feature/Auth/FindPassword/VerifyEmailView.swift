@@ -60,7 +60,7 @@ struct VerifyEmailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("이메일")
+                    Text("email".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
@@ -71,7 +71,7 @@ struct VerifyEmailView: View {
                         text: viewStore.email,
                         state: viewStore.emailState,
                         message: viewStore.emailErrorMessage,
-                        placeholder: "학교 이메일을 입력해 주세요",
+                        placeholder: "enter_school_email".localized(),
                         isSecure: false,
                         showAtSymbol: true,
                         showSuffix: true,

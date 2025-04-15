@@ -63,11 +63,11 @@ struct SignupEmailView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 2,
-                        title: "학교 이메일을 입력해 주세요",
+                        title: "enter_school_email".localized(),
                         subtitle: "졸업생, 휴학생인 경우에도 가입 가능합니다."
                     )
                     
-                    Text("이메일")
+                    Text("email".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
@@ -78,7 +78,7 @@ struct SignupEmailView: View {
                         text: viewStore.email,
                         state: viewStore.emailState,
                         message: viewStore.emailErrorMessage,
-                        placeholder: "학교 이메일을 입력해 주세요",
+                        placeholder: "enter_school_email".localized(),
                         isSecure: false,
                         showAtSymbol: true,
                         showSuffix: true,

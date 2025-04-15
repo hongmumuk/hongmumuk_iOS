@@ -105,7 +105,7 @@ struct InfoView: View {
     }
     
     private var emailTitle: some View {
-        Text("이메일")
+        Text("email".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(Colors.GrayScale.grayscale95)
             .padding(.leading, 24)

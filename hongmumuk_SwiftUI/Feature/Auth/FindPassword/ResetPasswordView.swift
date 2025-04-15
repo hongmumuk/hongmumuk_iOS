@@ -65,7 +65,7 @@ struct ResetPasswordView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("비밀번호")
+                    Text("password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
                         .padding(.leading, 24)

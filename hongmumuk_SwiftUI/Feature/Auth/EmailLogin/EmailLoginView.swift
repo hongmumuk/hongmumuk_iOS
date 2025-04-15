@@ -36,7 +36,7 @@ struct EmailLoginView: View {
                     }
                 )
                 
-                Text("이메일")
+                Text("email".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                     .padding(.leading, 24)
@@ -60,7 +60,7 @@ struct EmailLoginView: View {
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 
-                Text("비밀번호")
+                Text("password".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
                     .padding(.leading, 24)

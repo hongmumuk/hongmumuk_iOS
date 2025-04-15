@@ -28,7 +28,7 @@ struct PrivacyView: View {
                 
                 SignupHeaderView(
                     activeStep: 1,
-                    title: "필수 약관에 동의해 주세요",
+                    title: "agree_to_required_terms".localized(),
                     subtitle: "서비스 이용을 위해서는 약관 동의가 필요합니다"
                 )
                 
