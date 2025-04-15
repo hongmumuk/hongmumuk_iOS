@@ -29,7 +29,7 @@ struct PrivacyView: View {
                 SignupHeaderView(
                     activeStep: 1,
                     title: "agree_to_required_terms".localized(),
-                    subtitle: "서비스 이용을 위해서는 약관 동의가 필요합니다"
+                    subtitle: "terms_agreement_required".localized()
                 )
                 
                 allAgreeButton
@@ -147,7 +147,7 @@ struct PrivacyView: View {
                         .resizable()
                         .frame(width: 32, height: 32)
                     
-                    Text("약관 전체 동의 하기")
+                    Text("agree_all_terms".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(Colors.GrayScale.normal)
                     

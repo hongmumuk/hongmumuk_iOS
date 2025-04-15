@@ -110,7 +110,7 @@ struct VerifyEmailView: View {
                             text: viewStore.code,
                             state: viewStore.codeState,
                             message: viewStore.codeErrorMessage,
-                            placeholder: "6자리 숫자를 입력해 주세요",
+                            placeholder: "enter_code".localized(),
                             isSecure: false,
                             showAtSymbol: false,
                             showSuffix: false,

@@ -117,7 +117,7 @@ struct VerifyEmailFeature: Reducer {
                     state.codeErrorMessage = nil
                 } else if state.code.count != 6 {
                     state.codeState = .invalid
-                    state.codeErrorMessage = "6자리 숫자를 입력해주세요"
+                    state.codeErrorMessage = "enter_code".localized()
                 } else {
                     state.codeState = .valid
                     state.codeErrorMessage = nil

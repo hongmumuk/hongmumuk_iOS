@@ -29,7 +29,7 @@ struct OnboardingView: View {
     
     let tabItems: [TabItem] = [
         TabItem(title: "category_recommendation_description".localized(), imageName: "onboarding1"),
-        TabItem(title: "메뉴 고민 끝! 랜덤 추천으로\n새로운 맛집을 발견해요!", imageName: "onboarding2"),
+        TabItem(title: "random_recommendation_description".localized(), imageName: "onboarding2"),
         TabItem(title: "위치, 키워드, 리뷰까지\n한 번에 확인해요!", imageName: "onboarding3")
     ]
 

@@ -67,7 +67,7 @@ struct SignupPasswordView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 3,
-                        title: "비밀번호를 입력해 주세요",
+                        title: "enter_password".localized(),
                         subtitle: "password_required_on_relogin".localized()
                     )
                     

@@ -85,7 +85,7 @@ struct EmailLoginView: View {
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 
-                NextButton(title: "로그인", isActive: viewStore.isSigninEnabled) {
+                NextButton(title: "login".localized(), isActive: viewStore.isSigninEnabled) {
                     if viewStore.isSigninEnabled {
                         viewStore.send(.signInButtonTapped)
                     }
