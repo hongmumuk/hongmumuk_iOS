@@ -24,7 +24,7 @@ struct RandomFeature: Reducer {
         
         var title: String = "menu_selection_help".localized()
         var subTitle: String = "press_random_button".localized()
-        var buttonTitle: String = "랜덤 뽑기"
+        var buttonTitle: String = "random_pick".localized()
         
         var startPick = false
         var isAnimating = true
@@ -62,7 +62,7 @@ struct RandomFeature: Reducer {
                     state.startPick = true
                     state.title = "menu_suggestion_today".localized()
                     state.subTitle = "retry_random_menu".localized()
-                    state.buttonTitle = "다시 뽑기"
+                    state.buttonTitle = "retry_random".localized()
                 } else {
                     let randomItem = getRandom(state: state)
                     state.restaurantName = randomItem.name

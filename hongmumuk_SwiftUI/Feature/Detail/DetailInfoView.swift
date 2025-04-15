@@ -79,7 +79,7 @@ struct DetailInfoView: View {
             Button(action: {
                 viewStore.send(.copyAddressButtonTapped)
             }) {
-                Text("복사")
+                Text("copy".localized())
                     .fontStyle(Fonts.body1Medium)
                     .foregroundColor(Colors.Primary.primary55)
             }

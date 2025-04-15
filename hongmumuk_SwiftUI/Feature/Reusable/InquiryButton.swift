@@ -47,13 +47,13 @@ struct InquiryButton: View {
                 .frame(width: 24, height: 24)
                 .padding(.trailing, 4)
             
-            Text("식당 문의 (추가 등록, 폐점 신고)")
+            Text("restaurant_inquiry".localized())
                 .fontStyle(Fonts.heading3Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
             Spacer()
             
-            Text("문의하기")
+            Text("contact_us".localized())
                 .fontStyle(Fonts.body2SemiBold)
                 .foregroundColor(Colors.Primary.primary55)
         }

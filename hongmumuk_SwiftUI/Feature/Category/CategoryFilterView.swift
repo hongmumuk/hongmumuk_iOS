@@ -68,7 +68,7 @@ struct CategoryFilterView: View {
                 }
             }
             
-            buttons.append(.cancel(Text("취소"), action: {
+            buttons.append(.cancel(Text("cancel".localized()), action: {
                 viewStore.send(.onDismiss)
             }))
             

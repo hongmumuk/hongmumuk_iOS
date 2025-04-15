@@ -48,7 +48,7 @@ struct ProfileView: View {
             send: .loginAlertDismissed
         ),
         actions: {
-            Button("취소", role: .none) {}
+            Button("cancel".localized(), role: .none) {}
             
             Button("login".localized(), role: .none) {
                 parentStore.send(.navigationTo(.emailLogin))

@@ -35,26 +35,26 @@ struct InfoView: View {
             send: .alertDismiss
         ),
         actions: {
-            Button("취소", role: .none) {}
+            Button("cancel".localized(), role: .none) {}
             
             Button("확인", role: .none) {
                 viewStore.send(.logoutConfirmButtonTapped)
             }
         }, message: {
-            Text("로그아웃 후에도 언제든 다시 로그인\n할 수 있습니다.")
+            Text("can_relogin_anytime".localized())
         })
-        .alert("정말 탈퇴하시겠습니까?", isPresented: viewStore.binding(
+        .alert("confirm_withdrawal".localized(), isPresented: viewStore.binding(
             get: \.showWithdrawAlert,
             send: .alertDismiss
         ),
         actions: {
-            Button("취소", role: .none) {}
+            Button("cancel".localized(), role: .none) {}
             
             Button("확인", role: .none) {
                 viewStore.send(.withdrawConfirmButtonTapped)
             }
         }, message: {
-            Text("탈퇴 시 계정 및 모든 데이터가 삭제되며\n복구되지 않습니다.")
+            Text("withdrawal_data_warning".localized())
         })
         .onChange(of: viewStore.pop) { _, _ in
             parentViewStore.send(.onDismiss)

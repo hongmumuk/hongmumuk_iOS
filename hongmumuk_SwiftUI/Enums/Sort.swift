@@ -18,13 +18,13 @@ extension Sort {
     var displayName: String {
         switch self {
         case .likes:
-            "찜 많은 순"
+            "sort_by_likes".localized()
         case .front:
-            "정문에서 가까운 순"
+            "sort_by_front_gate".localized()
         case .back:
-            "후문에서 가까운 순"
+            "sort_by_back_gate".localized()
         case .name:
-            "이름순"
+            "sort_by_name".localized()
         }
     }
 }
