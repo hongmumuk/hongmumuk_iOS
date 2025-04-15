@@ -30,7 +30,7 @@ struct InfoView: View {
                 buttonStack
             }
         }
-        .alert("로그아웃하시겠습니까?", isPresented: viewStore.binding(
+        .alert("confirm_logout".localized(), isPresented: viewStore.binding(
             get: \.showLogoutAlert,
             send: .alertDismiss
         ),
@@ -180,7 +180,7 @@ struct InfoView: View {
                 .resizable()
                 .frame(width: 20, height: 20)
             
-            Text("닉네임을 수정했어요")
+            Text("nickname_updated".localized())
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(.white)
         }

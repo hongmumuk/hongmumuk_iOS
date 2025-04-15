@@ -34,7 +34,7 @@ struct LoginView: View {
                 Spacer()
                     
                 LoginButton(
-                    title: "이메일로 로그인하기",
+                    title: "login_with_email".localized(),
                     iconName: "LoginEmailIcon",
                     backgroundColor: Colors.Primary.normal,
                     textColor: .white,

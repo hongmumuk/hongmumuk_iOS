@@ -43,7 +43,7 @@ struct ProfileView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .alert("로그인이 필요한 서비스입니다", isPresented: viewStore.binding(
+        .alert("login_required_service".localized(), isPresented: viewStore.binding(
             get: \.showLoginAlert,
             send: .loginAlertDismissed
         ),
@@ -54,7 +54,7 @@ struct ProfileView: View {
                 parentStore.send(.navigationTo(.emailLogin))
             }
         }, message: {
-            Text("홍무묵의 모든 서비스를 이용하려면\n로그인이 필요합니다.")
+            Text("login_required_all_services".localized())
         })
     }
 }

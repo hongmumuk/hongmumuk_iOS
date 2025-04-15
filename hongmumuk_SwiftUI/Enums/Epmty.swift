@@ -20,9 +20,9 @@ extension Empty {
         case .search:
             "no_search_results".localized()
         case .like:
-            "아직 찜한 가게가 없습니다"
+            "no_favorite_restaurants".localized()
         case .likeUnAuth:
-            "로그인이 필요한 기능입니다"
+            "login_required_feature".localized()
         case .networkError:
             "network_connection_failed".localized()
         }
@@ -33,9 +33,9 @@ extension Empty {
         case .search:
             "try_another_keyword".localized()
         case .like:
-            "좋아하는 가게에 찜을 누르고 한 번에 모아 보세요"
+            "collect_favorites".localized()
         case .likeUnAuth:
-            "로그인 후 찜한 가게를 모아 보세요"
+            "login_to_view_favorites".localized()
         case .networkError:
             "check_connection_and_restart_app".localized()
         }

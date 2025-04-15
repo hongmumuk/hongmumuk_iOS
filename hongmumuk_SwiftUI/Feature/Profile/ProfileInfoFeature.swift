@@ -159,7 +159,7 @@ struct ProfileInfoFeature: Reducer {
                     state.nickNameErrorMessage = "기존 닉네임과 동일합니다."
                 } else {
                     state.nickNameState = .nicknameVerified
-                    state.nickNameErrorMessage = "사용 가능한 닉네임입니다."
+                    state.nickNameErrorMessage = "nickname_available".localized()
                 }
                 
                 return .none

@@ -39,7 +39,7 @@ struct SignupDoneView: View {
                 
                 Spacer()
                 
-                NextButton(title: "로그인하러 가기", isActive: true) {
+                NextButton(title: "start".localized(), isActive: true) {
                     parentStore.send(.setNavigationRoot(.login))
                 }
                 .frame(height: 60)
