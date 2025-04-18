@@ -25,21 +25,21 @@ extension Category {
         case .all:
             return "전체"
         case .korean:
-            return "한식"
+            return "korean".localized()
         case .chinese:
-            return "중식"
+            return "chinese".localized()
         case .japanese:
-            return "일식"
+            return "japanese".localized()
         case .western:
-            return "양식"
+            return "western".localized()
         case .asian:
-            return "아시안"
+            return "asian".localized()
         case .fast:
-            return "패·푸"
+            return "fastfood".localized()
         case .snack:
-            return "분식"
+            return "snack".localized()
         case .etc:
-            return "기타"
+            return "etc".localized()
         }
     }
 }

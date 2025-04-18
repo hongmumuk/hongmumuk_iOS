@@ -22,8 +22,8 @@ struct ProfileInfoTapButtonView: View {
     
     private var tabView: some View {
         HStack(spacing: 0) {
-            tabButton(0, text: "회원정보 수정")
-            tabButton(1, text: "비밀번호 변경")
+            tabButton(0, text: "edit_profile".localized())
+            tabButton(1, text: "change_password".localized())
         }
     }
     

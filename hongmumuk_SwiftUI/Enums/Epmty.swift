@@ -18,26 +18,26 @@ extension Empty {
     var title: String {
         switch self {
         case .search:
-            "검색 결과가 없습니다"
+            "no_search_results".localized()
         case .like:
-            "아직 찜한 가게가 없습니다"
+            "no_favorite_restaurants".localized()
         case .likeUnAuth:
-            "로그인이 필요한 기능입니다"
+            "login_required_feature".localized()
         case .networkError:
-            "네트워크 연결에 실패했습니다"
+            "network_connection_failed".localized()
         }
     }
     
     var subTitle: String {
         switch self {
         case .search:
-            "다른 단어로 검색해 보세요"
+            "try_another_keyword".localized()
         case .like:
-            "좋아하는 가게에 찜을 누르고 한 번에 모아 보세요"
+            "collect_favorites".localized()
         case .likeUnAuth:
-            "로그인 후 찜한 가게를 모아 보세요"
+            "login_to_view_favorites".localized()
         case .networkError:
-            "인터넷 연결 확인 후 앱을 재실행해 주세요"
+            "check_connection_and_restart_app".localized()
         }
     }
     

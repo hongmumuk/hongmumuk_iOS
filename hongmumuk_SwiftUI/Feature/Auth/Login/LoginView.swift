@@ -34,7 +34,7 @@ struct LoginView: View {
                 Spacer()
                     
                 LoginButton(
-                    title: "이메일로 로그인하기",
+                    title: "login_with_email".localized(),
                     iconName: "LoginEmailIcon",
                     backgroundColor: Colors.Primary.normal,
                     textColor: .white,
@@ -48,7 +48,7 @@ struct LoginView: View {
                 .padding(.bottom, 12)
                     
                 LoginButton(
-                    title: "회원가입",
+                    title: "sign_up".localized(),
                     iconName: "SignupIcon",
                     backgroundColor: Color(hex: "FBFBFE"),
                     textColor: Colors.GrayScale.normal,
@@ -65,7 +65,7 @@ struct LoginView: View {
                     viewStore.send(.signInGuest)
                     parentStore.send(.setNavigationRoot(.home))
                 }, label: {
-                    Text("비회원으로 시작하기")
+                    Text("start_as_guest".localized())
                         .fontStyle(Fonts.body1Medium)
                         .foregroundColor(Colors.GrayScale.alternative)
                 })

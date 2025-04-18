@@ -80,7 +80,7 @@ all_sheets = doc.worksheets()
 # .strings 파일 저장 경로 설정
 ko_strings_file_path = HOME_DIR + "/ko.lproj/Localizable.strings"
 en_strings_file_path = HOME_DIR + "/en.lproj/Localizable.strings"
-zh_strings_file_path = HOME_DIR + "/zh.lproj/Localizable.strings"
+zh_strings_file_path = HOME_DIR + "/zh-Hans.lproj/Localizable.strings"
 
 # 모든 시트를 순회
 process_sheets(all_sheets, ko_strings_file_path, en_strings_file_path, zh_strings_file_path)

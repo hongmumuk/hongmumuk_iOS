@@ -21,8 +21,8 @@ struct DetailTabButtonView: View {
     
     private var tabView: some View {
         HStack(spacing: 0) {
-            tabButton(0, text: "지도")
-            tabButton(1, text: "리뷰")
+            tabButton(0, text: "map".localized())
+            tabButton(1, text: "review".localized())
         }
     }
     

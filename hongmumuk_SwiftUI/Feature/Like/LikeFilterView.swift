@@ -35,7 +35,7 @@ struct LikeFilterView: View {
     }
     
     private var restrauntCntText: some View {
-        Text("식당 \(viewStore.restrauntCount)개")
+        Text("restaurant_count".localized(variables: viewStore.restrauntCount))
             .fontStyle(Fonts.body1Medium)
             .foregroundColor(Colors.GrayScale.grayscal45)
     }
@@ -68,7 +68,7 @@ struct LikeFilterView: View {
                 }
             }
             
-            buttons.append(.cancel(Text("취소"), action: {
+            buttons.append(.cancel(Text("cancel".localized()), action: {
                 viewStore.send(.onDismiss)
             }))
             

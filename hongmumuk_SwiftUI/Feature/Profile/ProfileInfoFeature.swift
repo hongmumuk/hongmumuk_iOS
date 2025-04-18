@@ -22,11 +22,11 @@ struct ProfileInfoFeature: Reducer {
         var currentPasswordErrorMessage: String? = nil
         var currentPasswordVisible = false
         var validChangeButton = false
-        var changeButtonText = "비밀번호 확인"
+        var changeButtonText = "confirm_password".localized()
         
         var newPassword: String = ""
         var newPasswordState: TextFieldState = .empty
-        var newPasswordErrorMessage: String? = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+        var newPasswordErrorMessage: String? = "enter_password_with_rules".localized()
         
         var newPasswordConfirm: String = ""
         var newPasswordConfirmState: TextFieldState = .empty
@@ -156,10 +156,10 @@ struct ProfileInfoFeature: Reducer {
             case .nickNameOnSubmit:
                 if state.profile.nickName == state.nickName {
                     state.nickNameState = .invalid
-                    state.nickNameErrorMessage = "기존 닉네임과 동일합니다."
+                    state.nickNameErrorMessage = "current_nickname".localized()
                 } else {
                     state.nickNameState = .nicknameVerified
-                    state.nickNameErrorMessage = "사용 가능한 닉네임입니다."
+                    state.nickNameErrorMessage = "nickname_available".localized()
                 }
                 
                 return .none
@@ -207,7 +207,7 @@ struct ProfileInfoFeature: Reducer {
                 
                 if error == .duplicate {
                     state.nickNameState = .invalid
-                    state.nickNameErrorMessage = "이미 사용 중인 닉네임입니다."
+                    state.nickNameErrorMessage = "nickname_already_used".localized()
                 }
                 
                 return .none
@@ -305,14 +305,14 @@ struct ProfileInfoFeature: Reducer {
                 
             case .postPasswordLoaded(.success):
                 state.validChangeButton = false
-                state.changeButtonText = "확인 완료"
-                state.currentPasswordErrorMessage = "현재 비밀번호와 일치합니다."
+                state.changeButtonText = "complete_confirm".localized()
+                state.currentPasswordErrorMessage = "same_as_current_password".localized()
                 state.currentPasswordState = .codeVerified
                 
                 return .none
                 
             case let .postPasswordLoaded(.failure(error)):
-                state.currentPasswordErrorMessage = "현재 비밀번호와 일치하지 않습니다."
+                state.currentPasswordErrorMessage = "not_same_as_current_password".localized()
                 state.currentPasswordState = .invalid
                 
                 return .none
@@ -324,7 +324,7 @@ struct ProfileInfoFeature: Reducer {
 
             case .newPasswordFocused:
                 state.newPasswordState = .empty
-                state.newPasswordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
+                state.newPasswordErrorMessage = "enter_password_with_rules".localized()
                 
                 return .none
 
@@ -357,11 +357,11 @@ struct ProfileInfoFeature: Reducer {
             case .newPasswordConfirmOnSubmit:
                 if state.newPasswordConfirm != state.newPassword {
                     state.newPasswordConfirmState = .invalid
-                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치하지 않습니다."
+                    state.newPasswordConfirmErrorMessage = "passwords_do_not_match".localized()
                 } else {
                     state.newPasswordState = .nicknameVerified
                     state.newPasswordConfirmState = .nicknameVerified
-                    state.newPasswordConfirmErrorMessage = "비밀번호가 일치합니다."
+                    state.newPasswordConfirmErrorMessage = "passwords_match".localized()
                 }
                 
                 return .none

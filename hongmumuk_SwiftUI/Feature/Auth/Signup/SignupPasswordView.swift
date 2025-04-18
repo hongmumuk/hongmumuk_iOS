@@ -29,7 +29,7 @@ struct SignupPasswordView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                    LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                     
                     Spacer()
                 }
@@ -67,11 +67,11 @@ struct SignupPasswordView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 3,
-                        title: "비밀번호를 입력해 주세요",
-                        subtitle: "다시 로그인할 때 비밀번호 입력이 필요합니다"
+                        title: "enter_password".localized(),
+                        subtitle: "password_required_on_relogin".localized()
                     )
                     
-                    Text("비밀번호")
+                    Text("password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)
@@ -82,7 +82,7 @@ struct SignupPasswordView: View {
                         text: viewStore.password,
                         state: viewStore.passwordState,
                         message: viewStore.passwordErrorMessage,
-                        placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                        placeholder: "enter_password_with_rules_2".localized(),
                         isSecure: !viewStore.passwordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
@@ -96,7 +96,7 @@ struct SignupPasswordView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
                     
-                    Text("비밀번호 확인")
+                    Text("confirm_password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(Colors.GrayScale.normal)
                         .padding(.leading, 24)

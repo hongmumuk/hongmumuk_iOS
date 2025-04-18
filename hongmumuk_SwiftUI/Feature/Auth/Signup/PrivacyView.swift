@@ -24,12 +24,12 @@ struct PrivacyView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
-                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 SignupHeaderView(
                     activeStep: 1,
-                    title: "필수 약관에 동의해 주세요",
-                    subtitle: "서비스 이용을 위해서는 약관 동의가 필요합니다"
+                    title: "agree_to_required_terms".localized(),
+                    subtitle: "terms_agreement_required".localized()
                 )
                 
                 allAgreeButton
@@ -75,7 +75,7 @@ struct PrivacyView: View {
                 }
                 
                 NextButton(
-                    title: "다음으로",
+                    title: "next".localized(),
                     isActive: viewStore.isContinueButtonEnabled,
                     action: {
                         viewStore.send(.continueButtonTapped)
@@ -97,7 +97,7 @@ struct PrivacyView: View {
             set: { _, _ in viewStore.send(.serviceModalDismissed) }
         )) {
             PrivacyModalView(
-                title: "서비스 이용약관",
+                title: "terms_of_service".localized(),
                 content: "",
                 onDismiss: {
                     viewStore.send(.serviceModalDismissed)
@@ -114,7 +114,7 @@ struct PrivacyView: View {
             set: { _, _ in viewStore.send(.privacyModalDismissed) }
         )) {
             PrivacyModalView(
-                title: "개인정보 처리방침",
+                title: "privacy_policy".localized(),
                 content: "",
                 onDismiss: {
                     viewStore.send(.privacyModalDismissed)
@@ -147,7 +147,7 @@ struct PrivacyView: View {
                         .resizable()
                         .frame(width: 32, height: 32)
                     
-                    Text("약관 전체 동의 하기")
+                    Text("agree_all_terms".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(Colors.GrayScale.normal)
                     
@@ -169,7 +169,7 @@ struct PrivacyView: View {
                         .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
-                    Text("서비스 이용약관 동의")
+                    Text("agree_to_terms_of_service".localized())
                         .fontStyle(Fonts.heading3Medium)
                         .foregroundColor(Colors.GrayScale.normal)
                         .padding(.leading, 8)
@@ -198,7 +198,7 @@ struct PrivacyView: View {
                         .frame(width: 24, height: 24)
                         .padding(.leading, 20)
                     
-                    Text("개인정보 수집 및 이용 동의")
+                    Text("agree_to_privacy_policy".localized())
                         .fontStyle(Fonts.heading3Medium)
                         .foregroundColor(Colors.GrayScale.normal)
                         .padding(.leading, 8)

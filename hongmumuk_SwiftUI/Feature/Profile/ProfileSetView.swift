@@ -64,7 +64,7 @@ struct ProfileSetView: View {
     }
     
     private var loginText: some View {
-        Text("로그인이 필요합니다")
+        Text("login_required".localized())
             .foregroundColor(Colors.GrayScale.grayscale55)
             .fontStyle(Fonts.body1Medium)
     }

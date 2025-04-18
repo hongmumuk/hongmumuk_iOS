@@ -100,7 +100,7 @@ struct EmailLoginFeature: Reducer {
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil
@@ -167,8 +167,8 @@ struct EmailLoginFeature: Reducer {
                         state.emailState = .loginError
                     }
                 }
-                state.emailErrorMessage = error == .userNotFound ? "가입된 계정이 없습니다. 이메일을 다시 확인해주세요." : nil
-                state.passwordErrorMessage = error == .invalidCredentials ? "비밀번호가 올바르지 않습니다." : nil
+                state.emailErrorMessage = error == .userNotFound ? "account_not_found_check_email".localized() : nil
+                state.passwordErrorMessage = error == .invalidCredentials ? "invalid_password".localized() : nil
                 return .none
             }
         }

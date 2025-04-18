@@ -35,7 +35,7 @@ struct CategoryFilterView: View {
     }
     
     private var restrauntCntText: some View {
-        Text("식당 \(viewStore.restaurantCount)개")
+        Text("restaurant_count".localized(variables: viewStore.restaurantCount))
             .fontStyle(Fonts.body1Medium)
             .foregroundColor(Colors.GrayScale.grayscal45)
     }
@@ -68,7 +68,7 @@ struct CategoryFilterView: View {
                 }
             }
             
-            buttons.append(.cancel(Text("취소"), action: {
+            buttons.append(.cancel(Text("cancel".localized()), action: {
                 viewStore.send(.onDismiss)
             }))
             
