@@ -207,7 +207,11 @@ struct SignupEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
+                if error == .alreadyExists {
+                    state.emailErrorMessage = "이미 가입된 계정입니다."
+                } else {
+                    state.emailErrorMessage = "인증번호를 전송할 수 없습니다."
+                }
                 return .none
                 
             case .successVerify:
