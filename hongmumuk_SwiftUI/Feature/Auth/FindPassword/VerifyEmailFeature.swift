@@ -115,9 +115,6 @@ struct VerifyEmailFeature: Reducer {
                 if state.code.isEmpty {
                     state.codeState = .empty
                     state.codeErrorMessage = nil
-                } else if state.code.count != 6 {
-                    state.codeState = .invalid
-                    state.codeErrorMessage = "enter_code".localized()
                 } else {
                     state.codeState = .valid
                     state.codeErrorMessage = nil
@@ -214,12 +211,10 @@ struct VerifyEmailFeature: Reducer {
                     state.emailState = .loginError
                 }
                 
-                if error == .alreadyExists {
-                    state.emailErrorMessage = "가입되지 않은 계정입니다."
-                } else if error == .userNotFound {
-                    state.emailErrorMessage = "이미 가입된 계정입니다."
+                if error == .userNotFound {
+                    state.emailErrorMessage = "등록되지 않은 이메일입니다."
                 } else {
-                    state.emailErrorMessage = "전송할 수 없습니다."
+                    state.emailErrorMessage = "인증번호를 전송할 수 없습니다."
                 }
    
                 return .none
@@ -239,11 +234,9 @@ struct VerifyEmailFeature: Reducer {
                     state.codeState = .loginError
                 }
                 if error == .invalidCode {
-                    state.codeErrorMessage = "인증번호가 틀렸습니다."
+                    state.codeErrorMessage = "인증번호가 올바르지 않습니다."
                 } else if error == .expiredCode {
                     state.codeErrorMessage = "인증번호가 만료되었습니다."
-                } else if error == .noVerificationRecord {
-                    state.codeErrorMessage = "인증번호가 전송되지 않았습니다."
                 }
                 return .none
             }

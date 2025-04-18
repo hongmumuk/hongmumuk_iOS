@@ -100,7 +100,7 @@ struct EmailLoginFeature: Reducer {
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil

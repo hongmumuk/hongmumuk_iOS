@@ -85,7 +85,7 @@ struct SignupPasswordFeature: Reducer {
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "영문, 숫자 포함 8~20자 이내로 입력해 주세요."
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil
@@ -151,17 +151,7 @@ struct SignupPasswordFeature: Reducer {
                 
             case let .failJoin(error):
                 state.isContinueLoading = false
-                state.signupPasswordError = error
-                print(error)
-                if state.signupPasswordError != nil {
-                    state.passwordState = .loginError
-                }
-                if error == .alreadyExists {
-                    state.passwordErrorMessage = "이미 존재하는 회원입니다."
-                } else {
-                    state.passwordErrorMessage = "회원가입에 실패했습니다."
-                }
-                print(state.passwordErrorMessage)
+                print("회원가입에 실패했습니다.")
                 return .none
             }
         }
