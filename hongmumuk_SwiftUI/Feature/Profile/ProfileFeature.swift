@@ -13,7 +13,9 @@ struct ProfileFeature: Reducer {
         var isUser = false
         var token: String = ""
         var currentVersion = ""
+        var currentLang = ""
         var showLoginAlert = false
+        var showLangAlert = false
     }
     
     enum Action: Equatable {
@@ -21,7 +23,9 @@ struct ProfileFeature: Reducer {
         case onDismiss
         case checkUser(String?)
         case loginButtonTapped
+        case langButtonTapped
         case loginAlertDismissed
+        case langAlertDismissed
         case inquryButtonTapped
     }
     
@@ -32,6 +36,7 @@ struct ProfileFeature: Reducer {
             switch action {
             case .onAppear:
                 state.currentVersion = "v" + Bundle.main.fullVersion
+                state.currentLang = "current_lang".localized()
                 
                 return .run { send in
                     let token = await keychainClient.getString(.accessToken)
@@ -53,8 +58,16 @@ struct ProfileFeature: Reducer {
                 state.showLoginAlert = true
                 return .none
                 
+            case .langButtonTapped:
+                state.showLangAlert = true
+                return .none
+                
             case .loginAlertDismissed:
                 state.showLoginAlert = false
+                return .none
+                
+            case .langAlertDismissed:
+                state.showLangAlert = false
                 return .none
                 
             case .inquryButtonTapped:
