@@ -63,8 +63,8 @@ struct SignupEmailView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 2,
-                        subtitle: "school_email_signup_available".localized()
                         title: "enter_school_email".localized(),
+                        subtitle: "school_email_signup_available".localized()
                     )
                     
                     Text("email".localized())

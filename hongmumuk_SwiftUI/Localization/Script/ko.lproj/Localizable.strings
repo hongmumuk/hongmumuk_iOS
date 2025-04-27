@@ -10,6 +10,9 @@
 "password" = "비밀번호";
 "enter_code" = "6자리 코드를 입력해 주세요";
 "unregistered_email" = "등록되지 않은 이메일입니다.";
+"invalid_email" = "이메일 형식이 잘못되었습니다.";
+"exist_email" = "이미 가입된 계정입니다.";
+"fail_send_code" = "인증번호를 전송할 수 없습니다.";
 "terms_agreement_required" = "서비스 이용을 위해서는 약관 동의가 필요합니다";
 "random_recommendation_description" = "메뉴 고민 끝! 랜덤 추천으로  
 새로운 맛집을 발견해요!";
@@ -24,6 +27,7 @@
 "email_login" = "이메일로 로그인";
 "reenter_password" = "비밀번호를 한 번 더 입력해 주세요";
 "invalid_verification_code" = "인증번호가 올바르지 않습니다.";
+"expired_verification_code" = "인증번호가 만료되었습니다.";
 "agree_to_terms_of_service" = "서비스 이용약관 동의";
 "menu_selection_help" = "메뉴 선택에 고민이 되시나요?";
 "sign_up" = "회원가입";
@@ -39,7 +43,7 @@
 "start_hongmumuk" = "홍무묵 시작하기";
 "enter_current_password" = "현재 비밀번호를 입력해 주세요";
 "passwords_do_not_match" = "비밀번호가 일치하지 않습니다.";
-"school_email_signup_available" = "재학생이 아니어도 학교 메일 인증이 가능하면 가입 가능합니다";
+"school_email_signup_available" = "학교 메일 인증 시, 누구나 가입할 수 있습니다.";
 "retry_random_menu" = "메뉴가 마음에 들지 않으면 다시 뽑아 보세요";
 "start_as_guest" = "비회원으로 시작하기";
 "enter_password_with_rules_2" = "영문, 숫자 포함 8~20자로 구성된 비밀번호를 입력해 주세요";
