@@ -128,6 +128,10 @@
 "from_front" = "从正门";
 "source_from_naverBlog" = "基于Naver博客搜索的结果";
 "verification_code" = "验证号码";
+"current_lang" = "简体中文";
+"lang_set" = "语言设置";
+"device_set" = "设备设置";
+"change_language_message" = "请在设备上更改语言";
 // 키워드
 "honbap" = "独自用餐";
 "hongdaeStudent" = "弘大学生";
