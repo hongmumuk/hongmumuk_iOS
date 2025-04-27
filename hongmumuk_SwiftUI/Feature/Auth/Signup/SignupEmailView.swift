@@ -63,7 +63,7 @@ struct SignupEmailView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 2,
-                        subtitle: "학교 메일 인증 시, 누구나 가입할 수 있습니다."
+                        subtitle: "school_email_signup_available".localized()
                         title: "enter_school_email".localized(),
                     )
                     

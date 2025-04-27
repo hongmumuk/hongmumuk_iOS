@@ -212,9 +212,9 @@ struct VerifyEmailFeature: Reducer {
                 }
                 
                 if error == .userNotFound {
-                    state.emailErrorMessage = "등록되지 않은 이메일입니다."
+                    state.emailErrorMessage = "unregistered_email".localized()
                 } else {
-                    state.emailErrorMessage = "인증번호를 전송할 수 없습니다."
+                    state.emailErrorMessage = "fail_send_code".localized()
                 }
    
                 return .none
@@ -234,9 +234,9 @@ struct VerifyEmailFeature: Reducer {
                     state.codeState = .loginError
                 }
                 if error == .invalidCode {
-                    state.codeErrorMessage = "인증번호가 올바르지 않습니다."
+                    state.codeErrorMessage = "invalid_verification_code".localized()
                 } else if error == .expiredCode {
-                    state.codeErrorMessage = "인증번호가 만료되었습니다."
+                    state.codeErrorMessage = "expired_verification_code".localized()
                 }
                 return .none
             }
