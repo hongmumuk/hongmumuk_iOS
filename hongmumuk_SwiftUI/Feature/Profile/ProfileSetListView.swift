@@ -18,6 +18,7 @@ struct ProfileSetListView: View {
             ProfileSetView(viewStore: viewStore, parentViewStore: parentViewStore, type: .info)
             ProfileSetView(viewStore: viewStore, parentViewStore: parentViewStore, type: .service)
             ProfileSetView(viewStore: viewStore, parentViewStore: parentViewStore, type: .privacy)
+            ProfileSetView(viewStore: viewStore, parentViewStore: parentViewStore, type: .lang)
             ProfileSetView(viewStore: viewStore, parentViewStore: parentViewStore, type: .version)
         }
         .padding(.top, 24)
