@@ -1,6 +1,9 @@
 "network_connection_failed" = "Network connection failed";
 "email" = "Email";
 "enter_school_email" = "Enter your school email";
+"sending_code" = "Sending...";
+"sending_code_remaining_time" = "%d seconds until resend";
+"code" = "Verification Code";
 "invalid_password" = "Invalid password";
 "agree_to_required_terms" = "Please agree to the required terms";
 "password_required_on_relogin" = "Please remember your password when you log in.";
@@ -131,9 +134,9 @@ your data will not be restored.";
 "source_from_naverBlog" = "Results based on Naver Blog";
 "verification_code" = "Verification Code";
 "current_lang" = "English";
-"lang_set" = "Language Setting";
-"device_set" = "Device Setting";
-"change_language_message" = "Change the language on the device";
+"lang_set" = "Language Settings";
+"device_set" = "Device Settings";
+"change_language_message" = "Change to preferred language in the settings";
 // 키워드
 "honbap" = "Eating Alone";
 "hongdaeStudent" = "Hongdae Student";
