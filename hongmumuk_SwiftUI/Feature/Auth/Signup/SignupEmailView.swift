@@ -92,8 +92,8 @@ struct SignupEmailView: View {
                     .padding(.top, 8)
                     
                     BasicButton(
-                        title: viewStore.isSendCodeLoading ? "보내는 중..." :
-                            viewStore.sendCodeTimerActive ? "\(viewStore.remainingTime)초 후에 재전송" :
+                        title: viewStore.isSendCodeLoading ? "sending_code".localized() :
+                            viewStore.sendCodeTimerActive ? "sending_code_remaining_time".localized(variables: viewStore.remainingTime) :
                             "send_verification_code".localized(),
                         isActive: viewStore.isSendCodeButtonEnabled
                     ) {
@@ -105,7 +105,7 @@ struct SignupEmailView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
                     
-                    Text("인증번호")
+                    Text("code".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.codeState))
                         .padding(.leading, 24)
