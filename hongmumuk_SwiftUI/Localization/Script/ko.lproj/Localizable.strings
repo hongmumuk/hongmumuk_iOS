@@ -10,10 +10,13 @@
 "password" = "비밀번호";
 "enter_code" = "6자리 코드를 입력해 주세요";
 "unregistered_email" = "등록되지 않은 이메일입니다.";
+"invalid_email" = "이메일 형식이 잘못되었습니다.";
+"exist_email" = "이미 가입된 계정입니다.";
+"fail_send_code" = "인증번호를 전송할 수 없습니다.";
 "terms_agreement_required" = "서비스 이용을 위해서는 약관 동의가 필요합니다";
 "random_recommendation_description" = "메뉴 고민 끝! 랜덤 추천으로  
 새로운 맛집을 발견해요!";
-"welcome_to_hongmumook" = "홍무묵에 오신 걸 환영해요!";
+"welcome_to_hongmumuk" = "홍무묵에 오신 걸 환영해요!";
 "login" = "로그인";
 "enter_password" = "비밀번호를 입력해 주세요";
 "account_not_found_check_email" = "가입된 계정이 없습니다. 이메일을 다시 확인해 주세요.";
@@ -24,6 +27,7 @@
 "email_login" = "이메일로 로그인";
 "reenter_password" = "비밀번호를 한 번 더 입력해 주세요";
 "invalid_verification_code" = "인증번호가 올바르지 않습니다.";
+"expired_verification_code" = "인증번호가 만료되었습니다.";
 "agree_to_terms_of_service" = "서비스 이용약관 동의";
 "menu_selection_help" = "메뉴 선택에 고민이 되시나요?";
 "sign_up" = "회원가입";
@@ -36,10 +40,10 @@
 "enter_password_with_rules" = "영문, 숫자 포함 8~20자 이내로 입력해 주세요.";
 "agree_to_terms" = "약관에 동의합니다";
 "menu_suggestion_today" = "오늘은 이 메뉴 어때요?";
-"start_hongmumook" = "홍무묵 시작하기";
+"start_hongmumuk" = "홍무묵 시작하기";
 "enter_current_password" = "현재 비밀번호를 입력해 주세요";
 "passwords_do_not_match" = "비밀번호가 일치하지 않습니다.";
-"school_email_signup_available" = "재학생이 아니어도 학교 메일 인증이 가능하면 가입 가능합니다";
+"school_email_signup_available" = "학교 메일 인증 시, 누구나 가입할 수 있습니다.";
 "retry_random_menu" = "메뉴가 마음에 들지 않으면 다시 뽑아 보세요";
 "start_as_guest" = "비회원으로 시작하기";
 "enter_password_with_rules_2" = "영문, 숫자 포함 8~20자로 구성된 비밀번호를 입력해 주세요";
@@ -77,7 +81,7 @@
 로그인이 필요합니다.";
 "snack" = "분식";
 "nickname_available" = "사용 가능한 닉네임입니다.";
-"fastfood" = "패스트푸드";
+"fastfood" = "패·푸";
 "nickname_updated" = "닉네임을 수정했어요";
 "asian" = "아시안";
 "confirm_logout" = "로그아웃하시겠습니까?";
@@ -92,9 +96,8 @@
 "delete_all" = "전체 삭제";
 "restaurant_inquiry" = "식당 문의 (추가 등록, 폐점 신고)";
 "contact_us" = "문의하기";
-"hongmumook" = "홍무묵";
-"restaurant" = "식당";
-"items" = "개";
+"hongmumuk" = "홍무묵";
+"restaurant_count" = "식당 %d개";
 "sort_by_likes" = "찜 많은 순";
 "sort_by_front_gate" = "정문에서 가까운 순";
 "sort_by_back_gate" = "후문에서 가까운 순";
@@ -124,6 +127,37 @@
 "confirm_new_password" = "새로운 비밀번호 확인";
 "update_password" = "비밀번호 변경하기";
 "confirm" = "확인";
+"current_nickname" = "기존 닉네임과 동일합니다.";
+"complete_confirm" = "확인 완료";
+"login_required" = "로그인이 필요합니다";
+"from_back" = "후문에서";
+"from_front" = "정문에서";
+"source_from_naverBlog" = "네이버 블로그 검색 기반 결과입니다";
+"verification_code" = "인증번호";
+// 키워드
+"honbap" = "혼밥";
+"hongdaeStudent" = "홍대생";
+"matjip" = "맛집";
+"sumeun" = "숨은";
+"sangsu" = "상수";
+"yeonnamDong" = "연남동";
+"hotple" = "핫플";
+"atmosphere" = "분위기 좋은";
+"gasungbi" = "가성비";
+"date" = "데이트";
+"suljip" = "술집";
+"sulanju" = "술안주";
+"localMatjip" = "로컬맛집";
+"instaGamsung" = "인스타 감성";
+"waiting" = "웨이팅";
+"brunch" = "브런치";
+"recommendation" = "추천";
+"honsul" = "혼술";
+"dangaol" = "단골";
+"pujumhan" = "푸짐한";
+"spicy" = "매운맛";
+"specialMenu" = "특별한 메뉴";
+"twentyFourHours" = "24시간";
 // 식당
 "res_1" = "집밥김치찌개";
 "res_2" = "한석화";

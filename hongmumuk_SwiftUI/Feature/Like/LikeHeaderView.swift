@@ -40,7 +40,7 @@ struct LikeHeaderView: View {
     }
     
     private var likeText: some View {
-        Text("찜")
+        Text("favorites".localized())
             .fontStyle(Fonts.title2Bold)
             .foregroundColor(Colors.GrayScale.grayscale95)
     }

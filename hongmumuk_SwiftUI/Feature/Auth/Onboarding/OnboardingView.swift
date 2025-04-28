@@ -28,9 +28,9 @@ struct OnboardingView: View {
     }
     
     let tabItems: [TabItem] = [
-        TabItem(title: "8가지 카테고리로 원하는\n맛집을 쉽게 찾아봐요!", imageName: "onboarding1"),
-        TabItem(title: "메뉴 고민 끝! 랜덤 추천으로\n새로운 맛집을 발견해요!", imageName: "onboarding2"),
-        TabItem(title: "위치, 키워드, 리뷰까지\n한 번에 확인해요!", imageName: "onboarding3")
+        TabItem(title: "category_recommendation_description".localized(), imageName: "onboarding1"),
+        TabItem(title: "random_recommendation_description".localized(), imageName: "onboarding2"),
+        TabItem(title: "check_location_keyword_review".localized(), imageName: "onboarding3")
     ]
 
     var body: some View {
@@ -46,7 +46,7 @@ struct OnboardingView: View {
                 Spacer()
                 
                 LoginButton(
-                    title: "홍무묵 시작하기",
+                    title: "start_hongmumuk".localized(),
                     iconName: "whiteIcon",
                     backgroundColor: Colors.Primary.normal,
                     textColor: .white,
@@ -66,7 +66,7 @@ struct OnboardingView: View {
                         await parentStore.send(.setNavigationRoot(.home))
                     }
                 }, label: {
-                    Text("비회원으로 시작하기")
+                    Text("start_as_guest".localized())
                         .fontStyle(Fonts.body1Medium)
                         .foregroundColor(Colors.GrayScale.alternative)
                 })

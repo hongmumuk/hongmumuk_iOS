@@ -29,7 +29,7 @@ struct ResetPasswordView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                    LoginHeaderView(title: "find_password".localized(), action: { parentViewStore.send(.onDismiss) })
                     
                     Spacer()
                 }
@@ -65,7 +65,7 @@ struct ResetPasswordView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("비밀번호")
+                    Text("password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
                         .padding(.leading, 24)
@@ -76,7 +76,7 @@ struct ResetPasswordView: View {
                         text: viewStore.password,
                         state: viewStore.passwordState,
                         message: viewStore.passwordErrorMessage,
-                        placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                        placeholder: "enter_password_with_rules_2".localized(),
                         isSecure: !viewStore.passwordVisible,
                         showAtSymbol: false,
                         showSuffix: false,
@@ -90,7 +90,7 @@ struct ResetPasswordView: View {
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
                     
-                    Text("비밀번호 확인")
+                    Text("confirm_password".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.verifiedPasswordState))
                         .padding(.leading, 24)
@@ -101,7 +101,7 @@ struct ResetPasswordView: View {
                         text: viewStore.verifiedPassword,
                         state: viewStore.verifiedPasswordState,
                         message: viewStore.verifiedPasswordMessage,
-                        placeholder: "비밀번호를 한 번 더 입력해 주세요",
+                        placeholder: "reenter_password".localized(),
                         isSecure: !viewStore.verifiedPasswordVisible,
                         showAtSymbol: false,
                         showSuffix: false,

@@ -27,19 +27,19 @@ struct SignupDoneView: View {
                     .frame(width: geometry.size.width * 0.42, height: geometry.size.width * 0.42)
                     .padding(.top, geometry.size.height * 0.24)
                 
-                Text("홍무묵에 오신 걸 환영해요!")
+                Text("welcome_to_hongmumuk".localized())
                     .fontStyle(Fonts.title2Bold)
                     .foregroundStyle(Colors.GrayScale.normal)
                     .padding(.top, 12)
                 
-                Text("로그인 후 홍무묵의 모든 서비스를 이용해 보세요")
+                Text("use_all_services_now".localized())
                     .fontStyle(Fonts.heading3Medium)
                     .foregroundStyle(Colors.GrayScale.alternative)
                     .padding(.top, 8)
                 
                 Spacer()
                 
-                NextButton(title: "로그인하러 가기", isActive: true) {
+                NextButton(title: "start".localized(), isActive: true) {
                     parentStore.send(.setNavigationRoot(.login))
                 }
                 .frame(height: 60)

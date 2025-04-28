@@ -30,31 +30,31 @@ struct InfoView: View {
                 buttonStack
             }
         }
-        .alert("로그아웃하시겠습니까?", isPresented: viewStore.binding(
+        .alert("confirm_logout".localized(), isPresented: viewStore.binding(
             get: \.showLogoutAlert,
             send: .alertDismiss
         ),
         actions: {
-            Button("취소", role: .none) {}
+            Button("cancel".localized(), role: .none) {}
             
-            Button("확인", role: .none) {
+            Button("confirm".localized(), role: .none) {
                 viewStore.send(.logoutConfirmButtonTapped)
             }
         }, message: {
-            Text("로그아웃 후에도 언제든 다시 로그인\n할 수 있습니다.")
+            Text("can_relogin_anytime".localized())
         })
-        .alert("정말 탈퇴하시겠습니까?", isPresented: viewStore.binding(
+        .alert("confirm_withdrawal".localized(), isPresented: viewStore.binding(
             get: \.showWithdrawAlert,
             send: .alertDismiss
         ),
         actions: {
-            Button("취소", role: .none) {}
+            Button("cancel".localized(), role: .none) {}
             
-            Button("확인", role: .none) {
+            Button("confirm".localized(), role: .none) {
                 viewStore.send(.withdrawConfirmButtonTapped)
             }
         }, message: {
-            Text("탈퇴 시 계정 및 모든 데이터가 삭제되며\n복구되지 않습니다.")
+            Text("withdrawal_data_warning".localized())
         })
         .onChange(of: viewStore.pop) { _, _ in
             parentViewStore.send(.onDismiss)
@@ -62,7 +62,7 @@ struct InfoView: View {
     }
     
     private var nickNameTitle: some View {
-        Text("닉네임")
+        Text("nickname".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.nickNameState))
             .padding(.leading, 24)
@@ -95,7 +95,7 @@ struct InfoView: View {
     
     private var changeButton: some View {
         BasicButton(
-            title: "수정하기",
+            title: "edit".localized(),
             isActive: viewStore.nickNameState == .nicknameVerified
         ) {
             viewStore.send(.changeButtonTapped)
@@ -105,7 +105,7 @@ struct InfoView: View {
     }
     
     private var emailTitle: some View {
-        Text("이메일")
+        Text("email".localized())
             .fontStyle(Fonts.heading2Bold)
             .foregroundStyle(Colors.GrayScale.grayscale95)
             .padding(.leading, 24)
@@ -140,7 +140,7 @@ struct InfoView: View {
         HStack(spacing: 4) {
             Spacer()
             
-            Text("\(viewStore.todayString) 인증 완료")
+            Text("\(viewStore.todayString)" + "verification_complete".localized())
                 .fontStyle(Fonts.caption1Medium)
                 .foregroundStyle(Colors.GrayScale.grayscal45)
             
@@ -154,10 +154,10 @@ struct InfoView: View {
         ZStack {
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
-                GrayPlainButton(title: "로그아웃") {
+                GrayPlainButton(title: "logout".localized()) {
                     viewStore.send(.logoutButtonTapped)
                 }
-                GrayPlainButton(title: "회원탈퇴") {
+                GrayPlainButton(title: "delete_account".localized()) {
                     viewStore.send(.withdrawButtonTapped)
                 }
                 Spacer()
@@ -180,7 +180,7 @@ struct InfoView: View {
                 .resizable()
                 .frame(width: 20, height: 20)
             
-            Text("닉네임을 수정했어요")
+            Text("nickname_updated".localized())
                 .fontStyle(Fonts.heading3Medium)
                 .foregroundColor(.white)
         }

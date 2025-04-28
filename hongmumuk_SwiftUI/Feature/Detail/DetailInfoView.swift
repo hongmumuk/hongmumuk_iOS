@@ -79,7 +79,7 @@ struct DetailInfoView: View {
             Button(action: {
                 viewStore.send(.copyAddressButtonTapped)
             }) {
-                Text("복사")
+                Text("copy".localized())
                     .fontStyle(Fonts.body1Medium)
                     .foregroundColor(Colors.Primary.primary55)
             }
@@ -93,9 +93,9 @@ struct DetailInfoView: View {
             HStack(spacing: 8) {
                 ForEach(viewStore.keywords,
                         id: \.self)
-                { searchText in
+                { keyword in
                     HStack(spacing: 4) {
-                        Text(searchText)
+                        Text(keyword.localized())
                             .fontStyle(Fonts.body1Medium)
                             .foregroundColor(Colors.GrayScale.grayscale70)
                             .padding(.vertical, 6)

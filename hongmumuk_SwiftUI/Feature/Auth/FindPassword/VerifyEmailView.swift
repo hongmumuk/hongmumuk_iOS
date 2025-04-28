@@ -27,7 +27,7 @@ struct VerifyEmailView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                LoginHeaderView(title: "비밀번호 찾기", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "find_password".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 scrollView
                     .padding(.top, 56)
@@ -35,7 +35,7 @@ struct VerifyEmailView: View {
                 VStack {
                     Spacer()
                         
-                    NextButton(title: "비밀번호 재설정", isActive: viewStore.isContinueButtonEnabled) {
+                    NextButton(title: "reset_password".localized(), isActive: viewStore.isContinueButtonEnabled) {
                         if viewStore.isContinueButtonEnabled {
                             viewStore.send(.continueButtonTapped)
                             parentViewStore.send(.navigationTo(.resetPassword))
@@ -60,7 +60,7 @@ struct VerifyEmailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("이메일")
+                    Text("email".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
@@ -71,7 +71,7 @@ struct VerifyEmailView: View {
                         text: viewStore.email,
                         state: viewStore.emailState,
                         message: viewStore.emailErrorMessage,
-                        placeholder: "학교 이메일을 입력해 주세요",
+                        placeholder: "enter_school_email".localized(),
                         isSecure: false,
                         showAtSymbol: true,
                         showSuffix: true,
@@ -87,7 +87,7 @@ struct VerifyEmailView: View {
                     BasicButton(
                         title: viewStore.isSendCodeLoading ? "보내는 중..." :
                             viewStore.sendCodeTimerActive ? "\(viewStore.remainingTime)초 후에 재전송" :
-                            "인증번호 발송",
+                            "send_verification_code".localized(),
                         isActive: viewStore.isSendCodeButtonEnabled
                     ) {
                         if viewStore.isSendCodeButtonEnabled {
@@ -110,7 +110,7 @@ struct VerifyEmailView: View {
                             text: viewStore.code,
                             state: viewStore.codeState,
                             message: viewStore.codeErrorMessage,
-                            placeholder: "6자리 숫자를 입력해 주세요",
+                            placeholder: "enter_code".localized(),
                             isSecure: false,
                             showAtSymbol: false,
                             showSuffix: false,
@@ -122,7 +122,7 @@ struct VerifyEmailView: View {
                         )
                         .frame(width: geometry.size.width * 0.62)
                         
-                        BasicButton(title: "인증하기", isActive: viewStore.isVerifyCodeButtonEnabled) {
+                        BasicButton(title: "verify".localized(), isActive: viewStore.isVerifyCodeButtonEnabled) {
                             if viewStore.isVerifyCodeButtonEnabled {
                                 viewStore.send(.verifyCodeButtonTapped)
                             }

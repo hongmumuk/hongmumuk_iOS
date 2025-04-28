@@ -28,7 +28,7 @@ struct SignupEmailView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                LoginHeaderView(title: "회원가입", action: { parentViewStore.send(.onDismiss) })
+                LoginHeaderView(title: "sign_up".localized(), action: { parentViewStore.send(.onDismiss) })
                 
                 scrollView
                     .padding(.top, 56)
@@ -36,7 +36,7 @@ struct SignupEmailView: View {
                 VStack {
                     Spacer()
                         
-                    NextButton(title: "다음으로", isActive: viewStore.isContinueButtonEnabled) {
+                    NextButton(title: "next".localized(), isActive: viewStore.isContinueButtonEnabled) {
                         if viewStore.isContinueButtonEnabled {
                             viewStore.send(.continueButtonTapped)
                             parentViewStore.send(.navigationTo(.signupPassword))
@@ -63,11 +63,11 @@ struct SignupEmailView: View {
                 VStack(alignment: .leading) {
                     SignupHeaderView(
                         activeStep: 2,
-                        title: "학교 이메일을 입력해 주세요",
-                        subtitle: "졸업생, 휴학생인 경우에도 가입 가능합니다."
+                        title: "enter_school_email".localized(),
+                        subtitle: "school_email_signup_available".localized()
                     )
                     
-                    Text("이메일")
+                    Text("email".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                         .padding(.leading, 24)
@@ -78,7 +78,7 @@ struct SignupEmailView: View {
                         text: viewStore.email,
                         state: viewStore.emailState,
                         message: viewStore.emailErrorMessage,
-                        placeholder: "학교 이메일을 입력해 주세요",
+                        placeholder: "enter_school_email".localized(),
                         isSecure: false,
                         showAtSymbol: true,
                         showSuffix: true,
@@ -94,7 +94,7 @@ struct SignupEmailView: View {
                     BasicButton(
                         title: viewStore.isSendCodeLoading ? "보내는 중..." :
                             viewStore.sendCodeTimerActive ? "\(viewStore.remainingTime)초 후에 재전송" :
-                            "인증번호 발송",
+                            "send_verification_code".localized(),
                         isActive: viewStore.isSendCodeButtonEnabled
                     ) {
                         if viewStore.isSendCodeButtonEnabled {
@@ -117,7 +117,7 @@ struct SignupEmailView: View {
                             text: viewStore.code,
                             state: viewStore.codeState,
                             message: viewStore.codeErrorMessage,
-                            placeholder: "6자리 숫자를 입력해 주세요",
+                            placeholder: "enter_code".localized(),
                             isSecure: false,
                             showAtSymbol: false,
                             showSuffix: false,
@@ -130,7 +130,7 @@ struct SignupEmailView: View {
                         .keyboardType(.numberPad)
                         .frame(width: geometry.size.width * 0.62)
                         
-                        BasicButton(title: "인증하기", isActive: viewStore.isVerifyCodeButtonEnabled) {
+                        BasicButton(title: "verify".localized(), isActive: viewStore.isVerifyCodeButtonEnabled) {
                             if viewStore.isVerifyCodeButtonEnabled {
                                 viewStore.send(.verifyCodeButtonTapped)
                             }

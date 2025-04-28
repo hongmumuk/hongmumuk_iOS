@@ -15,13 +15,13 @@ extension ProfileSet {
     var title: String {
         switch self {
         case .info:
-            return "내 정보"
+            return "my_info".localized()
         case .service:
-            return "서비스 이용약관"
+            return "terms_of_service".localized()
         case .privacy:
-            return "개인정보 처리방침"
+            return "privacy_policy".localized()
         case .version:
-            return "버전 정보"
+            return "app_version".localized()
         }
     }
     

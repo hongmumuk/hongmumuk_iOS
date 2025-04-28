@@ -47,7 +47,7 @@ struct ListItemView: View {
                 .frame(width: 100, height: 100)
 
                 VStack(alignment: .leading) {
-                    Text(item.name)
+                    Text(item.name.localized())
                         .lineLimit(1)
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(Colors.GrayScale.grayscale95)
@@ -74,7 +74,7 @@ struct ListItemView: View {
                                 Image("distanceIcon")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
-                                Text("정문에서")
+                                Text("from_front".localized())
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
                                 Text("\(Int(item.frontDistance))m")
@@ -83,7 +83,7 @@ struct ListItemView: View {
                                 Image("distanceIcon")
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
-                                Text("후문에서")
+                                Text("from_back".localized())
                                     .foregroundColor(Colors.GrayScale.grayscale55)
                                 
                                 Text("\(Int(item.backDistance))m")

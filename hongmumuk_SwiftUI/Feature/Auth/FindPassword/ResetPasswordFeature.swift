@@ -78,14 +78,14 @@ struct ResetPasswordFeature: Reducer {
             case .passwordOnSubmit:
                 if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 }
                 if state.password.isEmpty {
                     state.passwordState = .empty
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "enter_password_with_rules".localized()
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil
@@ -98,10 +98,10 @@ struct ResetPasswordFeature: Reducer {
                     state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 } else {
                     state.verifiedPasswordState = .invalid
-                    state.verifiedPasswordMessage = "비밀번호가 일치하지 않습니다."
+                    state.verifiedPasswordMessage = "passwords_do_not_match".localized()
                 }
                 return .none
                 
@@ -150,9 +150,7 @@ struct ResetPasswordFeature: Reducer {
                 
             case let .failReset(error):
                 state.isResetPasswordLoading = false
-                state.resetPasswordError = error
-                print(error)
-                state.verifiedPasswordMessage = error == .unknown ? "비밀번호를 바꿀 수 없습니다." : nil
+                print("비밀번호를 바꿀 수 없습니다.")
                 
                 return .none
             }

@@ -82,7 +82,7 @@ struct PrivacyModalView: View {
                     Spacer()
                 }
                 
-                Text("약관에 동의합니다")
+                Text("agree_to_terms".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundColor(.white)
             }

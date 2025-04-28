@@ -22,7 +22,7 @@ struct RecentSearchView: View {
     
     private var recentSearchTextView: some View {
         HStack {
-            Text("최근 검색 결과")
+            Text("recent_searches".localized())
                 .fontStyle(Fonts.body2SemiBold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
                 .padding(.top, 24)
@@ -32,7 +32,7 @@ struct RecentSearchView: View {
             Button(action: {
                 viewStore.send(.recentSearchAllClearButtonTapped)
             }) {
-                Text("전체 삭제")
+                Text("delete_all".localized())
                     .fontStyle(Fonts.body2Medium)
                     .foregroundColor(Colors.GrayScale.grayscale30)
                     .padding(.top, 26)
@@ -44,7 +44,7 @@ struct RecentSearchView: View {
     private var recentSearchEmptyTextView: some View {
         HStack {
             Spacer()
-            Text("최근 검색 결과가 없습니다.")
+            Text("no_recent_search_results".localized())
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
             Spacer()

@@ -78,7 +78,7 @@ struct EmptyView: View {
     private func loginButton(_ action: @escaping () -> Void) -> some View {
         Button(action: action) {
             ZStack {
-                Text("이메일로 로그인하기")
+                Text("login_with_email".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, alignment: .center)

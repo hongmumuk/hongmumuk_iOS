@@ -113,9 +113,6 @@ struct SignupEmailFeature: Reducer {
                 if state.code.isEmpty {
                     state.codeState = .empty
                     state.codeErrorMessage = nil
-                } else if state.code.count != 6 {
-                    state.codeState = .invalid
-                    state.codeErrorMessage = "6자리 숫자를 입력해주세요"
                 } else {
                     state.codeState = .valid
                     state.codeErrorMessage = nil
@@ -210,14 +207,18 @@ struct SignupEmailFeature: Reducer {
                 if state.sendCodeError != nil {
                     state.emailState = .loginError
                 }
-                state.emailErrorMessage = error == .alreadyExists ? "이미 가입된 계정입니다." : nil
+                if error == .alreadyExists {
+                    state.emailErrorMessage = "exist_email".localized()
+                } else {
+                    state.emailErrorMessage = "fail_send_code".localized()
+                }
                 return .none
                 
             case .successVerify:
                 state.isVerifyCodeLoading = false
                 state.emailState = .codeVerified
                 state.codeState = .disabled
-                state.emailErrorMessage = "이메일 인증이 완료되었습니다"
+                state.emailErrorMessage = "email_verification_complete".localized()
                 
                 return .none
                 
@@ -228,11 +229,9 @@ struct SignupEmailFeature: Reducer {
                     state.codeState = .loginError
                 }
                 if error == .invalidCode {
-                    state.codeErrorMessage = "인증번호가 틀렸습니다."
+                    state.codeErrorMessage = "invalid_verification_code".localized()
                 } else if error == .expiredCode {
-                    state.codeErrorMessage = "인증번호가 만료되었습니다."
-                } else if error == .noVerificationRecord {
-                    state.codeErrorMessage = "인증번호가 전송되지 않았습니다."
+                    state.codeErrorMessage = "expired_verification_code".localized()
                 }
                 return .none
             }

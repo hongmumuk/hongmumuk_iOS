@@ -28,7 +28,7 @@ struct EmailLoginView: View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
                 LoginHeaderView(
-                    title: "이메일로 로그인",
+                    title: "email_login".localized(),
                     action: {
                         parentViewStore.send(
                             .onDismiss
@@ -36,7 +36,7 @@ struct EmailLoginView: View {
                     }
                 )
                 
-                Text("이메일")
+                Text("email".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.emailState))
                     .padding(.leading, 24)
@@ -47,7 +47,7 @@ struct EmailLoginView: View {
                     text: viewStore.email,
                     state: viewStore.emailState,
                     message: viewStore.emailErrorMessage,
-                    placeholder: "학교 이메일을 입력해주세요",
+                    placeholder: "enter_school_email".localized(),
                     isSecure: false,
                     showAtSymbol: true,
                     showSuffix: true,
@@ -60,7 +60,7 @@ struct EmailLoginView: View {
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 
-                Text("비밀번호")
+                Text("password".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundStyle(CommonTextFieldStyle.textColor(for: viewStore.passwordState))
                     .padding(.leading, 24)
@@ -71,7 +71,7 @@ struct EmailLoginView: View {
                     text: viewStore.password,
                     state: viewStore.passwordState,
                     message: viewStore.passwordErrorMessage,
-                    placeholder: "영문, 숫자 포함 8~20자 이내로 입력해 주세요",
+                    placeholder: "enter_password_with_rules_2".localized(),
                     isSecure: !viewStore.passwordVisible,
                     showAtSymbol: false,
                     showSuffix: false,
@@ -85,7 +85,7 @@ struct EmailLoginView: View {
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 
-                NextButton(title: "로그인", isActive: viewStore.isSigninEnabled) {
+                NextButton(title: "login".localized(), isActive: viewStore.isSigninEnabled) {
                     if viewStore.isSigninEnabled {
                         viewStore.send(.signInButtonTapped)
                     }
@@ -98,7 +98,7 @@ struct EmailLoginView: View {
                     Spacer()
                     
                     Button(action: { parentViewStore.send(.navigationTo(.signup)) }) {
-                        Text("회원가입")
+                        Text("sign_up".localized())
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)
                     }
@@ -109,7 +109,7 @@ struct EmailLoginView: View {
                         .frame(width: 1, height: 12)
                     
                     Button(action: { parentViewStore.send(.navigationTo(.verifyEmail)) }) {
-                        Text("비밀번호 찾기")
+                        Text("find_password".localized())
                             .fontStyle(Fonts.body1Medium)
                             .foregroundStyle(Colors.GrayScale.alternative)
                     }

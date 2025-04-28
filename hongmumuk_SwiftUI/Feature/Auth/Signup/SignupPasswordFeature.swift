@@ -78,14 +78,14 @@ struct SignupPasswordFeature: Reducer {
             case .passwordOnSubmit:
                 if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 }
                 if state.password.isEmpty {
                     state.passwordState = .empty
                     state.passwordErrorMessage = nil
                 } else if !validationClient.validatePassword(state.password) {
                     state.passwordState = .invalid
-                    state.passwordErrorMessage = "비밀번호 형식이 잘못되었습니다."
+                    state.passwordErrorMessage = "enter_password_with_rules".localized()
                 } else {
                     state.passwordState = .valid
                     state.passwordErrorMessage = nil
@@ -98,10 +98,10 @@ struct SignupPasswordFeature: Reducer {
                     state.verifiedPasswordMessage = nil
                 } else if state.verifiedPassword == state.password {
                     state.verifiedPasswordState = .passwordVerified
-                    state.verifiedPasswordMessage = "비밀번호가 일치합니다."
+                    state.verifiedPasswordMessage = "passwords_match".localized()
                 } else {
                     state.verifiedPasswordState = .invalid
-                    state.verifiedPasswordMessage = "비밀번호가 일치하지 않습니다."
+                    state.verifiedPasswordMessage = "passwords_do_not_match".localized()
                 }
                 return .none
                 
@@ -151,17 +151,7 @@ struct SignupPasswordFeature: Reducer {
                 
             case let .failJoin(error):
                 state.isContinueLoading = false
-                state.signupPasswordError = error
-                print(error)
-                if state.signupPasswordError != nil {
-                    state.passwordState = .loginError
-                }
-                if error == .alreadyExists {
-                    state.passwordErrorMessage = "이미 존재하는 회원입니다."
-                } else {
-                    state.passwordErrorMessage = "회원가입에 실패했습니다."
-                }
-                print(state.passwordErrorMessage)
+                print("회원가입에 실패했습니다.")
                 return .none
             }
         }
