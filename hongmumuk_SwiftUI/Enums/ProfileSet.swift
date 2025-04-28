@@ -8,7 +8,7 @@
 import Foundation
 
 enum ProfileSet {
-    case info, service, privacy, version
+    case info, service, privacy, version, lang
 }
 
 extension ProfileSet {
@@ -22,12 +22,14 @@ extension ProfileSet {
             return "privacy_policy".localized()
         case .version:
             return "app_version".localized()
+        case .lang:
+            return "lang_set".localized()
         }
     }
     
     var isButton: Bool {
         switch self {
-        case .info, .service, .privacy:
+        case .info, .service, .privacy, .lang:
             return true
         case .version:
             return false
@@ -45,6 +47,15 @@ extension ProfileSet {
         }
         
         return false
+    }
+    
+    var isShowArrow: Bool {
+        switch self {
+        case .version:
+            return false
+        default:
+            return true
+        }
     }
     
     var urlString: String {

@@ -39,6 +39,8 @@ struct ProfileSetView: View {
         Button(action: {
             if !viewStore.isUser, type == .info {
                 viewStore.send(.loginButtonTapped)
+            } else if type == .lang {
+                viewStore.send(.langButtonTapped)
             } else {
                 parentViewStore.send(.profileButtonTapped(type))
             }
@@ -51,8 +53,7 @@ struct ProfileSetView: View {
         HStack(spacing: 0) {
             text
             Spacer()
-            if type.showLoingText(viewStore.isUser) { loginText }
-            if type == .version { versionText }
+            right
         }
         .padding(.horizontal, 24)
     }
@@ -63,6 +64,20 @@ struct ProfileSetView: View {
             .fontStyle(Fonts.heading1SemiBold)
     }
     
+    private var right: some View {
+        HStack(spacing: 4) {
+            if type.showLoingText(viewStore.isUser) { loginText }
+            if type == .version { versionText }
+            if type == .lang { langText }
+            
+            if type.isShowArrow {
+                Image("arrowIcon")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+            }
+        }
+    }
+    
     private var loginText: some View {
         Text("login_required".localized())
             .foregroundColor(Colors.GrayScale.grayscale55)
@@ -71,6 +86,12 @@ struct ProfileSetView: View {
     
     private var versionText: some View {
         Text(viewStore.currentVersion)
+            .foregroundColor(Colors.GrayScale.grayscale55)
+            .fontStyle(Fonts.body1Medium)
+    }
+    
+    private var langText: some View {
+        Text(viewStore.currentLang)
             .foregroundColor(Colors.GrayScale.grayscale55)
             .fontStyle(Fonts.body1Medium)
     }

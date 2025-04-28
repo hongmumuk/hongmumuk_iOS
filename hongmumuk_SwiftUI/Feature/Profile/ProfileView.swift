@@ -56,5 +56,22 @@ struct ProfileView: View {
         }, message: {
             Text("login_required_all_services".localized())
         })
+        .alert("lang_set".localized(), isPresented: viewStore.binding(
+            get: \.showLangAlert,
+            send: .langAlertDismissed
+        ),
+        actions: {
+            Button("cancel".localized(), role: .none) {}
+            
+            Button("device_set".localized(), role: .none) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(appSettings) {
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }, message: {
+            Text("change_language_message".localized())
+        })
     }
 }

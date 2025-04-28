@@ -134,6 +134,10 @@
 "from_front" = "정문에서";
 "source_from_naverBlog" = "네이버 블로그 검색 기반 결과입니다";
 "verification_code" = "인증번호";
+"current_lang" = "한국어";
+"lang_set" = "언어 설정";
+"device_set" = "기기 설정";
+"change_language_message" = "기기에서 원하는 언어로 변경해 주세요.";
 // 키워드
 "honbap" = "혼밥";
 "hongdaeStudent" = "홍대생";
