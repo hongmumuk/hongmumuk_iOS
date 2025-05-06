@@ -38,7 +38,7 @@ struct DetailInfoView: View {
     
     private var detailTitle: some View {
         HStack(spacing: 8) {
-            Text(viewStore.restaurantDetail.name)
+            Text(viewStore.restaurantDetail.name.localized())
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
