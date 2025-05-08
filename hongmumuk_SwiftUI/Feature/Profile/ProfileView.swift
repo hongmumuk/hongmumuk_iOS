@@ -5,9 +5,8 @@
 //  Created by Dongwan Ryoo on 2/18/25.
 //
 
-import SwiftUI
-
 import ComposableArchitecture
+import SwiftUI
 
 struct ProfileView: View {
     private let store: StoreOf<ProfileFeature>

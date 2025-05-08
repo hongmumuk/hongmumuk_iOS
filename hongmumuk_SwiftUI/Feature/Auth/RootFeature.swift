@@ -41,8 +41,12 @@ struct RootFeature: Reducer {
         var isLoggedIn: Bool = false
         var isLoading: Bool = true
         var isFirstLaunch: Bool = true
-        
+    
+        var showVersionAlert: Bool = false
         var showNetworkError: Bool = false
+        var isBlockedByVersion: Bool {
+            showVersionAlert
+        }
     }
     
     enum Action: Equatable {
@@ -61,6 +65,8 @@ struct RootFeature: Reducer {
         case resetStackAndLoadHome
         
         case checkLoginStatus
+        case checkVersion
+        case forceUpdateTapped
         case setLoginStatus(Bool)
         case setLoadingStatus(Bool)
         case setFirstLaunch(Bool)
@@ -69,6 +75,7 @@ struct RootFeature: Reducer {
         case inquryButtonTapped
         
         case setShowNetworkError(Bool)
+        case setShowVersionAlert(Bool)
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -102,6 +109,10 @@ struct RootFeature: Reducer {
                 
             case .onAppear:
                 return .merge(
+                    // 버전 체크
+                    .run { send in
+                        await send(.checkVersion)
+                    },
                     // 로그아웃 알림 수신
                     .run { send in
                         for await _ in NotificationCenter.default.notifications(named: .shouldLogout) {
@@ -135,6 +146,28 @@ struct RootFeature: Reducer {
                 }
                 
                 return .none
+                
+            case let .setShowVersionAlert(show):
+                state.showVersionAlert = show
+                return .none
+
+            case .forceUpdateTapped:
+                if let url = URL(string: "https://apps.apple.com/app/id6464114749") {
+                    UIApplication.shared.open(url)
+                }
+                return .none
+                
+            case .checkVersion:
+                return .run { send in
+                    let currentVersion = Bundle.main.fullVersion
+                    let minimumVersion = "2.0.3"
+                    
+                    print(currentVersion)
+                    
+                    if compareVersion(currentVersion, minimumVersion) == .orderedAscending {
+                        await send(.setShowVersionAlert(true))
+                    }
+                }
                 
             case .onDismiss:
                 state.navigationPath.removeLast()
@@ -281,6 +314,11 @@ struct RootFeature: Reducer {
         } catch {
             return false
         }
+    }
+    
+    // versicon compaer
+    func compareVersion(_ v1: String, _ v2: String) -> ComparisonResult {
+        return v1.compare(v2, options: .numeric)
     }
 }
 

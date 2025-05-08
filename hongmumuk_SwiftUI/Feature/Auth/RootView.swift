@@ -25,19 +25,39 @@ struct RootView: View {
             send: { RootFeature.Action.setNavigationPath($0) }
         )) {
             Group {
-                if viewStore.isLoading {
-                    SplashView()
-                        .onAppear {
-                            viewStore.send(.checkLoginStatus)
-                        }
-                } else if viewStore.isFirstLaunch {
-                    OnboardingView(store: Store(initialState: OnboardingFeature.State(), reducer: OnboardingFeature.init), parentStore: store)
-                } else if viewStore.isLoggedIn {
-                    HomeRootView(parentStore: store)
-                        .navigationBarHidden(true)
+                if viewStore.showVersionAlert {
+                    Color.clear
                 } else {
-                    LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
+                    if viewStore.isLoading {
+                        SplashView()
+                            .onAppear {
+                                viewStore.send(.checkLoginStatus)
+                            }
+                    } else if viewStore.isFirstLaunch {
+                        OnboardingView(store: Store(initialState: OnboardingFeature.State(), reducer: OnboardingFeature.init), parentStore: store)
+                    } else if viewStore.isLoggedIn {
+                        HomeRootView(parentStore: store)
+                            .navigationBarHidden(true)
+                    } else {
+                        LoginView(store: Store(initialState: LoginFeature.State(), reducer: LoginFeature.init), parentStore: store)
+                    }
                 }
+            }
+            .alert("업데이트 필요", isPresented: viewStore.binding(
+                get: \.showVersionAlert,
+                send: .setShowVersionAlert(false)
+            )) {
+                Button("업데이트하러 가기", action: {
+                    viewStore.send(.forceUpdateTapped)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        exit(0)
+                    }
+                })
+                Button("종료", role: .cancel, action: {
+                    exit(0)
+                })
+            } message: {
+                Text("최신 버전에서만 이용할 수 있습니다.\nApp Store에서 업데이트 해주세요.")
             }
             .fullScreenCover(isPresented: Binding(
                 get: { viewStore.showNetworkError },
