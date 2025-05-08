@@ -1,4 +1,8 @@
 "network_connection_failed" = "Network connection failed";
+"forced_update_title" = "Update Required";
+"forced_update_store" = "Go to App Store";
+"forced_update_exit" = "Exit";
+"forced_update_message" = "This app is only available on the latest version.\nPlease update it from the App Store.";
 "email" = "Email";
 "enter_school_email" = "Enter your school email";
 "sending_code" = "Sending...";

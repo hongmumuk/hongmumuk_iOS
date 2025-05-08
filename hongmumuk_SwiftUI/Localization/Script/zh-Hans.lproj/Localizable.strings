@@ -1,4 +1,8 @@
 "network_connection_failed" = "网络连接失败";
+"forced_update_title" = "需要更新";
+"forced_update_store" = "前往 App Store";
+"forced_update_exit" = "退出";
+"forced_update_message" = "此应用仅支持最新版本。\n请前往 App Store 更新。";
 "email" = "电子邮件";
 "enter_school_email" = "请输入学校邮箱";
 "sending_code" = "发送中…";
