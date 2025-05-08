@@ -43,21 +43,21 @@ struct RootView: View {
                     }
                 }
             }
-            .alert("업데이트 필요", isPresented: viewStore.binding(
+            .alert("forced_update_title".localized(), isPresented: viewStore.binding(
                 get: \.showVersionAlert,
                 send: .setShowVersionAlert(false)
             )) {
-                Button("업데이트하러 가기", action: {
+                Button("forced_update_store".localized(), action: {
                     viewStore.send(.forceUpdateTapped)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         exit(0)
                     }
                 })
-                Button("종료", role: .cancel, action: {
+                Button("forced_update_exit".localized(), role: .cancel, action: {
                     exit(0)
                 })
             } message: {
-                Text("최신 버전에서만 이용할 수 있습니다.\nApp Store에서 업데이트 해주세요.")
+                Text("forced_update_message".localized())
             }
             .fullScreenCover(isPresented: Binding(
                 get: { viewStore.showNetworkError },
