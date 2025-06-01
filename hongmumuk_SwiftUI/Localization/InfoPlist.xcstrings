@@ -46,6 +46,18 @@
           }
         }
       }
+    },
+    "NSUserTrackingUsageDescription" : {
+      "comment" : "Privacy - Tracking Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

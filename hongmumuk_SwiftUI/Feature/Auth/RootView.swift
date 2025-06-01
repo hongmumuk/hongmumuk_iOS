@@ -5,6 +5,7 @@
 //  Created by Park Seyoung on 3/4/25.
 //
 
+import AppTrackingTransparency
 import ComposableArchitecture
 import SwiftUI
 
@@ -186,6 +187,12 @@ struct RootView: View {
         }
         .onAppear {
             viewStore.send(.onAppear)
+            
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    print("ATT Authorization status: \(status.rawValue)")
+                }
+            }
         }
     }
 }

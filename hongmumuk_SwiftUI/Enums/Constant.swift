@@ -12,6 +12,8 @@ enum Constant {
     enum Keys {
         enum Plist {
             static let baseUrl = "BASE_URL"
+            static let appsFlyerDevKey = "DEV_KEY"
+            static let appleAppID = "APP_ID"
         }
     }
     
@@ -33,5 +35,19 @@ enum Constant {
         }
         
         return url
+    }()
+    
+    static let appsFlyerDevKey: String = {
+        guard let key = Constant.infoDictionary[Keys.Plist.appsFlyerDevKey] as? String else {
+            fatalError("AppsFlyer Dev Key not set in plist")
+        }
+        return key
+    }()
+    
+    static let appleAppID: String = {
+        guard let id = Constant.infoDictionary[Keys.Plist.appleAppID] as? String else {
+            fatalError("Apple App ID not set in plist")
+        }
+        return id
     }()
 }
