@@ -188,11 +188,11 @@ struct RootView: View {
         .onAppear {
             viewStore.send(.onAppear)
             
-            if #available(iOS 14, *) {
-                ATTrackingManager.requestTrackingAuthorization { status in
-                    print("ATT Authorization status: \(status.rawValue)")
-                }
-            }
+//            if #available(iOS 14, *) {
+//                ATTrackingManager.requestTrackingAuthorization { status in
+//                    print("ATT Authorization status: \(status.rawValue)")
+//                }
+//            }
         }
     }
 }

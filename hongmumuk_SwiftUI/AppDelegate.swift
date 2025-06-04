@@ -6,7 +6,6 @@
 //
 
 import AppsFlyerLib
-import AppTrackingTransparency
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
