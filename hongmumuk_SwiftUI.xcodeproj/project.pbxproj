@@ -82,6 +82,8 @@
 		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
 		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
+		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
+		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
 		BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */; };
@@ -270,6 +272,7 @@
 		2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
+		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
 		BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
@@ -384,6 +387,7 @@
 				BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */,
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
+				2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +535,7 @@
 				2FA097872D427FC900D01792 /* Preview Content */,
 				BEB42C302D758C0D0040F65F /* Loading.json */,
 				2FA097882D427FC900D01792 /* Assets.xcassets */,
+				2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */,
 				2FA097892D427FC900D01792 /* ContentView.swift */,
 				2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */,
 			);
@@ -857,6 +862,7 @@
 				BE82995F2D60AFD00081F979 /* Shimmer */,
 				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
 				BE25DD122D79E080006B819E /* Lottie */,
+				2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -942,6 +948,7 @@
 				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 				BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -1086,6 +1093,7 @@
 				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
 				BECC4A212D69B06300F72FAF /* DetailMapView.swift in Sources */,
+				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,
 				BE25DD072D79CB28006B819E /* WebContentView.swift in Sources */,
 				BE25DCF52D798416006B819E /* DetailSkeletonView.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
@@ -1385,6 +1393,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1426,6 +1435,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1604,6 +1614,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -2016,6 +2027,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -2135,6 +2147,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.0;
+			};
+		};
 		BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -2178,6 +2198,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
+		};
 		BE25DD122D79E080006B819E /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */;
