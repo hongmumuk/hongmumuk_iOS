@@ -65,7 +65,7 @@ struct RandomFeature: Reducer {
                     state.buttonTitle = "retry_random".localized()
                 } else {
                     let randomItem = getRandom(state: state)
-                    state.restaurantName = randomItem.name
+                    state.restaurantName = randomItem.name.localized()
                     state.restaurantCategoryName = randomItem.category.displayName
                     state.restaurantCategory = randomItem.category
                     state.restaurantImageUrl = randomItem.imageUrl ?? ""
@@ -90,7 +90,7 @@ struct RandomFeature: Reducer {
             case let .restrauntListLoaded(list):
                 state.restrauntList = list
                 let randomItem = getRandom(state: state)
-                state.restaurantName = randomItem.name
+                state.restaurantName = randomItem.name.localized()
                 state.restaurantCategoryName = randomItem.category.displayName
                 state.restaurantCategory = randomItem.category
                 state.restaurantImageUrl = randomItem.imageUrl ?? ""
