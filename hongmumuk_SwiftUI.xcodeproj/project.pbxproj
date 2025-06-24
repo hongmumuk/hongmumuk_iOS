@@ -81,6 +81,7 @@
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
 		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
 		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
+		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
@@ -388,6 +389,7 @@
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 				2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */,
+				2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +865,7 @@
 				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
 				BE25DD122D79E080006B819E /* Lottie */,
 				2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */,
+				2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -949,6 +952,7 @@
 				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 				BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+				2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -2161,6 +2165,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.6;
+			};
+		};
 		2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
@@ -2212,6 +2224,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
+		};
 		2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
