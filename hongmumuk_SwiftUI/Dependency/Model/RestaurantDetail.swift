@@ -21,6 +21,7 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
     var blogs: [Blog]
     var naverLink: String
     var kakaoLink: String
+    var reviews: [Review]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -36,6 +37,7 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         case blogs
         case naverLink
         case kakaoLink
+        case reviews
     }
     
     init(from decoder: Decoder) throws {
@@ -58,6 +60,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         blogs = try container.decode([Blog].self, forKey: .blogs)
         naverLink = try container.decode(String.self, forKey: .naverLink)
         kakaoLink = try container.decode(String.self, forKey: .kakaoLink)
+        // 지금은 없어용
+        reviews = try container.decodeIfPresent([Review].self, forKey: .reviews) ?? []
     }
     
     // 직접 초기화할 수 있는 이니셜라이저 (테스트나 다른 용도에 사용)
@@ -73,7 +77,8 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
          hasLiked: Bool,
          blogs: [Blog],
          naverLink: String,
-         kakaoLink: String)
+         kakaoLink: String,
+         reviews: [Review])
     {
         self.id = id
         self.name = name
@@ -88,6 +93,7 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         self.blogs = blogs
         self.naverLink = naverLink
         self.kakaoLink = kakaoLink
+        self.reviews = reviews
     }
 }
 
@@ -128,6 +134,85 @@ extension RestaurantDetail {
             )
         ]
         
+        let reviews: [Review] = [
+            Review(
+                id: 1,
+                user: "세영이",
+                date: "2025-06-20",
+                visitCount: 2,
+                star: 4.5,
+                content: "제육볶음 정말 맛있어요! 재방문 의사 100%",
+                isOwner: false,
+                photoURLs: [
+                    "https://example.com/photo1.jpg",
+                    "https://example.com/photo2.jpg",
+                    "https://example.com/photo3.jpg"
+                ],
+                badge: "basic"
+            ),
+            Review(
+                id: 2,
+                user: "도연",
+                date: "2025-06-21",
+                visitCount: 1,
+                star: 5.0,
+                content: "가성비 최고예요. 반찬 구성도 알차고 사장님도 친절해요.",
+                isOwner: false,
+                photoURLs: [],
+                badge: "power"
+            ),
+            Review(
+                id: 3,
+                user: "맛집헌터",
+                date: "2025-06-22",
+                visitCount: 3,
+                star: 4.0,
+                content: "맛도 좋고 양도 푸짐했어요. 점심시간엔 줄이 길 수 있어요.",
+                isOwner: false,
+                photoURLs: ["https://example.com/photo4.jpg"],
+                badge: "basic"
+            ),
+            Review(
+                id: 4,
+                user: "식당주인",
+                date: "2025-06-23",
+                visitCount: 100,
+                star: 5.0,
+                content: "사장입니다 :) 항상 좋은 재료로 정성껏 만들고 있어요!",
+                isOwner: true,
+                photoURLs: [],
+                badge: "owner"
+            ),
+            Review(
+                id: 5,
+                user: "카메라장인",
+                date: "2025-06-24",
+                visitCount: 1,
+                star: 4.8,
+                content: "비주얼이 정말 예술이에요! 사진 맛집 인정합니다.",
+                isOwner: false,
+                photoURLs: [
+                    "https://example.com/photo5_1.jpg",
+                    "https://example.com/photo5_2.jpg",
+                    "https://example.com/photo5_3.jpg",
+                    "https://example.com/photo5_4.jpg"
+                ],
+                badge: "basic"
+            )
+        ] + (6 ... 30).map {
+            Review(
+                id: $0,
+                user: "유저\($0)",
+                date: "2025-06-\(String(format: "%02d", ($0 % 30) + 1))",
+                visitCount: Int.random(in: 1 ... 5),
+                star: Double.random(in: 3.0 ... 5.0),
+                content: "리뷰 내용 \($0): 이 집 괜찮아요~",
+                isOwner: false,
+                photoURLs: $0 % 3 == 0 ? ["https://example.com/photo\($0).jpg"] : [],
+                badge: $0 % 5 == 0 ? "power" : "basic"
+            )
+        }
+        
         return .init(
             id: "234",
             name: "발바리네",
@@ -141,7 +226,8 @@ extension RestaurantDetail {
             hasLiked: true,
             blogs: blogs,
             naverLink: "",
-            kakaoLink: ""
+            kakaoLink: "",
+            reviews: reviews
         )
     }
 }
