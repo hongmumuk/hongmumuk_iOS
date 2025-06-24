@@ -25,10 +25,21 @@ struct DetailView: View {
                 DetailInfoView(viewStore: viewStore)
                 DetailTabButtonView(viewStore: viewStore)
                 DetailTabView(viewStore: viewStore)
+                    .frame(maxHeight: .infinity)
             }
         }
+        .frame(maxHeight: .infinity)
+        .ignoresSafeArea(edges: .bottom)
         .onAppear {
             viewStore.send(.onAppear)
+        }
+        .fullScreenCover(
+            isPresented: viewStore.binding(
+                get: \.isWriteReviewPresented,
+                send: { _ in .reviewWriteCompleted }
+            )
+        ) {
+            // for dongwan... 자식 뷰를 scope 하면서 fullScreenOver 처리
         }
     }
 }

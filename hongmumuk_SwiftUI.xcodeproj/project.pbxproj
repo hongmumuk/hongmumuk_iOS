@@ -81,6 +81,13 @@
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
 		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
 		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
+		2FD2DD4F2E0AF58600B34067 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD4E2E0AF58600B34067 /* Review.swift */; };
+		2FD2DD512E0AF59D00B34067 /* ReviewSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */; };
+		2FD2DD532E0AF5B100B34067 /* ReviewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD522E0AF5B100B34067 /* ReviewError.swift */; };
+		2FD2DD552E0AF5D400B34067 /* DetailBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD542E0AF5D400B34067 /* DetailBlogView.swift */; };
+		2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD562E0B298300B34067 /* DateUtils.swift */; };
+		2FD2DD592E0B2CBD00B34067 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD582E0B2CBD00B34067 /* StarRatingView.swift */; };
+		2FD2DD5B2E0B318F00B34067 /* DetailReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD5A2E0B318F00B34067 /* DetailReviewItemView.swift */; };
 		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
@@ -274,6 +281,13 @@
 		2FA097C82D42A11000D01792 /* stag.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = stag.xcconfig; sourceTree = "<group>"; };
 		2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
+		2FD2DD4E2E0AF58600B34067 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSortOption.swift; sourceTree = "<group>"; };
+		2FD2DD522E0AF5B100B34067 /* ReviewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewError.swift; sourceTree = "<group>"; };
+		2FD2DD542E0AF5D400B34067 /* DetailBlogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBlogView.swift; sourceTree = "<group>"; };
+		2FD2DD562E0B298300B34067 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		2FD2DD582E0B2CBD00B34067 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		2FD2DD5A2E0B318F00B34067 /* DetailReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewItemView.swift; sourceTree = "<group>"; };
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
@@ -507,6 +521,7 @@
 				BE2D70C92D818710002FA07C /* NetworkManager.swift */,
 				2F85BD572D9163590049FA77 /* NetworkInterceptor.swift */,
 				2F85BD5B2D916BFF0049FA77 /* Notification.swift */,
+				2FD2DD562E0B298300B34067 /* DateUtils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -613,6 +628,7 @@
 				BEC950762D7C0577002B02BB /* GrayPlainButton.swift */,
 				BE2D70CB2D818D6E002FA07C /* NetworkErrorView.swift */,
 				BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */,
+				2FD2DD582E0B2CBD00B34067 /* StarRatingView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -698,6 +714,7 @@
 				BEC9507C2D7C15E2002B02BB /* DeleteAccountError.swift */,
 				BEFE88742D7D529500C3345B /* PostPasswordError.swift */,
 				BEFE887A2D7DC2AA00C3345B /* LikeError.swift */,
+				2FD2DD522E0AF5B100B34067 /* ReviewError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -715,6 +732,8 @@
 				2F68B4CC2D72315A00548850 /* VoidData.swift */,
 				2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */,
 				BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */,
+				2FD2DD4E2E0AF58600B34067 /* Review.swift */,
+				2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */,
 				BECC4A152D69A74B00F72FAF /* Blog.swift */,
 				BEC950652D7B152A002B02BB /* ProfileModel.swift */,
 			);
@@ -810,6 +829,8 @@
 				BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */,
 				BECC4A202D69B06300F72FAF /* DetailMapView.swift */,
 				BECC4A242D69B07200F72FAF /* DetailReviewView.swift */,
+				2FD2DD5A2E0B318F00B34067 /* DetailReviewItemView.swift */,
+				2FD2DD542E0AF5D400B34067 /* DetailBlogView.swift */,
 				BE25DCF42D798416006B819E /* DetailSkeletonView.swift */,
 			);
 			path = Detail;
@@ -1069,7 +1090,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FD2DD512E0AF59D00B34067 /* ReviewSortOption.swift in Sources */,
 				BE208FF52D6354C90041A173 /* CategoryRandomButton.swift in Sources */,
+				2FD2DD532E0AF5B100B34067 /* ReviewError.swift in Sources */,
 				BE208FE92D633B9E0041A173 /* CategoryFeature.swift in Sources */,
 				BEE5BB1B2D928024008AF34B /* OptimizedAsyncImage.swift in Sources */,
 				2F0D4FFF2D779D1B0035D7A4 /* ResetPasswordFeature.swift in Sources */,
@@ -1107,6 +1130,8 @@
 				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,
 				BE25DD072D79CB28006B819E /* WebContentView.swift in Sources */,
 				BE25DCF52D798416006B819E /* DetailSkeletonView.swift in Sources */,
+				2FD2DD552E0AF5D400B34067 /* DetailBlogView.swift in Sources */,
+				2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
 				2F0D501B2D779D6D0035D7A4 /* ProgressButton.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
@@ -1114,6 +1139,7 @@
 				2F0D501D2D779D840035D7A4 /* LoginHeaderView.swift in Sources */,
 				BEC950642D7B149E002B02BB /* ProfileClient.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */,
+				2FD2DD4F2E0AF58600B34067 /* Review.swift in Sources */,
 				BEB42C362D758E710040F65F /* LoadingView.swift in Sources */,
 				BEB42C2D2D757A760040F65F /* SearchEmptyView.swift in Sources */,
 				BE4F9B4A2D5A076300E7CC46 /* LoginModel.swift in Sources */,
@@ -1187,6 +1213,7 @@
 				BEFE887B2D7DC2AA00C3345B /* LikeError.swift in Sources */,
 				BEB42C2F2D757F710040F65F /* LikeEmptyView.swift in Sources */,
 				BE4F9B312D59F0C800E7CC46 /* AuthClient.swift in Sources */,
+				2FD2DD592E0B2CBD00B34067 /* StarRatingView.swift in Sources */,
 				BEC950562D7B0FA8002B02BB /* ProfileInfoView.swift in Sources */,
 				2F0D50212D779F420035D7A4 /* LoginView.swift in Sources */,
 				BE208FF32D634DB60041A173 /* CategoryListView.swift in Sources */,
@@ -1215,6 +1242,7 @@
 				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
+				2FD2DD5B2E0B318F00B34067 /* DetailReviewItemView.swift in Sources */,
 				BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */,
 				BECC4A252D69B07200F72FAF /* DetailReviewView.swift in Sources */,
 			);
