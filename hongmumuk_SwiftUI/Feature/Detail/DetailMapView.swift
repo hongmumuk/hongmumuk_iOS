@@ -6,34 +6,116 @@
 //
 
 import ComposableArchitecture
+import KakaoMapsSDK
+import KakaoMapsSDK_SPM
 import NMapsMap
 import SwiftUI
 
+// struct DetailMapView: View {
+//    @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+//
+//    var body: some View {
+//        ZStack(alignment: .bottom) {
+//            UIMapView(viewStore: viewStore)
+//                .edgesIgnoringSafeArea(.vertical)
+//
+//            appLinkButton
+//                .padding(.bottom, 60)
+//        }
+//    }
+//
+//    private var appLinkButton: some View {
+//        ZStack(alignment: .center) {
+//            HStack(spacing: 0) {
+//                mpaButton("naver".localized(), "naverMapIcon") {
+//                    viewStore.send(.naverMapButtonTapped)
+//                }
+//
+//                mpaButton("kakao".localized(), "kakaoMapIcon") {
+//                    viewStore.send(.kakaoMapButtonTapped)
+//                }
+//            }
+//
+//            Rectangle()
+//                .fill(Colors.GrayScale.grayscale20)
+//                .frame(width: 1, height: 24)
+//        }
+//        .background(.white)
+//        .cornerRadius(12)
+//        .applyShadows(Effects.Shadows.strong)
+//    }
+//
+//    private func mpaButton(_ title: String, _ icon: String, action: @escaping () -> Void) -> some View {
+//        Button(action: action) {
+//            mpaButtonContent(title, icon)
+//        }
+//    }
+//
+//    private func mpaButtonContent(_ title: String, _ icon: String) -> some View {
+//        HStack(spacing: 8) {
+//            Image(icon)
+//                .resizable()
+//                .frame(width: 32, height: 32)
+//
+//            Text(title)
+//                .fontStyle(Fonts.body1SemiBold)
+//                .foregroundColor(Colors.GrayScale.grayscale70)
+//        }
+//        .frame(width: 156, height: 80)
+//    }
+// }
+//
+// struct UIMapView: UIViewRepresentable {
+//    @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+//
+//    func makeUIView(context: Context) -> NMFNaverMapView {
+//        let view = NMFNaverMapView()
+//        view.showCompass = true
+//        view.showZoomControls = true
+//
+//        return view
+//    }
+//
+//    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
+//        let position = NMGLatLng(
+//            lat: viewStore.restaurantDetail.longitude,
+//            lng: viewStore.restaurantDetail.latitude
+//        )
+//
+//        let marker = NMFMarker(position: position)
+//        marker.mapView = uiView.mapView
+//
+//        let cameraUpdate = NMFCameraUpdate(scrollTo: position)
+//        uiView.mapView.moveCamera(cameraUpdate)
+//    }
+// }
+
+// MARK: - 리펙토링
+
 struct DetailMapView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
-            UIMapView(viewStore: viewStore)
+            KakaoMapContainer(viewStore: viewStore)
                 .edgesIgnoringSafeArea(.vertical)
-            
+
             appLinkButton
                 .padding(.bottom, 60)
         }
     }
-    
+
     private var appLinkButton: some View {
         ZStack(alignment: .center) {
             HStack(spacing: 0) {
                 mpaButton("naver".localized(), "naverMapIcon") {
                     viewStore.send(.naverMapButtonTapped)
                 }
-                
+
                 mpaButton("kakao".localized(), "kakaoMapIcon") {
                     viewStore.send(.kakaoMapButtonTapped)
                 }
             }
-            
             Rectangle()
                 .fill(Colors.GrayScale.grayscale20)
                 .frame(width: 1, height: 24)
@@ -42,19 +124,18 @@ struct DetailMapView: View {
         .cornerRadius(12)
         .applyShadows(Effects.Shadows.strong)
     }
-    
+
     private func mpaButton(_ title: String, _ icon: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             mpaButtonContent(title, icon)
         }
     }
-    
+
     private func mpaButtonContent(_ title: String, _ icon: String) -> some View {
         HStack(spacing: 8) {
             Image(icon)
                 .resizable()
                 .frame(width: 32, height: 32)
-            
             Text(title)
                 .fontStyle(Fonts.body1SemiBold)
                 .foregroundColor(Colors.GrayScale.grayscale70)
@@ -63,27 +144,107 @@ struct DetailMapView: View {
     }
 }
 
-struct UIMapView: UIViewRepresentable {
+struct KakaoMapContainer: UIViewRepresentable {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
-    
-    func makeUIView(context: Context) -> NMFNaverMapView {
-        let view = NMFNaverMapView()
-        view.showCompass = true
-        view.showZoomControls = true
-        
-        return view
+
+    func makeUIView(context: Context) -> KMViewContainer {
+        let container = KMViewContainer()
+        container.sizeToFit()
+
+        context.coordinator.createController(container)
+        context.coordinator.controller?.prepareEngine()
+
+        return container
     }
-    
-    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
-        let position = NMGLatLng(
-            lat: viewStore.restaurantDetail.longitude,
-            lng: viewStore.restaurantDetail.latitude
-        )
-        
-        let marker = NMFMarker(position: position)
-        marker.mapView = uiView.mapView
-        
-        let cameraUpdate = NMFCameraUpdate(scrollTo: position)
-        uiView.mapView.moveCamera(cameraUpdate)
+
+    func updateUIView(_ uiView: KMViewContainer, context: Context) {
+        context.coordinator.controller?.activateEngine()
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(viewStore: viewStore)
+    }
+
+    class Coordinator: NSObject, MapControllerDelegate {
+        let viewStore: ViewStoreOf<DetailFeature>
+        var controller: KMController?
+        var container: KMViewContainer?
+        var first: Bool = true
+
+        init(viewStore: ViewStoreOf<DetailFeature>) {
+            self.viewStore = viewStore
+        }
+
+        func authenticationFailed(_ errorCode: Int, desc: String) {
+            print("로그 Kakao Auth 실패:", errorCode, desc)
+        }
+
+        func createController(_ view: KMViewContainer) {
+            container = view
+            controller = KMController(viewContainer: view)
+            controller?.delegate = self
+        }
+
+        // 엔진 준비 완료 후 호출
+        func addViews() {
+            let pos = MapPoint(
+                longitude: viewStore.restaurantDetail.latitude,
+                latitude: viewStore.restaurantDetail.longitude
+            )
+
+            let info = MapviewInfo(
+                viewName: "mapview",
+                viewInfoName: "map",
+                defaultPosition: pos
+            )
+
+            controller?.addView(info)
+        }
+
+        func addViewSucceeded(_ viewName: String, viewInfoName: String) {
+            guard
+                let mapView = controller?.getView("mapview") as? KakaoMap,
+                let container
+            else { return }
+
+            print("로그 addViewSucceeded")
+            mapView.viewRect = container.bounds
+
+            let target = MapPoint(
+                longitude: viewStore.restaurantDetail.latitude,
+                latitude: viewStore.restaurantDetail.longitude
+            )
+
+            let update = CameraUpdate.make(
+                target: target,
+                mapView: mapView
+            )
+
+            mapView.moveCamera(update)
+        }
+
+        // addView 실패 이벤트 delegate. 실패에 대한 오류 처리를 진행한다.
+        func addViewFailed(_ viewName: String, viewInfoName: String) {
+            print("로그 addViewFailed")
+        }
+
+        /// KMViewContainer 리사이징 될 때 호출.
+        func containerDidResized(_ size: CGSize) {
+            print("로그 containerDidResized")
+
+            guard let mapView = controller?.getView("mapview") as? KakaoMap else {
+                return
+            }
+
+            mapView.viewRect = CGRect(origin: .zero, size: size)
+
+            let target = MapPoint(
+                longitude: viewStore.restaurantDetail.latitude,
+                latitude: viewStore.restaurantDetail.longitude
+            )
+
+            let update = CameraUpdate.make(target: target, mapView: mapView)
+            mapView.moveCamera(update)
+        }
     }
 }
