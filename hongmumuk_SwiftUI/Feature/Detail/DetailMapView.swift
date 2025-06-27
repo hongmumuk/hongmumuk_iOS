@@ -169,7 +169,7 @@ struct KakaoMapContainer: UIViewRepresentable {
         let viewStore: ViewStoreOf<DetailFeature>
         var controller: KMController?
         var container: KMViewContainer?
-        var first: Bool = true
+        private var markerLayer: LabelLayer?
         
         init(viewStore: ViewStoreOf<DetailFeature>) {
             self.viewStore = viewStore
@@ -202,27 +202,65 @@ struct KakaoMapContainer: UIViewRepresentable {
         }
         
         func addViewSucceeded(_ viewName: String, viewInfoName: String) {
-            guard
-                let mapView = controller?.getView("mapview") as? KakaoMap,
-                let container
+            guard let mapView = controller?.getView("mapview") as? KakaoMap,
+                  let container
             else { return }
             
+            // 화면 크기에 맞춰 지도 영역 세팅
             mapView.viewRect = container.bounds
             
+            // 좌표 지정
             let target = MapPoint(
                 longitude: viewStore.restaurantDetail.latitude,
                 latitude: viewStore.restaurantDetail.longitude
             )
             
+            // Camera 설정 전달(좌표, 줌레벨, 맵뷰)
             let cameraUpdate = CameraUpdate.make(
                 target: target,
                 zoomLevel: 15,
-                rotation: 0.0,
-                tilt: 0.0,
                 mapView: mapView
             )
             
+            // Camera 업데이트
             mapView.moveCamera(cameraUpdate)
+            
+            // poi(마커) 추가를 위한 매니저 생성
+            let manager = mapView.getLabelManager()
+            
+            // 레이블 레이어 생성
+            let layerOptions = LabelLayerOptions(
+                layerID: "poiLayer",
+                competitionType: .none,
+                competitionUnit: .symbolFirst,
+                orderType: .rank,
+                zOrder: 0
+            )
+            
+            markerLayer = manager.addLabelLayer(option: layerOptions)
+        
+            // 마커 스타일 정의
+            let pinImage = UIImage(systemName: "star.fill")
+            
+            let iconStyle = PoiIconStyle(
+                symbol: pinImage,
+                anchorPoint: CGPoint(x: 0.5, y: 1.0),
+                badges: []
+            )
+            
+            let poiStyle = PoiStyle(
+                styleID: "basicPoiStyle",
+                styles: [PerLevelPoiStyle(iconStyle: iconStyle, level: 1)]
+            )
+        
+            manager.addPoiStyle(poiStyle)
+            
+            // 3) POI 객체 생성 및 표시
+            if let layer = markerLayer {
+                let poiOption = PoiOptions(styleID: "basicPoiStyle")
+                let poi = layer.addPoi(option: poiOption, at: target)
+                poi?.show()
+            }
         }
         
         // addView 실패 이벤트 delegate. 실패에 대한 오류 처리를 진행한다.
