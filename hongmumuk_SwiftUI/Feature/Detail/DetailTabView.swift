@@ -25,7 +25,7 @@ struct DetailTabView: View {
                 DetailReviewView(viewStore: viewStore)
                     .tag(1)
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.automatic)
             
             if viewStore.showToast {
                 copyToast
