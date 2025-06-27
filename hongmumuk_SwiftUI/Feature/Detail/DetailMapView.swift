@@ -94,24 +94,24 @@ import SwiftUI
 
 struct DetailMapView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
-
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             KakaoMapContainer(viewStore: viewStore)
                 .edgesIgnoringSafeArea(.vertical)
-
+            
             appLinkButton
                 .padding(.bottom, 60)
         }
     }
-
+    
     private var appLinkButton: some View {
         ZStack(alignment: .center) {
             HStack(spacing: 0) {
                 mpaButton("naver".localized(), "naverMapIcon") {
                     viewStore.send(.naverMapButtonTapped)
                 }
-
+                
                 mpaButton("kakao".localized(), "kakaoMapIcon") {
                     viewStore.send(.kakaoMapButtonTapped)
                 }
@@ -124,13 +124,13 @@ struct DetailMapView: View {
         .cornerRadius(12)
         .applyShadows(Effects.Shadows.strong)
     }
-
+    
     private func mpaButton(_ title: String, _ icon: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             mpaButtonContent(title, icon)
         }
     }
-
+    
     private func mpaButtonContent(_ title: String, _ icon: String) -> some View {
         HStack(spacing: 8) {
             Image(icon)
@@ -146,104 +146,107 @@ struct DetailMapView: View {
 
 struct KakaoMapContainer: UIViewRepresentable {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
-
+    
     func makeUIView(context: Context) -> KMViewContainer {
         let container = KMViewContainer()
         container.sizeToFit()
-
+        
         context.coordinator.createController(container)
         context.coordinator.controller?.prepareEngine()
-
+        
         return container
     }
-
+    
     func updateUIView(_ uiView: KMViewContainer, context: Context) {
         context.coordinator.controller?.activateEngine()
     }
-
+    
     func makeCoordinator() -> Coordinator {
         return Coordinator(viewStore: viewStore)
     }
-
+    
     class Coordinator: NSObject, MapControllerDelegate {
         let viewStore: ViewStoreOf<DetailFeature>
         var controller: KMController?
         var container: KMViewContainer?
         var first: Bool = true
-
+        
         init(viewStore: ViewStoreOf<DetailFeature>) {
             self.viewStore = viewStore
         }
-
+        
         func authenticationFailed(_ errorCode: Int, desc: String) {
             print("로그 Kakao Auth 실패:", errorCode, desc)
         }
-
+        
         func createController(_ view: KMViewContainer) {
             container = view
             controller = KMController(viewContainer: view)
             controller?.delegate = self
         }
-
+        
         // 엔진 준비 완료 후 호출
         func addViews() {
             let pos = MapPoint(
                 longitude: viewStore.restaurantDetail.latitude,
                 latitude: viewStore.restaurantDetail.longitude
             )
-
+            
             let info = MapviewInfo(
                 viewName: "mapview",
                 viewInfoName: "map",
                 defaultPosition: pos
             )
-
+            
             controller?.addView(info)
         }
-
+        
         func addViewSucceeded(_ viewName: String, viewInfoName: String) {
             guard
                 let mapView = controller?.getView("mapview") as? KakaoMap,
                 let container
             else { return }
-
-            print("로그 addViewSucceeded")
+            
             mapView.viewRect = container.bounds
-
+            
             let target = MapPoint(
                 longitude: viewStore.restaurantDetail.latitude,
                 latitude: viewStore.restaurantDetail.longitude
             )
-
-            let update = CameraUpdate.make(
+            
+            let cameraUpdate = CameraUpdate.make(
                 target: target,
+                zoomLevel: 15,
+                rotation: 0.0,
+                tilt: 0.0,
                 mapView: mapView
             )
-
-            mapView.moveCamera(update)
+            
+            mapView.moveCamera(cameraUpdate)
         }
-
+        
         // addView 실패 이벤트 delegate. 실패에 대한 오류 처리를 진행한다.
         func addViewFailed(_ viewName: String, viewInfoName: String) {
             print("로그 addViewFailed")
         }
-
+        
         /// KMViewContainer 리사이징 될 때 호출.
         func containerDidResized(_ size: CGSize) {
             print("로그 containerDidResized")
-
+            
             guard let mapView = controller?.getView("mapview") as? KakaoMap else {
                 return
             }
-
+            
             mapView.viewRect = CGRect(origin: .zero, size: size)
-
+            
             let target = MapPoint(
                 longitude: viewStore.restaurantDetail.latitude,
                 latitude: viewStore.restaurantDetail.longitude
             )
-
+            
             let update = CameraUpdate.make(target: target, mapView: mapView)
+            
             mapView.moveCamera(update)
         }
     }
