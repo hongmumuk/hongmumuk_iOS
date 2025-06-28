@@ -133,6 +133,7 @@
 		BE3DBB772D5E1C50007304C7 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB762D5E1C50007304C7 /* HomeHeaderView.swift */; };
 		BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB782D5E1C5A007304C7 /* HomeRandomButton.swift */; };
 		BE4F60A62E0FB5AA000F1212 /* DetailPopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A52E0FB5AA000F1212 /* DetailPopButton.swift */; };
+		BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A72E101DA3000F1212 /* UIImage+.swift */; };
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
 		BE4F9B242D58FD9400E7CC46 /* ValidationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */; };
@@ -322,6 +323,7 @@
 		BE3DBB762D5E1C50007304C7 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		BE3DBB782D5E1C5A007304C7 /* HomeRandomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRandomButton.swift; sourceTree = "<group>"; };
 		BE4F60A52E0FB5AA000F1212 /* DetailPopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPopButton.swift; sourceTree = "<group>"; };
+		BE4F60A72E101DA3000F1212 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Univ.swift; sourceTree = "<group>"; };
 		BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Univ+.swift"; sourceTree = "<group>"; };
 		BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationClient.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				BE79E7742D61BCC9002D57D8 /* Double+.swift */,
 				BE8299612D60B5E70081F979 /* String+.swift */,
 				BE25DD022D79C840006B819E /* Bundle+.swift */,
+				BE4F60A72E101DA3000F1212 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 				BEB42C342D758E530040F65F /* LottieView.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				2F0D50232D779FC20035D7A4 /* ResetPasswordModel.swift in Sources */,
+				BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */,
 				2F0D4FF52D779D110035D7A4 /* EmailLoginView.swift in Sources */,
 				2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */,
 				2F0D4FF62D779D110035D7A4 /* EmailLoginFeature.swift in Sources */,

@@ -234,13 +234,14 @@ struct KakaoMapContainer: UIViewRepresentable {
                 competitionType: .none,
                 competitionUnit: .symbolFirst,
                 orderType: .rank,
-                zOrder: 0
+                zOrder: 2_000_000
             )
             
             markerLayer = manager.addLabelLayer(option: layerOptions)
         
             // 마커 스타일 정의
-            let pinImage = UIImage(systemName: "star.fill")
+            let pinImage = UIImage(named: "mapPinIcon")?
+                .resized(to: CGSize(width: 33, height: 33))
             
             let iconStyle = PoiIconStyle(
                 symbol: pinImage,

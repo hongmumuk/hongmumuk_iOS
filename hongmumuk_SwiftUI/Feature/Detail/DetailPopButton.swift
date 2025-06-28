@@ -22,6 +22,7 @@ struct DetailPopButton: View {
                 action()
             }) {
                 Image("closeButton")
+                    .resizable()
                     .frame(width: 30, height: 30)
             }
         }
