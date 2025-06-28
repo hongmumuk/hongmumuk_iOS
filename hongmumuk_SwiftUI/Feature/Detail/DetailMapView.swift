@@ -283,7 +283,7 @@ struct KakaoMapContainer: UIViewRepresentable {
                 latitude: viewStore.restaurantDetail.longitude
             )
             
-            let update = CameraUpdate.make(target: target, mapView: mapView)
+            let update = CameraUpdate.make(mapView: mapView)
             
             mapView.moveCamera(update)
         }

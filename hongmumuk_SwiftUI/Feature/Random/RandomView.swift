@@ -38,7 +38,7 @@ struct RandomView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .sheet(
+        .fullScreenCover(
             isPresented: viewStore.binding(
                 get: { $0.activeScreen != .none },
                 send: .onDismiss
