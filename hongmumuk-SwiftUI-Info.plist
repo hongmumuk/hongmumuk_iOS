@@ -12,8 +12,6 @@
 	<false/>
 	<key>KAKAO_APP_KEY</key>
 	<string>$(KAKAO_APP_KEY)</string>
-	<key>NMFClientId</key>
-	<string>$(NAVER_MAP_CLIENT_ID)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Bold.otf</string>
