@@ -81,6 +81,7 @@
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
 		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
 		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
+		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
@@ -131,6 +132,8 @@
 		BE3DBB752D5E1C49007304C7 /* HomeCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB742D5E1C49007304C7 /* HomeCircleView.swift */; };
 		BE3DBB772D5E1C50007304C7 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB762D5E1C50007304C7 /* HomeHeaderView.swift */; };
 		BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DBB782D5E1C5A007304C7 /* HomeRandomButton.swift */; };
+		BE4F60A62E0FB5AA000F1212 /* DetailPopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A52E0FB5AA000F1212 /* DetailPopButton.swift */; };
+		BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A72E101DA3000F1212 /* UIImage+.swift */; };
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
 		BE4F9B242D58FD9400E7CC46 /* ValidationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */; };
@@ -319,6 +322,8 @@
 		BE3DBB742D5E1C49007304C7 /* HomeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCircleView.swift; sourceTree = "<group>"; };
 		BE3DBB762D5E1C50007304C7 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		BE3DBB782D5E1C5A007304C7 /* HomeRandomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRandomButton.swift; sourceTree = "<group>"; };
+		BE4F60A52E0FB5AA000F1212 /* DetailPopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPopButton.swift; sourceTree = "<group>"; };
+		BE4F60A72E101DA3000F1212 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Univ.swift; sourceTree = "<group>"; };
 		BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Univ+.swift"; sourceTree = "<group>"; };
 		BE4F9B232D58FD9400E7CC46 /* ValidationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationClient.swift; sourceTree = "<group>"; };
@@ -388,6 +393,7 @@
 				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 				2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */,
+				2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +479,7 @@
 				BE79E7742D61BCC9002D57D8 /* Double+.swift */,
 				BE8299612D60B5E70081F979 /* String+.swift */,
 				BE25DD022D79C840006B819E /* Bundle+.swift */,
+				BE4F60A72E101DA3000F1212 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -797,6 +804,7 @@
 			children = (
 				BECC4A1A2D69AB4E00F72FAF /* DetailFeature.swift */,
 				BECC4A1C2D69AB5400F72FAF /* DetailView.swift */,
+				BE4F60A52E0FB5AA000F1212 /* DetailPopButton.swift */,
 				BECC4A1E2D69B05B00F72FAF /* DetailInfoView.swift */,
 				BECC4A262D69B55500F72FAF /* DetailTabButtonView.swift */,
 				BEBB792E2D6EBF0900209F7E /* DetailTabView.swift */,
@@ -863,6 +871,7 @@
 				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
 				BE25DD122D79E080006B819E /* Lottie */,
 				2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */,
+				2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -949,6 +958,7 @@
 				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 				BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+				2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -1072,6 +1082,7 @@
 				BEB42C342D758E530040F65F /* LottieView.swift in Sources */,
 				BE02D09F2D607DAA00F61E66 /* RestaurantListRequestModel.swift in Sources */,
 				2F0D50232D779FC20035D7A4 /* ResetPasswordModel.swift in Sources */,
+				BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */,
 				2F0D4FF52D779D110035D7A4 /* EmailLoginView.swift in Sources */,
 				2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */,
 				2F0D4FF62D779D110035D7A4 /* EmailLoginFeature.swift in Sources */,
@@ -1122,6 +1133,7 @@
 				BE20900F2D64B81E0041A173 /* LikeClient.swift in Sources */,
 				BE20900B2D64B8090041A173 /* LikeFilterView.swift in Sources */,
 				BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */,
+				BE4F60A62E0FB5AA000F1212 /* DetailPopButton.swift in Sources */,
 				BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */,
 				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
 				BEC9505C2D7B1226002B02BB /* ProfileInfoTapView.swift in Sources */,
@@ -1384,7 +1396,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -1393,7 +1405,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1405,7 +1417,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1426,7 +1438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
@@ -1435,7 +1447,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1447,7 +1459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1466,7 +1478,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1485,7 +1497,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1503,7 +1515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1520,7 +1532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1606,7 +1618,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -1616,7 +1628,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1628,7 +1640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1648,7 +1660,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1666,7 +1678,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1752,7 +1764,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -1762,6 +1774,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1773,7 +1786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1793,7 +1806,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1811,7 +1824,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1890,7 +1903,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -1900,6 +1913,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1911,7 +1925,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1931,7 +1945,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1949,7 +1963,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -2028,7 +2042,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
@@ -2038,7 +2052,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Out App Request the Tracking";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -2050,7 +2064,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2070,7 +2084,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -2088,7 +2102,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -2159,6 +2173,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.6;
+			};
+		};
 		2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
@@ -2210,6 +2232,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
+		};
 		2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;

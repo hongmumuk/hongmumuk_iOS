@@ -10,10 +10,14 @@ import SwiftUI
 
 struct DetailInfoView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+    @SwiftUI.Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            DetailPopButton { dismiss() }
+            
             titleArea
+            
             if !viewStore.keywords.isEmpty {
                 keywordItem
             }
@@ -46,7 +50,6 @@ struct DetailInfoView: View {
                 .fontStyle(Fonts.heading3Bold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
-        .padding(.top, 42)
     }
     
     private var likeButton: some View {
@@ -64,7 +67,6 @@ struct DetailInfoView: View {
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
         .frame(width: 28, height: 46)
-        .padding(.top, 42)
     }
     
     private var address: some View {

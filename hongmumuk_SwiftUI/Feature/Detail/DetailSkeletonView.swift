@@ -11,8 +11,12 @@ import ComposableArchitecture
 import Shimmer
 
 struct DetailSkeletonView: View {
+    @SwiftUI.Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            DetailPopButton { dismiss() }
+            
             RoundedRectangle(cornerRadius: 8)
                 .fill(Colors.GrayScale.grayscale10)
                 .frame(height: 31)

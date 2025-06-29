@@ -55,13 +55,32 @@ struct CategoryView: View {
         .sheet(
             isPresented: viewStore.binding(
                 get: {
-                    if case .restaurantDetail = $0.activeScreen { return true }
                     if case .random = $0.activeScreen { return true }
                     return false
                 },
                 send: .onDismiss
             )
         ) {
+            if case .random = viewStore.activeScreen {
+                RandomView(
+                    store: Store(
+                        initialState: RandomFeature.State(),
+                        reducer: { RandomFeature() },
+                        withDependencies: {
+                            $0.restaurantClient = RestaurantClient.liveValue
+                        }
+                    )
+                )
+                .presentationDragIndicator(.visible)
+            }
+        }
+        .fullScreenCover(isPresented: viewStore.binding(
+            get: {
+                if case .restaurantDetail = $0.activeScreen { return true }
+                return false
+            },
+            send: .onDismiss
+        )) {
             if case let .restaurantDetail(id) = viewStore.activeScreen {
                 DetailView(
                     store: Store(
@@ -70,19 +89,6 @@ struct CategoryView: View {
                         withDependencies: {
                             $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
-                        }
-                    )
-                )
-                .presentationDragIndicator(.visible)
-            }
-            
-            if case .random = viewStore.activeScreen {
-                RandomView(
-                    store: Store(
-                        initialState: RandomFeature.State(),
-                        reducer: { RandomFeature() },
-                        withDependencies: {
-                            $0.restaurantClient = RestaurantClient.liveValue
                         }
                     )
                 )
