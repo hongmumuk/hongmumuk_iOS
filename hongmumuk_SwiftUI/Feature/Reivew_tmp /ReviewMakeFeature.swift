@@ -8,13 +8,21 @@
 import ComposableArchitecture
 
 struct ReviewMakeFeature: Reducer {
-    struct State: Equatable {}
+    struct State: Equatable {
+        var starRate: Double = 0
+    }
     
-    enum Action: Equatable {}
+    enum Action: Equatable {
+        case starButtonTapped(Int)
+    }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+            case let .starButtonTapped(index):
+                state.starRate = Double(index + 1)
+                return .none
+            }
         }
     }
 }
