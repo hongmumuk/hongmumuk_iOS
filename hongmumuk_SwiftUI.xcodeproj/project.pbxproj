@@ -164,6 +164,7 @@
 		BEA57CA52E1B91E1004C2FFF /* ReviewMakeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA57CA42E1B91E1004C2FFF /* ReviewMakeHeaderView.swift */; };
 		BEA57CA92E1B9924004C2FFF /* ReviewMakeStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA57CA82E1B9924004C2FFF /* ReviewMakeStarView.swift */; };
 		BEA57CAB2E1BA587004C2FFF /* ReviewMakeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA57CAA2E1BA587004C2FFF /* ReviewMakeTextView.swift */; };
+		BEA57CAD2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C2D2D757A760040F65F /* SearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2C2D757A760040F65F /* SearchEmptyView.swift */; };
 		BEB42C2F2D757F710040F65F /* LikeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2E2D757F710040F65F /* LikeEmptyView.swift */; };
@@ -366,6 +367,7 @@
 		BEA57CA42E1B91E1004C2FFF /* ReviewMakeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeHeaderView.swift; sourceTree = "<group>"; };
 		BEA57CA82E1B9924004C2FFF /* ReviewMakeStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeStarView.swift; sourceTree = "<group>"; };
 		BEA57CAA2E1BA587004C2FFF /* ReviewMakeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeTextView.swift; sourceTree = "<group>"; };
+		BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakePhotoAddView.swift; sourceTree = "<group>"; };
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C2C2D757A760040F65F /* SearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyView.swift; sourceTree = "<group>"; };
 		BEB42C2E2D757F710040F65F /* LikeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeEmptyView.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				BEA57CA42E1B91E1004C2FFF /* ReviewMakeHeaderView.swift */,
 				BEA57CA82E1B9924004C2FFF /* ReviewMakeStarView.swift */,
 				BEA57CAA2E1BA587004C2FFF /* ReviewMakeTextView.swift */,
+				BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */,
 			);
 			path = "Reivew_tmp ";
 			sourceTree = "<group>";
@@ -1172,6 +1175,7 @@
 				BECC4A1D2D69AB5400F72FAF /* DetailView.swift in Sources */,
 				BE3DBB772D5E1C50007304C7 /* HomeHeaderView.swift in Sources */,
 				BE2090072D64B7E90041A173 /* LikeFeature.swift in Sources */,
+				BEA57CAD2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift in Sources */,
 				BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
 				2F65D3792D758063002BF6B5 /* AuthTokenResponseModel.swift in Sources */,

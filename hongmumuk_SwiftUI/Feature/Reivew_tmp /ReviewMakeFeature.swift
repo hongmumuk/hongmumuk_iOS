@@ -10,10 +10,12 @@ import ComposableArchitecture
 struct ReviewMakeFeature: Reducer {
     struct State: Equatable {
         var starRate: Double = 0
+        var photoCount: Int = 0
     }
     
     enum Action: Equatable {
         case starButtonTapped(Int)
+        case addPhotoButtonTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -21,6 +23,8 @@ struct ReviewMakeFeature: Reducer {
             switch action {
             case let .starButtonTapped(index):
                 state.starRate = Double(index + 1)
+                return .none
+            case .addPhotoButtonTapped:
                 return .none
             }
         }
