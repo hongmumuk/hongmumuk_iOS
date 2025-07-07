@@ -19,6 +19,13 @@ struct ReviewMakeView: View {
     }
     
     var body: some View {
-        Text("ReviewMakeView")
+        VStack(spacing: 0) {
+            ReviewMakeHeaderView(viewStore: viewStore)
+            ReviewMakeStarView(viewStore: viewStore)
+            ReviewMakeTextView(viewStore: viewStore)
+            ReviewMakePhotoAddView(viewStore: viewStore)
+            ReviewMakeNoticeView(viewStore: viewStore)
+            ReviewWriteButton(viewStore: viewStore)
+        }
     }
 }
