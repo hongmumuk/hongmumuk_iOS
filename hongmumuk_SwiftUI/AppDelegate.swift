@@ -6,6 +6,7 @@
 //
 
 import AppsFlyerLib
+import KakaoMapsSDK
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppsFlyerLib.shared().delegate = self
         AppsFlyerLib.shared().start()
         
+        guard let kakaoAppKey = Bundle.main.object(
+            forInfoDictionaryKey: "KAKAO_APP_KEY"
+        ) as? String else {
+            fatalError("Kakao App Key가 Info.plist에 없습니다.")
+        }
+        
+        SDKInitializer.InitSDK(appKey: kakaoAppKey)
         return true
     }
     
@@ -42,7 +50,7 @@ extension AppDelegate: AppsFlyerLibDelegate {
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
         print("[AppsFlyer] Conversion Data: \(conversionInfo)")
     }
-        
+    
     func onConversionDataFail(_ error: Error) {
         print("[AppsFlyer] Conversion Data Fail: \(error.localizedDescription)")
     }

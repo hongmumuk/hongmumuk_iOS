@@ -32,7 +32,7 @@ struct SearchView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .sheet(
+        .fullScreenCover(
             isPresented: viewStore.binding(
                 get: {
                     if case .restrauntDetail = $0.activeScreen { return true }
