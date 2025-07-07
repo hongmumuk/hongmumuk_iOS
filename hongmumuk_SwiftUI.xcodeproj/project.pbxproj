@@ -102,6 +102,8 @@
 		BE02D0A72D609BB200F61E66 /* SearchRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */; };
 		BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */; };
 		BE0F6E572D83FC4800CC8391 /* RandomAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F6E562D83FC4800CC8391 /* RandomAnimationView.swift */; };
+		BE11455E2E1BB39F00228550 /* ReviewMakeNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */; };
+		BE1145602E1BB75300228550 /* ReviewWriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */; };
 		BE208FE92D633B9E0041A173 /* CategoryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FE82D633B9E0041A173 /* CategoryFeature.swift */; };
 		BE208FED2D633BB40041A173 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FEC2D633BB40041A173 /* CategoryView.swift */; };
 		BE208FEF2D633BBC0041A173 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE208FEE2D633BBC0041A173 /* CategoryHeaderView.swift */; };
@@ -306,6 +308,8 @@
 		BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentView.swift; sourceTree = "<group>"; };
 		BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		BE0F6E562D83FC4800CC8391 /* RandomAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAnimationView.swift; sourceTree = "<group>"; };
+		BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeNoticeView.swift; sourceTree = "<group>"; };
+		BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteButton.swift; sourceTree = "<group>"; };
 		BE208FE82D633B9E0041A173 /* CategoryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFeature.swift; sourceTree = "<group>"; };
 		BE208FEC2D633BB40041A173 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		BE208FEE2D633BBC0041A173 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
@@ -840,6 +844,8 @@
 				BEA57CA82E1B9924004C2FFF /* ReviewMakeStarView.swift */,
 				BEA57CAA2E1BA587004C2FFF /* ReviewMakeTextView.swift */,
 				BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */,
+				BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */,
+				BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */,
 			);
 			path = "Reivew_tmp ";
 			sourceTree = "<group>";
@@ -1198,6 +1204,7 @@
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
+				BE1145602E1BB75300228550 /* ReviewWriteButton.swift in Sources */,
 				2F0D50182D779D2A0035D7A4 /* RootView.swift in Sources */,
 				BE25DCF92D79BE7C006B819E /* ProfileHeaderView.swift in Sources */,
 				2F0D50192D779D2A0035D7A4 /* RootFeature.swift in Sources */,
@@ -1216,6 +1223,7 @@
 				BE25DCFB2D79BE8B006B819E /* ProfileSetView.swift in Sources */,
 				BE25DD032D79C840006B819E /* Bundle+.swift in Sources */,
 				2F68B4CD2D72315A00548850 /* VoidData.swift in Sources */,
+				BE11455E2E1BB39F00228550 /* ReviewMakeNoticeView.swift in Sources */,
 				BEC9507D2D7C15E2002B02BB /* DeleteAccountError.swift in Sources */,
 				2F65D37B2D758896002BF6B5 /* KeychainClient.swift in Sources */,
 				BE208FEF2D633BBC0041A173 /* CategoryHeaderView.swift in Sources */,

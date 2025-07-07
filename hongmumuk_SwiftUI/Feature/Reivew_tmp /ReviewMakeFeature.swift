@@ -11,11 +11,14 @@ struct ReviewMakeFeature: Reducer {
     struct State: Equatable {
         var starRate: Double = 0
         var photoCount: Int = 0
+        var isWriteActive: Bool = false
     }
     
     enum Action: Equatable {
         case starButtonTapped(Int)
         case addPhotoButtonTapped
+        case noticeButtonTapped
+        case writeButtonTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -25,6 +28,10 @@ struct ReviewMakeFeature: Reducer {
                 state.starRate = Double(index + 1)
                 return .none
             case .addPhotoButtonTapped:
+                return .none
+            case .noticeButtonTapped:
+                return .none
+            case .writeButtonTapped:
                 return .none
             }
         }
