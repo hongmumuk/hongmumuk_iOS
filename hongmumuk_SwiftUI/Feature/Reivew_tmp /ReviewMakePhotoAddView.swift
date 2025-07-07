@@ -36,6 +36,6 @@ struct ReviewMakePhotoAddView: View {
         }
         .buttonStyle(.plain)
         .padding(.top, 24)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 24)
     }
 }
