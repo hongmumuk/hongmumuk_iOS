@@ -47,6 +47,7 @@ struct DetailReviewView: View {
                     detectScrollView
                 }
             }
+            .edgesIgnoringSafeArea(.vertical)
         }
     }
     
