@@ -39,7 +39,7 @@ struct DetailView: View {
                 send: { _ in .reviewWriteCompleted }
             )
         ) {
-            // for dongwan... 자식 뷰를 scope 하면서 fullScreenOver 처리
+            ReviewMakeView(store: Store(initialState: ReviewMakeFeature.State(), reducer: { ReviewMakeFeature() }))
         }
     }
 }
