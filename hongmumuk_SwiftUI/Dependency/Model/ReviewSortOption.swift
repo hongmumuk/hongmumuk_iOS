@@ -8,15 +8,15 @@
 import Foundation
 
 enum ReviewSortOption: String, CaseIterable, Equatable {
-    case newest
-    case highestRating
-    case lowestRating
+    case recent
+    case high
+    case low
 
     var displayName: String {
         switch self {
-        case .newest: return "최신순"
-        case .highestRating: return "별점 높은 순"
-        case .lowestRating: return "별점 낮은 순"
+        case .recent: return "최신순"
+        case .high: return "별점 높은 순"
+        case .low: return "별점 낮은 순"
         }
     }
 }
