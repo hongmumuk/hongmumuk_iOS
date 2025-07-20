@@ -18,7 +18,7 @@ struct DetailFeature: Reducer {
         var pickerSelection = 0
         var restaurantDetail = RestaurantDetail.mock()
         var showToast = false
-        // var showToolTip = false
+        var activeToolTipReviewID: Int? = nil
         
         var isWriteReviewPresented: Bool = false
         var showSkeletonLoading: Bool = true
@@ -30,7 +30,7 @@ struct DetailFeature: Reducer {
         var reviewCount: Int = 0
         
         var showSortSheet: Bool = false
-        var sort: ReviewSortOption = .newest
+        var sort: ReviewSortOption = .recent
         var originalReviews = [Review]()
         var sortedReviews = [Review]()
 
@@ -64,6 +64,9 @@ struct DetailFeature: Reducer {
         case reviewEditButtonTapped(Int)
         case reviewDeleteButtonTapped(Int)
         
+        case showToolTip(id: Int)
+        case hideToolTip
+        
         // review 작성하는 것과 관련된 액션
         case writeReviewButtonTapped
         case reviewWriteCompleted
@@ -92,9 +95,15 @@ struct DetailFeature: Reducer {
                 return .none
                 
             case .onNextPage:
-                if !state.isLastPage {
+                if !state.isLastPage, !state.isReviewLoading {
+                    state.isReviewLoading = true
                     state.reviewPage += 1
-                    return /* fetchReview(for: state) */ .none
+                    
+                    // 리뷰는 목업 데이터로 설정 (페이지네이션 없이 모든 리뷰 표시)
+                    let mockReviews = createMockReviews()
+                    return .run { send in
+                        await send(.reviewLoaded(mockReviews))
+                    }
                 } else {
                     return .none
                 }
@@ -106,27 +115,20 @@ struct DetailFeature: Reducer {
 
                 let rid = state.id
 
-                #if DEBUG
-                    return .run { send in
-                        let mock = RestaurantDetail.mock()
-                        await send(.restrauntDetailLoad(mock))
-                    }
-                #else
-                    return .run { send in
-                        do {
-                            let restaurantDetail: RestaurantDetail = if let token {
-                                try await restaurantClient.getAuthedRestaurantDetail(rid, token)
-                            } else {
-                                RestaurantDetail.mock()
-                            }
-                            await send(.restrauntDetailLoad(restaurantDetail))
-                        } catch {
-                            if let error = error as? RestaurantDetailError {
-                                await send(.restaurantDetailError(error))
-                            }
+                return .run { send in
+                    do {
+                        let restaurantDetail: RestaurantDetail = if let token {
+                            try await restaurantClient.getAuthedRestaurantDetail(rid, token)
+                        } else {
+                            try await restaurantClient.getRestaurantDetail(rid)
+                        }
+                        await send(.restrauntDetailLoad(restaurantDetail))
+                    } catch {
+                        if let error = error as? RestaurantDetailError {
+                            await send(.restaurantDetailError(error))
                         }
                     }
-                #endif
+                }
                 
             case let .pickerSelectionChanged(index):
                 state.pickerSelection = index
@@ -138,10 +140,13 @@ struct DetailFeature: Reducer {
                     .joined(separator: "\n")
                 state.keywords = keywordClient.extractKeywords(blogString)
                 state.restaurantDetail = restaurantDetail
-                state.originalReviews = restaurantDetail.reviews
-                applyFilterAndSort(state: &state)
                 state.isLoading = false
-                return .none
+                
+                // 리뷰는 목업 데이터로 설정
+                let mockReviews = createMockReviews()
+                return .run { send in
+                    await send(.reviewLoaded(mockReviews))
+                }
                 
             case let .restaurantDetailError(error):
                 state.isLoading = false
@@ -221,12 +226,24 @@ struct DetailFeature: Reducer {
             case let .sortChanged(reviewSort):
                 state.showSortSheet = false
                 state.sort = reviewSort
-                applyFilterAndSort(state: &state)
-                return .none
+                state.reviewPage = 0
+                state.originalReviews = []
+                state.sortedReviews = []
+                state.isLastPage = false
+                
+                // 리뷰는 목업 데이터로 설정
+                let mockReviews = createMockReviews()
+                return .run { send in
+                    await send(.reviewLoaded(mockReviews))
+                }
 
             case let .photoFilterToggled(isOn):
                 state.isPhotoFilterOn = isOn
-                applyFilterAndSort(state: &state)
+                let filtered = isOn
+                    ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
+                    : state.originalReviews
+                state.sortedReviews = sortReviews(state.sort, filtered)
+                state.reviewCount = filtered.count
                 return .none
                 
             case .initailLoadingCompleted:
@@ -237,10 +254,12 @@ struct DetailFeature: Reducer {
                 state.originalReviews += review
                 state.reviewCount = state.originalReviews.count
                 state.sortedReviews = sortReviews(state.sort, state.originalReviews)
-                state.isLastPage = review.count <= 10
+                state.isLastPage = review.count < 10
+                state.isReviewLoading = false
                 return .none
                 
             case let .reviewError(error):
+                state.isReviewLoading = false
                 return .none
                 
             case .writeReviewButtonTapped:
@@ -251,6 +270,14 @@ struct DetailFeature: Reducer {
                 state.isWriteReviewPresented = false
                 state.reviewPage = 0
                 return /* fetchReviews(for: state) */ .none
+                
+            case let .showToolTip(id):
+                state.activeToolTipReviewID = id
+                return .none
+
+            case .hideToolTip:
+                state.activeToolTipReviewID = nil
+                return .none
             
             case let .reviewEditButtonTapped(id):
                 // TODO: 수정 로직 추가
@@ -265,24 +292,96 @@ struct DetailFeature: Reducer {
     
     private func sortReviews(_ sort: ReviewSortOption, _ list: [Review]) -> [Review] {
         switch sort {
-        case .newest:
+        case .recent:
             return list.sorted { $0.date > $1.date }
 
-        case .highestRating:
+        case .high:
             return list.sorted { $0.star > $1.star }
 
-        case .lowestRating:
+        case .low:
             return list.sorted { $0.star < $1.star }
         }
     }
     
-    private func applyFilterAndSort(state: inout State) {
-        let filtered = state.isPhotoFilterOn
-            ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
-            : state.originalReviews
-        
-        state.sortedReviews = sortReviews(state.sort, filtered)
-        state.reviewCount = filtered.count
+    private func createMockReviews() -> [Review] {
+        return [
+            Review(
+                id: 1,
+                user: "세영이",
+                date: "2025-06-20",
+                visitCount: 2,
+                star: 4,
+                content: "제육볶음 정말 맛있어요! 재방문 의사 100%",
+                isOwner: false,
+                photoURLs: [
+                    "https://example.com/photo1.jpg",
+                    "https://example.com/photo2.jpg",
+                    "https://example.com/photo3.jpg"
+                ],
+                badge: .newbie
+            ),
+            Review(
+                id: 2,
+                user: "도연",
+                date: "2025-06-21",
+                visitCount: 1,
+                star: 5,
+                content: "가성비 최고예요. 반찬 구성도 알차고 사장님도 친절해요.",
+                isOwner: false,
+                photoURLs: [],
+                badge: .explorer
+            ),
+            Review(
+                id: 3,
+                user: "맛집헌터",
+                date: "2025-06-22",
+                visitCount: 3,
+                star: 4,
+                content: "맛도 좋고 양도 푸짐했어요. 점심시간엔 줄이 길 수 있어요.",
+                isOwner: false,
+                photoURLs: ["https://example.com/photo4.jpg"],
+                badge: .foodie
+            ),
+            Review(
+                id: 4,
+                user: "식당주인",
+                date: "2025-06-23",
+                visitCount: 100,
+                star: 5,
+                content: "사장입니다 :) 항상 좋은 재료로 정성껏 만들고 있어요!",
+                isOwner: true,
+                photoURLs: [],
+                badge: .master
+            ),
+            Review(
+                id: 5,
+                user: "카메라장인",
+                date: "2025-06-24",
+                visitCount: 1,
+                star: 5,
+                content: "비주얼이 정말 예술이에요! 사진 맛집 인정합니다.",
+                isOwner: false,
+                photoURLs: [
+                    "https://example.com/photo5_1.jpg",
+                    "https://example.com/photo5_2.jpg",
+                    "https://example.com/photo5_3.jpg",
+                    "https://example.com/photo5_4.jpg"
+                ],
+                badge: .newbie
+            )
+        ] + (6 ... 30).map {
+            Review(
+                id: $0,
+                user: "유저\($0)",
+                date: "2025-06-\(String(format: "%02d", ($0 % 30) + 1))",
+                visitCount: Int.random(in: 1 ... 5),
+                star: Int.random(in: 3 ... 5),
+                content: "리뷰 내용 \($0): 이 집 괜찮아요~",
+                isOwner: false,
+                photoURLs: $0 % 3 == 0 ? ["https://example.com/photo\($0).jpg"] : [],
+                badge: $0 % 5 == 0 ? .explorer : .newbie
+            )
+        }
     }
     
 //    func fetchReview(

@@ -25,10 +25,8 @@ struct DetailView: View {
                 DetailInfoView(viewStore: viewStore)
                 DetailTabButtonView(viewStore: viewStore)
                 DetailTabView(viewStore: viewStore)
-                    .frame(maxHeight: .infinity)
             }
         }
-        .frame(maxHeight: .infinity)
         .ignoresSafeArea(edges: .bottom)
         .onAppear {
             viewStore.send(.onAppear)

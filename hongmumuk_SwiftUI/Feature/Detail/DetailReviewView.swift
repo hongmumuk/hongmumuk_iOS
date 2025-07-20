@@ -12,42 +12,45 @@ struct DetailReviewView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
     
     var body: some View {
-        VStack(alignment: .leading) {
-            // 목록
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    headerView
-                    
-                    Spacer()
-                        .frame(height: 20)
-                    
-                    writeReviewButton
-                        .frame(height: 60)
-                    
-                    Spacer()
-                        .frame(height: 16)
-                    
-                    ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
-                        DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
-                            .padding(.horizontal, 24)
-                    }
-                    
-                    if !viewStore.isLastPage, viewStore.isReviewLoading {
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                                .padding()
-                            Spacer()
+        ZStack {
+            VStack(alignment: .leading) {
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                        Spacer().frame(height: 20)
+                        headerView
+                        Spacer().frame(height: 20)
+                        writeReviewButton.frame(height: 60)
+                        Spacer().frame(height: 16)
+                        
+                        ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
+                            DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
+                                .padding(.horizontal, 24)
                         }
+                        
+                        if !viewStore.isLastPage, viewStore.isReviewLoading {
+                            HStack {
+                                Spacer()
+                                ProgressView().padding()
+                                Spacer()
+                            }
+                        }
+                        
+                        detectScrollView
                     }
-                    
-                    detectScrollView
                 }
+                .coordinateSpace(name: "scrollView")
             }
-            .edgesIgnoringSafeArea(.vertical)
+            
+            // 툴팁 외부 클릭 시 사라지는 오버레이
+            if viewStore.activeToolTipReviewID != nil {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        viewStore.send(.hideToolTip)
+                    }
+                    .ignoresSafeArea()
+                    .zIndex(999)
+            }
         }
     }
     
@@ -66,8 +69,9 @@ struct DetailReviewView: View {
                 viewStore.send(.photoFilterToggled(!viewStore.isPhotoFilterOn))
             }) {
                 (viewStore.isPhotoFilterOn
-                    ? Image("photoFilterIconBlue")
+                    ? Image("photoFilterIconOn")
                     : Image("photoFilterIcon"))
+                    .resizable()
                     .frame(width: 20, height: 20)
                 
                 Spacer()
@@ -76,7 +80,7 @@ struct DetailReviewView: View {
                 // TODO: 로컬라이즈드
                 Text("사진 리뷰만")
                     .fontStyle(Fonts.body1Medium)
-                    .foregroundColor(viewStore.isPhotoFilterOn ? Colors.Primary.strong : Colors.GrayScale.alternative)
+                    .foregroundColor(Colors.GrayScale.neutral)
             }
         }
     }
@@ -135,13 +139,13 @@ struct DetailReviewView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(viewStore.canWriteReview ? Colors.Primary.primary10 : Colors.GrayScale.grayscale10)
-
+                
                 HStack {
                     Image(viewStore.canWriteReview ? "penIcon" : "penDisabledIcon")
                         .frame(width: 20, height: 20)
-
+                    
                     Spacer().frame(width: 8)
-
+                    
                     Text(viewStore.canWriteReview ? "리뷰 작성하기" : "작성 불가")
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(viewStore.canWriteReview ? Colors.Primary.strong : Colors.GrayScale.grayscale50)

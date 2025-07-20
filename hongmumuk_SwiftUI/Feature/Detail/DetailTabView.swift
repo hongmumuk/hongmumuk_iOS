@@ -29,7 +29,7 @@ struct DetailTabView: View {
                 DetailBlogView(viewStore: viewStore)
                     .tag(2)
             }
-            .tabViewStyle(.automatic)
+            .tabViewStyle(.page(indexDisplayMode: .never))
             
             if viewStore.showToast {
                 copyToast

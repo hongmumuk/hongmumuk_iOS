@@ -81,6 +81,9 @@
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
 		2FA7B2482D85B9A500D847D8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */; };
 		2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */; };
+		2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2DF862E2BAA8B0052515C /* Badge.swift */; };
+		2FC2DF892E2BE2A20052515C /* Triangle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2DF882E2BE2A20052515C /* Triangle+.swift */; };
+		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
 		2FD2DD4F2E0AF58600B34067 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD4E2E0AF58600B34067 /* Review.swift */; };
 		2FD2DD512E0AF59D00B34067 /* ReviewSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */; };
 		2FD2DD532E0AF5B100B34067 /* ReviewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD522E0AF5B100B34067 /* ReviewError.swift */; };
@@ -88,7 +91,7 @@
 		2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD562E0B298300B34067 /* DateUtils.swift */; };
 		2FD2DD592E0B2CBD00B34067 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD582E0B2CBD00B34067 /* StarRatingView.swift */; };
 		2FD2DD5B2E0B318F00B34067 /* DetailReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD5A2E0B318F00B34067 /* DetailReviewItemView.swift */; };
-		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
+		2FD6F2732E2C6D3300F0CE50 /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD6F2722E2C6D3300F0CE50 /* ReviewResponse.swift */; };
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
@@ -289,6 +292,8 @@
 		2FA097C82D42A11000D01792 /* stag.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = stag.xcconfig; sourceTree = "<group>"; };
 		2FA7B2472D85B9A500D847D8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2FA7B2492D85D5E800D847D8 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
+		2FC2DF862E2BAA8B0052515C /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		2FC2DF882E2BE2A20052515C /* Triangle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Triangle+.swift"; sourceTree = "<group>"; };
 		2FD2DD4E2E0AF58600B34067 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSortOption.swift; sourceTree = "<group>"; };
 		2FD2DD522E0AF5B100B34067 /* ReviewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewError.swift; sourceTree = "<group>"; };
@@ -296,6 +301,7 @@
 		2FD2DD562E0B298300B34067 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		2FD2DD582E0B2CBD00B34067 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		2FD2DD5A2E0B318F00B34067 /* DetailReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReviewItemView.swift; sourceTree = "<group>"; };
+		2FD6F2722E2C6D3300F0CE50 /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
@@ -510,6 +516,7 @@
 				BE8299612D60B5E70081F979 /* String+.swift */,
 				BE25DD022D79C840006B819E /* Bundle+.swift */,
 				BE4F60A72E101DA3000F1212 /* UIImage+.swift */,
+				2FC2DF882E2BE2A20052515C /* Triangle+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -748,6 +755,7 @@
 				2F68B4CC2D72315A00548850 /* VoidData.swift */,
 				2F65D3412D72EF66002BF6B5 /* SendVerifyCodeModel.swift */,
 				BECC4A132D69A6C100F72FAF /* RestaurantDetail.swift */,
+				2FD6F2722E2C6D3300F0CE50 /* ReviewResponse.swift */,
 				2FD2DD4E2E0AF58600B34067 /* Review.swift */,
 				2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */,
 				BECC4A152D69A74B00F72FAF /* Blog.swift */,
@@ -801,6 +809,7 @@
 				BECD1DF32D6C0F4000FDA113 /* Keyword.swift */,
 				BEB42C2A2D7575770040F65F /* Epmty.swift */,
 				BE25DCFE2D79C283006B819E /* ProfileSet.swift */,
+				2FC2DF862E2BAA8B0052515C /* Badge.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1183,6 +1192,7 @@
 				BE2090072D64B7E90041A173 /* LikeFeature.swift in Sources */,
 				BEA57CAD2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift in Sources */,
 				BECC4A142D69A6C100F72FAF /* RestaurantDetail.swift in Sources */,
+				2FC2DF892E2BE2A20052515C /* Triangle+.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
 				2F65D3792D758063002BF6B5 /* AuthTokenResponseModel.swift in Sources */,
 				BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */,
@@ -1259,6 +1269,7 @@
 				BE208FF32D634DB60041A173 /* CategoryListView.swift in Sources */,
 				2F65D3772D747EBE002BF6B5 /* SignupHeaderView.swift in Sources */,
 				BE208FF32D634DB60041A173 /* CategoryListView.swift in Sources */,
+				2FD6F2732E2C6D3300F0CE50 /* ReviewResponse.swift in Sources */,
 				BE25DD0B2D79CEA8006B819E /* WebView.swift in Sources */,
 				BEBB792F2D6EBF0900209F7E /* DetailTabView.swift in Sources */,
 				BE3DBB792D5E1C5A007304C7 /* HomeRandomButton.swift in Sources */,
@@ -1267,6 +1278,7 @@
 				BECC4A272D69B55500F72FAF /* DetailTabButtonView.swift in Sources */,
 				BECD1DF22D6C0E9C00FDA113 /* KeywordClient.swift in Sources */,
 				BE0F6E572D83FC4800CC8391 /* RandomAnimationView.swift in Sources */,
+				2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */,
 				2F85BD5A2D9165560049FA77 /* APIClient.swift in Sources */,
 				BE2090092D64B7F10041A173 /* LikeHeaderView.swift in Sources */,
 				BE2090032D6497E90041A173 /* LikeView.swift in Sources */,
@@ -1463,10 +1475,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1489,6 +1503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1505,10 +1520,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = 7HDHR2SNR7;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1531,6 +1548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1684,12 +1702,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1712,7 +1730,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1830,12 +1848,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1858,7 +1876,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1969,12 +1987,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1997,7 +2015,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2108,12 +2126,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2136,7 +2154,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
