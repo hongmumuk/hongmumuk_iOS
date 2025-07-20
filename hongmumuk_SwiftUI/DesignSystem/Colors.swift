@@ -11,6 +11,7 @@ import SwiftUI
 enum Colors {
     enum Primary {
         static let normal = Color(hex: "#193BE6")
+        static let alternative = Color(hex: "FAFBFE")
         static let strong = Color(hex: "#1735CF")
         static let heavy = Color(hex: "#142FB8")
         
@@ -58,6 +59,11 @@ enum Colors {
         static let neutral = Color(hex: "#040615").opacity(0.07)
         static let alternative = Color(hex: "#040615").opacity(0.05)
         static let strong = Color(hex: "#040615").opacity(0.15)
+    }
+    
+    enum Label {
+        static let white = Color(hex: "#FFFFFF")
+        static let black = Color(hex: "#000000")
     }
     
     enum SemanticColor {
