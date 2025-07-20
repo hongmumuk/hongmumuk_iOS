@@ -138,6 +138,13 @@ enum Fonts {
         letterSpacing: -0.4
     )
     
+    static let caption1Semibold = FontStyle(
+        name: "Pretendard-SemiBold",
+        size: 11,
+        lineHeight: 16.5,
+        letterSpacing: -0.4
+    )
+    
     static let caption2 = FontStyle(
         name: "Pretendard-Regular",
         size: 9,

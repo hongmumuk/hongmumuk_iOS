@@ -23,6 +23,8 @@ struct DetailTabButtonView: View {
         HStack(spacing: 0) {
             tabButton(0, text: "map".localized())
             tabButton(1, text: "review".localized())
+            // TODO: 로컬라이즈드
+            tabButton(2, text: "Blog")
         }
     }
     
@@ -41,11 +43,11 @@ struct DetailTabButtonView: View {
     
     private var tabLine: some View {
         GeometryReader { geometry in
-            let tabWidth = geometry.size.width / 2
+            let tabWidth = geometry.size.width / 3
             Rectangle()
                 .fill(Colors.Primary.normal)
                 .frame(width: tabWidth, height: 1)
-                .offset(x: viewStore.state.pickerSelection == 0 ? 0 : tabWidth)
+                .offset(x: CGFloat(viewStore.state.pickerSelection) * tabWidth)
                 .animation(.easeInOut, value: viewStore.state.pickerSelection)
         }
         .frame(height: 1)

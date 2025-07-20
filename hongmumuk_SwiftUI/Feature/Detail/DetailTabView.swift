@@ -24,8 +24,12 @@ struct DetailTabView: View {
                 // ReviewView
                 DetailReviewView(viewStore: viewStore)
                     .tag(1)
+                
+                // BlogView
+                DetailBlogView(viewStore: viewStore)
+                    .tag(2)
             }
-            .tabViewStyle(.automatic)
+            .tabViewStyle(.page(indexDisplayMode: .never))
             
             if viewStore.showToast {
                 copyToast

@@ -128,7 +128,7 @@ extension RestaurantDetail {
             )
         ]
         
-        return .init(
+        return RestaurantDetail(
             id: "234",
             name: "발바리네",
             likes: 300,
