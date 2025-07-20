@@ -14,31 +14,48 @@ struct DetailReviewView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 0) {
-                        Spacer().frame(height: 20)
-                        headerView
-                        Spacer().frame(height: 20)
-                        writeReviewButton.frame(height: 60)
-                        Spacer().frame(height: 16)
-                        
-                        ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
-                            DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
-                                .padding(.horizontal, 24)
-                        }
-                        
-                        if !viewStore.isLastPage, viewStore.isReviewLoading {
-                            HStack {
-                                Spacer()
-                                ProgressView().padding()
-                                Spacer()
-                            }
-                        }
-                        
-                        detectScrollView
+                if viewStore.sortedReviews.isEmpty {
+                    VStack(alignment: .center) {
+                        Spacer()
+                            .frame(height: 78)
+                        Image("emptyIcon")
+                            .resizable()
+                            .frame(width: 180, height: 180)
+                        Spacer().frame(height: 12)
+                        Text("작성된 리뷰가 없습니다.")
+                            .fontStyle(Fonts.title2Bold)
+                            .foregroundColor(Colors.Label.Normal.strong)
+                        Spacer().frame(height: 8)
+                        Text("첫 리뷰를 작성해 보세요")
+                            .fontStyle(Fonts.heading2Bold)
+                            .foregroundColor(Colors.Label.Normal.alternative)
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                } else {
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 0) {
+                            Spacer().frame(height: 20)
+                            headerView
+                            Spacer().frame(height: 20)
+                            writeReviewButton.frame(height: 60)
+                            Spacer().frame(height: 16)
+                            ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
+                                DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
+                                    .padding(.horizontal, 24)
+                            }
+                            if !viewStore.isLastPage, viewStore.isReviewLoading {
+                                HStack {
+                                    Spacer()
+                                    ProgressView().padding()
+                                    Spacer()
+                                }
+                            }
+                            detectScrollView
+                        }
+                    }
+                    .coordinateSpace(name: "scrollView")
                 }
-                .coordinateSpace(name: "scrollView")
             }
             
             // 툴팁 외부 클릭 시 사라지는 오버레이
@@ -149,7 +166,7 @@ struct DetailReviewView: View {
             .padding(.horizontal, 24)
         }
         .alert(isPresented: viewStore.binding(get: \.showLoginAlert, send: DetailFeature.Action.showLoginAlert)) {
-            Alert(title: Text("회원만 작성할 수 있습니다"), dismissButton: .default(Text("확인")))
+            Alert(title: Text("회원만 리뷰를 작성할 수 있습니다"), dismissButton: .default(Text("확인")))
         }
     }
     
