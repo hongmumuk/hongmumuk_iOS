@@ -38,6 +38,7 @@ struct DetailFeature: Reducer {
         var canWriteReview: Bool = false
         
         var showReviewActionSheet: Bool = false
+        var showLoginAlert: Bool = false
     }
     
     enum Action: Equatable {
@@ -70,6 +71,7 @@ struct DetailFeature: Reducer {
         // review 작성하는 것과 관련된 액션
         case writeReviewButtonTapped
         case reviewWriteCompleted
+        case showLoginAlert(Bool)
     }
     
     enum DebounceID {
@@ -263,6 +265,10 @@ struct DetailFeature: Reducer {
                 return .none
                 
             case .writeReviewButtonTapped:
+                if !state.isUser {
+                    state.showLoginAlert = true
+                    return .none
+                }
                 state.isWriteReviewPresented = true
                 return .none
                 
@@ -285,6 +291,10 @@ struct DetailFeature: Reducer {
 
             case let .reviewDeleteButtonTapped(id):
                 // TODO: 삭제 로직 추가
+                return .none
+                
+            case let .showLoginAlert(show):
+                state.showLoginAlert = show
                 return .none
             }
         }

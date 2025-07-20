@@ -132,28 +132,25 @@ struct DetailReviewView: View {
     
     private var writeReviewButton: some View {
         Button(action: {
-            if viewStore.canWriteReview {
-                viewStore.send(.writeReviewButtonTapped)
-            }
+            viewStore.send(.writeReviewButtonTapped)
         }) {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(viewStore.canWriteReview ? Colors.Primary.primary10 : Colors.GrayScale.grayscale10)
-                
+                    .fill(Colors.Primary.primary10)
                 HStack {
-                    Image(viewStore.canWriteReview ? "penIcon" : "penDisabledIcon")
+                    Image("penIcon")
                         .frame(width: 20, height: 20)
-                    
                     Spacer().frame(width: 8)
-                    
-                    Text(viewStore.canWriteReview ? "리뷰 작성하기" : "작성 불가")
+                    Text("리뷰 작성하기")
                         .fontStyle(Fonts.heading2Bold)
-                        .foregroundColor(viewStore.canWriteReview ? Colors.Primary.strong : Colors.GrayScale.grayscale50)
+                        .foregroundColor(Colors.Primary.strong)
                 }
             }
             .padding(.horizontal, 24)
         }
-        .disabled(!viewStore.canWriteReview)
+        .alert(isPresented: viewStore.binding(get: \.showLoginAlert, send: DetailFeature.Action.showLoginAlert)) {
+            Alert(title: Text("회원만 작성할 수 있습니다"), dismissButton: .default(Text("확인")))
+        }
     }
     
     private var detectScrollView: some View {
