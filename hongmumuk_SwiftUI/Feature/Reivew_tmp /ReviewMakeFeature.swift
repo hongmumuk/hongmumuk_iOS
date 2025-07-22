@@ -20,7 +20,9 @@ struct ReviewMakeFeature: Reducer {
         var photoCount: Int { photos.count }
         var canAddMore: Bool { photos.count < 5 }
         
+        var requestGalleryAuth: Bool = false
         var isShowingPhotoActionSheet = false
+        var isShowingPhotoAuthAlert = false
     }
     
     enum Action: Equatable {
@@ -31,8 +33,11 @@ struct ReviewMakeFeature: Reducer {
         case setPhotoActionSheet(Bool)
         case writeButtonTapped
         
-        // ─ 사진 메뉴
+        // ─ 갤러리
         case photoMenuLibraryTapped
+        case photoLibraryAuth(PHAuthorizationStatus)
+        
+        // ─ 카메라
         case photoMenuCameraTapped
         
         // ─ Picker / Camera 결과 & 공통 닫기
@@ -61,12 +66,32 @@ struct ReviewMakeFeature: Reducer {
             
             case .photoMenuLibraryTapped:
                 guard state.canAddMore else { return .none }
-                state.isShowingPhotoPicker = true
-                return .none
-            
+                let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+                
+                return .run { send in
+                    await send(.photoLibraryAuth(status))
+                }
+        
             case .photoMenuCameraTapped:
                 guard state.canAddMore else { return .none }
                 state.isShowingCamera = true
+                
+                return .none
+                
+            case let .photoLibraryAuth(status):
+                state.requestGalleryAuth = false
+                
+                switch status {
+                case .authorized, .limited:
+                    state.isShowingPhotoPicker = true
+                case .denied, .restricted:
+                    state.isShowingPhotoAuthAlert = true
+                case .notDetermined:
+                    state.requestGalleryAuth = true
+                default:
+                    break
+                }
+                
                 return .none
             
             case let .photoPickerFinished(images):
@@ -82,6 +107,7 @@ struct ReviewMakeFeature: Reducer {
             case .dismissSheet:
                 state.isShowingPhotoPicker = false
                 state.isShowingCamera = false
+                state.isShowingPhotoAuthAlert = false
                 return .none
 
             case let .setPhotoActionSheet(isShow):

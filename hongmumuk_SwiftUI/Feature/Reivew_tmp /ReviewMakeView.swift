@@ -5,6 +5,7 @@
 //  Created by Dongwan Ryoo on 7/7/25.
 //
 
+import PhotosUI
 import SwiftUI
 
 import ComposableArchitecture
@@ -46,6 +47,32 @@ struct ReviewMakeView: View {
         ) {
             CameraView { image in
                 if let image { viewStore.send(.cameraShot(image)) }
+            }
+        }
+        .alert("갤러리 접근 권한이 필요합니다.", isPresented: viewStore.binding(
+            get: \.isShowingPhotoAuthAlert,
+            send: .dismissSheet
+        ),
+        actions: {
+            Button("cancel".localized(), role: .none) {}
+            
+            Button("device_set".localized(), role: .none) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(appSettings) {
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }, message: {
+            Text("갤러리 접근 권한이 필요합니다.".localized())
+        })
+        .onChange(of: viewStore.requestGalleryAuth) {
+            if viewStore.requestGalleryAuth {
+                PHPhotoLibrary.requestAuthorization(for: .readWrite) { new in
+                    DispatchQueue.main.async {
+                        viewStore.send(.photoLibraryAuth(new))
+                    }
+                }
             }
         }
     }
