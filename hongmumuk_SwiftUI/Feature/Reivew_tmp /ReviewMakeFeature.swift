@@ -25,6 +25,7 @@ struct ReviewMakeFeature: Reducer {
         var isShowingPhotoActionSheet = false
         var isShowingPhotoAuthAlert = false
         var isShowingCameraAuthAlert = false
+        var isShowingNoticeAlert = false
     }
     
     enum Action: Equatable {
@@ -63,6 +64,7 @@ struct ReviewMakeFeature: Reducer {
                 return .none
             
             case .noticeButtonTapped:
+                state.isShowingNoticeAlert = true
                 return .none
                 
             case .writeButtonTapped:
@@ -132,6 +134,7 @@ struct ReviewMakeFeature: Reducer {
                 state.isShowingCamera = false
                 state.isShowingPhotoAuthAlert = false
                 state.isShowingCameraAuthAlert = false
+                state.isShowingNoticeAlert = false
                 return .none
 
             case let .setPhotoActionSheet(isShow):
