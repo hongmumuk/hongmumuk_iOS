@@ -67,11 +67,41 @@ struct ReviewMakeView: View {
         }, message: {
             Text("갤러리 접근 권한이 필요합니다.".localized())
         })
+        .alert("카메라 접근 권한이 필요합니다.", isPresented: viewStore.binding(
+            get: \.isShowingCameraAuthAlert,
+            send: .dismissSheet
+        ),
+        actions: {
+            Button("cancel".localized(), role: .none) {}
+            
+            Button("device_set".localized(), role: .none) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    if UIApplication.shared.canOpenURL(appSettings) {
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }, message: {
+            Text("카메라 접근 권한이 필요합니다.".localized())
+        })
         .onChange(of: viewStore.requestGalleryAuth) {
             if viewStore.requestGalleryAuth {
                 PHPhotoLibrary.requestAuthorization(for: .readWrite) { new in
                     DispatchQueue.main.async {
                         viewStore.send(.photoLibraryAuth(new))
+                    }
+                }
+            }
+        }
+        .onChange(of: viewStore.requestCameraAuth) {
+            if viewStore.requestCameraAuth {
+                AVCaptureDevice.requestAccess(for: .video) { new in
+                    DispatchQueue.main.async {
+                        if new {
+                            viewStore.send(.photoCameraAuth(.authorized))
+                        } else {
+                            viewStore.send(.photoCameraAuth(.denied))
+                        }
                     }
                 }
             }

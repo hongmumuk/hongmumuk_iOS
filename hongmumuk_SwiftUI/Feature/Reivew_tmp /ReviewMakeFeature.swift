@@ -20,9 +20,11 @@ struct ReviewMakeFeature: Reducer {
         var photoCount: Int { photos.count }
         var canAddMore: Bool { photos.count < 5 }
         
-        var requestGalleryAuth: Bool = false
+        var requestGalleryAuth = false
+        var requestCameraAuth = false
         var isShowingPhotoActionSheet = false
         var isShowingPhotoAuthAlert = false
+        var isShowingCameraAuthAlert = false
     }
     
     enum Action: Equatable {
@@ -39,6 +41,7 @@ struct ReviewMakeFeature: Reducer {
         
         // ─ 카메라
         case photoMenuCameraTapped
+        case photoCameraAuth(AVAuthorizationStatus)
         
         // ─ Picker / Camera 결과 & 공통 닫기
         case photoPickerFinished([UIImage])
@@ -73,12 +76,6 @@ struct ReviewMakeFeature: Reducer {
                 return .run { send in
                     await send(.photoLibraryAuth(status))
                 }
-        
-            case .photoMenuCameraTapped:
-                guard state.canAddMore else { return .none }
-                state.isShowingCamera = true
-                
-                return .none
                 
             case let .photoLibraryAuth(status):
                 state.requestGalleryAuth = false
@@ -90,6 +87,30 @@ struct ReviewMakeFeature: Reducer {
                     state.isShowingPhotoAuthAlert = true
                 case .notDetermined:
                     state.requestGalleryAuth = true
+                default:
+                    break
+                }
+                
+                return .none
+        
+            case .photoMenuCameraTapped:
+                guard state.canAddMore else { return .none }
+                let status = AVCaptureDevice.authorizationStatus(for: .video)
+                
+                return .run { send in
+                    await send(.photoCameraAuth(status))
+                }
+                
+            case let .photoCameraAuth(status):
+                state.requestCameraAuth = false
+                
+                switch status {
+                case .authorized:
+                    state.isShowingCamera = true
+                case .denied, .restricted:
+                    state.isShowingCameraAuthAlert = true
+                case .notDetermined:
+                    state.requestCameraAuth = true
                 default:
                     break
                 }
@@ -110,6 +131,7 @@ struct ReviewMakeFeature: Reducer {
                 state.isShowingPhotoPicker = false
                 state.isShowingCamera = false
                 state.isShowingPhotoAuthAlert = false
+                state.isShowingCameraAuthAlert = false
                 return .none
 
             case let .setPhotoActionSheet(isShow):
