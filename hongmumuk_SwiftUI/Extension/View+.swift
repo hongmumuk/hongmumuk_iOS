@@ -22,7 +22,7 @@ extension View {
 
 struct FontStyleModifier: ViewModifier {
     let fontStyle: FontStyle
-
+    
     func body(content: Content) -> some View {
         content
             .font(fontStyle.toFont())
@@ -36,3 +36,16 @@ extension View {
         modifier(FontStyleModifier(fontStyle: fontStyle))
     }
 }
+
+#if canImport(UIKit)
+extension View {
+    /// 빈 부분을 탭하면 키보드가 사라지도록 뷰에 붙여주는 헬퍼
+    func dismissKeyboardOnTap() -> some View {
+        contentShape(Rectangle()) // 빈 공간 전체를 터치 가능하게
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                                to: nil, from: nil, for: nil)
+            }
+    }
+}
+#endif
