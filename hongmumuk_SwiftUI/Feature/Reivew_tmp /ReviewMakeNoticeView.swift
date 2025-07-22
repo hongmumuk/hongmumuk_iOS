@@ -13,7 +13,6 @@ struct ReviewMakeNoticeView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
             Button(action: { viewStore.send(.noticeButtonTapped) }) {
                 Text("리뷰 작성 시 유의사항")
                     .fontStyle(Fonts.body2Medium)

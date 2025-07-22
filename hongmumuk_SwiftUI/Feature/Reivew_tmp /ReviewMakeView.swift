@@ -24,8 +24,29 @@ struct ReviewMakeView: View {
             ReviewMakeStarView(viewStore: viewStore)
             ReviewMakeTextView(viewStore: viewStore)
             ReviewMakePhotoAddView(viewStore: viewStore)
+            Spacer()
             ReviewMakeNoticeView(viewStore: viewStore)
             ReviewWriteButton(viewStore: viewStore)
+        }
+        .sheet(isPresented: viewStore.binding(
+            get: \.isShowingPhotoPicker,
+            send: .dismissSheet
+        )
+        ) {
+            PhotoPickerView(
+                limit: 5 - viewStore.photoCount
+            ) { images in
+                viewStore.send(.photoPickerFinished(images))
+            }
+        }
+        .fullScreenCover(isPresented: viewStore.binding(
+            get: \.isShowingCamera,
+            send: .dismissSheet
+        )
+        ) {
+            CameraView { image in
+                if let image { viewStore.send(.cameraShot(image)) }
+            }
         }
     }
 }
