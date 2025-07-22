@@ -25,6 +25,7 @@ struct ReviewMakeView: View {
             ReviewMakeStarView(viewStore: viewStore)
             ReviewMakeTextView(viewStore: viewStore)
             ReviewMakePhotoAddView(viewStore: viewStore)
+            ReviewMakePhotoView(viewStore: viewStore)
             Spacer()
             ReviewMakeNoticeView(viewStore: viewStore)
             ReviewWriteButton(viewStore: viewStore)

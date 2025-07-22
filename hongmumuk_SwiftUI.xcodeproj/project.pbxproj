@@ -216,6 +216,7 @@
 		BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */; };
 		BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF82D6D767F00FDA113 /* RandomView.swift */; };
 		BEE5BB1B2D928024008AF34B /* OptimizedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */; };
+		BEEAFC082E2F9A0F007213A4 /* ReivewMakePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */; };
 		BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE88742D7D529500C3345B /* PostPasswordError.swift */; };
 		BEFE887B2D7DC2AA00C3345B /* LikeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE887A2D7DC2AA00C3345B /* LikeError.swift */; };
 /* End PBXBuildFile section */
@@ -427,6 +428,7 @@
 		BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFeature.swift; sourceTree = "<group>"; };
 		BECD1DF82D6D767F00FDA113 /* RandomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomView.swift; sourceTree = "<group>"; };
 		BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizedAsyncImage.swift; sourceTree = "<group>"; };
+		BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReivewMakePhotoView.swift; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -875,6 +877,7 @@
 				BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */,
 				BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */,
 				BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */,
+				BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */,
 			);
 			path = "Reivew_tmp ";
 			sourceTree = "<group>";
@@ -1315,6 +1318,7 @@
 				2F0D4FF92D779D160035D7A4 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
+				BEEAFC082E2F9A0F007213A4 /* ReivewMakePhotoView.swift in Sources */,
 				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,

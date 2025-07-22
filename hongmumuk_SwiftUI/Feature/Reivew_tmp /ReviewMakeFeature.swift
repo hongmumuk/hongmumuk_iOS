@@ -44,6 +44,8 @@ struct ReviewMakeFeature: Reducer {
         case photoPickerFinished([UIImage])
         case cameraShot(UIImage)
         case dismissSheet
+        
+        case removePhoto(Int)
     }
     
     var body: some ReducerOf<Self> {
@@ -112,6 +114,11 @@ struct ReviewMakeFeature: Reducer {
 
             case let .setPhotoActionSheet(isShow):
                 state.isShowingPhotoActionSheet = isShow
+                return .none
+                
+            case let .removePhoto(index):
+                guard state.photos.indices.contains(index) else { return .none }
+                state.photos.remove(at: index)
                 return .none
             }
         }
