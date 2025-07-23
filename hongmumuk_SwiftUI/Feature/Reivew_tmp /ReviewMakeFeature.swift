@@ -67,20 +67,21 @@ struct ReviewMakeFeature: Reducer {
             switch action {
             case let .starButtonTapped(index):
                 state.starRate = Double(index + 1)
+                state.isWriteActive = checkIsWriteActive(state: state)
                 return .none
-            
+                
             case .addPhotoButtonTapped:
                 state.isShowingPhotoActionSheet = true
+                state.isWriteActive = checkIsWriteActive(state: state)
                 return .none
-            
+                
             case .noticeButtonTapped:
                 state.isShowingNoticeAlert = true
                 return .none
                 
             case .writeButtonTapped:
-                state.isWriteActive = true
                 return .none
-            
+                
             case .photoMenuLibraryTapped:
                 guard state.canAddMore else { return .none }
                 let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
@@ -104,7 +105,7 @@ struct ReviewMakeFeature: Reducer {
                 }
                 
                 return .none
-        
+                
             case .photoMenuCameraTapped:
                 guard state.canAddMore else { return .none }
                 let status = AVCaptureDevice.authorizationStatus(for: .video)
@@ -128,17 +129,17 @@ struct ReviewMakeFeature: Reducer {
                 }
                 
                 return .none
-            
+                
             case let .photoPickerFinished(images):
                 let room = max(0, 5 - state.photos.count)
                 state.photos.append(contentsOf: images.prefix(room))
                 return .none
-            
+                
             case let .cameraShot(image):
                 if state.canAddMore { state.photos.append(image) }
                 state.isShowingCamera = false
                 return .none
-            
+                
             case .dismissSheet:
                 state.isShowingPhotoPicker = false
                 state.isShowingCamera = false
@@ -146,7 +147,7 @@ struct ReviewMakeFeature: Reducer {
                 state.isShowingCameraAuthAlert = false
                 state.isShowingNoticeAlert = false
                 return .none
-
+                
             case let .setPhotoActionSheet(isShow):
                 state.isShowingPhotoActionSheet = isShow
                 return .none
@@ -158,6 +159,7 @@ struct ReviewMakeFeature: Reducer {
                 
             case let .textChanged(text):
                 state.reviewText = String(text.prefix(200))
+                state.isWriteActive = checkIsWriteActive(state: state)
                 return .none
                 
             case let .textFocusChanged(isFocused):
@@ -169,8 +171,16 @@ struct ReviewMakeFeature: Reducer {
                     state.reviewTextStatus = .normal
                 }
                 
+                state.isWriteActive = checkIsWriteActive(state: state)
+                
                 return .none
             }
         }
+    }
+}
+
+extension ReviewMakeFeature {
+    func checkIsWriteActive(state: ReviewMakeFeature.State) -> Bool {
+        return state.textCount >= 20 && state.starRate != 0.0
     }
 }
