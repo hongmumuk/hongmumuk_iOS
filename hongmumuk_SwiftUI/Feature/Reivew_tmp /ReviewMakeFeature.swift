@@ -26,6 +26,12 @@ struct ReviewMakeFeature: Reducer {
         var isShowingPhotoAuthAlert = false
         var isShowingCameraAuthAlert = false
         var isShowingNoticeAlert = false
+        
+        var reviewText = ""
+        var textCount: Int { reviewText.count }
+        
+        var errorMessage = ""
+        var reviewTextStatus: ReviewMakeTextView.TextStatus = .normal
     }
     
     enum Action: Equatable {
@@ -50,6 +56,10 @@ struct ReviewMakeFeature: Reducer {
         case dismissSheet
         
         case removePhoto(Int)
+        
+        case textChanged(String)
+        
+        case textFocusChanged(Bool)
     }
     
     var body: some ReducerOf<Self> {
@@ -144,6 +154,21 @@ struct ReviewMakeFeature: Reducer {
             case let .removePhoto(index):
                 guard state.photos.indices.contains(index) else { return .none }
                 state.photos.remove(at: index)
+                return .none
+                
+            case let .textChanged(text):
+                state.reviewText = String(text.prefix(200))
+                return .none
+                
+            case let .textFocusChanged(isFocused):
+                if !isFocused, state.textCount <= 20 {
+                    state.errorMessage = "리뷰는 최소 20자 이상 입력해 주세요."
+                    state.reviewTextStatus = .error
+                } else {
+                    state.errorMessage = ""
+                    state.reviewTextStatus = .normal
+                }
+                
                 return .none
             }
         }
