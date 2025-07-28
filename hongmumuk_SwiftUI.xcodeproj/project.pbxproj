@@ -215,6 +215,8 @@
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */; };
 		BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF82D6D767F00FDA113 /* RandomView.swift */; };
+		BEE57ECF2E373ADF00CDA6E5 /* ReviewClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */; };
+		BEE57ED12E373B8F00CDA6E5 /* WriteReivewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */; };
 		BEE5BB1B2D928024008AF34B /* OptimizedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */; };
 		BEEAFC082E2F9A0F007213A4 /* ReivewMakePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */; };
 		BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE88742D7D529500C3345B /* PostPasswordError.swift */; };
@@ -427,6 +429,8 @@
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFeature.swift; sourceTree = "<group>"; };
 		BECD1DF82D6D767F00FDA113 /* RandomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomView.swift; sourceTree = "<group>"; };
+		BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewClient.swift; sourceTree = "<group>"; };
+		BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReivewModel.swift; sourceTree = "<group>"; };
 		BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizedAsyncImage.swift; sourceTree = "<group>"; };
 		BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReivewMakePhotoView.swift; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -743,6 +747,7 @@
 				2F65D37A2D758896002BF6B5 /* KeychainClient.swift */,
 				BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */,
 				BEC950632D7B149E002B02BB /* ProfileClient.swift */,
+				BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -782,6 +787,7 @@
 				2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */,
 				BECC4A152D69A74B00F72FAF /* Blog.swift */,
 				BEC950652D7B152A002B02BB /* ProfileModel.swift */,
+				BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1201,6 +1207,7 @@
 				2F0D501B2D779D6D0035D7A4 /* ProgressButton.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				2F0D4FF12D779CE90035D7A4 /* HomeRootView.swift in Sources */,
+				BEE57ECF2E373ADF00CDA6E5 /* ReviewClient.swift in Sources */,
 				2F0D501D2D779D840035D7A4 /* LoginHeaderView.swift in Sources */,
 				BEC950642D7B149E002B02BB /* ProfileClient.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */,
@@ -1281,6 +1288,7 @@
 				BEC950582D7B0FFC002B02BB /* ProfileInfoFeature.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				2F68B4D32D72474A00548850 /* BasicButton.swift in Sources */,
+				BEE57ED12E373B8F00CDA6E5 /* WriteReivewModel.swift in Sources */,
 				BE208FFE2D64908E0041A173 /* RandomButton.swift in Sources */,
 				BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
@@ -1522,7 +1530,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
@@ -1569,7 +1577,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
@@ -1753,7 +1761,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
@@ -1901,7 +1909,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
@@ -2042,7 +2050,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
@@ -2183,7 +2191,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "갤러리 접근을 위한 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
