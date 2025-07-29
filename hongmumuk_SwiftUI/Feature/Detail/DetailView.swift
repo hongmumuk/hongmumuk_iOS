@@ -37,7 +37,21 @@ struct DetailView: View {
                 send: { _ in .reviewWriteCompleted }
             )
         ) {
-            ReviewMakeView(store: Store(initialState: ReviewMakeFeature.State(), reducer: { ReviewMakeFeature() }))
+            ReviewMakeView(
+                store: Store(
+                    initialState: ReviewMakeFeature.State(
+                        reviewMode: .create(
+                            restaurantName: viewStore.restaurantDetail.name,
+                            restaurantID: Int(
+                                viewStore.restaurantDetail.id
+                            ) ?? 0
+                        )
+                    ),
+                    reducer: {
+                        ReviewMakeFeature()
+                    }
+                )
+            )
         }
     }
 }

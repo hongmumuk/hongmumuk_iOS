@@ -30,6 +30,9 @@ struct ReviewMakeView: View {
             ReviewMakeNoticeView(viewStore: viewStore)
             ReviewWriteButton(viewStore: viewStore)
         }
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
         .dismissKeyboardOnTap()
         .sheet(isPresented: viewStore.binding(
             get: \.isShowingPhotoPicker,

@@ -10,6 +10,11 @@ import PhotosUI
 import UIKit
 
 struct ReviewMakeFeature: Reducer {
+    enum ReviewMode: Equatable {
+        case create(restaurantName: String, restaurantID: Int)
+        case edit(restaurantName: String, restaurantID: Int, star: Int, content: String, photos: [UIImage])
+    }
+    
     struct State: Equatable {
         var starRate: Double = 0
         var photos: [UIImage] = []
@@ -32,10 +37,14 @@ struct ReviewMakeFeature: Reducer {
         
         var errorMessage = ""
         var reviewTextStatus: ReviewMakeTextView.TextStatus = .normal
+        var reviewMode: ReviewMode
+        var restaurantName = ""
+        var restaurantID = 0
     }
     
     enum Action: Equatable {
         // ─ UI 이벤트
+        case onAppear
         case starButtonTapped(Int)
         case addPhotoButtonTapped
         case noticeButtonTapped
@@ -60,11 +69,34 @@ struct ReviewMakeFeature: Reducer {
         case textChanged(String)
         
         case textFocusChanged(Bool)
+        
+        case reviewUploaded
+        case reviewUploadError(WriteReviewError)
     }
+    
+    @Dependency(\.keychainClient) var keychainClient
+    @Dependency(\.reviewClient) var reviewClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                switch state.reviewMode {
+                case let .create(restaurantName, restaurantID):
+                    state.restaurantName = restaurantName
+                    state.restaurantID = restaurantID
+
+                case let .edit(restaurantName, restaurantID, star, content, photos):
+                    state.restaurantName = restaurantName
+                    state.restaurantID = restaurantID
+                    state.starRate = Double(star)
+                    state.reviewText = content
+                    state.photos = photos
+                    state.isWriteActive = checkIsWriteActive(state: state)
+                }
+
+                return .none
+                
             case let .starButtonTapped(index):
                 state.starRate = Double(index + 1)
                 state.isWriteActive = checkIsWriteActive(state: state)
@@ -80,6 +112,32 @@ struct ReviewMakeFeature: Reducer {
                 return .none
                 
             case .writeButtonTapped:
+                let star = Int(state.starRate)
+                let text = state.reviewText
+                let photos = state.photos
+
+                return .run { send in
+                    if let token = await keychainClient.getString(.accessToken) {
+                        let model = WriteReviewModel(rid: 1, star: star, content: text)
+                        
+                        do {
+                            let upload = try await reviewClient.postReview(token, model, photos)
+                            
+                            if upload {
+                                await send(.reviewUploaded)
+                            }
+                        } catch {
+                            await send(.reviewUploadError(.unknown))
+                        }
+                    }
+                }
+
+            // 성공
+            case .reviewUploaded:
+                return .none
+                
+            // 실패
+            case let .reviewUploadError(error):
                 return .none
                 
             case .photoMenuLibraryTapped:

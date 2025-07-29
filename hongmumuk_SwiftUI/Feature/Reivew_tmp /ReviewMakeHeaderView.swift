@@ -29,7 +29,7 @@ struct ReviewMakeHeaderView: View {
     }
     
     private var restaurantTitle: some View {
-        Text("식당이름")
+        Text(viewStore.restaurantName)
             .fontStyle(Fonts.heading1Bold)
             .foregroundColor(Colors.GrayScale.grayscale95)
     }
