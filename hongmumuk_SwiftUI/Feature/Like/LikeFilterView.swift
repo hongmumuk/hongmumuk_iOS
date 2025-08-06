@@ -48,7 +48,7 @@ struct LikeFilterView: View {
                 Text("\(viewStore.sort.displayName)")
                     .foregroundColor(Colors.Primary.primary60)
                     .fontStyle(Fonts.body1SemiBold)
-                Image("dropDownIcon")
+                Image("dropdownIcon")
                     .frame(width: 16, height: 16)
             }
         }

@@ -29,6 +29,10 @@ struct DetailReviewView: View {
                         Text("첫 리뷰를 작성해 보세요")
                             .fontStyle(Fonts.heading2Bold)
                             .foregroundColor(Colors.Label.Normal.alternative)
+                        Spacer().frame(height: 48)
+                        writeReviewButton
+                            .frame(height: 60)
+                        Spacer()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .contentShape(Rectangle())
@@ -115,7 +119,7 @@ struct DetailReviewView: View {
                 Spacer()
                     .frame(width: 4)
                 
-                Image("dropDownIcon")
+                Image("dropdownIcon")
                     .frame(width: 16, height: 16)
             }
         }
