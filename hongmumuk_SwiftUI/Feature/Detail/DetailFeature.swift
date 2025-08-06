@@ -102,7 +102,7 @@ struct DetailFeature: Reducer {
                     state.reviewPage += 1
                     
                     // 리뷰는 목업 데이터로 설정 (페이지네이션 없이 모든 리뷰 표시)
-                    let mockReviews = createMockReviews()
+                    let mockReviews = Review.mockReviews()
                     return .run { send in
                         await send(.reviewLoaded(mockReviews))
                     }
@@ -145,7 +145,7 @@ struct DetailFeature: Reducer {
                 state.isLoading = false
                 
                 // 리뷰는 목업 데이터로 설정
-                let mockReviews = createMockReviews()
+                let mockReviews = Review.mockReviews()
                 return .run { send in
                     await send(.reviewLoaded(mockReviews))
                 }
@@ -234,7 +234,7 @@ struct DetailFeature: Reducer {
                 state.isLastPage = false
                 
                 // 리뷰는 목업 데이터로 설정
-                let mockReviews = createMockReviews()
+                let mockReviews = Review.mockReviews()
                 return .run { send in
                     await send(.reviewLoaded(mockReviews))
                 }
@@ -310,87 +310,6 @@ struct DetailFeature: Reducer {
 
         case .low:
             return list.sorted { $0.star < $1.star }
-        }
-    }
-    
-    private func createMockReviews() -> [Review] {
-        return [
-            Review(
-                id: 1,
-                user: "세영이",
-                date: "2025-06-20",
-                visitCount: 2,
-                star: 4,
-                content: "제육볶음 정말 맛있어요! 재방문 의사 100%",
-                isOwner: false,
-                photoURLs: [
-                    "https://example.com/photo1.jpg",
-                    "https://example.com/photo2.jpg",
-                    "https://example.com/photo3.jpg"
-                ],
-                badge: .newbie
-            ),
-            Review(
-                id: 2,
-                user: "도연",
-                date: "2025-06-21",
-                visitCount: 1,
-                star: 5,
-                content: "가성비 최고예요. 반찬 구성도 알차고 사장님도 친절해요.",
-                isOwner: false,
-                photoURLs: [],
-                badge: .explorer
-            ),
-            Review(
-                id: 3,
-                user: "맛집헌터",
-                date: "2025-06-22",
-                visitCount: 3,
-                star: 4,
-                content: "맛도 좋고 양도 푸짐했어요. 점심시간엔 줄이 길 수 있어요.",
-                isOwner: false,
-                photoURLs: ["https://example.com/photo4.jpg"],
-                badge: .foodie
-            ),
-            Review(
-                id: 4,
-                user: "식당주인",
-                date: "2025-06-23",
-                visitCount: 100,
-                star: 5,
-                content: "사장입니다 :) 항상 좋은 재료로 정성껏 만들고 있어요!",
-                isOwner: true,
-                photoURLs: [],
-                badge: .master
-            ),
-            Review(
-                id: 5,
-                user: "카메라장인",
-                date: "2025-06-24",
-                visitCount: 1,
-                star: 5,
-                content: "비주얼이 정말 예술이에요! 사진 맛집 인정합니다.",
-                isOwner: false,
-                photoURLs: [
-                    "https://example.com/photo5_1.jpg",
-                    "https://example.com/photo5_2.jpg",
-                    "https://example.com/photo5_3.jpg",
-                    "https://example.com/photo5_4.jpg"
-                ],
-                badge: .newbie
-            )
-        ] + (6 ... 30).map {
-            Review(
-                id: $0,
-                user: "유저\($0)",
-                date: "2025-06-\(String(format: "%02d", ($0 % 30) + 1))",
-                visitCount: Int.random(in: 1 ... 5),
-                star: Int.random(in: 3 ... 5),
-                content: "리뷰 내용 \($0): 이 집 괜찮아요~",
-                isOwner: false,
-                photoURLs: $0 % 3 == 0 ? ["https://example.com/photo\($0).jpg"] : [],
-                badge: $0 % 5 == 0 ? .explorer : .newbie
-            )
         }
     }
     
