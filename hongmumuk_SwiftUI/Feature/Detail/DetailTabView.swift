@@ -29,7 +29,7 @@ struct DetailTabView: View {
                 DetailBlogView(viewStore: viewStore)
                     .tag(2)
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.automatic)
             
             ToastView(
                 imageName: viewStore.currentToast?.imageName ?? "",

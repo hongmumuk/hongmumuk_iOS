@@ -14,36 +14,34 @@ struct DetailReviewView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                if viewStore.sortedReviews.isEmpty {
-                    VStack(alignment: .center) {
-                        Spacer()
-                            .frame(height: 78)
-                        Image("emptyIcon")
-                            .resizable()
-                            .frame(width: 180, height: 180)
-                        Spacer().frame(height: 12)
-                        Text("작성된 리뷰가 없습니다.")
-                            .fontStyle(Fonts.title2Bold)
-                            .foregroundColor(Colors.Label.Normal.strong)
-                        Spacer().frame(height: 8)
-                        Text("첫 리뷰를 작성해 보세요")
-                            .fontStyle(Fonts.heading2Bold)
-                            .foregroundColor(Colors.Label.Normal.alternative)
-                        Spacer().frame(height: 48)
-                        writeReviewButton
-                            .frame(height: 60)
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Rectangle())
-                } else {
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 0) {
-                            Spacer().frame(height: 20)
-                            headerView
-                            Spacer().frame(height: 20)
-                            writeReviewButton.frame(height: 60)
-                            Spacer().frame(height: 16)
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                        Spacer().frame(height: 20)
+                        headerView
+                        Spacer().frame(height: 20)
+                        writeReviewButton.frame(height: 60)
+                        Spacer().frame(height: 16)
+                        
+                        if viewStore.sortedReviews.isEmpty {
+                            VStack(alignment: .center) {
+                                Spacer()
+                                    .frame(height: 62)
+                                Image("emptyIcon")
+                                    .resizable()
+                                    .frame(width: 180, height: 180)
+                                Spacer().frame(height: 12)
+                                Text("작성된 리뷰가 없습니다.")
+                                    .fontStyle(Fonts.title2Bold)
+                                    .foregroundColor(Colors.Label.Normal.strong)
+                                Spacer().frame(height: 8)
+                                Text("첫 리뷰를 작성해 보세요")
+                                    .fontStyle(Fonts.heading2Bold)
+                                    .foregroundColor(Colors.Label.Normal.alternative)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity)
+                            .contentShape(Rectangle())
+                        } else {
                             ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
                                 DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
                                     .padding(.horizontal, 24)
@@ -55,11 +53,11 @@ struct DetailReviewView: View {
                                     Spacer()
                                 }
                             }
-                            detectScrollView
                         }
+                        detectScrollView
                     }
-                    .coordinateSpace(name: "scrollView")
                 }
+                .coordinateSpace(name: "scrollView")
             }
             
             // 툴팁 외부 클릭 시 사라지는 오버레이

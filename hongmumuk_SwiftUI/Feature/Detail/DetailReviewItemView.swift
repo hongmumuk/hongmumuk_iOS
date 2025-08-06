@@ -65,17 +65,6 @@ struct DetailReviewItemView: View {
                 .foregroundColor(Colors.GrayScale.alternative)
             
             Spacer()
-                .frame(width: 6)
-            
-            Circle()
-                .frame(width: 2, height: 2)
-                .foregroundColor(Colors.GrayScale.alternative)
-            
-            Text("\(item.visitCount)번째 방문")
-                .fontStyle(Fonts.body2SemiBold)
-                .foregroundColor(Colors.GrayScale.alternative)
-            
-            Spacer()
             
             if item.isOwner {
                 Menu {
