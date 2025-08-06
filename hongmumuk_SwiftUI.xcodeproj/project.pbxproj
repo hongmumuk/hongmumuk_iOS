@@ -18,7 +18,6 @@
 		2F0D50022D779D1B0035D7A4 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D4FFB2D779D1B0035D7A4 /* ResetPasswordView.swift */; };
 		2F0D500D2D779D200035D7A4 /* SignupPasswordFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50092D779D200035D7A4 /* SignupPasswordFeature.swift */; };
 		2F0D500E2D779D200035D7A4 /* PrivacyFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50032D779D200035D7A4 /* PrivacyFeature.swift */; };
-		2F0D500F2D779D200035D7A4 /* SignupToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D500B2D779D200035D7A4 /* SignupToastView.swift */; };
 		2F0D50102D779D200035D7A4 /* SignupEmailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50072D779D200035D7A4 /* SignupEmailFeature.swift */; };
 		2F0D50112D779D200035D7A4 /* PrivacyModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50042D779D200035D7A4 /* PrivacyModalView.swift */; };
 		2F0D50122D779D200035D7A4 /* SignupDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D50062D779D200035D7A4 /* SignupDoneView.swift */; };
@@ -95,6 +94,9 @@
 		2FE55C0F2D5E563C00BFE6F7 /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
+		5D6D4C3A2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
+		5D6D4C3B2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
+		5D6D4C3C2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
 		BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */; };
@@ -243,7 +245,6 @@
 		2F0D50082D779D200035D7A4 /* SignupEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailView.swift; sourceTree = "<group>"; };
 		2F0D50092D779D200035D7A4 /* SignupPasswordFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordFeature.swift; sourceTree = "<group>"; };
 		2F0D500A2D779D200035D7A4 /* SignupPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordView.swift; sourceTree = "<group>"; };
-		2F0D500B2D779D200035D7A4 /* SignupToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupToastView.swift; sourceTree = "<group>"; };
 		2F0D50162D779D2A0035D7A4 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
 		2F0D50172D779D2A0035D7A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2F0D501A2D779D6D0035D7A4 /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
@@ -304,6 +305,7 @@
 		2FD6F2722E2C6D3300F0CE50 /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5D6D4C392E43405D00A92698 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
 		BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
@@ -490,7 +492,6 @@
 				2F0D50082D779D200035D7A4 /* SignupEmailView.swift */,
 				2F0D50092D779D200035D7A4 /* SignupPasswordFeature.swift */,
 				2F0D500A2D779D200035D7A4 /* SignupPasswordView.swift */,
-				2F0D500B2D779D200035D7A4 /* SignupToastView.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -632,6 +633,7 @@
 		BE208FFA2D6485DA0041A173 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				5D6D4C392E43405D00A92698 /* ToastView.swift */,
 				2F0D501C2D779D840035D7A4 /* LoginHeaderView.swift */,
 				2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */,
 				2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */,
@@ -1212,6 +1214,7 @@
 				2F68B4CB2D72315600548850 /* VerifyEmailModel.swift in Sources */,
 				2FA7B24A2D85D5E800D847D8 /* OnboardingFeature.swift in Sources */,
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
+				5D6D4C3A2E43405D00A92698 /* ToastView.swift in Sources */,
 				BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */,
 				BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */,
 				BE1145602E1BB75300228550 /* ReviewWriteButton.swift in Sources */,
@@ -1242,7 +1245,6 @@
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2F0D500D2D779D200035D7A4 /* SignupPasswordFeature.swift in Sources */,
 				2F0D500E2D779D200035D7A4 /* PrivacyFeature.swift in Sources */,
-				2F0D500F2D779D200035D7A4 /* SignupToastView.swift in Sources */,
 				2F0D50102D779D200035D7A4 /* SignupEmailFeature.swift in Sources */,
 				2F0D50112D779D200035D7A4 /* PrivacyModalView.swift in Sources */,
 				2F0D50122D779D200035D7A4 /* SignupDoneView.swift in Sources */,
@@ -1304,6 +1306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D6D4C3B2E43405D00A92698 /* ToastView.swift in Sources */,
 				2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1313,6 +1316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA097932D427FCF00D01792 /* hongmumuk_SwiftUIUITests.swift in Sources */,
+				5D6D4C3C2E43405D00A92698 /* ToastView.swift in Sources */,
 				2FA097942D427FCF00D01792 /* hongmumuk_SwiftUIUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
