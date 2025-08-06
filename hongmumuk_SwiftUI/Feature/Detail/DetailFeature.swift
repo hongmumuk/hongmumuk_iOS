@@ -8,6 +8,11 @@
 import ComposableArchitecture
 import SwiftUI
 
+struct ToastInfo: Equatable {
+    let imageName: String
+    let message: String
+}
+
 struct DetailFeature: Reducer {
     struct State: Equatable {
         var id: Int
@@ -17,7 +22,7 @@ struct DetailFeature: Reducer {
         var keywords = [String]()
         var pickerSelection = 0
         var restaurantDetail = RestaurantDetail.mock()
-        var showToast = false
+        var currentToast: ToastInfo? = nil
         var activeToolTipReviewID: Int? = nil
         
         var isWriteReviewPresented: Bool = false
@@ -55,7 +60,8 @@ struct DetailFeature: Reducer {
         case checkIsUser(String?)
         case kakaoMapButtonTapped
         case naverMapButtonTapped
-        case showCopyToast(Bool)
+        case showToast(ToastInfo)
+        case hideToast
         case photoFilterToggled(Bool)
         case sortButtonTapped
         case sortChanged(ReviewSortOption)
@@ -72,6 +78,9 @@ struct DetailFeature: Reducer {
         case writeReviewButtonTapped
         case reviewWriteCompleted
         case showLoginAlert(Bool)
+        case reviewAvailabilityChecked
+        case reviewAvailabilityError(ReviewError)
+
     }
     
     enum DebounceID {
@@ -101,10 +110,15 @@ struct DetailFeature: Reducer {
                     state.isReviewLoading = true
                     state.reviewPage += 1
                     
-                    // 리뷰는 목업 데이터로 설정 (페이지네이션 없이 모든 리뷰 표시)
-                    let mockReviews = Review.mockReviews()
-                    return .run { send in
-                        await send(.reviewLoaded(mockReviews))
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser] send in
+                        do {
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser)
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
                     }
                 } else {
                     return .none
@@ -144,10 +158,19 @@ struct DetailFeature: Reducer {
                 state.restaurantDetail = restaurantDetail
                 state.isLoading = false
                 
-                // 리뷰는 목업 데이터로 설정
-                let mockReviews = Review.mockReviews()
-                return .run { send in
-                    await send(.reviewLoaded(mockReviews))
+                // 첫 페이지 리뷰 로드
+                return .run { [id = state.id, sort = state.sort, isUser = state.isUser] send in
+                    do {
+                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser)
+                        await send(.reviewLoaded(reviewResponse.reviews))
+                        await send(.initailLoadingCompleted)
+                    } catch let error as ReviewError {
+                        await send(.reviewError(error))
+                        await send(.initailLoadingCompleted)
+                    } catch {
+                        await send(.reviewError(.unknown))
+                        await send(.initailLoadingCompleted)
+                    }
                 }
                 
             case let .restaurantDetailError(error):
@@ -157,21 +180,24 @@ struct DetailFeature: Reducer {
             case .copyAddressButtonTapped:
                 let address = state.restaurantDetail.address
                 UIPasteboard.general.string = address
+                let toastInfo = ToastInfo(
+                    imageName: "checkWhiteIcon",
+                    message: "copied_store_address".localized()
+                )
                 return .run { send in
-                    await send(.showCopyToast(true), animation: .default)
+                    await send(.showToast(toastInfo), animation: .default)
                 }
                 
-            case let .showCopyToast(isShow):
-                state.showToast = isShow
-                
-                if isShow {
-                    return .run { send in
-                        try await Task.sleep(for: .seconds(2.0))
-                        await send(.showCopyToast(false), animation: .default)
-                    }
-                } else {
-                    return .none
+            case let .showToast(toastInfo):
+                state.currentToast = toastInfo
+                return .run { send in
+                    try await Task.sleep(for: .seconds(2.0))
+                    await send(.hideToast, animation: .default)
                 }
+                
+            case .hideToast:
+                state.currentToast = nil
+                return .none
                 
             case .likeButtonTapped:
                 state.restaurantDetail.hasLiked.toggle()
@@ -233,10 +259,16 @@ struct DetailFeature: Reducer {
                 state.sortedReviews = []
                 state.isLastPage = false
                 
-                // 리뷰는 목업 데이터로 설정
-                let mockReviews = Review.mockReviews()
-                return .run { send in
-                    await send(.reviewLoaded(mockReviews))
+                // 새로운 정렬로 첫 페이지 리뷰 로드
+                return .run { [id = state.id, sort = reviewSort, isUser = state.isUser] send in
+                    do {
+                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser)
+                        await send(.reviewLoaded(reviewResponse.reviews))
+                    } catch let error as ReviewError {
+                        await send(.reviewError(error))
+                    } catch {
+                        await send(.reviewError(.unknown))
+                    }
                 }
 
             case let .photoFilterToggled(isOn):
@@ -266,11 +298,22 @@ struct DetailFeature: Reducer {
                 
             case .writeReviewButtonTapped:
                 if !state.isUser {
-                    state.showLoginAlert = true
-                    return .none
+                    let toastInfo = ToastInfo(
+                        imageName: "warnIcon",
+                        message: "회원만 리뷰 작성이 가능합니다"
+                    )
+                    return .send(.showToast(toastInfo))
                 }
-                state.isWriteReviewPresented = true
-                return .none
+                return .run { [id = state.id, token = state.token] send in
+                    do {
+                        try await restaurantClient.checkReviewAvailable(id, token)
+                        await send(.reviewAvailabilityChecked)
+                    } catch let error as ReviewError {
+                        await send(.reviewAvailabilityError(error))
+                    } catch {
+                        await send(.reviewAvailabilityError(.unknown))
+                    }
+                }
                 
             case .reviewWriteCompleted:
                 state.isWriteReviewPresented = false
@@ -296,6 +339,20 @@ struct DetailFeature: Reducer {
             case let .showLoginAlert(show):
                 state.showLoginAlert = show
                 return .none
+                
+            case .reviewAvailabilityChecked:
+                state.isWriteReviewPresented = true
+                return .none
+                
+            case let .reviewAvailabilityError(error):
+                let message = error == .alreadyWritten 
+                    ? "리뷰는 가게 당 한 번만 작성할 수 있어요!"
+                    : "리뷰 작성 중 오류가 발생했습니다."
+                let toastInfo = ToastInfo(
+                    imageName: "trumpetIcon",
+                    message: message
+                )
+                return .send(.showToast(toastInfo))
             }
         }
     }

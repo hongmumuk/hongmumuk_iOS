@@ -13,13 +13,7 @@ struct ReviewResponse: Codable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case reviewCount
-        case reviews
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        reviewCount = try container.decode(Int.self, forKey: .reviewCount)
-        reviews = try container.decode([Review].self, forKey: .reviews)
+        case reviews = "reviewDto"
     }
     
     init(reviewCount: Int, reviews: [Review]) {

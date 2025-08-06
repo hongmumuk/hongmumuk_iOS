@@ -12,7 +12,8 @@ struct RestaurantClient {
     var postRestaurantList: @Sendable (_ body: RestaurantListRequestModel) async throws -> [RestaurantListModel]
     var getRestaurantDetail: @Sendable (_ id: Int) async throws -> RestaurantDetail
     var getAuthedRestaurantDetail: @Sendable (_ id: Int, _ token: String) async throws -> RestaurantDetail
-    var getReviews: @Sendable (_ rid: Int, _ page: Int, _ sort: ReviewSortOption) async throws -> ReviewResponse
+    var getReviews: @Sendable (_ rid: Int, _ page: Int, _ sort: ReviewSortOption, _ isUser: Bool) async throws -> ReviewResponse
+    var checkReviewAvailable: @Sendable (_ rid: Int, _ token: String) async throws -> Void
 }
 
 extension RestaurantClient: DependencyKey {
@@ -97,13 +98,14 @@ extension RestaurantClient: DependencyKey {
             return response.data!
         },
         
-        getReviews: { rid, page, sort in
+        getReviews: { rid, page, sort, isUser in
             let url = "\(Constant.baseUrl)/api/review"
             
             let parameters: [String: Any] = [
-                "rid": rid,
+                "restaurantId": rid,
                 "page": page,
-                "sort": sort.rawValue
+                "sort": sort.rawValue,
+                "isUser": isUser
             ]
             
             let headers: HTTPHeaders = [
@@ -122,9 +124,36 @@ extension RestaurantClient: DependencyKey {
                 .serializingDecodable(ResponseModel<ReviewResponse>.self)
                 .value
             
-            guard response.isSuccess else { throw RestaurantDetailError(rawValue: response.code) ?? .unknown }
+            guard response.isSuccess else { throw ReviewError(rawValue: response.code) ?? .unknown }
             
             return response.data!
+        },
+        
+        checkReviewAvailable: { rid, token in
+            let url = "\(Constant.baseUrl)/api/review/available/\(rid)"
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(token)"
+            ]
+            
+            let request = APIClient.plain.request(
+                url,
+                method: .get,
+                headers: headers
+            )
+            
+            let response = try await request
+                .serializingDecodable(ResponseModel<String?>.self)
+                .value
+            
+            guard response.isSuccess else { 
+                if let reviewError = ReviewError(rawValue: response.code) {
+                    throw reviewError
+                } else {
+                    throw ReviewError.unknown
+                }
+            }
         }
     )
     
@@ -132,7 +161,7 @@ extension RestaurantClient: DependencyKey {
         postRestaurantList: { _ in return RestaurantListModel.mock() },
         getRestaurantDetail: { _ in return RestaurantDetail.mock() },
         getAuthedRestaurantDetail: { _, _ in return RestaurantDetail.mock() },
-        getReviews: { _, _, _ in
+        getReviews: { _, _, _, _ in
             return ReviewResponse(
                 reviewCount: 3,
                 reviews: [
@@ -140,7 +169,6 @@ extension RestaurantClient: DependencyKey {
                         id: 1,
                         user: "홍무묵1",
                         date: "2025-07-11",
-                        visitCount: 10,
                         star: 5,
                         content: "완전 맛있어요~",
                         isOwner: false,
@@ -151,7 +179,6 @@ extension RestaurantClient: DependencyKey {
                         id: 2,
                         user: "홍무묵2",
                         date: "2025-07-11",
-                        visitCount: 3,
                         star: 4,
                         content: "맛있어요~",
                         isOwner: false,
@@ -162,7 +189,6 @@ extension RestaurantClient: DependencyKey {
                         id: 3,
                         user: "홍무묵3",
                         date: "2025-07-11",
-                        visitCount: 18,
                         star: 3,
                         content: "잡숴봐~",
                         isOwner: false,
@@ -171,6 +197,9 @@ extension RestaurantClient: DependencyKey {
                     )
                 ]
             )
+        },
+        checkReviewAvailable: { _, _ in
+            return
         }
     )
 }

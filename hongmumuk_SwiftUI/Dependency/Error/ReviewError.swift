@@ -10,4 +10,5 @@ import Foundation
 enum ReviewError: String, Error {
     case unknown
     case empty = "BAD400_6"
+    case alreadyWritten = "BAD400_11"
 }

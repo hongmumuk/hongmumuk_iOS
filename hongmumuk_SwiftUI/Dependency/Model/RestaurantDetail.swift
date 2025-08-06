@@ -43,7 +43,7 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
         
         id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-        likes = try container.decode(Int.self, forKey: .likes)
+        likes = try container.decodeIfPresent(Int.self, forKey: .likes) ?? 0
         frontDistance = try container.decode(Double.self, forKey: .frontDistance)
         backDistance = try container.decode(Double.self, forKey: .backDistance)
         longitude = try container.decode(Double.self, forKey: .longitude)
