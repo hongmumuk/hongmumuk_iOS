@@ -109,4 +109,62 @@ enum Colors {
         static let nagative90 = Color(hex: "#660900")
         static let nagative95 = Color(hex: "#330400")
     }
+    
+    enum Common {
+        static let color0 = Color(hex: "#FFFFFF")
+        static let color100 = Color(hex: "#000000")
+    }
+    
+    enum Background {
+        enum Normal {
+            static let normal = Color(hex: "#FFFFFF")
+            static let alternative = Color(hex: "#FAFBFE")
+        }
+        
+        enum Elevated {
+            static let normal = Color(hex: "#FFFFFF")
+            static let alternative = Color(hex: "#FAFBFE")
+        }
+    }
+    
+    enum Semantic {
+        enum Positive {
+            static let normal = Color(hex: "#FBFEFC")
+            static let strong = Color(hex: "#E9FCF2")
+            static let heavy = Color(hex: "#1DC973")
+        }
+        
+        enum Negative {
+            static let normal = Color(hex: "#FFFAFA")
+            static let strong = Color(hex: "#FFE8E5")
+            static let heavy = Color(hex: "#FF4433")
+        }
+    }
+    
+    enum Line {
+        static let normal = Color(hex: "#0406151A")
+        static let neutral = Color(hex: "#04061512")
+        static let alternative = Color(hex: "#0406150D")
+        static let strong = Color(hex: "#04061533")
+    }
+    
+    enum Decorate {
+        enum Dimmer {
+            static let normal = Color(hex: "#00000066")
+            static let strong = Color(hex: "#00000099")
+            static let heavy = Color(hex: "#000000BF")
+        }
+        
+        enum Scrim {
+            static let normal = Color(hex: "#00000099")
+        }
+        
+        enum Interaction {
+            static let normal = Color(hex: "#00000014")
+        }
+        
+        enum Shadow {
+            static let normal = Color(hex: "#00000029")
+        }
+    }
 }
