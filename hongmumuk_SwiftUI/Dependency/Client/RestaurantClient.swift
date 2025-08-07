@@ -12,8 +12,9 @@ struct RestaurantClient {
     var postRestaurantList: @Sendable (_ body: RestaurantListRequestModel) async throws -> [RestaurantListModel]
     var getRestaurantDetail: @Sendable (_ id: Int) async throws -> RestaurantDetail
     var getAuthedRestaurantDetail: @Sendable (_ id: Int, _ token: String) async throws -> RestaurantDetail
-    var getReviews: @Sendable (_ rid: Int, _ page: Int, _ sort: ReviewSortOption, _ isUser: Bool) async throws -> ReviewResponse
+    var getReviews: @Sendable (_ rid: Int, _ page: Int, _ sort: ReviewSortOption, _ isUser: Bool, _ token: String?) async throws -> ReviewResponse
     var checkReviewAvailable: @Sendable (_ rid: Int, _ token: String) async throws -> Void
+    var getMyReviews: @Sendable (_ page: Int, _ sort: String, _ token: String) async throws -> [Review]
 }
 
 extension RestaurantClient: DependencyKey {
@@ -98,7 +99,7 @@ extension RestaurantClient: DependencyKey {
             return response.data!
         },
         
-        getReviews: { rid, page, sort, isUser in
+        getReviews: { rid, page, sort, isUser, token in
             let url = "\(Constant.baseUrl)/api/review"
             
             let parameters: [String: Any] = [
@@ -108,9 +109,13 @@ extension RestaurantClient: DependencyKey {
                 "isUser": isUser
             ]
             
-            let headers: HTTPHeaders = [
+            var headers: HTTPHeaders = [
                 "Content-Type": "application/json"
             ]
+            
+            if isUser, let token = token {
+                headers["Authorization"] = "Bearer \(token)"
+            }
             
             let request = APIClient.plain.request(
                 url,
@@ -154,52 +159,36 @@ extension RestaurantClient: DependencyKey {
                     throw ReviewError.unknown
                 }
             }
-        }
-    )
-    
-    static var testValue: RestaurantClient = .init(
-        postRestaurantList: { _ in return RestaurantListModel.mock() },
-        getRestaurantDetail: { _ in return RestaurantDetail.mock() },
-        getAuthedRestaurantDetail: { _, _ in return RestaurantDetail.mock() },
-        getReviews: { _, _, _, _ in
-            return ReviewResponse(
-                reviewCount: 3,
-                reviews: [
-                    Review(
-                        id: 1,
-                        user: "홍무묵1",
-                        date: "2025-07-11",
-                        star: 5,
-                        content: "완전 맛있어요~",
-                        isOwner: false,
-                        photoURLs: ["https://example.com/photo1.jpg"],
-                        badge: .master
-                    ),
-                    Review(
-                        id: 2,
-                        user: "홍무묵2",
-                        date: "2025-07-11",
-                        star: 4,
-                        content: "맛있어요~",
-                        isOwner: false,
-                        photoURLs: ["https://example.com/photo2.jpg"],
-                        badge: .foodie
-                    ),
-                    Review(
-                        id: 3,
-                        user: "홍무묵3",
-                        date: "2025-07-11",
-                        star: 3,
-                        content: "잡숴봐~",
-                        isOwner: false,
-                        photoURLs: [],
-                        badge: .explorer
-                    )
-                ]
-            )
         },
-        checkReviewAvailable: { _, _ in
-            return
+        
+        getMyReviews: { page, sort, token in
+            let url = "\(Constant.baseUrl)/api/profile/review"
+            
+            let parameters: [String: Any] = [
+                "page": page,
+                "sort": sort
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(token)"
+            ]
+            
+            let request = APIClient.plain.request(
+                url,
+                method: .get,
+                parameters: parameters,
+                encoding: URLEncoding.default,
+                headers: headers
+            )
+            
+            let response = try await request
+                .serializingDecodable(ResponseModel<[MyReviewResponse]>.self)
+                .value
+            
+            guard response.isSuccess else { throw ReviewError(rawValue: response.code) ?? .unknown }
+            
+            return response.data?.map { $0.toReview() } ?? []
         }
     )
 }
