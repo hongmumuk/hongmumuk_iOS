@@ -68,9 +68,6 @@ struct DetailReviewItemView: View {
             
             if item.isOwner {
                 Menu {
-                    Button("수정") {
-                        viewStore.send(.reviewEditButtonTapped(item.id))
-                    }
                     Button("삭제", role: .destructive) {
                         viewStore.send(.reviewDeleteButtonTapped(item.id))
                     }

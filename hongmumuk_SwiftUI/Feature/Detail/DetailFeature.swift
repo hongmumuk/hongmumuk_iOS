@@ -67,7 +67,7 @@ struct DetailFeature: Reducer {
         case sortChanged(ReviewSortOption)
         case initailLoadingCompleted
         case reviewLoaded([Review])
-        case reviewError(ReviewError))
+        case reviewError(ReviewError)
         case reviewDeleteButtonTapped(Int)
         
         case showToolTip(id: Int)
