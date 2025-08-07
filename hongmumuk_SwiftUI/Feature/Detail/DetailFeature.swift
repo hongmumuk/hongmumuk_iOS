@@ -44,6 +44,8 @@ struct DetailFeature: Reducer {
         
         var showReviewActionSheet: Bool = false
         var showLoginAlert: Bool = false
+        
+        var isSuccessWriteReview: Bool = false
     }
     
     enum Action: Equatable {
@@ -81,10 +83,13 @@ struct DetailFeature: Reducer {
         
         // review 작성하는 것과 관련된 액션
         case writeReviewButtonTapped
-        case reviewWriteCompleted
+        case reviewWriteCompleted(Bool)
         case showLoginAlert(Bool)
         case reviewAvailabilityChecked
         case reviewAvailabilityError(ReviewError)
+        case isSuccessWriteReview(Bool)
+        
+        case emptyAction
     }
     
     enum DebounceID {
@@ -194,6 +199,7 @@ struct DetailFeature: Reducer {
                 }
                 
             case let .showToast(toastInfo):
+                state.isSuccessWriteReview = false
                 state.currentToast = toastInfo
                 return .run { send in
                     try await Task.sleep(for: .seconds(2.0))
@@ -390,10 +396,31 @@ struct DetailFeature: Reducer {
                     await send(.reviewAvailabilityChecked)
                 }
                 
-            case .reviewWriteCompleted:
-                state.isWriteReviewPresented = false
-                state.reviewPage = 0
-                return /* fetchReviews(for: state) */ .none
+            case let .isSuccessWriteReview(isSuccess):
+                state.isSuccessWriteReview = isSuccess
+                return .none
+                
+            case let .reviewWriteCompleted(v):
+                if state.isWriteReviewPresented != v {
+                    state.isWriteReviewPresented = v
+                    state.reviewPage = 0
+                }
+                
+                if !state.isWriteReviewPresented, state.isSuccessWriteReview {
+                    let toastInfo = ToastInfo(
+                        imageName: "checkWhiteIcon",
+                        message: "리뷰 작성을 완료했어요"
+                    )
+                    
+                    return .send(.showToast(toastInfo))
+                } else {
+                    return .none
+                }
+                
+//                return /* fetchReviews(for: state) */ .none
+                
+            case .emptyAction:
+                return .none
                 
             case let .showToolTip(id):
                 state.activeToolTipReviewID = id

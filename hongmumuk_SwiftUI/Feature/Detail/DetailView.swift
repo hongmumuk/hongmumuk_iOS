@@ -34,7 +34,7 @@ struct DetailView: View {
         .fullScreenCover(
             isPresented: viewStore.binding(
                 get: \.isWriteReviewPresented,
-                send: { _ in .reviewWriteCompleted }
+                send: { .reviewWriteCompleted($0) }
             )
         ) {
             ReviewMakeView(
@@ -50,7 +50,9 @@ struct DetailView: View {
                     reducer: {
                         ReviewMakeFeature()
                     }
-                )
+                ), onComplete: { isWriteSuccess in
+                    viewStore.send(.isSuccessWriteReview(isWriteSuccess))
+                }
             )
         }
     }
