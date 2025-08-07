@@ -113,6 +113,19 @@ struct ReviewMakeView: View {
                 """.localized()
             )
         })
+        .alert("리뷰 작성을 취소하시겠습니까?", isPresented: viewStore.binding(
+            get: \.isShowingCloseAlert,
+            send: .dismissSheet
+        ),
+        actions: {
+            Button("취소".localized(), role: .none) {
+                dismiss()
+            }
+            
+            Button("계속 작성하기".localized(), role: .none) {}
+        }, message: {
+            Text("작성 중인 내용은 저장되지 않습니다.".localized())
+        })
         .onChange(of: viewStore.requestGalleryAuth) {
             if viewStore.requestGalleryAuth {
                 PHPhotoLibrary.requestAuthorization(for: .readWrite) { new in

@@ -31,6 +31,7 @@ struct ReviewMakeFeature: Reducer {
         var isShowingPhotoAuthAlert = false
         var isShowingCameraAuthAlert = false
         var isShowingNoticeAlert = false
+        var isShowingCloseAlert = false
         
         var reviewText = ""
         var textCount: Int { reviewText.count }
@@ -52,6 +53,7 @@ struct ReviewMakeFeature: Reducer {
         case noticeButtonTapped
         case setPhotoActionSheet(Bool)
         case writeButtonTapped
+        case dismissButtonTapped
         
         // ─ 갤러리
         case photoMenuLibraryTapped
@@ -134,6 +136,10 @@ struct ReviewMakeFeature: Reducer {
                         }
                     }
                 }
+                
+            case .dismissButtonTapped:
+                state.isShowingCloseAlert = true
+                return .none
 
             // 성공
             case .reviewUploaded:
@@ -208,6 +214,7 @@ struct ReviewMakeFeature: Reducer {
                 state.isShowingPhotoAuthAlert = false
                 state.isShowingCameraAuthAlert = false
                 state.isShowingNoticeAlert = false
+                state.isShowingCloseAlert = false
                 return .none
                 
             case let .setPhotoActionSheet(isShow):

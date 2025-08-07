@@ -38,7 +38,7 @@ struct ReviewMakeHeaderView: View {
         HStack {
             Spacer()
             Button(action: {
-                dismiss()
+                viewStore.send(.dismissButtonTapped)
             }) {
                 Image("dismissIcon")
                     .frame(width: 36, height: 36)
