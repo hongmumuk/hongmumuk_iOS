@@ -22,7 +22,13 @@ struct DetailReviewView: View {
                         writeReviewButton.frame(height: 60)
                         Spacer().frame(height: 16)
                         
-                        if viewStore.sortedReviews.isEmpty {
+                        if viewStore.showSkeletonLoading || viewStore.sortedReviews.isEmpty && viewStore.isReviewLoading {
+                            VStack(spacing: 16) {
+                                ForEach(0..<3, id: \.self) { _ in
+                                    ReviewSkeletonView()
+                                }
+                            }
+                        } else if viewStore.sortedReviews.isEmpty {
                             VStack(alignment: .center) {
                                 Spacer()
                                     .frame(height: 62)

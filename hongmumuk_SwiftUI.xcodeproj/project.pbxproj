@@ -97,6 +97,9 @@
 		5D6D4C3A2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
 		5D6D4C3B2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
 		5D6D4C3C2E43405D00A92698 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6D4C392E43405D00A92698 /* ToastView.swift */; };
+		5D76F4082E4499D30026579D /* ReviewSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D76F4072E4499D30026579D /* ReviewSkeletonView.swift */; };
+		5D76F4092E4499D30026579D /* ReviewSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D76F4072E4499D30026579D /* ReviewSkeletonView.swift */; };
+		5D76F40A2E4499D30026579D /* ReviewSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D76F4072E4499D30026579D /* ReviewSkeletonView.swift */; };
 		BE02D0972D607B3B00F61E66 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0962D607B3B00F61E66 /* SearchFeature.swift */; };
 		BE02D0992D607B5000F61E66 /* RestaurantClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0982D607B5000F61E66 /* RestaurantClient.swift */; };
 		BE02D09B2D607B5800F61E66 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */; };
@@ -306,6 +309,7 @@
 		2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D6D4C392E43405D00A92698 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		5D76F4072E4499D30026579D /* ReviewSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSkeletonView.swift; sourceTree = "<group>"; };
 		BE02D0962D607B3B00F61E66 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		BE02D0982D607B5000F61E66 /* RestaurantClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClient.swift; sourceTree = "<group>"; };
 		BE02D09A2D607B5800F61E66 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
@@ -636,6 +640,7 @@
 				5D6D4C392E43405D00A92698 /* ToastView.swift */,
 				2F0D501C2D779D840035D7A4 /* LoginHeaderView.swift */,
 				2F65D35B2D745773002BF6B5 /* CommonTextFieldView.swift */,
+				5D76F4072E4499D30026579D /* ReviewSkeletonView.swift */,
 				2FE55C0E2D5E563C00BFE6F7 /* NextButton.swift */,
 				2F0D501A2D779D6D0035D7A4 /* ProgressButton.swift */,
 				BE2090102D64BE980041A173 /* EmptyView.swift */,
@@ -1197,6 +1202,7 @@
 				2FC2DF892E2BE2A20052515C /* Triangle+.swift in Sources */,
 				BE4F9B4B2D5A076300E7CC46 /* ResponseModel.swift in Sources */,
 				2F65D3792D758063002BF6B5 /* AuthTokenResponseModel.swift in Sources */,
+				5D76F40A2E4499D30026579D /* ReviewSkeletonView.swift in Sources */,
 				BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */,
 				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
 				BE3DBB752D5E1C49007304C7 /* HomeCircleView.swift in Sources */,
@@ -1307,6 +1313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D6D4C3B2E43405D00A92698 /* ToastView.swift in Sources */,
+				5D76F4092E4499D30026579D /* ReviewSkeletonView.swift in Sources */,
 				2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1316,6 +1323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA097932D427FCF00D01792 /* hongmumuk_SwiftUIUITests.swift in Sources */,
+				5D76F4082E4499D30026579D /* ReviewSkeletonView.swift in Sources */,
 				5D6D4C3C2E43405D00A92698 /* ToastView.swift in Sources */,
 				2FA097942D427FCF00D01792 /* hongmumuk_SwiftUIUITestsLaunchTests.swift in Sources */,
 			);

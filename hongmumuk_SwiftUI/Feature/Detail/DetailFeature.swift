@@ -70,6 +70,10 @@ struct DetailFeature: Reducer {
         case reviewError(ReviewError)
         case reviewDeleteButtonTapped(Int)
         
+        // 로딩 상태 관리 액션
+        case loadingStarted
+        case loadingFinished
+        
         case showToolTip(id: Int)
         case hideToolTip
         
@@ -158,20 +162,20 @@ struct DetailFeature: Reducer {
                 state.restaurantDetail = restaurantDetail
                 state.isLoading = false
                 
-                return .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
-                    do {
-                        let tokenToSend = token.isEmpty ? nil : token
-                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
-                        await send(.reviewLoaded(reviewResponse.reviews))
-                        await send(.initailLoadingCompleted)
-                    } catch let error as ReviewError {
-                        await send(.reviewError(error))
-                        await send(.initailLoadingCompleted)
-                    } catch {
-                        await send(.reviewError(.unknown))
-                        await send(.initailLoadingCompleted)
+                return .concatenate(
+                    .send(.loadingStarted),
+                    .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
                     }
-                }
+                )
                 
             case let .restaurantDetailError(error):
                 state.isLoading = false
@@ -259,40 +263,69 @@ struct DetailFeature: Reducer {
                 state.sortedReviews = []
                 state.isLastPage = false
                 
-                return .run { [id = state.id, sort = reviewSort, isUser = state.isUser, token = state.token] send in
-                    do {
-                        let tokenToSend = token.isEmpty ? nil : token
-                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
-                        await send(.reviewLoaded(reviewResponse.reviews))
-                    } catch let error as ReviewError {
-                        await send(.reviewError(error))
-                    } catch {
-                        await send(.reviewError(.unknown))
+                return .concatenate(
+                    .send(.loadingStarted),
+                    .run { [id = state.id, sort = reviewSort, isUser = state.isUser, token = state.token] send in
+                        let startTime = Date()
+                        
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
+                            
+                            let elapsed = Date().timeIntervalSince(startTime)
+                            if elapsed < 0.5 {
+                                try await Task.sleep(for: .seconds(0.5 - elapsed))
+                            }
+                            
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
                     }
-                }
+                )
 
             case let .photoFilterToggled(isOn):
                 state.isPhotoFilterOn = isOn
                 
-                // 사진 필터 토글 시 항상 API에서 다시 로드
                 state.reviewPage = 0
                 state.originalReviews = []
                 state.sortedReviews = []
                 state.isLastPage = false
                 
-                return .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
-                    do {
-                        let tokenToSend = token.isEmpty ? nil : token
-                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
-                        await send(.reviewLoaded(reviewResponse.reviews))
-                    } catch let error as ReviewError {
-                        await send(.reviewError(error))
-                    } catch {
-                        await send(.reviewError(.unknown))
+                return .concatenate(
+                    .send(.loadingStarted),
+                    .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        let startTime = Date()
+                        
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
+                            
+                            let elapsed = Date().timeIntervalSince(startTime)
+                            if elapsed < 0.5 {
+                                try await Task.sleep(for: .seconds(0.5 - elapsed))
+                            }
+                            
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
                     }
-                }
+                )
                 
             case .initailLoadingCompleted:
+                state.showSkeletonLoading = false
+                return .none
+                
+            case .loadingStarted:
+                state.showSkeletonLoading = true
+                return .none
+                
+            case .loadingFinished:
                 state.showSkeletonLoading = false
                 return .none
                 
@@ -327,11 +360,11 @@ struct DetailFeature: Reducer {
                     }
                 }
                 
-                return .none
+                return .send(.loadingFinished)
                 
             case let .reviewError(error):
                 state.isReviewLoading = false
-                return .none
+                return .send(.loadingFinished)
                 
             case .writeReviewButtonTapped:
                 if !state.isUser {
