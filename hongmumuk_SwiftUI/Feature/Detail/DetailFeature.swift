@@ -21,7 +21,7 @@ struct DetailFeature: Reducer {
         var isUser = false
         var keywords = [String]()
         var pickerSelection = 0
-        var restaurantDetail = RestaurantDetail.mock()
+        var restaurantDetail = RestaurantDetail()
         var currentToast: ToastInfo? = nil
         var activeToolTipReviewID: Int? = nil
         
@@ -67,8 +67,7 @@ struct DetailFeature: Reducer {
         case sortChanged(ReviewSortOption)
         case initailLoadingCompleted
         case reviewLoaded([Review])
-        case reviewError(ReviewError)
-        case reviewEditButtonTapped(Int)
+        case reviewError(ReviewError))
         case reviewDeleteButtonTapped(Int)
         
         case showToolTip(id: Int)
@@ -110,9 +109,10 @@ struct DetailFeature: Reducer {
                     state.isReviewLoading = true
                     state.reviewPage += 1
                     
-                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser] send in
-                        do {
-                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser)
+                                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                    do {
+                        let tokenToSend = token.isEmpty ? nil : token
+                        let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
                             await send(.reviewLoaded(reviewResponse.reviews))
                         } catch let error as ReviewError {
                             await send(.reviewError(error))
@@ -158,10 +158,10 @@ struct DetailFeature: Reducer {
                 state.restaurantDetail = restaurantDetail
                 state.isLoading = false
                 
-                // 첫 페이지 리뷰 로드
-                return .run { [id = state.id, sort = state.sort, isUser = state.isUser] send in
+                return .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
                     do {
-                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser)
+                        let tokenToSend = token.isEmpty ? nil : token
+                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
                         await send(.reviewLoaded(reviewResponse.reviews))
                         await send(.initailLoadingCompleted)
                     } catch let error as ReviewError {
@@ -259,10 +259,10 @@ struct DetailFeature: Reducer {
                 state.sortedReviews = []
                 state.isLastPage = false
                 
-                // 새로운 정렬로 첫 페이지 리뷰 로드
-                return .run { [id = state.id, sort = reviewSort, isUser = state.isUser] send in
+                return .run { [id = state.id, sort = reviewSort, isUser = state.isUser, token = state.token] send in
                     do {
-                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser)
+                        let tokenToSend = token.isEmpty ? nil : token
+                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
                         await send(.reviewLoaded(reviewResponse.reviews))
                     } catch let error as ReviewError {
                         await send(.reviewError(error))
@@ -273,12 +273,24 @@ struct DetailFeature: Reducer {
 
             case let .photoFilterToggled(isOn):
                 state.isPhotoFilterOn = isOn
-                let filtered = isOn
-                    ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
-                    : state.originalReviews
-                state.sortedReviews = sortReviews(state.sort, filtered)
-                state.reviewCount = filtered.count
-                return .none
+                
+                // 사진 필터 토글 시 항상 API에서 다시 로드
+                state.reviewPage = 0
+                state.originalReviews = []
+                state.sortedReviews = []
+                state.isLastPage = false
+                
+                return .run { [id = state.id, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                    do {
+                        let tokenToSend = token.isEmpty ? nil : token
+                        let reviewResponse = try await restaurantClient.getReviews(id, 0, sort, isUser, tokenToSend)
+                        await send(.reviewLoaded(reviewResponse.reviews))
+                    } catch let error as ReviewError {
+                        await send(.reviewError(error))
+                    } catch {
+                        await send(.reviewError(.unknown))
+                    }
+                }
                 
             case .initailLoadingCompleted:
                 state.showSkeletonLoading = false
@@ -287,9 +299,34 @@ struct DetailFeature: Reducer {
             case let .reviewLoaded(review):
                 state.originalReviews += review
                 state.reviewCount = state.originalReviews.count
-                state.sortedReviews = sortReviews(state.sort, state.originalReviews)
+                
+                // 사진 필터가 켜져있으면 필터링 적용
+                let reviewsToSort = state.isPhotoFilterOn 
+                    ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
+                    : state.originalReviews
+                
+                state.sortedReviews = sortReviews(state.sort, reviewsToSort)
                 state.isLastPage = review.count < 10
                 state.isReviewLoading = false
+                
+                // 사진 필터가 켜져있는데 사진이 있는 리뷰가 없고, 마지막 페이지가 아니면 계속 로드
+                if state.isPhotoFilterOn && reviewsToSort.isEmpty && !state.isLastPage {
+                    state.reviewPage += 1
+                    state.isReviewLoading = true
+                    
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
+                    }
+                }
+                
                 return .none
                 
             case let .reviewError(error):
@@ -326,10 +363,6 @@ struct DetailFeature: Reducer {
 
             case .hideToolTip:
                 state.activeToolTipReviewID = nil
-                return .none
-            
-            case let .reviewEditButtonTapped(id):
-                // TODO: 수정 로직 추가
                 return .none
 
             case let .reviewDeleteButtonTapped(id):
