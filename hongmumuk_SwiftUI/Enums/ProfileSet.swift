@@ -8,7 +8,7 @@
 import Foundation
 
 enum ProfileSet {
-    case info, service, privacy, version, lang
+    case info, myReviews, service, privacy, version, lang
 }
 
 extension ProfileSet {
@@ -16,6 +16,8 @@ extension ProfileSet {
         switch self {
         case .info:
             return "my_info".localized()
+        case .myReviews:
+            return "내 리뷰"
         case .service:
             return "terms_of_service".localized()
         case .privacy:
@@ -29,7 +31,7 @@ extension ProfileSet {
     
     var isButton: Bool {
         switch self {
-        case .info, .service, .privacy, .lang:
+        case .info, .myReviews, .service, .privacy, .lang:
             return true
         case .version:
             return false
@@ -39,7 +41,7 @@ extension ProfileSet {
     func showLoingText(_ isUser: Bool) -> Bool {
         if !isUser {
             switch self {
-            case .info:
+            case .info, .myReviews:
                 return true
             default:
                 return false
