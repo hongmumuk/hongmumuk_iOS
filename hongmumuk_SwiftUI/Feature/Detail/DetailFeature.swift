@@ -85,7 +85,6 @@ struct DetailFeature: Reducer {
         case showLoginAlert(Bool)
         case reviewAvailabilityChecked
         case reviewAvailabilityError(ReviewError)
-
     }
     
     enum DebounceID {
@@ -376,15 +375,19 @@ struct DetailFeature: Reducer {
                     )
                     return .send(.showToast(toastInfo))
                 }
+//                return .run { [id = state.id, token = state.token] send in
+//                    do {
+//                        try await restaurantClient.checkReviewAvailable(id, token)
+//                        await send(.reviewAvailabilityChecked)
+//                    } catch let error as ReviewError {
+//                        await send(.reviewAvailabilityError(error))
+//                    } catch {
+//                        await send(.reviewAvailabilityError(.unknown))
+//                    }
+//                }
+                
                 return .run { [id = state.id, token = state.token] send in
-                    do {
-                        try await restaurantClient.checkReviewAvailable(id, token)
-                        await send(.reviewAvailabilityChecked)
-                    } catch let error as ReviewError {
-                        await send(.reviewAvailabilityError(error))
-                    } catch {
-                        await send(.reviewAvailabilityError(.unknown))
-                    }
+                    await send(.reviewAvailabilityChecked)
                 }
                 
             case .reviewWriteCompleted:
@@ -437,7 +440,7 @@ struct DetailFeature: Reducer {
                 return .send(.showToast(toastInfo))
                 
             case let .reviewAvailabilityError(error):
-                let message = error == .alreadyWritten 
+                let message = error == .alreadyWritten
                     ? "리뷰는 가게 당 한 번만 작성할 수 있어요!"
                     : "리뷰 작성 중 오류가 발생했습니다."
                 let toastInfo = ToastInfo(
