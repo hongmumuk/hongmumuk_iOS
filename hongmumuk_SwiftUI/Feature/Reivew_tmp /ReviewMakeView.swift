@@ -13,6 +13,7 @@ import ComposableArchitecture
 struct ReviewMakeView: View {
     private let store: StoreOf<ReviewMakeFeature>
     @ObservedObject var viewStore: ViewStoreOf<ReviewMakeFeature>
+    @SwiftUI.Environment(\.dismiss) var dismiss
     
     init(store: StoreOf<ReviewMakeFeature>) {
         self.store = store
@@ -32,6 +33,9 @@ struct ReviewMakeView: View {
         }
         .onAppear {
             viewStore.send(.onAppear)
+        }
+        .onChange(of: viewStore.isDismiss) { _, isDismiss in
+            if isDismiss { dismiss() }
         }
         .dismissKeyboardOnTap()
         .sheet(isPresented: viewStore.binding(

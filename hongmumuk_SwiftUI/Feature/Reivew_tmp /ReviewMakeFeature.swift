@@ -40,6 +40,8 @@ struct ReviewMakeFeature: Reducer {
         var reviewMode: ReviewMode
         var restaurantName = ""
         var restaurantID = 0
+        
+        var isDismiss = false
     }
     
     enum Action: Equatable {
@@ -126,6 +128,7 @@ struct ReviewMakeFeature: Reducer {
                             if upload {
                                 await send(.reviewUploaded)
                             }
+                            
                         } catch {
                             await send(.reviewUploadError(.unknown))
                         }
@@ -134,6 +137,7 @@ struct ReviewMakeFeature: Reducer {
 
             // 성공
             case .reviewUploaded:
+                state.isDismiss = true
                 return .none
                 
             // 실패
