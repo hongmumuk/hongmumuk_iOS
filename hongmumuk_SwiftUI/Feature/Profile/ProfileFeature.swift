@@ -45,6 +45,7 @@ struct ProfileFeature: Reducer {
         var reviewsErrorMessage: String? = nil
         var showSortSheet: Bool = false // 추가
         var listId: UUID = UUID() // 뷰 강제 새로고침을 위한 ID
+        var currentToast: ToastInfo? = nil // 토스트 메시지
     }
     
     enum Action: Equatable {
@@ -64,9 +65,13 @@ struct ProfileFeature: Reducer {
         case categoryChanged(Category)
         case sortChanged(ProfileReviewSort)
         case reviewDeleteTapped(Int)
+        case reviewDeleted(Int)
+        case reviewDeleteError(String)
         case clearReviewsError
         case sortSheetTapped // 추가
         case sortSheetDismissed // 추가
+        case showToast(ToastInfo)
+        case hideToast
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -224,8 +229,32 @@ struct ProfileFeature: Reducer {
                 }
                 
             case let .reviewDeleteTapped(reviewId):
-                // TODO: 리뷰 삭제 API 호출
+                return .run { [token = state.token, reviewId = reviewId] send in
+                    do {
+                        let success = try await restaurantClient.deleteReview(reviewId, token)
+                        if success {
+                            // 삭제 성공 시 리뷰 목록에서 제거
+                            await send(.reviewDeleted(reviewId))
+                        }
+                    } catch {
+                        // 삭제 실패 시 에러 처리
+                        await send(.reviewDeleteError(error.localizedDescription))
+                    }
+                }
+                
+            case let .reviewDeleted(reviewId):
+                // 삭제된 리뷰를 목록에서 제거
+                state.allReviews.removeAll { $0.id == reviewId }
+                state.reviews.removeAll { $0.id == reviewId }
+                state.totalCount = state.reviews.count
                 return .none
+                
+            case let .reviewDeleteError(errorMessage):
+                let toastInfo = ToastInfo(
+                    imageName: "warnIcon",
+                    message: "리뷰 삭제 중 오류가 발생했습니다."
+                )
+                return .send(.showToast(toastInfo))
                 
             case .clearReviewsError:
                 state.reviewsErrorMessage = nil
@@ -235,6 +264,17 @@ struct ProfileFeature: Reducer {
                 return .none
             case .sortSheetDismissed:
                 state.showSortSheet = false
+                return .none
+                
+            case let .showToast(toastInfo):
+                state.currentToast = toastInfo
+                return .run { send in
+                    try await Task.sleep(for: .seconds(3))
+                    await send(.hideToast)
+                }
+                
+            case .hideToast:
+                state.currentToast = nil
                 return .none
             }
         }

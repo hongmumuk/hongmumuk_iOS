@@ -15,6 +15,7 @@ struct RestaurantClient {
     var getReviews: @Sendable (_ rid: Int, _ page: Int, _ sort: ReviewSortOption, _ isUser: Bool, _ token: String?) async throws -> ReviewResponse
     var checkReviewAvailable: @Sendable (_ rid: Int, _ token: String) async throws -> Void
     var getMyReviews: @Sendable (_ page: Int, _ sort: String, _ token: String) async throws -> [Review]
+    var deleteReview: @Sendable (_ reviewId: Int, _ token: String) async throws -> Bool
 }
 
 extension RestaurantClient: DependencyKey {
@@ -189,6 +190,29 @@ extension RestaurantClient: DependencyKey {
             guard response.isSuccess else { throw ReviewError(rawValue: response.code) ?? .unknown }
             
             return response.data?.map { $0.toReview() } ?? []
+        },
+        
+        deleteReview: { reviewId, token in
+            let url = "\(Constant.baseUrl)/api/review/\(reviewId)"
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "Authorization": "Bearer \(token)"
+            ]
+            
+            let request = APIClient.authorized.request(
+                url,
+                method: .delete,
+                headers: headers
+            )
+            
+            let response = try await request
+                .serializingDecodable(ResponseModel<VoidData>.self)
+                .value
+            
+            guard response.isSuccess else { throw ReviewError(rawValue: response.code) ?? .unknown }
+            
+            return response.isSuccess
         }
     )
 }
