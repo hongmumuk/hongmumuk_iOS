@@ -42,7 +42,7 @@ struct DetailReviewView: View {
                             .frame(maxWidth: .infinity)
                             .contentShape(Rectangle())
                         } else {
-                            ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.element.id) { index, item in
+                            ForEach(Array(viewStore.sortedReviews.enumerated()), id: \.offset) { index, item in
                                 DetailReviewItemView(item: item, isLast: index == viewStore.sortedReviews.count - 1, viewStore: viewStore)
                                     .padding(.horizontal, 24)
                             }

@@ -46,7 +46,7 @@ struct DetailInfoView: View {
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
-            Text(viewStore.restaurantDetail.category)
+            Text(viewStore.restaurantDetail.category.displayName)
                 .fontStyle(Fonts.heading3Bold)
                 .foregroundColor(Colors.GrayScale.grayscal45)
         }
