@@ -37,7 +37,7 @@ struct ProfileSetView: View {
     
     private var contentsButton: some View {
         Button(action: {
-            if !viewStore.isUser, type == .info {
+            if !viewStore.isUser, (type == .info || type == .myReviews) {
                 viewStore.send(.loginButtonTapped)
             } else if type == .lang {
                 viewStore.send(.langButtonTapped)

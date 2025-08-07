@@ -172,6 +172,16 @@ struct RootView: View {
                         )
                         .navigationBarHidden(true)
                         
+                    } else if type == .myReviews {
+                        ProfileMyReviewsView(
+                            store: Store(
+                                initialState: ProfileFeature.State(),
+                                reducer: { ProfileFeature() }
+                            ),
+                            parentStore: store
+                        )
+                        .navigationBarHidden(true)
+                        
                     } else {
                         WebView(
                             title: type.title,
