@@ -31,4 +31,15 @@ enum Badge: String, CaseIterable, Identifiable, Codable {
         case .master: return "맛집 최강자"
         }
     }
+    
+    // rank 값으로 Badge 생성
+    static func from(rank: Int) -> Badge {
+        switch rank {
+        case 1 ... 5: return .newbie
+        case 6 ... 10: return .explorer
+        case 11 ... 29: return .foodie
+        case 30...: return .master
+        default: return .newbie
+        }
+    }
 }
