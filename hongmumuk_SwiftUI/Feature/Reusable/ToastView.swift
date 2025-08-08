@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ToastView: View {
     let imageName: String
@@ -18,7 +19,7 @@ struct ToastView: View {
     
     var body: some View {
         HStack(spacing: 10) {
-            Image(imageName)
+            Image(uiImage: UIImage(named: imageName) ?? UIImage())
                 .resizable()
                 .frame(width: 20, height: 20)
             
