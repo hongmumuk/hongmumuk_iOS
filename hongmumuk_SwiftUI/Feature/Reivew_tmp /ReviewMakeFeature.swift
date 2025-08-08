@@ -119,10 +119,11 @@ struct ReviewMakeFeature: Reducer {
                 let star = Int(state.starRate)
                 let text = state.reviewText
                 let photos = state.photos
+                let rid = state.restaurantID
 
                 return .run { send in
                     if let token = await keychainClient.getString(.accessToken) {
-                        let model = WriteReviewModel(rid: 1, star: star, content: text)
+                        let model = WriteReviewModel(rid: rid, star: star, content: text)
                         
                         do {
                             let upload = try await reviewClient.postReview(token, model, photos)

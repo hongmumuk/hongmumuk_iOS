@@ -382,20 +382,15 @@ struct DetailFeature: Reducer {
                     return .send(.showToast(toastInfo))
                 }
                 
-//                return .run { [id = state.id, token = state.token] send in
-//                    do {
-//                        try await restaurantClient.checkReviewAvailable(id, token)
-//                        print("DEBUG checkReviewAvailable")
-//                        await send(.reviewAvailabilityChecked)
-//                    } catch let error as ReviewError {
-//                        await send(.reviewAvailabilityError(error))
-//                    } catch {
-//                        await send(.reviewAvailabilityError(.unknown))
-//                    }
-//                }
-                
                 return .run { [id = state.id, token = state.token] send in
-                    await send(.reviewAvailabilityChecked)
+                    do {
+                        try await restaurantClient.checkReviewAvailable(id, token)
+                        await send(.reviewAvailabilityChecked)
+                    } catch let error as ReviewError {
+                        await send(.reviewAvailabilityError(error))
+                    } catch {
+                        await send(.reviewAvailabilityError(.unknown))
+                    }
                 }
                 
             case let .isSuccessWriteReview(isSuccess):
@@ -414,12 +409,27 @@ struct DetailFeature: Reducer {
                         message: "리뷰 작성을 완료했어요"
                     )
                     
-                    return .send(.showToast(toastInfo))
+                    state.reviewPage = 0
+                    state.originalReviews = []
+                    
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        
+                        do {
+                            await send(.showToast(toastInfo))
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                            
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
+                    }
+                    
                 } else {
                     return .none
                 }
-                
-//                return /* fetchReviews(for: state) */ .none
                 
             case .emptyAction:
                 return .none
