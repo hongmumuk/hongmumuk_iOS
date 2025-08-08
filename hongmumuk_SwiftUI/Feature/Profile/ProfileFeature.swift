@@ -11,7 +11,7 @@ import SwiftUI
 // 프로필 리뷰 정렬 옵션
 enum ProfileReviewSort: String, CaseIterable {
     case recent = "new"
-    case old = "old"
+    case old
     
     var displayName: String {
         switch self {
@@ -44,7 +44,7 @@ struct ProfileFeature: Reducer {
         var isReviewsLoading: Bool = false
         var reviewsErrorMessage: String? = nil
         var showSortSheet: Bool = false // 추가
-        var listId: UUID = UUID() // 뷰 강제 새로고침을 위한 ID
+        var listId: UUID = .init() // 뷰 강제 새로고침을 위한 ID
         var currentToast: ToastInfo? = nil // 토스트 메시지
     }
     
@@ -135,7 +135,7 @@ struct ProfileFeature: Reducer {
                     state.allReviews = reviews
                     
                     // 실제로 존재하는 카테고리만 필터링
-                    let existingCategories = Set(reviews.compactMap { $0.category })
+                    let existingCategories = Set(reviews.compactMap(\.category))
                     let availableCategories: [Category] = Category.allCases.filter { category in
                         if category == .all { return true } // "전체"는 항상 포함
                         return existingCategories.contains(category.rawValue.uppercased())
@@ -174,7 +174,7 @@ struct ProfileFeature: Reducer {
                 return .none
                 
             case .loadMoreReviews:
-                if state.hasMorePages && !state.isLoadingMore {
+                if state.hasMorePages, !state.isLoadingMore {
                     state.isLoadingMore = true
                     state.currentPage += 1
                     return .run { [token = state.token, page = state.currentPage, sort = state.sortOption] send in
@@ -187,7 +187,7 @@ struct ProfileFeature: Reducer {
                 return .none
                 
             case .onNextPage:
-                if state.hasMorePages && !state.isReviewsLoading {
+                if state.hasMorePages, !state.isReviewsLoading {
                     state.isReviewsLoading = true
                     state.currentPage += 1
                     return .run { [token = state.token, page = state.currentPage, sort = state.sortOption] send in
@@ -259,9 +259,11 @@ struct ProfileFeature: Reducer {
             case .clearReviewsError:
                 state.reviewsErrorMessage = nil
                 return .none
+
             case .sortSheetTapped:
                 state.showSortSheet = true
                 return .none
+
             case .sortSheetDismissed:
                 state.showSortSheet = false
                 return .none

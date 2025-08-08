@@ -42,6 +42,4 @@ struct DetailTabView: View {
             .animation(.easeInOut(duration: 0.3), value: viewStore.currentToast != nil)
         }
     }
-
 }
-

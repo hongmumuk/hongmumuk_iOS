@@ -39,4 +39,3 @@ struct ToastView: View {
         )
     }
 }
-

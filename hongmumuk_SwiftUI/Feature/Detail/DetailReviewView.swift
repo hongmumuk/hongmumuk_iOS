@@ -24,7 +24,7 @@ struct DetailReviewView: View {
                         
                         if viewStore.showSkeletonLoading || viewStore.sortedReviews.isEmpty && viewStore.isReviewLoading {
                             VStack(spacing: 16) {
-                                ForEach(0..<3, id: \.self) { _ in
+                                ForEach(0 ..< 3, id: \.self) { _ in
                                     ReviewSkeletonView()
                                 }
                             }

@@ -37,7 +37,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {  
+        VStack(alignment: .leading) {
             reviewMetaView
             
             Spacer()
@@ -85,7 +85,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
             
             Spacer()
             
-            if showDeleteButton && item.isOwner {
+            if showDeleteButton, item.isOwner {
                 Menu {
                     Button("삭제", role: .destructive) {
                         onDeleteTapped(item.id)
@@ -101,7 +101,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
 
     private var badgeView: some View {
         Group {
-            if showBadge && item.badge != nil {
+            if showBadge, item.badge != nil {
                 VStack(alignment: .leading, spacing: 10) {
                     Button(action: {
                         onToolTipToggled(item.id)

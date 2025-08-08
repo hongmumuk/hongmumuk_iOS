@@ -119,10 +119,10 @@ struct DetailFeature: Reducer {
                     state.isReviewLoading = true
                     state.reviewPage += 1
                     
-                                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
-                    do {
-                        let tokenToSend = token.isEmpty ? nil : token
-                        let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
                             await send(.reviewLoaded(reviewResponse.reviews))
                         } catch let error as ReviewError {
                             await send(.reviewError(error))
@@ -341,7 +341,7 @@ struct DetailFeature: Reducer {
                 state.reviewCount = state.originalReviews.count
                 
                 // 사진 필터가 켜져있으면 필터링 적용
-                let reviewsToSort = state.isPhotoFilterOn 
+                let reviewsToSort = state.isPhotoFilterOn
                     ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
                     : state.originalReviews
                 
@@ -350,7 +350,7 @@ struct DetailFeature: Reducer {
                 state.isReviewLoading = false
                 
                 // 사진 필터가 켜져있는데 사진이 있는 리뷰가 없고, 마지막 페이지가 아니면 계속 로드
-                if state.isPhotoFilterOn && reviewsToSort.isEmpty && !state.isLastPage {
+                if state.isPhotoFilterOn, reviewsToSort.isEmpty, !state.isLastPage {
                     state.reviewPage += 1
                     state.isReviewLoading = true
                     
@@ -381,9 +381,11 @@ struct DetailFeature: Reducer {
                     )
                     return .send(.showToast(toastInfo))
                 }
+                
 //                return .run { [id = state.id, token = state.token] send in
 //                    do {
 //                        try await restaurantClient.checkReviewAvailable(id, token)
+//                        print("DEBUG checkReviewAvailable")
 //                        await send(.reviewAvailabilityChecked)
 //                    } catch let error as ReviewError {
 //                        await send(.reviewAvailabilityError(error))
