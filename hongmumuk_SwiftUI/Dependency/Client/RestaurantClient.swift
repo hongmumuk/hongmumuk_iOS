@@ -107,14 +107,15 @@ extension RestaurantClient: DependencyKey {
                 "restaurantId": rid,
                 "page": page,
                 "sort": sort.rawValue,
-                "isUser": isUser
+                "isUser": false
+//                "isUser": isUser
             ]
             
             var headers: HTTPHeaders = [
                 "Content-Type": "application/json"
             ]
             
-            if isUser, let token = token {
+            if isUser, let token {
                 headers["Authorization"] = "Bearer \(token)"
             }
             
@@ -153,7 +154,7 @@ extension RestaurantClient: DependencyKey {
                 .serializingDecodable(ResponseModel<String?>.self)
                 .value
             
-            guard response.isSuccess else { 
+            guard response.isSuccess else {
                 if let reviewError = ReviewError(rawValue: response.code) {
                     throw reviewError
                 } else {

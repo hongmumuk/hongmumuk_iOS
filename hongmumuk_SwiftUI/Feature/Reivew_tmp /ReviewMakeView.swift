@@ -63,6 +63,27 @@ struct ReviewMakeView: View {
                 if let image { viewStore.send(.cameraShot(image)) }
             }
         }
+        .sheet(isPresented: Binding(
+            get: { viewStore.isShowingNoticeAlert },
+            set: { _, _ in viewStore.send(.dismissSheet) }
+        )) {
+            ReviewMakeNoticeModalView(
+                title: "리뷰 작성 유의사항".localized(),
+                content: """
+                · 솔직한 실제 방문 경험을 남겨 주세요.
+                · 욕설, 비방, 허위 정보가 포함된 리뷰는 통보 없이 삭제될 수 있습니다.
+                · 가게 음식, 분위기, 서비스 등 느낀 점을 자유롭게 작성해 주세요.
+                · 사진은 직접 촬영한 이미지를 올려 주세요.
+                · 타인이게 도움이 될 수 있는 정보를 작성해 주세요.
+                """,
+                onDismiss: {
+                    viewStore.send(.dismissSheet)
+                },
+                agreeAction: {
+                    viewStore.send(.dismissSheet)
+                }
+            )
+        }
         .alert("갤러리 접근 권한이 필요합니다.", isPresented: viewStore.binding(
             get: \.isShowingPhotoAuthAlert,
             send: .dismissSheet
@@ -96,22 +117,6 @@ struct ReviewMakeView: View {
             }
         }, message: {
             Text("카메라 접근 권한이 필요합니다.".localized())
-        })
-        .alert("리뷰 작성 유의사항", isPresented: viewStore.binding(
-            get: \.isShowingNoticeAlert,
-            send: .dismissSheet
-        ),
-        actions: {
-            Button("확인했어요".localized(), role: .none) {}
-        }, message: {
-            Text("""
-                · 솔직한 실제 방문 경험을 남겨 주세요.
-                · 욕설, 비방, 허위 정보가 포함된 리뷰는 통보 없이 삭제될 수 있습니다.
-                · 가게 음식, 분위기, 서비스 등 느낀 점을 자유롭게 작성해 주세요.
-                · 사진은 직접 촬영한 이미지를 올려 주세요.
-                · 타인이게 도움이 될 수 있는 정보를 작성해 주세요.
-                """.localized()
-            )
         })
         .alert("리뷰 작성을 취소하시겠습니까?", isPresented: viewStore.binding(
             get: \.isShowingCloseAlert,
