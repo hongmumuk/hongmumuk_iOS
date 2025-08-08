@@ -199,12 +199,13 @@ struct ReviewMakeFeature: Reducer {
                 return .none
                 
             case let .photoPickerFinished(images):
+                let images = images.reversed()
                 let room = max(0, 5 - state.photos.count)
-                state.photos.append(contentsOf: images.prefix(room))
+                state.photos.insert(contentsOf: images.prefix(room), at: 0)
                 return .none
                 
             case let .cameraShot(image):
-                if state.canAddMore { state.photos.append(image) }
+                state.photos.insert(image, at: 0)
                 state.isShowingCamera = false
                 return .none
                 
