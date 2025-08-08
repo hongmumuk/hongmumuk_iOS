@@ -85,7 +85,7 @@ struct ProfileMyReviewsView: View {
                     .fontStyle(Fonts.body1SemiBold)
                     .foregroundColor(Colors.Primary.strong)
                 
-                Image("dropdownIcon")
+                Image("dropDownIcon")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 16, height: 16)
@@ -240,7 +240,7 @@ struct ProfileMyReviewsView: View {
                     let screenHeight = UIScreen.main.bounds.height
                     
                     if minY < screenHeight + 50 {
-                        if !viewStore.hasMorePages, !viewStore.isReviewsLoading {
+                        if viewStore.hasMorePages && !viewStore.isReviewsLoading {
                             viewStore.send(.onNextPage)
                         }
                     }
