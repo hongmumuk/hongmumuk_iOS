@@ -69,6 +69,8 @@ struct DetailFeature: Reducer {
         case reviewLoaded([Review])
         case reviewError(ReviewError)
         case reviewDeleteButtonTapped(Int)
+        case reviewDeleted(Int)
+        case reviewDeleteError(String)
         
         // 로딩 상태 관리 액션
         case loadingStarted
@@ -399,8 +401,18 @@ struct DetailFeature: Reducer {
                 return .none
 
             case let .reviewDeleteButtonTapped(id):
-                // TODO: 삭제 로직 추가
-                return .none
+                return .run { [token = state.token, reviewId = id] send in
+                    do {
+                        let success = try await restaurantClient.deleteReview(reviewId, token)
+                        if success {
+                            // 삭제 성공 시 리뷰 목록에서 제거
+                            await send(.reviewDeleted(reviewId))
+                        }
+                    } catch {
+                        // 삭제 실패 시 에러 처리
+                        await send(.reviewDeleteError(error.localizedDescription))
+                    }
+                }
                 
             case let .showLoginAlert(show):
                 state.showLoginAlert = show
@@ -409,6 +421,20 @@ struct DetailFeature: Reducer {
             case .reviewAvailabilityChecked:
                 state.isWriteReviewPresented = true
                 return .none
+                
+            case let .reviewDeleted(reviewId):
+                // 삭제된 리뷰를 목록에서 제거
+                state.originalReviews.removeAll { $0.id == reviewId }
+                state.sortedReviews.removeAll { $0.id == reviewId }
+                state.reviewCount = state.originalReviews.count
+                return .none
+                
+            case let .reviewDeleteError(errorMessage):
+                let toastInfo = ToastInfo(
+                    imageName: "warnIcon",
+                    message: "리뷰 삭제 중 오류가 발생했습니다."
+                )
+                return .send(.showToast(toastInfo))
                 
             case let .reviewAvailabilityError(error):
                 let message = error == .alreadyWritten 

@@ -24,20 +24,33 @@ struct ProfileMyReviewsView: View {
     }
     
     var body: some View {
-        VStack {
-            WebViewHeader(title: "내 리뷰", showBottomLine: false, parentViewStore: parentViewStore)
-            
-            // 필터 및 정렬
-            filterSortView
-            
-            // 리뷰 목록
-            if viewStore.isReviewsLoading {
-                loadingView
-            } else if viewStore.reviews.isEmpty {
-                emptyView
-            } else {
-                reviewListView
+        ZStack(alignment: .bottom) {
+            VStack {
+                WebViewHeader(title: "내 리뷰", showBottomLine: false, parentViewStore: parentViewStore)
+                
+                // 필터 및 정렬
+                filterSortView
+                
+                // 리뷰 목록
+                if viewStore.isReviewsLoading {
+                    loadingView
+                } else if viewStore.reviews.isEmpty {
+                    emptyView
+                } else {
+                    reviewListView
+                }
             }
+            
+            // 토스트 메시지
+            ToastView(
+                imageName: viewStore.currentToast?.imageName ?? "",
+                title: viewStore.currentToast?.message ?? ""
+            )
+            .frame(minWidth: UIScreen.main.bounds.width - 120)
+            .padding(.bottom, 100)
+            .opacity(viewStore.currentToast != nil ? 1.0 : 0.0)
+            .scaleEffect(viewStore.currentToast != nil ? 1.0 : 0.8)
+            .animation(.easeInOut(duration: 0.3), value: viewStore.currentToast != nil)
         }
         .onAppear {
             viewStore.send(.onAppear)
