@@ -27,8 +27,17 @@ struct DetailView: View {
                 DetailTabView(viewStore: viewStore)
             }
         }
+        .ignoresSafeArea(edges: .bottom)
         .onAppear {
             viewStore.send(.onAppear)
+        }
+        .fullScreenCover(
+            isPresented: viewStore.binding(
+                get: \.isWriteReviewPresented,
+                send: { _ in .reviewWriteCompleted }
+            )
+        ) {
+            ReviewMakeView(store: Store(initialState: ReviewMakeFeature.State(), reducer: { ReviewMakeFeature() }))
         }
     }
 }

@@ -24,31 +24,24 @@ struct DetailTabView: View {
                 // ReviewView
                 DetailReviewView(viewStore: viewStore)
                     .tag(1)
+                
+                // BlogView
+                DetailBlogView(viewStore: viewStore)
+                    .tag(2)
             }
             .tabViewStyle(.automatic)
             
-            if viewStore.showToast {
-                copyToast
-                    .padding(.bottom, 152)
-            }
+            ToastView(
+                imageName: viewStore.currentToast?.imageName ?? "",
+                title: viewStore.currentToast?.message ?? ""
+            )
+            .frame(minWidth: UIScreen.main.bounds.width - 120)
+            .padding(.bottom, 100)
+            .opacity(viewStore.currentToast != nil ? 1.0 : 0.0)
+            .scaleEffect(viewStore.currentToast != nil ? 1.0 : 0.8)
+            .animation(.easeInOut(duration: 0.3), value: viewStore.currentToast != nil)
         }
     }
-    
-    private var copyToast: some View {
-        HStack(spacing: 10) {
-            Image("checkWhiteIcon")
-                .resizable()
-                .frame(width: 20, height: 20)
-            
-            Text("copied_store_address".localized())
-                .fontStyle(Fonts.heading3Medium)
-                .foregroundColor(.white)
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.black.opacity(0.7))
-        )
-    }
+
 }
+

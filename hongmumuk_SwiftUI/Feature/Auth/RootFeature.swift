@@ -30,6 +30,7 @@ struct RootFeature: Reducer {
         case search
         case categoryList(Category)
         case profile(ProfileSet)
+        case myReviews
     }
     
     struct State: Equatable {
@@ -249,6 +250,7 @@ struct RootFeature: Reducer {
                         } else if let refreshToken, !refreshToken.isEmpty {
                             do {
                                 let newToken = try await authClient.token(accessToken, refreshToken)
+                                
                                 await keychainClient.setString(newToken.accessToken, .accessToken)
                                 await keychainClient.setString(newToken.refreshToken, .refreshToken)
                                 await send(.setLoginStatus(true))

@@ -17,8 +17,11 @@ struct InfoView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             if viewStore.showToast {
-                copyToast
-                    .padding(.bottom, 144)
+                ToastView(
+                    imageName: "checkWhiteIcon",
+                    title: "nickname_updated".localized()
+                )
+                .padding(.bottom, 144)
             }
             
             VStack(alignment: .leading, spacing: 0) {
@@ -174,21 +177,5 @@ struct InfoView: View {
             .frame(width: 1, height: 12)
     }
     
-    private var copyToast: some View {
-        HStack(spacing: 10) {
-            Image("checkWhiteIcon")
-                .resizable()
-                .frame(width: 20, height: 20)
-            
-            Text("nickname_updated".localized())
-                .fontStyle(Fonts.heading3Medium)
-                .foregroundColor(.white)
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.black.opacity(0.7))
-        )
-    }
+
 }

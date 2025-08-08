@@ -64,12 +64,12 @@ struct PrivacyView: View {
                 HStack {
                     Spacer()
                     
-                    SignupToastView(imageName: "checkWhiteIcon", title: "필수 약관 동의가 필요합니다")
-                        .opacity(viewStore.isToastShown ? 1 : 0)
-                        .animation(.easeOut(duration: 1.0), value: viewStore.isToastShown)
-                        .frame(width: geometry.size.width * 0.6, height: 44)
-                        .multilineTextAlignment(.center)
+                    ToastView(imageName: "checkWhiteIcon", title: "필수 약관 동의가 필요합니다")
+                        .frame(minWidth: UIScreen.main.bounds.width - 120)
                         .padding(.bottom, 24)
+                        .opacity(viewStore.isToastShown ? 1.0 : 0.0)
+                        .animation(.easeInOut(duration: 0.3), value: viewStore.isToastShown)
+                        .scaleEffect(viewStore.isToastShown ? 1.0 : 0.8)
                     
                     Spacer()
                 }
