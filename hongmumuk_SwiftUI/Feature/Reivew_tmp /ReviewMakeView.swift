@@ -62,6 +62,7 @@ struct ReviewMakeView: View {
             CameraView { image in
                 if let image { viewStore.send(.cameraShot(image)) }
             }
+            .presentationBackground(.black)
         }
         .sheet(isPresented: Binding(
             get: { viewStore.isShowingNoticeAlert },
