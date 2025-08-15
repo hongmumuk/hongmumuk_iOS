@@ -29,6 +29,7 @@ struct ReviewMakeNoticeModalView: View {
                 }
             }
             .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
         }
     }
     
