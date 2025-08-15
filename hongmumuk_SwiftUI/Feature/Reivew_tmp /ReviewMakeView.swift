@@ -99,7 +99,7 @@ struct ReviewMakeView: View {
                 }
             }
         }, message: {
-            Text("갤러리 접근 권한이 필요합니다.".localized())
+            Text("리뷰 이미지 업로드를 위해 권한이 필요합니다.".localized())
         })
         .alert("카메라 접근 권한이 필요합니다.", isPresented: viewStore.binding(
             get: \.isShowingCameraAuthAlert,
@@ -116,7 +116,7 @@ struct ReviewMakeView: View {
                 }
             }
         }, message: {
-            Text("카메라 접근 권한이 필요합니다.".localized())
+            Text("리뷰 이미지 업로드를 위해 권한이 필요합니다.".localized())
         })
         .alert("리뷰 작성을 취소하시겠습니까?", isPresented: viewStore.binding(
             get: \.isShowingCloseAlert,

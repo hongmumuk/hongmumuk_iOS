@@ -260,7 +260,7 @@ struct ProfileMyReviewsView: View {
                     let screenHeight = UIScreen.main.bounds.height
                     
                     if minY < screenHeight + 50 {
-                        if viewStore.hasMorePages && !viewStore.isReviewsLoading {
+                        if viewStore.hasMorePages, !viewStore.isReviewsLoading {
                             viewStore.send(.onNextPage)
                         }
                     }
