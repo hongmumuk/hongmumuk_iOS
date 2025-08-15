@@ -186,8 +186,10 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
             if !item.photoURLs.isEmpty {
                 GeometryReader { geometry in
                     let width = geometry.size.width
+                    let reversedURLs = item.photoURLs.reversed()
+                    
                     TabView {
-                        ForEach(item.photoURLs, id: \.self) { url in
+                        ForEach(reversedURLs, id: \.self) { url in
                             AsyncImage(url: URL(string: url)) { image in
                                 image
                                     .resizable()
