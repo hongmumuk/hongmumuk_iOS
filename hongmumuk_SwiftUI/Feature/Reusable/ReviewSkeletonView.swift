@@ -72,7 +72,7 @@ struct ReviewSkeletonView: View {
             reviewItemView
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(0..<3, id: \.self) { _ in
+                    ForEach(0 ..< 3, id: \.self) { _ in
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Colors.Label.Normal.disable)
                             .frame(width: 120, height: 120)
@@ -84,4 +84,3 @@ struct ReviewSkeletonView: View {
         .padding(.bottom, 12)
     }
 }
-

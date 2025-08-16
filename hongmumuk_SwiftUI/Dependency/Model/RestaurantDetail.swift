@@ -61,19 +61,19 @@ struct RestaurantDetail: Codable, Identifiable, Equatable {
     
     // 기본 초기화 (빈 상태)
     init() {
-        self.id = ""
-        self.name = ""
-        self.likes = 0
-        self.frontDistance = 0
-        self.backDistance = 0
-        self.longitude = 0
-        self.latitude = 0
-        self.category = .all
-        self.address = ""
-        self.hasLiked = false
-        self.blogs = []
-        self.naverLink = ""
-        self.kakaoLink = ""
+        id = ""
+        name = ""
+        likes = 0
+        frontDistance = 0
+        backDistance = 0
+        longitude = 0
+        latitude = 0
+        category = .all
+        address = ""
+        hasLiked = false
+        blogs = []
+        naverLink = ""
+        kakaoLink = ""
     }
     
     // 직접 초기화할 수 있는 이니셜라이저 (테스트나 다른 용도에 사용)

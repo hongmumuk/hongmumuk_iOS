@@ -58,6 +58,7 @@ struct ProfileMyReviewsView: View {
     }
     
     // MARK: - 필터 및 정렬
+
     private var filterSortView: some View {
         VStack {
             HStack {
@@ -74,7 +75,8 @@ struct ProfileMyReviewsView: View {
     }
 
     // MARK: - 전체 개수 뷰
-    private var filterView: some View{
+
+    private var filterView: some View {
         HStack {
             Image("photoFilterIcon")
                 .resizable()
@@ -89,6 +91,7 @@ struct ProfileMyReviewsView: View {
     }
 
     // MARK: - 정렬 뷰
+
     private var sortView: some View {
         Button(action: {
             viewStore.send(.sortSheetTapped)
@@ -124,6 +127,7 @@ struct ProfileMyReviewsView: View {
     }
 
     // MARK: - 카테고리 필터 뷰
+
     private var categoryFilterView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
@@ -146,8 +150,8 @@ struct ProfileMyReviewsView: View {
         }
     }
     
-    
     // MARK: - 로딩 뷰
+
     private var loadingView: some View {
         VStack {
             Spacer()
@@ -158,6 +162,7 @@ struct ProfileMyReviewsView: View {
     }
     
     // MARK: - 빈 상태 뷰
+
     private var emptyView: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -181,6 +186,7 @@ struct ProfileMyReviewsView: View {
     }
     
     // MARK: - 리뷰 목록
+
     private var reviewListView: some View {
         ScrollView {
             LazyVStack {
@@ -244,6 +250,7 @@ struct ProfileMyReviewsView: View {
     }
     
     // MARK: - 페이징 감지 뷰
+
     private var detectScrollView: some View {
         GeometryReader { geo in
             Color.clear
@@ -253,7 +260,7 @@ struct ProfileMyReviewsView: View {
                     let screenHeight = UIScreen.main.bounds.height
                     
                     if minY < screenHeight + 50 {
-                        if viewStore.hasMorePages && !viewStore.isReviewsLoading {
+                        if viewStore.hasMorePages, !viewStore.isReviewsLoading {
                             viewStore.send(.onNextPage)
                         }
                     }

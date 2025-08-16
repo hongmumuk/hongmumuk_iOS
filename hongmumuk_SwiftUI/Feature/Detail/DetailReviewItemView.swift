@@ -15,7 +15,7 @@ struct DetailReviewItemView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
     
     var body: some View {
-        VStack{
+        VStack {
             Spacer()
                 .frame(height: 24)
             

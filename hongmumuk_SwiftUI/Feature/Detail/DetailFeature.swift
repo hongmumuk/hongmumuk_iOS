@@ -44,6 +44,8 @@ struct DetailFeature: Reducer {
         
         var showReviewActionSheet: Bool = false
         var showLoginAlert: Bool = false
+        
+        var isSuccessWriteReview: Bool = false
     }
     
     enum Action: Equatable {
@@ -81,11 +83,13 @@ struct DetailFeature: Reducer {
         
         // review 작성하는 것과 관련된 액션
         case writeReviewButtonTapped
-        case reviewWriteCompleted
+        case reviewWriteCompleted(Bool)
         case showLoginAlert(Bool)
         case reviewAvailabilityChecked
         case reviewAvailabilityError(ReviewError)
-
+        case isSuccessWriteReview(Bool)
+        
+        case emptyAction
     }
     
     enum DebounceID {
@@ -115,10 +119,10 @@ struct DetailFeature: Reducer {
                     state.isReviewLoading = true
                     state.reviewPage += 1
                     
-                                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
-                    do {
-                        let tokenToSend = token.isEmpty ? nil : token
-                        let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        do {
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
                             await send(.reviewLoaded(reviewResponse.reviews))
                         } catch let error as ReviewError {
                             await send(.reviewError(error))
@@ -195,6 +199,7 @@ struct DetailFeature: Reducer {
                 }
                 
             case let .showToast(toastInfo):
+                state.isSuccessWriteReview = false
                 state.currentToast = toastInfo
                 return .run { send in
                     try await Task.sleep(for: .seconds(2.0))
@@ -336,7 +341,7 @@ struct DetailFeature: Reducer {
                 state.reviewCount = state.originalReviews.count
                 
                 // 사진 필터가 켜져있으면 필터링 적용
-                let reviewsToSort = state.isPhotoFilterOn 
+                let reviewsToSort = state.isPhotoFilterOn
                     ? state.originalReviews.filter { !$0.photoURLs.isEmpty }
                     : state.originalReviews
                 
@@ -345,7 +350,7 @@ struct DetailFeature: Reducer {
                 state.isReviewLoading = false
                 
                 // 사진 필터가 켜져있는데 사진이 있는 리뷰가 없고, 마지막 페이지가 아니면 계속 로드
-                if state.isPhotoFilterOn && reviewsToSort.isEmpty && !state.isLastPage {
+                if state.isPhotoFilterOn, reviewsToSort.isEmpty, !state.isLastPage {
                     state.reviewPage += 1
                     state.isReviewLoading = true
                     
@@ -376,6 +381,7 @@ struct DetailFeature: Reducer {
                     )
                     return .send(.showToast(toastInfo))
                 }
+                
                 return .run { [id = state.id, token = state.token] send in
                     do {
                         try await restaurantClient.checkReviewAvailable(id, token)
@@ -387,10 +393,46 @@ struct DetailFeature: Reducer {
                     }
                 }
                 
-            case .reviewWriteCompleted:
-                state.isWriteReviewPresented = false
-                state.reviewPage = 0
-                return /* fetchReviews(for: state) */ .none
+            case let .isSuccessWriteReview(isSuccess):
+                state.isSuccessWriteReview = isSuccess
+                return .none
+                
+            case let .reviewWriteCompleted(v):
+                if state.isWriteReviewPresented != v {
+                    state.isWriteReviewPresented = v
+                    state.reviewPage = 0
+                }
+                
+                if !state.isWriteReviewPresented, state.isSuccessWriteReview {
+                    let toastInfo = ToastInfo(
+                        imageName: "checkWhiteIcon",
+                        message: "리뷰 작성을 완료했어요"
+                    )
+                    
+                    state.reviewPage = 0
+                    state.originalReviews = []
+                    
+                    return .run { [id = state.id, page = state.reviewPage, sort = state.sort, isUser = state.isUser, token = state.token] send in
+                        
+                        do {
+                            await send(.showToast(toastInfo))
+                            let tokenToSend = token.isEmpty ? nil : token
+                            let reviewResponse = try await restaurantClient.getReviews(id, page, sort, isUser, tokenToSend)
+                            await send(.reviewLoaded(reviewResponse.reviews))
+                            
+                        } catch let error as ReviewError {
+                            await send(.reviewError(error))
+                        } catch {
+                            await send(.reviewError(.unknown))
+                        }
+                    }
+                    
+                } else {
+                    return .none
+                }
+                
+            case .emptyAction:
+                return .none
                 
             case let .showToolTip(id):
                 state.activeToolTipReviewID = id
@@ -437,7 +479,7 @@ struct DetailFeature: Reducer {
                 return .send(.showToast(toastInfo))
                 
             case let .reviewAvailabilityError(error):
-                let message = error == .alreadyWritten 
+                let message = error == .alreadyWritten
                     ? "리뷰는 가게 당 한 번만 작성할 수 있어요!"
                     : "리뷰 작성 중 오류가 발생했습니다."
                 let toastInfo = ToastInfo(

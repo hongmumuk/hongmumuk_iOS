@@ -116,6 +116,7 @@
 		BE02D0A52D60933700F61E66 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A42D60933700F61E66 /* SearchHeaderView.swift */; };
 		BE02D0A72D609BB200F61E66 /* SearchRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */; };
 		BE02D0A92D60A8CF00F61E66 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */; };
+		BE0D8DBD2E45DF4800AF1809 /* ReviewMakeNoticeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D8DBC2E45DF4800AF1809 /* ReviewMakeNoticeModalView.swift */; };
 		BE0F6E572D83FC4800CC8391 /* RandomAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F6E562D83FC4800CC8391 /* RandomAnimationView.swift */; };
 		BE11455E2E1BB39F00228550 /* ReviewMakeNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */; };
 		BE1145602E1BB75300228550 /* ReviewWriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */; };
@@ -215,7 +216,10 @@
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */; };
 		BECD1DF92D6D767F00FDA113 /* RandomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF82D6D767F00FDA113 /* RandomView.swift */; };
+		BEE57ECF2E373ADF00CDA6E5 /* ReviewClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */; };
+		BEE57ED12E373B8F00CDA6E5 /* WriteReivewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */; };
 		BEE5BB1B2D928024008AF34B /* OptimizedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */; };
+		BEEAFC082E2F9A0F007213A4 /* ReivewMakePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */; };
 		BEFE88752D7D529500C3345B /* PostPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE88742D7D529500C3345B /* PostPasswordError.swift */; };
 		BEFE887B2D7DC2AA00C3345B /* LikeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE887A2D7DC2AA00C3345B /* LikeError.swift */; };
 /* End PBXBuildFile section */
@@ -329,6 +333,7 @@
 		BE02D0A42D60933700F61E66 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		BE02D0A62D609BB200F61E66 /* SearchRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentView.swift; sourceTree = "<group>"; };
 		BE02D0A82D60A8CF00F61E66 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		BE0D8DBC2E45DF4800AF1809 /* ReviewMakeNoticeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeNoticeModalView.swift; sourceTree = "<group>"; };
 		BE0F6E562D83FC4800CC8391 /* RandomAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAnimationView.swift; sourceTree = "<group>"; };
 		BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMakeNoticeView.swift; sourceTree = "<group>"; };
 		BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWriteButton.swift; sourceTree = "<group>"; };
@@ -426,7 +431,10 @@
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BECD1DF62D6D767A00FDA113 /* RandomFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFeature.swift; sourceTree = "<group>"; };
 		BECD1DF82D6D767F00FDA113 /* RandomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomView.swift; sourceTree = "<group>"; };
+		BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewClient.swift; sourceTree = "<group>"; };
+		BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReivewModel.swift; sourceTree = "<group>"; };
 		BEE5BB1A2D928024008AF34B /* OptimizedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimizedAsyncImage.swift; sourceTree = "<group>"; };
+		BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReivewMakePhotoView.swift; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -741,6 +749,7 @@
 				2F65D37A2D758896002BF6B5 /* KeychainClient.swift */,
 				BECD1DF12D6C0E9C00FDA113 /* KeywordClient.swift */,
 				BEC950632D7B149E002B02BB /* ProfileClient.swift */,
+				BEE57ECE2E373ADF00CDA6E5 /* ReviewClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -780,6 +789,7 @@
 				2FD2DD502E0AF59D00B34067 /* ReviewSortOption.swift */,
 				BECC4A152D69A74B00F72FAF /* Blog.swift */,
 				BEC950652D7B152A002B02BB /* ProfileModel.swift */,
+				BEE57ED02E373B8F00CDA6E5 /* WriteReivewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -875,6 +885,8 @@
 				BEA57CAC2E1BB16B004C2FFF /* ReviewMakePhotoAddView.swift */,
 				BE11455D2E1BB39F00228550 /* ReviewMakeNoticeView.swift */,
 				BE11455F2E1BB75300228550 /* ReviewWriteButton.swift */,
+				BEEAFC072E2F9A0F007213A4 /* ReivewMakePhotoView.swift */,
+				BE0D8DBC2E45DF4800AF1809 /* ReviewMakeNoticeModalView.swift */,
 			);
 			path = "Reivew_tmp ";
 			sourceTree = "<group>";
@@ -1198,6 +1210,7 @@
 				2F0D501B2D779D6D0035D7A4 /* ProgressButton.swift in Sources */,
 				BE33863F2D5F8A5A00FF44CF /* SearchView.swift in Sources */,
 				2F0D4FF12D779CE90035D7A4 /* HomeRootView.swift in Sources */,
+				BEE57ECF2E373ADF00CDA6E5 /* ReviewClient.swift in Sources */,
 				2F0D501D2D779D840035D7A4 /* LoginHeaderView.swift in Sources */,
 				BEC950642D7B149E002B02BB /* ProfileClient.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */,
@@ -1278,6 +1291,7 @@
 				BEC950582D7B0FFC002B02BB /* ProfileInfoFeature.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				2F68B4D32D72474A00548850 /* BasicButton.swift in Sources */,
+				BEE57ED12E373B8F00CDA6E5 /* WriteReivewModel.swift in Sources */,
 				BE208FFE2D64908E0041A173 /* RandomButton.swift in Sources */,
 				BECD1DF72D6D767A00FDA113 /* RandomFeature.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
@@ -1315,11 +1329,13 @@
 				2F0D4FF92D779D160035D7A4 /* LoginFeature.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
+				BEEAFC082E2F9A0F007213A4 /* ReivewMakePhotoView.swift in Sources */,
 				BE208FF72D6478520041A173 /* InquiryButton.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
 				2FD2DD5B2E0B318F00B34067 /* DetailReviewItemView.swift in Sources */,
 				BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */,
+				BE0D8DBD2E45DF4800AF1809 /* ReviewMakeNoticeModalView.swift in Sources */,
 				BECC4A252D69B07200F72FAF /* DetailReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1507,18 +1523,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1531,11 +1547,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1552,18 +1567,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_dev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
+				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1576,11 +1591,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1596,7 +1610,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1615,7 +1629,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1633,7 +1647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1650,7 +1664,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1736,7 +1750,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
@@ -1745,7 +1759,9 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1758,7 +1774,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1778,7 +1794,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1796,7 +1812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1880,18 +1896,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1904,11 +1922,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1924,7 +1942,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -1942,7 +1960,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -2021,7 +2039,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
@@ -2030,7 +2048,9 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2043,7 +2063,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2063,7 +2083,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -2081,7 +2101,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -2158,18 +2178,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RC5FY8NJN7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
+				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2182,11 +2204,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.6;
+				MARKETING_VERSION = 2.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Seyoung Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2202,7 +2224,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
@@ -2220,7 +2242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 7HDHR2SNR7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;

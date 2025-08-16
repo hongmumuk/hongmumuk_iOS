@@ -47,6 +47,30 @@
         }
       }
     },
+    "NSCameraUsageDescription" : {
+      "comment" : "Privacy - Camera Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "리뷰 이미지 업로드를 위해 권한이 필요합니다."
+          }
+        }
+      }
+    },
+    "NSPhotoLibraryUsageDescription" : {
+      "comment" : "Privacy - Photo Library Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "리뷰 이미지 업로드를 위해 권한이 필요합니다."
+          }
+        }
+      }
+    },
     "NSUserTrackingUsageDescription" : {
       "comment" : "Privacy - Tracking Usage Description",
       "extractionState" : "extracted_with_value",

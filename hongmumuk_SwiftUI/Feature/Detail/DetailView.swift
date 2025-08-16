@@ -34,10 +34,26 @@ struct DetailView: View {
         .fullScreenCover(
             isPresented: viewStore.binding(
                 get: \.isWriteReviewPresented,
-                send: { _ in .reviewWriteCompleted }
+                send: { .reviewWriteCompleted($0) }
             )
         ) {
-            ReviewMakeView(store: Store(initialState: ReviewMakeFeature.State(), reducer: { ReviewMakeFeature() }))
+            ReviewMakeView(
+                store: Store(
+                    initialState: ReviewMakeFeature.State(
+                        reviewMode: .create(
+                            restaurantName: viewStore.restaurantDetail.name,
+                            restaurantID: Int(
+                                viewStore.restaurantDetail.id
+                            ) ?? 0
+                        )
+                    ),
+                    reducer: {
+                        ReviewMakeFeature()
+                    }
+                ), onComplete: { isWriteSuccess in
+                    viewStore.send(.isSuccessWriteReview(isWriteSuccess))
+                }
+            )
         }
     }
 }

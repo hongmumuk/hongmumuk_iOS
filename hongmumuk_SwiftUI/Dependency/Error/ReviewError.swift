@@ -12,3 +12,7 @@ enum ReviewError: String, Error {
     case empty = "BAD400_6"
     case alreadyWritten = "BAD400_11"
 }
+
+enum WriteReviewError: String, Error {
+    case unknown
+}

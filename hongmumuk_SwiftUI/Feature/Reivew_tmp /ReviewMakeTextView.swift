@@ -15,9 +15,27 @@ struct ReviewMakeTextView: View {
     @State private var text: String = ""
     
     var body: some View {
-        ReviewEditorView(text: $text, isFocused: $isFocused, placeholder: "리뷰를 작성해 주세요")
-            .padding(.horizontal, 24)
-            .padding(.top, 28)
+        ReviewEditorView(
+            text: viewStore.binding(
+                get: \.reviewText,
+                send: ReviewMakeFeature.Action.textChanged
+            ),
+            isFocused: $isFocused,
+            placeholder: "리뷰를 작성해 주세요",
+            count: viewStore.textCount,
+            onFocusedChanged: { isFocused in
+                viewStore.send(.textFocusChanged(isFocused))
+            },
+            errorMessage: viewStore.errorMessage,
+            status: viewStore.reviewTextStatus
+        )
+        .padding(.horizontal, 24)
+        .padding(.top, 28)
+    }
+    
+    enum TextStatus {
+        case normal
+        case error
     }
     
     struct ReviewEditorView: View {
@@ -25,41 +43,43 @@ struct ReviewMakeTextView: View {
         var isFocused: FocusState<Bool>.Binding
         var placeholder: String = "리뷰를 작성해 주세요"
         var height: CGFloat = 120
+        var count: Int
         var onFocusedChanged: (Bool) -> Void = { _ in }
         var onSubmit: () -> Void = {}
-        
+        var errorMessage = ""
+        var status: TextStatus = .normal
+
         var body: some View {
             VStack(alignment: .leading, spacing: 8) {
-                // 1) 제목
                 Text("리뷰")
                     .fontStyle(Fonts.heading3Bold)
-                    .foregroundStyle(Colors.GrayScale.normal)
-                
-                // 2) 입력 영역
+                    .foregroundStyle(
+                        status == .normal ? Colors.GrayScale.normal : Colors.SemanticColor.negative)
+
                 ZStack(alignment: .topLeading) {
-                    // 배경(상단만 라운드)
                     UnevenRoundedRectangle(
                         topLeadingRadius: 12,
                         bottomLeadingRadius: 0,
                         bottomTrailingRadius: 0,
                         topTrailingRadius: 12
                     )
-                    .fill(Colors.GrayScale.grayscale5)
+                    .fill(
+                        status == .normal ? Colors.GrayScale.grayscale5 : Colors.SemanticColor.negative10)
                     .frame(height: height)
-                    
-                    // 하단 구분선
+
                     Rectangle()
-                        .fill(Colors.Border.strong)
+                        .fill(
+                            status == .normal ? Colors.Border.strong : Colors.SemanticColor.negative)
                         .frame(height: 1)
                         .offset(y: height)
-                    
-                    // 실제 입력기
+
                     TextEditor(text: $text)
                         .padding(.all, 12)
                         .frame(height: height)
                         .focused(isFocused)
                         .font(Fonts.body1Medium.toFont())
-                        .foregroundColor(Colors.GrayScale.grayscale95)
+                        .foregroundStyle(
+                            status == .normal ? Colors.GrayScale.grayscale95 : Colors.SemanticColor.negative)
                         .scrollContentBackground(.hidden)
                         .background(.clear)
                         .onSubmit(onSubmit)
@@ -67,8 +87,7 @@ struct ReviewMakeTextView: View {
                             onFocusedChanged(focused)
                             if !focused { onSubmit() }
                         }
-                    
-                    // 플레이스홀더
+
                     if text.isEmpty, !isFocused.wrappedValue {
                         Text(placeholder)
                             .padding(.horizontal, 12)
@@ -78,10 +97,19 @@ struct ReviewMakeTextView: View {
                     }
                 }
                 
-                // 3) 안내 메시지
-                Text("리뷰는 최소 20자 이상 입력해 주세요.")
-                    .fontStyle(Fonts.caption1Medium)
-                    .foregroundStyle(Colors.GrayScale.grayscal45)
+                HStack {
+                    Text(errorMessage)
+                        .fontStyle(Fonts.caption1Medium)
+                        .foregroundStyle(
+                            status == .normal ? Colors.GrayScale.alternative : Colors.SemanticColor.negative)
+                    
+                    Spacer()
+                    
+                    Text("\(count)/200")
+                        .fontStyle(Fonts.caption1Medium)
+                        .foregroundStyle(
+                            status == .normal ? Colors.GrayScale.alternative : Colors.SemanticColor.negative)
+                }
             }
         }
     }

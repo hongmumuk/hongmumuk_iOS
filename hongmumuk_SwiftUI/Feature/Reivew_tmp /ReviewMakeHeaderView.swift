@@ -29,7 +29,7 @@ struct ReviewMakeHeaderView: View {
     }
     
     private var restaurantTitle: some View {
-        Text("식당이름")
+        Text(viewStore.restaurantName)
             .fontStyle(Fonts.heading1Bold)
             .foregroundColor(Colors.GrayScale.grayscale95)
     }
@@ -38,7 +38,7 @@ struct ReviewMakeHeaderView: View {
         HStack {
             Spacer()
             Button(action: {
-                dismiss()
+                viewStore.send(.dismissButtonTapped)
             }) {
                 Image("dismissIcon")
                     .frame(width: 36, height: 36)

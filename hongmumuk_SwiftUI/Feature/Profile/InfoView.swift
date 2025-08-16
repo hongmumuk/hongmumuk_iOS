@@ -176,6 +176,4 @@ struct InfoView: View {
             .fill(Colors.GrayScale.grayscal45)
             .frame(width: 1, height: 12)
     }
-    
-
 }

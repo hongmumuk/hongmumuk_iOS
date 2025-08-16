@@ -34,4 +34,4 @@ struct MyReviewResponse: Codable, Equatable {
             category: category
         )
     }
-} 
+}
