@@ -98,7 +98,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
             }
         }
     }
-
+    
     private var badgeView: some View {
         Group {
             if showBadge, item.badge != nil {
@@ -110,7 +110,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                             Image(item.badge!.ableIconName)
                                 .resizable()
                                 .frame(width: 14, height: 14)
-
+                            
                             Text(item.badge!.displayName)
                                 .foregroundColor(Colors.Primary.normal)
                                 .fontStyle(Fonts.body2SemiBold)
@@ -189,8 +189,11 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                     let reversedURLs = item.photoURLs.reversed()
                     
                     TabView {
-                        ForEach(reversedURLs, id: \.self) { url in
-                            AsyncImage(url: URL(string: url)) { image in
+                        ForEach(reversedURLs, id: \.self) { urlString in
+                            let url = URL(string: urlString)
+                            let size = CGSize(width: 360, height: 360)
+                            
+                            OptimizedAsyncImage(url: url, targetSize: size) { image in
                                 image
                                     .resizable()
                                     .scaledToFill()
@@ -212,7 +215,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
             }
         }
     }
-
+    
     private func badgeRowView(currentBadge: Badge?) -> some View {
         HStack(spacing: 16) {
             ForEach(Badge.allCases, id: \.self) { badge in

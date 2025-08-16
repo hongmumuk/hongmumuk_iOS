@@ -349,7 +349,7 @@ struct DetailFeature: Reducer {
                 state.isLastPage = review.count < 10
                 state.isReviewLoading = false
                 
-                if state.isPhotoFilterOn && !state.isLastPage {
+                if state.isPhotoFilterOn, !state.isLastPage {
                     state.reviewPage += 1
                     state.isReviewLoading = true
                     
