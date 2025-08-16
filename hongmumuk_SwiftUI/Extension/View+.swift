@@ -49,3 +49,31 @@ extension View {
         }
     }
 #endif
+
+private struct HideTabBarModifier: ViewModifier {
+    let hidden: Bool
+    let restoreOnDisappear: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                UITabBar.appearance().isHidden = hidden
+            }
+            .onChange(of: hidden) { newValue in
+                UITabBar.appearance().isHidden = newValue
+            }
+            .onDisappear {
+                if restoreOnDisappear { UITabBar.appearance().isHidden = false }
+            }
+    }
+}
+
+extension View {
+    /// 현재 뷰가 나타나는 동안만 UITabBar를 숨깁니다.
+    /// - Parameters:
+    ///   - hidden: 숨길지 여부 (기본값 true)
+    ///   - restoreOnDisappear: 사라질 때 원복할지 여부 (기본값 true)
+    func hideTabBar(_ hidden: Bool = true, restoreOnDisappear: Bool = true) -> some View {
+        modifier(HideTabBarModifier(hidden: hidden, restoreOnDisappear: restoreOnDisappear))
+    }
+}
