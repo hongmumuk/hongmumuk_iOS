@@ -116,6 +116,7 @@ struct ReviewMakeFeature: Reducer {
                 return .none
                 
             case .writeButtonTapped:
+                state.isWriteActive = false
                 let star = Int(state.starRate)
                 let text = state.reviewText
                 let photos = state.photos
@@ -149,6 +150,7 @@ struct ReviewMakeFeature: Reducer {
                 
             // 실패
             case let .reviewUploadError(error):
+                state.isWriteActive = true
                 return .none
                 
             case .photoMenuLibraryTapped:
