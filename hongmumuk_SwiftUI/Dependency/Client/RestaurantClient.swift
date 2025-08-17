@@ -107,8 +107,7 @@ extension RestaurantClient: DependencyKey {
                 "restaurantId": rid,
                 "page": page,
                 "sort": sort.rawValue,
-                "isUser": false
-//                "isUser": isUser
+                "isUser": isUser
             ]
             
             var headers: HTTPHeaders = [
