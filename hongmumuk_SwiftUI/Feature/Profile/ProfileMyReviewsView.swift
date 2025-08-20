@@ -55,6 +55,21 @@ struct ProfileMyReviewsView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
+        .alert("리뷰를 삭제하시겠습니까?", isPresented: viewStore.binding(
+            get: \.showDeleteAlert,
+            send: .deleteAlertDismissed
+        )) {
+            Button("취소", role: .cancel) {
+                viewStore.send(.deleteAlertDismissed)
+            }
+            Button("삭제", role: .destructive) {
+                if let reviewId = viewStore.reviewToDelete {
+                    viewStore.send(.reviewDeleteConfirmed(reviewId))
+                }
+            }
+        } message: {
+            Text("삭제된 리뷰는 복구할 수 없습니다.")
+        }
     }
     
     // MARK: - 필터 및 정렬

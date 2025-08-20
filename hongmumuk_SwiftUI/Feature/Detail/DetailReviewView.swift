@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DetailReviewView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         ZStack {
@@ -76,6 +77,21 @@ struct DetailReviewView: View {
                     .ignoresSafeArea()
                     .zIndex(999)
             }
+        }
+        .alert("리뷰를 삭제하시겠습니까?", isPresented: viewStore.binding(
+            get: \.showDeleteAlert,
+            send: .deleteAlertDismissed
+        )) {
+            Button("취소", role: .cancel) {
+                viewStore.send(.deleteAlertDismissed)
+            }
+            Button("삭제", role: .destructive) {
+                if let reviewId = viewStore.reviewToDelete {
+                    viewStore.send(.reviewDeleteConfirmed(reviewId))
+                }
+            }
+        } message: {
+            Text("삭제된 리뷰는 복구할 수 없습니다.")
         }
     }
     
@@ -173,8 +189,18 @@ struct DetailReviewView: View {
             }
             .padding(.horizontal, 24)
         }
-        .alert(isPresented: viewStore.binding(get: \.showLoginAlert, send: DetailFeature.Action.showLoginAlert)) {
-            Alert(title: Text("회원만 리뷰를 작성할 수 있습니다"), dismissButton: .default(Text("확인")))
+        .alert("리뷰를 쓰려면 로그인이 필요합니다", isPresented: viewStore.binding(
+            get: \.showLoginAlert,
+            send: .showLoginAlert(false)
+        )) {
+            Button("취소", role: .cancel) {
+                viewStore.send(.showLoginAlert(false))
+            }
+            Button("로그인") {
+                parentViewStore.send(.navigationTo(.emailLogin))
+            }
+        } message: {
+            Text("로그인 후 리뷰를 작성할 수 있습니다")
         }
     }
     

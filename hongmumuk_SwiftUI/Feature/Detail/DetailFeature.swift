@@ -46,6 +46,8 @@ struct DetailFeature: Reducer {
         var showLoginAlert: Bool = false
         
         var isSuccessWriteReview: Bool = false
+        var showDeleteAlert: Bool = false
+        var reviewToDelete: Int? = nil
     }
     
     enum Action: Equatable {
@@ -71,8 +73,10 @@ struct DetailFeature: Reducer {
         case reviewLoaded([Review])
         case reviewError(ReviewError)
         case reviewDeleteButtonTapped(Int)
+        case reviewDeleteConfirmed(Int)
         case reviewDeleted(Int)
         case reviewDeleteError(String)
+        case deleteAlertDismissed
         
         // 로딩 상태 관리 액션
         case loadingStarted
@@ -375,11 +379,8 @@ struct DetailFeature: Reducer {
                 
             case .writeReviewButtonTapped:
                 if !state.isUser {
-                    let toastInfo = ToastInfo(
-                        imageName: "warnIcon",
-                        message: "회원만 리뷰 작성이 가능합니다"
-                    )
-                    return .send(.showToast(toastInfo))
+                    state.showLoginAlert = true
+                    return .none
                 }
                 
                 return .run { [id = state.id, token = state.token] send in
@@ -443,7 +444,14 @@ struct DetailFeature: Reducer {
                 return .none
 
             case let .reviewDeleteButtonTapped(id):
-                return .run { [token = state.token, reviewId = id] send in
+                state.showDeleteAlert = true
+                state.reviewToDelete = id
+                return .none
+                
+            case let .reviewDeleteConfirmed(reviewId):
+                state.showDeleteAlert = false
+                state.reviewToDelete = nil
+                return .run { [token = state.token, reviewId = reviewId] send in
                     do {
                         let success = try await restaurantClient.deleteReview(reviewId, token)
                         if success {
@@ -459,6 +467,8 @@ struct DetailFeature: Reducer {
             case let .showLoginAlert(show):
                 state.showLoginAlert = show
                 return .none
+                
+
                 
             case .reviewAvailabilityChecked:
                 state.isWriteReviewPresented = true
@@ -487,6 +497,11 @@ struct DetailFeature: Reducer {
                     message: message
                 )
                 return .send(.showToast(toastInfo))
+                
+            case .deleteAlertDismissed:
+                state.showDeleteAlert = false
+                state.reviewToDelete = nil
+                return .none
             }
         }
     }

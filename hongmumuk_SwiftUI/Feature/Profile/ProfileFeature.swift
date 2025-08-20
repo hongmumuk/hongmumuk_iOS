@@ -46,6 +46,8 @@ struct ProfileFeature: Reducer {
         var showSortSheet: Bool = false // 추가
         var listId: UUID = .init() // 뷰 강제 새로고침을 위한 ID
         var currentToast: ToastInfo? = nil // 토스트 메시지
+        var showDeleteAlert: Bool = false 
+        var reviewToDelete: Int? = nil
     }
     
     enum Action: Equatable {
@@ -65,6 +67,7 @@ struct ProfileFeature: Reducer {
         case categoryChanged(Category)
         case sortChanged(ProfileReviewSort)
         case reviewDeleteTapped(Int)
+        case reviewDeleteConfirmed(Int)
         case reviewDeleted(Int)
         case reviewDeleteError(String)
         case clearReviewsError
@@ -72,6 +75,7 @@ struct ProfileFeature: Reducer {
         case sortSheetDismissed // 추가
         case showToast(ToastInfo)
         case hideToast
+        case deleteAlertDismissed
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -229,6 +233,13 @@ struct ProfileFeature: Reducer {
                 }
                 
             case let .reviewDeleteTapped(reviewId):
+                state.showDeleteAlert = true
+                state.reviewToDelete = reviewId
+                return .none
+                
+            case let .reviewDeleteConfirmed(reviewId):
+                state.showDeleteAlert = false
+                state.reviewToDelete = nil
                 return .run { [token = state.token, reviewId = reviewId] send in
                     do {
                         let success = try await restaurantClient.deleteReview(reviewId, token)
@@ -277,6 +288,11 @@ struct ProfileFeature: Reducer {
                 
             case .hideToast:
                 state.currentToast = nil
+                return .none
+                
+            case .deleteAlertDismissed:
+                state.showDeleteAlert = false
+                state.reviewToDelete = nil
                 return .none
             }
         }
