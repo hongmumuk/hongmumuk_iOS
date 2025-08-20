@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DetailTabView: View {
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -22,7 +23,7 @@ struct DetailTabView: View {
                     .tag(0)
                 
                 // ReviewView
-                DetailReviewView(viewStore: viewStore)
+                DetailReviewView(viewStore: viewStore, parentViewStore: parentViewStore)
                     .tag(1)
                 
                 // BlogView

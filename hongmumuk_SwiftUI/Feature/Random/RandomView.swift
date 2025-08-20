@@ -10,11 +10,15 @@ import SwiftUI
 
 struct RandomView: View {
     private let store: StoreOf<RandomFeature>
+    private let parentStore: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<RandomFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<RandomFeature>) {
+    init(store: StoreOf<RandomFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
@@ -53,7 +57,8 @@ struct RandomView: View {
                             $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }

@@ -10,11 +10,15 @@ import SwiftUI
 
 struct DetailView: View {
     private let store: StoreOf<DetailFeature>
+    private let parentStore: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<DetailFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<DetailFeature>) {
+    init(store: StoreOf<DetailFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
@@ -24,7 +28,7 @@ struct DetailView: View {
             } else {
                 DetailInfoView(viewStore: viewStore)
                 DetailTabButtonView(viewStore: viewStore)
-                DetailTabView(viewStore: viewStore)
+                DetailTabView(viewStore: viewStore, parentViewStore: parentViewStore)
             }
         }
         .ignoresSafeArea(edges: .bottom)

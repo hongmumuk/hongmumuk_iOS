@@ -121,7 +121,10 @@ struct RootView: View {
                     HomeRootView(parentStore: store)
                         .navigationBarHidden(true)
                 case .random:
-                    RandomView(store: Store(initialState: RandomFeature.State(), reducer: RandomFeature.init))
+                    RandomView(
+                        store: Store(initialState: RandomFeature.State(), reducer: RandomFeature.init),
+                        parentStore: store
+                    )
                         .navigationBarHidden(true)
                 case .verifyEmail:
                     VerifyEmailView(store: Store(initialState: VerifyEmailFeature.State(), reducer: VerifyEmailFeature.init), parentStore: store)
@@ -158,7 +161,8 @@ struct RootView: View {
                                 $0.restaurantClient = RestaurantClient.liveValue
                                 $0.userDefaultsClient = UserDefaultsClient.liveValue
                             }
-                        )
+                        ),
+                        parentStore: store
                     )
                     .navigationBarHidden(true)
                 case let .profile(type):

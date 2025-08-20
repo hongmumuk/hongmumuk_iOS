@@ -12,11 +12,15 @@ import SwiftUI
 
 struct SearchView: View {
     private let store: StoreOf<SearchFeature>
+    private let parentStore: StoreOf<RootFeature>
     @ObservedObject var viewStore: ViewStoreOf<SearchFeature>
+    @ObservedObject var parentViewStore: ViewStoreOf<RootFeature>
     
-    init(store: StoreOf<SearchFeature>) {
+    init(store: StoreOf<SearchFeature>, parentStore: StoreOf<RootFeature>) {
         self.store = store
+        self.parentStore = parentStore
         viewStore = ViewStore(store, observe: { $0 })
+        parentViewStore = ViewStore(parentStore, observe: { $0 })
     }
     
     var body: some View {
@@ -50,7 +54,8 @@ struct SearchView: View {
                             $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }

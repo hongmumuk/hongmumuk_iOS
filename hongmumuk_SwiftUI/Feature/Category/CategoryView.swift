@@ -45,7 +45,8 @@ struct CategoryView: View {
                         $0.restaurantClient = RestaurantClient.liveValue
                         $0.userDefaultsClient = UserDefaultsClient.liveValue
                     }
-                )
+                ),
+                parentStore: parentStore
             )
             .navigationBarHidden(true)
         }
@@ -69,7 +70,8 @@ struct CategoryView: View {
                         withDependencies: {
                             $0.restaurantClient = RestaurantClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }
@@ -90,7 +92,8 @@ struct CategoryView: View {
                             $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }
