@@ -31,12 +31,6 @@ struct OptimizedAsyncImage<Content: View, Placeholder: View>: View {
         ZStack {
             if let image = loader.image {
                 content(Image(uiImage: image))
-                    .opacity(opacity)
-                    .onAppear {
-                        withAnimation(.easeIn(duration: 1.0)) {
-                            opacity = 1.0
-                        }
-                    }
             } else {
                 placeholder()
             }
@@ -94,24 +88,23 @@ class ImageLoader: ObservableObject {
         }
         
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] loadedImage in
-                guard let self, let loadedImage else {
-                    return
-                }
-                
-                // 다운샘플링 적용
-                let finalImage: UIImage = if let targetSize {
-                    loadedImage.preparingThumbnail(of: targetSize) ?? loadedImage
+            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            .tryMap { [targetSize] output -> UIImage? in
+                if let size = targetSize {
+                    return ImageLoader.downsample(data: output.data, maxDimension: size.width)
                 } else {
-                    loadedImage
+                    return UIImage(data: output.data)
                 }
-                
-                // 캐시에 저장
-                ImageCache.shared.set(image: finalImage, forKey: cacheKey)
-                image = finalImage
+            }
+            .mapError { $0 } // 필요시 에러 처리
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                // 에러 로깅 등 필요시 처리
+            } receiveValue: { [weak self] img in
+                guard let self, let img else { return }
+                ImageCache.shared.set(image: img, forKey: cacheKey)
+                image = img
             }
     }
     
@@ -121,5 +114,27 @@ class ImageLoader: ObservableObject {
     
     deinit {
         cancel()
+    }
+}
+
+private extension ImageLoader {
+    static func downsample(data: Data, maxDimension: CGFloat) -> UIImage? {
+        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary // 캐싱 적용 여부
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, imageSourceOptions) else {
+            return nil
+        }
+        
+        let downsampleOptions = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceShouldCacheImmediately: false,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxDimension
+        ] as CFDictionary
+        
+        guard let downsampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions) else {
+            return nil
+        }
+        
+        return UIImage(cgImage: downsampledImage)
     }
 }

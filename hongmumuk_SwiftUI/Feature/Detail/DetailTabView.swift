@@ -20,6 +20,7 @@ struct DetailTabView: View {
             )) {
                 // MAPView
                 DetailMapView(viewStore: viewStore)
+                    .edgesIgnoringSafeArea(.vertical)
                     .tag(0)
                 
                 // ReviewView
@@ -30,14 +31,15 @@ struct DetailTabView: View {
                 DetailBlogView(viewStore: viewStore)
                     .tag(2)
             }
-            .tabViewStyle(.automatic)
+            .tableStyle(.automatic)
+            .hideTabBar()
             
             ToastView(
                 imageName: viewStore.currentToast?.imageName ?? "",
                 title: viewStore.currentToast?.message ?? ""
             )
             .frame(minWidth: UIScreen.main.bounds.width - 120)
-            .padding(.bottom, 100)
+            .padding(.bottom, 120)
             .opacity(viewStore.currentToast != nil ? 1.0 : 0.0)
             .scaleEffect(viewStore.currentToast != nil ? 1.0 : 0.8)
             .animation(.easeInOut(duration: 0.3), value: viewStore.currentToast != nil)
