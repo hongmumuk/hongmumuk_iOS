@@ -123,7 +123,7 @@ struct DetailReviewView: View {
                 Spacer()
                     .frame(width: 4)
                 
-                Image("dropDownIcon")
+                Image("dropDownBlueIcon")
                     .frame(width: 16, height: 16)
             }
         }

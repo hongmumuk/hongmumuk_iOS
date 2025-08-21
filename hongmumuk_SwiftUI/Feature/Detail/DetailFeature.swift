@@ -349,8 +349,7 @@ struct DetailFeature: Reducer {
                 state.isLastPage = review.count < 10
                 state.isReviewLoading = false
                 
-                // 사진 필터가 켜져있는데 사진이 있는 리뷰가 없고, 마지막 페이지가 아니면 계속 로드
-                if state.isPhotoFilterOn, reviewsToSort.isEmpty, !state.isLastPage {
+                if state.isPhotoFilterOn && !state.isLastPage {
                     state.reviewPage += 1
                     state.isReviewLoading = true
                     

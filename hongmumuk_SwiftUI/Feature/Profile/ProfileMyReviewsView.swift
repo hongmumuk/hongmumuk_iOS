@@ -101,9 +101,7 @@ struct ProfileMyReviewsView: View {
                     .fontStyle(Fonts.body1SemiBold)
                     .foregroundColor(Colors.Primary.strong)
                 
-                Image("dropDownIcon")
-                    .resizable()
-                    .scaledToFit()
+                Image("dropDownBlueIcon")
                     .frame(width: 16, height: 16)
             }
         }

@@ -48,7 +48,8 @@ struct HomeView: View {
                         withDependencies: {
                             $0.restaurantClient = RestaurantClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }

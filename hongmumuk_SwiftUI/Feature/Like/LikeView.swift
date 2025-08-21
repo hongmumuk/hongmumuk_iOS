@@ -46,7 +46,8 @@ struct LikeView: View {
                             $0.restaurantClient = RestaurantClient.liveValue
                             $0.keywordClient = KeywordClient.liveValue
                         }
-                    )
+                    ),
+                    parentStore: parentStore
                 )
                 .presentationDragIndicator(.visible)
             }
