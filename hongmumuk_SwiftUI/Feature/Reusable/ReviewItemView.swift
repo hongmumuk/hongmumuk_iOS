@@ -191,7 +191,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                     TabView {
                         ForEach(reversedURLs, id: \.self) { urlString in
                             let url = URL(string: urlString)
-                            let size = CGSize(width: 360, height: 360)
+                            let size = CGSize(width: 720, height: 720)
                             
                             OptimizedAsyncImage(url: url, targetSize: size) { image in
                                 image
