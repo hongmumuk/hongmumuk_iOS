@@ -24,16 +24,31 @@ enum DateUtils {
             return dateString
         }
 
-        // TODO: 로컬라이즈드
-        switch days {
-        case 0: return "오늘"
-        case 1 ... 6: return "\(days)일 전"
-        case 7: return "일주일 전"
-        default:
+        // 오늘
+        if days == 0 {
+            return "오늘"
+        }
+        
+        // 1일전~3일전
+        if days >= 1 && days <= 3 {
+            return "\(days)일전"
+        }
+        
+        // 4일전~같은 해
+        let currentYear = calendar.component(.year, from: now)
+        let reviewYear = calendar.component(.year, from: date)
+        
+        if reviewYear == currentYear {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
+            formatter.dateFormat = "MM.dd"
             formatter.locale = Locale(identifier: "ko_KR")
             return formatter.string(from: date)
         }
+        
+        // 이전 해~
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy.MM.dd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return formatter.string(from: date)
     }
 }

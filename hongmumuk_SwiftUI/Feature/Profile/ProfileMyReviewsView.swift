@@ -55,6 +55,21 @@ struct ProfileMyReviewsView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
+        .alert("리뷰를 삭제하시겠습니까?", isPresented: viewStore.binding(
+            get: \.showDeleteAlert,
+            send: .deleteAlertDismissed
+        )) {
+            Button("취소", role: .cancel) {
+                viewStore.send(.deleteAlertDismissed)
+            }
+            Button("삭제", role: .destructive) {
+                if let reviewId = viewStore.reviewToDelete {
+                    viewStore.send(.reviewDeleteConfirmed(reviewId))
+                }
+            }
+        } message: {
+            Text("삭제된 리뷰는 복구할 수 없습니다.")
+        }
     }
     
     // MARK: - 필터 및 정렬
@@ -74,20 +89,19 @@ struct ProfileMyReviewsView: View {
         }
     }
 
-    // MARK: - 전체 개수 뷰
+    // MARK: - 개수 뷰
 
     private var filterView: some View {
         HStack {
-            Image("photoFilterIcon")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20, height: 20)
-            Spacer()
-                .frame(width: 4)
-            Text("전체 \(viewStore.totalCount)개")
+            Text(countText)
                 .fontStyle(Fonts.body1Medium)
                 .foregroundColor(Colors.Label.Normal.neutral)
         }
+    }
+
+    private var countText: String {
+        let isKorean = Locale.preferredLanguages.first?.hasPrefix("ko") == true
+        return isKorean ? "\(viewStore.totalCount)개" : "\(viewStore.totalCount) reviews"
     }
 
     // MARK: - 정렬 뷰
