@@ -26,7 +26,7 @@ struct ProfileMyReviewsView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
-                WebViewHeader(title: "내 리뷰", showBottomLine: false, parentViewStore: parentViewStore)
+                WebViewHeader(title: "review_mine".localized(), showBottomLine: false, parentViewStore: parentViewStore)
                 
                 // 필터 및 정렬
                 filterSortView
@@ -55,20 +55,20 @@ struct ProfileMyReviewsView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .alert("리뷰를 삭제하시겠습니까?", isPresented: viewStore.binding(
+        .alert("review_delete_confirm_title".localized() , isPresented: viewStore.binding(
             get: \.showDeleteAlert,
             send: .deleteAlertDismissed
         )) {
-            Button("취소", role: .cancel) {
+            Button("cancel".localized(), role: .cancel) {
                 viewStore.send(.deleteAlertDismissed)
             }
-            Button("삭제", role: .destructive) {
+            Button("common_delete".localized() , role: .destructive) {
                 if let reviewId = viewStore.reviewToDelete {
                     viewStore.send(.reviewDeleteConfirmed(reviewId))
                 }
             }
         } message: {
-            Text("삭제된 리뷰는 복구할 수 없습니다.")
+            Text("review_delete_confirm_warning".localized())
         }
     }
     
@@ -100,8 +100,7 @@ struct ProfileMyReviewsView: View {
     }
 
     private var countText: String {
-        let isKorean = Locale.preferredLanguages.first?.hasPrefix("ko") == true
-        return isKorean ? "\(viewStore.totalCount)개" : "\(viewStore.totalCount) reviews"
+        return "\(viewStore.totalCount)" + "common_items_suffix".localized()
     }
 
     // MARK: - 정렬 뷰
@@ -133,8 +132,8 @@ struct ProfileMyReviewsView: View {
                     viewStore.send(.sortChanged(sort))
                 }
             }
-            buttons.append(.cancel(Text("취소")))
-            return ActionSheet(title: Text("정렬 기준"), buttons: buttons)
+            buttons.append(.cancel(Text("cancel".localized())))
+            return ActionSheet(title: Text("sort_by".localized()), buttons: buttons)
         }
     }
 
@@ -183,11 +182,11 @@ struct ProfileMyReviewsView: View {
                 .resizable()
                 .frame(width: 120, height: 120)
             
-            Text("작성한 리뷰가 없습니다")
+            Text("review_empty_title".localized())
                 .fontStyle(Fonts.title2Bold)
                 .foregroundColor(Colors.GrayScale.grayscale95)
             
-            Text("맛집을 방문하고 첫 리뷰를 작성해보세요")
+            Text("review_empty_message".localized())
                 .fontStyle(Fonts.body1SemiBold)
                 .foregroundColor(Colors.GrayScale.alternative)
                 .multilineTextAlignment(.center)

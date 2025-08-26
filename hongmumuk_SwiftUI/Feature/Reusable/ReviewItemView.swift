@@ -87,7 +87,7 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
             
             if showDeleteButton, item.isOwner {
                 Menu {
-                    Button("삭제", role: .destructive) {
+                    Button("common_delete".localized(), role: .destructive) {
                         onDeleteTapped(item.id)
                     }
                 } label: {
@@ -111,12 +111,13 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                                 .resizable()
                                 .frame(width: 14, height: 14)
                             
-                            Text(item.badge!.displayName)
+                            Text(item.badge!.localizedName)
                                 .foregroundColor(Colors.Primary.normal)
                                 .fontStyle(Fonts.body2SemiBold)
+                                .lineLimit(1)
                         }
-                        .frame(height: 32)
-                        .padding(.horizontal, 10)
+                        .frame(minHeight: 32)
+                        .padding(.horizontal, 12)
                         .background(
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Colors.Primary.alternative)
@@ -134,7 +135,8 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                                     Spacer()
                                         .frame(height: 12)
                                     
-                                    Text("현재 \(item.badge!.displayName) 단계의 리뷰예요")
+                                    let name = item.badge?.localizedName ?? ""
+                                    Text("badge_review_format".localized(variables: name))
                                         .fontStyle(Fonts.caption1Semibold)
                                         .foregroundColor(.white)
                                     
@@ -147,7 +149,8 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                                         .frame(height: 12)
                                 }
                                 .padding(.horizontal, 16)
-                                .frame(width: 240, height: 80)
+                                .frame(width: 240)
+                                .frame(minHeight: 95)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8)
                                         .fill(Color.black.opacity(0.75))
@@ -229,9 +232,12 @@ struct ReviewItemView<Feature: Reducer>: View where Feature.Action: Equatable {
                     Spacer()
                         .frame(height: 2)
                     
-                    Text(badge.displayName)
+                    Text(badge.localizedName)
                         .fontStyle(Fonts.caption2)
                         .foregroundColor(.white)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }

@@ -14,9 +14,9 @@ enum ReviewSortOption: String, CaseIterable, Equatable {
 
     var displayName: String {
         switch self {
-        case .recent: return "최신순"
-        case .high: return "별점 높은 순"
-        case .low: return "별점 낮은 순"
+        case .recent: return "sort_by_newest".localized()
+        case .high: return "sort_by_highest_rating".localized()
+        case .low: return "sort_by_lowest_rating".localized()
         }
     }
 }

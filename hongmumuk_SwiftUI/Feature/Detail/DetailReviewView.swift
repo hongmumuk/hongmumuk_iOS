@@ -37,11 +37,11 @@ struct DetailReviewView: View {
                                     .resizable()
                                     .frame(width: 180, height: 180)
                                 Spacer().frame(height: 12)
-                                Text("작성된 리뷰가 없습니다.")
+                                Text("review_empty_title".localized())
                                     .fontStyle(Fonts.title2Bold)
                                     .foregroundColor(Colors.Label.Normal.strong)
                                 Spacer().frame(height: 8)
-                                Text("첫 리뷰를 작성해 보세요")
+                                Text("review_empty_message".localized())
                                     .fontStyle(Fonts.heading2Bold)
                                     .foregroundColor(Colors.Label.Normal.alternative)
                                 Spacer()
@@ -78,20 +78,20 @@ struct DetailReviewView: View {
                     .zIndex(999)
             }
         }
-        .alert("리뷰를 삭제하시겠습니까?", isPresented: viewStore.binding(
+        .alert("review_delete_confirm_title".localized(), isPresented: viewStore.binding(
             get: \.showDeleteAlert,
             send: .deleteAlertDismissed
         )) {
-            Button("취소", role: .cancel) {
+            Button("cancel".localized(), role: .cancel) {
                 viewStore.send(.deleteAlertDismissed)
             }
-            Button("삭제", role: .destructive) {
+            Button("common_delete".localized(), role: .destructive) {
                 if let reviewId = viewStore.reviewToDelete {
                     viewStore.send(.reviewDeleteConfirmed(reviewId))
                 }
             }
         } message: {
-            Text("삭제된 리뷰는 복구할 수 없습니다.")
+            Text("review_delete_confirm_warning".localized())
         }
     }
     
@@ -118,8 +118,7 @@ struct DetailReviewView: View {
                 Spacer()
                     .frame(width: 4)
                 
-                // TODO: 로컬라이즈드
-                Text("사진 리뷰만")
+                Text("photo_review_only".localized())
                     .fontStyle(Fonts.body1Medium)
                     .foregroundColor(Colors.GrayScale.neutral)
             }
@@ -131,7 +130,6 @@ struct DetailReviewView: View {
             viewStore.send(.sortButtonTapped)
         }) {
             HStack {
-                // TODO: 로컬라이즈드
                 Text(viewStore.sort.displayName)
                     .fontStyle(Fonts.body1Medium)
                     .foregroundColor(Colors.Primary.strong)
@@ -164,8 +162,7 @@ struct DetailReviewView: View {
             }))
             
             return ActionSheet(
-                // TODO: 로컬라이즈드
-                title: Text("정렬 기준"),
+                title: Text("sort_by".localized()),
                 buttons: buttons
             )
         }
@@ -182,25 +179,25 @@ struct DetailReviewView: View {
                     Image("penIcon")
                         .frame(width: 20, height: 20)
                     Spacer().frame(width: 8)
-                    Text("리뷰 작성하기")
+                    Text("review_write_cta".localized())
                         .fontStyle(Fonts.heading2Bold)
                         .foregroundColor(Colors.Primary.strong)
                 }
             }
             .padding(.horizontal, 24)
         }
-        .alert("리뷰를 쓰려면 로그인이 필요합니다", isPresented: viewStore.binding(
+        .alert("review_login_title".localized(), isPresented: viewStore.binding(
             get: \.showLoginAlert,
             send: .showLoginAlert(false)
         )) {
-            Button("취소", role: .cancel) {
+            Button("cancel".localized(), role: .cancel) {
                 viewStore.send(.showLoginAlert(false))
             }
-            Button("로그인") {
+            Button("login".localized()) {
                 parentViewStore.send(.navigationTo(.emailLogin))
             }
         } message: {
-            Text("로그인 후 리뷰를 작성할 수 있습니다")
+            Text("review_login_message".localized())
         }
     }
     
