@@ -15,8 +15,8 @@ enum ProfileReviewSort: String, CaseIterable {
     
     var displayName: String {
         switch self {
-        case .recent: return "최신순"
-        case .old: return "오래된순"
+        case .recent: return "sort_by_newest".localized()
+        case .old: return "sort_by_oldest".localized()
         }
     }
 }
@@ -263,7 +263,7 @@ struct ProfileFeature: Reducer {
             case let .reviewDeleteError(errorMessage):
                 let toastInfo = ToastInfo(
                     imageName: "warnIcon",
-                    message: "리뷰 삭제 중 오류가 발생했습니다."
+                    message: "review_delete_error_title".localized()
                 )
                 return .send(.showToast(toastInfo))
                 

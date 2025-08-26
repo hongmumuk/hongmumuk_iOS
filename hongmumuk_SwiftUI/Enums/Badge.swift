@@ -23,14 +23,7 @@ enum Badge: String, CaseIterable, Identifiable, Codable {
         "\(rawValue)_disabled"
     }
 
-    var displayName: String {
-        switch self {
-        case .newbie: return "리뷰 새내기"
-        case .explorer: return "홍대 맛잘알"
-        case .foodie: return "홍대 미식가"
-        case .master: return "맛집 최강자"
-        }
-    }
+    // displayName removed in favor of localizedName
     
     // rank 값으로 Badge 생성
     static func from(rank: Int) -> Badge {
@@ -40,6 +33,21 @@ enum Badge: String, CaseIterable, Identifiable, Codable {
         case 11 ... 29: return .foodie
         case 30...: return .master
         default: return .newbie
+        }
+    }
+}
+
+extension Badge {
+    var localizedName: String {
+        switch self {
+        case .newbie:
+            return "badge_review_rookie".localized()
+        case .explorer:
+            return "badge_hongdae_foodie".localized()
+        case .foodie:
+            return "badge_hongdae_gourmet".localized()
+        case .master:
+            return "badge_food_champion".localized()
         }
     }
 }

@@ -406,7 +406,7 @@ struct DetailFeature: Reducer {
                 if !state.isWriteReviewPresented, state.isSuccessWriteReview {
                     let toastInfo = ToastInfo(
                         imageName: "checkWhiteIcon",
-                        message: "리뷰 작성을 완료했어요"
+                        message: "review_submit_done".localized()
                     )
                     
                     state.reviewPage = 0
@@ -481,14 +481,14 @@ struct DetailFeature: Reducer {
             case let .reviewDeleteError(errorMessage):
                 let toastInfo = ToastInfo(
                     imageName: "warnIcon",
-                    message: "리뷰 삭제 중 오류가 발생했습니다."
+                    message: "review_delete_error_title".localized()
                 )
                 return .send(.showToast(toastInfo))
                 
             case let .reviewAvailabilityError(error):
                 let message = error == .alreadyWritten
-                    ? "리뷰는 가게 당 한 번만 작성할 수 있어요!"
-                    : "리뷰 작성 중 오류가 발생했습니다."
+                ? "review_already_written_today".localized()
+                : "review_delete_error_title".localized()
                 let toastInfo = ToastInfo(
                     imageName: "trumpetIcon",
                     message: message

@@ -17,7 +17,7 @@ extension ProfileSet {
         case .info:
             return "my_info".localized()
         case .myReviews:
-            return "내 리뷰"
+            return "review_mine".localized()
         case .service:
             return "terms_of_service".localized()
         case .privacy:
