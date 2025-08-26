@@ -14,7 +14,7 @@ struct ReviewWriteButton: View {
 
     var body: some View {
         NextButton(
-            title: "리뷰 작성하기",
+            title: "review_write_cta".localized(),
             isActive: viewStore.isWriteActive,
             action: { viewStore.send(.writeButtonTapped) }
         )

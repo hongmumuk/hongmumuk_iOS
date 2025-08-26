@@ -21,7 +21,7 @@ struct ReviewMakeTextView: View {
                 send: ReviewMakeFeature.Action.textChanged
             ),
             isFocused: $isFocused,
-            placeholder: "리뷰를 작성해 주세요",
+            placeholder: "review_please_write".localized(),
             count: viewStore.textCount,
             onFocusedChanged: { isFocused in
                 viewStore.send(.textFocusChanged(isFocused))
@@ -41,7 +41,7 @@ struct ReviewMakeTextView: View {
     struct ReviewEditorView: View {
         @Binding var text: String
         var isFocused: FocusState<Bool>.Binding
-        var placeholder: String = "리뷰를 작성해 주세요"
+        var placeholder: String = "review_please_write".localized()
         var height: CGFloat = 120
         var count: Int
         var onFocusedChanged: (Bool) -> Void = { _ in }
@@ -51,7 +51,7 @@ struct ReviewMakeTextView: View {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 8) {
-                Text("리뷰")
+                Text("review_title".localized())
                     .fontStyle(Fonts.heading3Bold)
                     .foregroundStyle(
                         status == .normal ? Colors.GrayScale.normal : Colors.SemanticColor.negative)

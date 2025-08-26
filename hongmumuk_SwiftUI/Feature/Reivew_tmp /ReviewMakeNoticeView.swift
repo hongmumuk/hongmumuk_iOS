@@ -14,7 +14,7 @@ struct ReviewMakeNoticeView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Button(action: { viewStore.send(.noticeButtonTapped) }) {
-                Text("리뷰 작성 시 유의사항")
+                Text("review_guidelines_title".localized())
                     .fontStyle(Fonts.body2Medium)
                     .foregroundStyle(Colors.GrayScale.grayscal45)
                     .underline()

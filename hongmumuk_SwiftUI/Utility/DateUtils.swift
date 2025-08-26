@@ -30,7 +30,7 @@ enum DateUtils {
         }
         
         // 1일전~3일전
-        if days >= 1 && days <= 3 {
+        if days >= 1, days <= 3 {
             return "\(days)일전"
         }
         

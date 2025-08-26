@@ -70,7 +70,7 @@ struct ReviewMakeNoticeModalView: View {
                     .fill(Colors.Primary.normal)
                     .frame(height: 60)
                 
-                Text("유의사항을 확인했어요".localized())
+                Text("review_guidelines_ack".localized())
                     .fontStyle(Fonts.heading2Bold)
                     .foregroundColor(.white)
             }

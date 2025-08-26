@@ -16,6 +16,15 @@ struct ReviewMakeView: View {
     var onComplete: (Bool) -> Void
     @SwiftUI.Environment(\.dismiss) var dismiss
     
+    private let bullets = [
+        "review_guideline_honest_experience".localized(),
+        "review_guideline_profanity_policy".localized(),
+        "review_guideline_topics".localized(),
+        "review_guideline_own_photos".localized(),
+        "review_guideline_help_others".localized()
+    ]
+    .map { "· \($0)" }
+    
     init(store: StoreOf<ReviewMakeFeature>, onComplete: @escaping (Bool) -> Void) {
         self.store = store
         viewStore = ViewStore(store, observe: { $0 })
@@ -69,14 +78,8 @@ struct ReviewMakeView: View {
             set: { _, _ in viewStore.send(.dismissSheet) }
         )) {
             ReviewMakeNoticeModalView(
-                title: "리뷰 작성 유의사항".localized(),
-                content: """
-                · 솔직한 실제 방문 경험을 남겨 주세요.
-                · 욕설, 비방, 허위 정보가 포함된 리뷰는 통보 없이 삭제될 수 있습니다.
-                · 가게 음식, 분위기, 서비스 등 느낀 점을 자유롭게 작성해 주세요.
-                · 사진은 직접 촬영한 이미지를 올려 주세요.
-                · 타인이게 도움이 될 수 있는 정보를 작성해 주세요.
-                """,
+                title: "review_guidelines_title".localized(),
+                content: bullets.joined(separator: "\n"),
                 onDismiss: {
                     viewStore.send(.dismissSheet)
                 },
@@ -85,7 +88,7 @@ struct ReviewMakeView: View {
                 }
             )
         }
-        .alert("갤러리 접근 권한이 필요합니다.", isPresented: viewStore.binding(
+        .alert("review_gallery_permission_needed".localized(), isPresented: viewStore.binding(
             get: \.isShowingPhotoAuthAlert,
             send: .dismissSheet
         ),
@@ -100,9 +103,9 @@ struct ReviewMakeView: View {
                 }
             }
         }, message: {
-            Text("리뷰 이미지 업로드를 위해 권한이 필요합니다.".localized())
+            Text("review_photo_permission_needed".localized())
         })
-        .alert("카메라 접근 권한이 필요합니다.", isPresented: viewStore.binding(
+        .alert("review_camera_permission_needed".localized(), isPresented: viewStore.binding(
             get: \.isShowingCameraAuthAlert,
             send: .dismissSheet
         ),
@@ -117,20 +120,20 @@ struct ReviewMakeView: View {
                 }
             }
         }, message: {
-            Text("리뷰 이미지 업로드를 위해 권한이 필요합니다.".localized())
+            Text("review_photo_permission_needed".localized())
         })
-        .alert("리뷰 작성을 취소하시겠습니까?", isPresented: viewStore.binding(
+        .alert("review_discard_confirm_title".localized(), isPresented: viewStore.binding(
             get: \.isShowingCloseAlert,
             send: .dismissSheet
         ),
         actions: {
-            Button("취소".localized(), role: .none) {
+            Button("cancel".localized(), role: .none) {
                 dismiss()
             }
             
-            Button("계속 작성하기".localized(), role: .none) {}
+            Button("review_keep_writing".localized(), role: .none) {}
         }, message: {
-            Text("작성 중인 내용은 저장되지 않습니다.".localized())
+            Text("review_discard_warning".localized())
         })
         .onChange(of: viewStore.requestGalleryAuth) {
             if viewStore.requestGalleryAuth {
