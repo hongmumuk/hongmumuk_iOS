@@ -18,16 +18,16 @@ struct ReviewMakePhotoAddView: View {
             addPhotoButton // 그대로 재사용
         }
         .confirmationDialog(
-            "사진 추가", // 시트 제목
+            "review_add_photo".localized(), // 시트 제목
             isPresented: viewStore.binding(
                 get: \.isShowingPhotoActionSheet,
                 send: ReviewMakeFeature.Action.setPhotoActionSheet
             ),
             titleVisibility: .visible
         ) {
-            Button("사진 보관함") { viewStore.send(.photoMenuLibraryTapped) }
-            Button("사진 찍기") { viewStore.send(.photoMenuCameraTapped) }
-            Button("취소", role: .cancel) {}
+            Button("review_photo_library".localized()) { viewStore.send(.photoMenuLibraryTapped) }
+            Button("review_take_photo".localized()) { viewStore.send(.photoMenuCameraTapped) }
+            Button("cancel".localized(), role: .cancel) {}
         }
         .padding(.top, 24)
         .padding(.horizontal, 24)
@@ -48,7 +48,7 @@ struct ReviewMakePhotoAddView: View {
                     .resizable()
                     .frame(width: 20, height: 20)
                 
-                Text("사진 추가하기 (\(viewStore.photoCount)/5)")
+                Text("review_add_photos_cta".localized() + " (\(viewStore.photoCount)/5)")
                     .fontStyle(Fonts.body1Medium)
                     .foregroundStyle(Colors.Primary.primary55)
             }

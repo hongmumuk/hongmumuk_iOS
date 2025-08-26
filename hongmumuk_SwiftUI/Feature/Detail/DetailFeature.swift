@@ -467,8 +467,6 @@ struct DetailFeature: Reducer {
                 state.showLoginAlert = show
                 return .none
                 
-
-                
             case .reviewAvailabilityChecked:
                 state.isWriteReviewPresented = true
                 return .none
