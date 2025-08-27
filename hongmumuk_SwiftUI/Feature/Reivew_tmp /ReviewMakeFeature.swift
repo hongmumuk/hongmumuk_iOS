@@ -237,7 +237,7 @@ struct ReviewMakeFeature: Reducer {
                 
             case let .textFocusChanged(isFocused):
                 if !isFocused, state.textCount <= 20 {
-                    state.errorMessage = "리뷰는 최소 20자 이상 입력해 주세요."
+                    state.errorMessage = "review_min_chars".localized()
                     state.reviewTextStatus = .error
                 } else {
                     state.errorMessage = ""
