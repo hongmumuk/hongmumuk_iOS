@@ -206,7 +206,9 @@ struct ProfileMyReviewsView: View {
                         .frame(height: 24)
                     
                     Button(action: {
-                        // TODO: - rid 받아서
+                        if let restaurantId = review.restaurantId {
+                            parentViewStore.send(.restaurantNavigationTapped(restaurantId))
+                        }
                     }) {
                         HStack(spacing: 4) {
                             Text(review.restaurantName?.localized() ?? "")

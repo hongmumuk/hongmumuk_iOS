@@ -76,6 +76,7 @@ struct ProfileFeature: Reducer {
         case showToast(ToastInfo)
         case hideToast
         case deleteAlertDismissed
+        case restaurantNavigationTapped(Int)
     }
     
     @Dependency(\.keychainClient) var keychainClient
@@ -293,6 +294,9 @@ struct ProfileFeature: Reducer {
             case .deleteAlertDismissed:
                 state.showDeleteAlert = false
                 state.reviewToDelete = nil
+                return .none
+                
+            case let .restaurantNavigationTapped(_):
                 return .none
             }
         }
