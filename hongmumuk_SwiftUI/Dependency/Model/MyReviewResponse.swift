@@ -9,6 +9,7 @@ import Foundation
 
 struct MyReviewResponse: Codable, Equatable {
     let reviewId: Int
+    let rid: Int
     let rname: String
     let uname: String
     let star: Int
@@ -31,7 +32,8 @@ struct MyReviewResponse: Codable, Equatable {
             badge: rank.map { Badge.from(rank: $0) },
             rank: rank,
             restaurantName: rname,
-            category: category
+            category: category,
+            restaurantId: rid
         )
     }
 }

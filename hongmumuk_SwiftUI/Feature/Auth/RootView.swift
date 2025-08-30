@@ -21,10 +21,22 @@ struct RootView: View {
     // 자식 피쳐에서 자세한 스테이트 관찰이 필요할 때 -> Scope
     // 단순 네비게이션 -> Store에서 ParentStore 받기
     var body: some View {
-        NavigationStack(path: viewStore.binding(
+        let navigationBinding = viewStore.binding(
             get: \.navigationPath,
             send: { RootFeature.Action.setNavigationPath($0) }
-        )) {
+        )
+        
+        let versionAlertBinding = viewStore.binding(
+            get: \.showVersionAlert,
+            send: .setShowVersionAlert(false)
+        )
+        
+        let networkErrorBinding = Binding(
+            get: { viewStore.showNetworkError },
+            set: { viewStore.send(.setShowNetworkError($0)) }
+        )
+        
+        NavigationStack(path: navigationBinding) {
             Group {
                 if viewStore.showVersionAlert {
                     Color.clear
@@ -44,10 +56,7 @@ struct RootView: View {
                     }
                 }
             }
-            .alert("forced_update_title".localized(), isPresented: viewStore.binding(
-                get: \.showVersionAlert,
-                send: .setShowVersionAlert(false)
-            )) {
+            .alert("forced_update_title".localized(), isPresented: versionAlertBinding) {
                 Button("forced_update_store".localized(), action: {
                     viewStore.send(.forceUpdateTapped)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -60,10 +69,7 @@ struct RootView: View {
             } message: {
                 Text("forced_update_message".localized())
             }
-            .fullScreenCover(isPresented: Binding(
-                get: { viewStore.showNetworkError },
-                set: { viewStore.send(.setShowNetworkError($0)) }
-            )) {
+            .fullScreenCover(isPresented: networkErrorBinding) {
                 NetworkErrorView()
             }
             .navigationDestination(for: RootFeature.ActiveScreen.self) { screen in
@@ -194,6 +200,18 @@ struct RootView: View {
                         )
                         .navigationBarHidden(true)
                     }
+                case let .restaurantDetail(restaurantId):
+                    DetailView(
+                        store: Store(
+                            initialState: DetailFeature.State(id: restaurantId),
+                            reducer: { DetailFeature() },
+                            withDependencies: {
+                                $0.restaurantClient = RestaurantClient.liveValue
+                            }
+                        ),
+                        parentStore: store
+                    )
+                    .navigationBarHidden(true)
                 default:
                     Text("Error")
                 }

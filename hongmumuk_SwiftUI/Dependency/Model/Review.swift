@@ -19,6 +19,7 @@ struct Review: Codable, Equatable, Identifiable {
     var rank: Int?
     var restaurantName: String?
     var category: String?
+    var restaurantId: Int?
 
     enum CodingKeys: String, CodingKey {
         case id = "reviewId"
@@ -58,7 +59,8 @@ struct Review: Codable, Equatable, Identifiable {
         badge: Badge?,
         rank: Int? = nil,
         restaurantName: String? = nil,
-        category: String? = nil
+        category: String? = nil,
+        restaurantId: Int? = nil
     ) {
         self.id = id
         self.user = user
@@ -71,5 +73,6 @@ struct Review: Codable, Equatable, Identifiable {
         self.rank = rank
         self.restaurantName = restaurantName
         self.category = category
+        self.restaurantId = restaurantId
     }
 }
