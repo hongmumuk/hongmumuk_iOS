@@ -31,6 +31,7 @@ struct RootFeature: Reducer {
         case categoryList(Category)
         case profile(ProfileSet)
         case myReviews
+        case restaurantDetail(Int)
     }
     
     struct State: Equatable {
@@ -74,6 +75,7 @@ struct RootFeature: Reducer {
         
         case profileButtonTapped(ProfileSet)
         case inquryButtonTapped
+        case restaurantNavigationTapped(Int)
         
         case setShowNetworkError(Bool)
         case setShowVersionAlert(Bool)
@@ -283,6 +285,10 @@ struct RootFeature: Reducer {
                 
             case let .profileButtonTapped(type):
                 state.navigationPath.append(.profile(type))
+                return .none
+                
+            case let .restaurantNavigationTapped(restaurantId):
+                state.navigationPath.append(.restaurantDetail(restaurantId))
                 return .none
                 
             default:
