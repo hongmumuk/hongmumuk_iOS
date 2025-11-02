@@ -6,7 +6,6 @@
 //
 
 import AppTrackingTransparency
-import ComposableArchitecture
 import SwiftUI
 
 @main
@@ -19,14 +18,7 @@ struct Hongmumuk_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: Store(
-                    initialState: RootFeature.State(),
-                    reducer: {
-                        RootFeature()
-                    }
-                )
-            )
+            Text("홍무묵 3.0")
         }
     }
 
