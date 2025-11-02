@@ -172,7 +172,6 @@
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
 		BE5F1AA12D51EBA000D124DB /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1AA02D51EBA000D124DB /* HomeFeature.swift */; };
 		BE5F1AA32D51EC5D00D124DB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1AA22D51EC5D00D124DB /* HomeView.swift */; };
-		BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */; };
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
 		BE8299602D60AFD00081F979 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = BE82995F2D60AFD00081F979 /* Shimmer */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
@@ -450,7 +449,6 @@
 				BE25DD132D79E080006B819E /* Lottie in Frameworks */,
 				BE8299602D60AFD00081F979 /* Shimmer in Frameworks */,
 				BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */,
-				BE5F1AA62D51ED6800D124DB /* ComposableArchitecture in Frameworks */,
 				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 				2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */,
 				2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */,
@@ -959,7 +957,6 @@
 			);
 			name = hongmumuk_SwiftUI;
 			packageProductDependencies = (
-				BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */,
 				BE4F9B2A2D59E8D600E7CC46 /* Alamofire */,
 				BE82995F2D60AFD00081F979 /* Shimmer */,
 				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
@@ -1046,7 +1043,6 @@
 			mainGroup = BEFB83902D3D359F000D9537;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
@@ -2345,14 +2341,6 @@
 				minimumVersion = 5.10.2;
 			};
 		};
-		BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.17.1;
-			};
-		};
 		BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
@@ -2391,11 +2379,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		BE5F1AA52D51ED6800D124DB /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE5F1AA42D51ED6800D124DB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
 		};
 		BE82995F2D60AFD00081F979 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
