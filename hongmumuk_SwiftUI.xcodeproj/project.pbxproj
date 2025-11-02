@@ -46,7 +46,6 @@
 		2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097C72D42A11000D01792 /* prod.xcconfig */; };
 		2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2DF862E2BAA8B0052515C /* Badge.swift */; };
 		2FC2DF892E2BE2A20052515C /* Triangle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2DF882E2BE2A20052515C /* Triangle+.swift */; };
-		2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */; };
 		2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DD562E0B298300B34067 /* DateUtils.swift */; };
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
@@ -60,17 +59,14 @@
 		BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A72E101DA3000F1212 /* UIImage+.swift */; };
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
-		BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE4F9B2A2D59E8D600E7CC46 /* Alamofire */; };
 		BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */; };
 		BE5B13182DA917C300EEC23D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE5B13162DA917C300EEC23D /* Localizable.strings */; };
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
-		BE8299602D60AFD00081F979 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = BE82995F2D60AFD00081F979 /* Shimmer */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
 		BE941F872DAE452A00C80FA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
-		BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = BECC4A4A2D6B42C300F72FAF /* NMapsMap */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 /* End PBXBuildFile section */
 
@@ -157,11 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE25DD132D79E080006B819E /* Lottie in Frameworks */,
-				BE8299602D60AFD00081F979 /* Shimmer in Frameworks */,
-				BECC4A4B2D6B42C300F72FAF /* NMapsMap in Frameworks */,
-				BE4F9B2B2D59E8D600E7CC46 /* Alamofire in Frameworks */,
 				2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */,
-				2FD2DD432E0A7C8300B34067 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,12 +358,8 @@
 			);
 			name = hongmumuk_SwiftUI;
 			packageProductDependencies = (
-				BE4F9B2A2D59E8D600E7CC46 /* Alamofire */,
-				BE82995F2D60AFD00081F979 /* Shimmer */,
-				BECC4A4A2D6B42C300F72FAF /* NMapsMap */,
 				BE25DD122D79E080006B819E /* Lottie */,
 				2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */,
-				2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -452,12 +440,8 @@
 			mainGroup = BEFB83902D3D359F000D9537;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 				BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
-				2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -1564,14 +1548,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.12.6;
-			};
-		};
 		2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
@@ -1588,38 +1564,9 @@
 				minimumVersion = 4.5.1;
 			};
 		};
-		BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.2;
-			};
-		};
-		BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.1;
-			};
-		};
-		BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.20.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FD2DD422E0A7C8300B34067 /* KakaoMapsSDK-SPM */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2FD2DD412E0A7C8300B34067 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
-			productName = "KakaoMapsSDK-SPM";
-		};
 		2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
@@ -1629,21 +1576,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		BE4F9B2A2D59E8D600E7CC46 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE4F9B292D59E8D600E7CC46 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		BE82995F2D60AFD00081F979 /* Shimmer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE82995E2D60AFD00081F979 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
-			productName = Shimmer;
-		};
-		BECC4A4A2D6B42C300F72FAF /* NMapsMap */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BECC4A492D6B42C300F72FAF /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
-			productName = NMapsMap;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
