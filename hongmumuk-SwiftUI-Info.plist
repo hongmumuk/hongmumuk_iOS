@@ -10,8 +10,6 @@
 	<string>$(DEV_KEY)</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-6434961075836011~8565268924</string>
-	<key>KAKAO_APP_KEY</key>
-	<string>$(KAKAO_APP_KEY)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
