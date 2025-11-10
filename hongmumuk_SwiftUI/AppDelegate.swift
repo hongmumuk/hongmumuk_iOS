@@ -6,6 +6,7 @@
 //
 
 import AppsFlyerLib
+import GoogleMobileAds
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,10 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        AppsFlyerLib.shared().appsFlyerDevKey = Constant.appsFlyerDevKey
-        AppsFlyerLib.shared().appleAppID = Constant.appleAppID
-        AppsFlyerLib.shared().delegate = self
-        AppsFlyerLib.shared().start()
+        setUpAppsFlyer()
+        setUpAdMob()
         
         return true
     }
@@ -35,6 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         AppsFlyerLib.shared().handleOpen(url, options: options)
         return true
+    }
+    
+    private func setUpAppsFlyer() {
+        AppsFlyerLib.shared().appsFlyerDevKey = Constant.appsFlyerDevKey
+        AppsFlyerLib.shared().appleAppID = Constant.appleAppID
+        AppsFlyerLib.shared().delegate = self
+        AppsFlyerLib.shared().start()
+    }
+    
+    private func setUpAdMob() {
+        MobileAds.shared.start()
     }
 }
 
