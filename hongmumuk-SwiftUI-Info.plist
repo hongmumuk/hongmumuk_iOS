@@ -23,5 +23,7 @@
 		<string>Pretendard-SemiBold.otf</string>
 		<string>Pretendard-Medium.otf</string>
 	</array>
+	<key>nativeAdUnitId</key>
+	<string>$(nativeAdUnitId)</string>
 </dict>
 </plist>
