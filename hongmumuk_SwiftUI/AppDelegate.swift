@@ -6,6 +6,7 @@
 //
 
 import AppsFlyerLib
+import FirebaseCore
 import GoogleMobileAds
 import UIKit
 
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         setUpAppsFlyer()
         setUpAdMob()
+        setUpFirebase()
         
         return true
     }
@@ -45,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setUpAdMob() {
         MobileAds.shared.start()
+    }
+    
+    private func setUpFirebase() {
+        FirebaseApp.configure()
     }
 }
 
