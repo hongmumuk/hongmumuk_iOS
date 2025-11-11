@@ -75,6 +75,7 @@
 		BEECD2B52EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
 		BEECD2B62EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
 		BEECD2B72EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
+		BEECD2B92EC2FD9E00D178C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEECD2B82EC2FD9E00D178C5 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BEECD2B82EC2FD9E00D178C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +329,7 @@
 				BEB42C2A2D7575770040F65F /* Epmty.swift */,
 				BE25DCFE2D79C283006B819E /* ProfileSet.swift */,
 				2FC2DF862E2BAA8B0052515C /* Badge.swift */,
+				BEECD2B82EC2FD9E00D178C5 /* Event.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */,
 				BE25DD032D79C840006B819E /* Bundle+.swift in Sources */,
+				BEECD2B92EC2FD9E00D178C5 /* Event.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
