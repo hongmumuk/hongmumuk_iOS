@@ -5,12 +5,10 @@
 //  Created by Dongwan Ryoo on 11/11/25.
 //
 
-import Foundation
 import Firebase
+import Foundation
 
-enum Event {
-    
-}
+enum Event {}
 
 extension Event {
     var name: String {
@@ -20,6 +18,6 @@ extension Event {
     }
     
     func send(_ parameters: [String: Any]? = nil) {
-        Analytics.logEvent(self.name, parameters: parameters)
+        Analytics.logEvent(name, parameters: parameters)
     }
 }
