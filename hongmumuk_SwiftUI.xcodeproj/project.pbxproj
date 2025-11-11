@@ -773,8 +773,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -818,8 +816,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1002,8 +998,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1151,8 +1145,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1293,8 +1285,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1435,8 +1425,6 @@
 				INFOPLIST_FILE = "hongmumuk-SwiftUI-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "홍무묵_dev";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "리뷰 이미지 업로드를 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "당신의 광고 경험을 개선하기 위해 앱 활동을 추적합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
