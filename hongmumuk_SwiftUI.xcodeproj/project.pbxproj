@@ -72,6 +72,9 @@
 		BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */; };
 		BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */; };
 		BEECD2B32EC2FB0100D178C5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2B22EC2FB0100D178C5 /* FirebaseRemoteConfig */; };
+		BEECD2B52EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
+		BEECD2B62EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
+		BEECD2B72EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,7 @@
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
+		BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hongmumuk_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83A92D3D35A1000D9537 /* hongmumuk_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFB83B32D3D35A1000D9537 /* hongmumuk_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hongmumuk_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +287,7 @@
 		2FA097C52D42A0EC00D01792 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */,
 				BE4F9B2D2D59EE2C00E7CC46 /* hongmumuk-SwiftUI-Info.plist */,
 				2FA097C62D42A11000D01792 /* dev.xcconfig */,
 				2FA097C72D42A11000D01792 /* prod.xcconfig */,
@@ -491,6 +496,7 @@
 				2F435EBB2D4FC26E005E1C84 /* Pretendard-Black.otf in Resources */,
 				2F435EBC2D4FC26E005E1C84 /* Pretendard-ExtraBold.otf in Resources */,
 				2F435EBD2D4FC26E005E1C84 /* Pretendard-Thin.otf in Resources */,
+				BEECD2B72EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */,
 				BE2D3BCD2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json in Resources */,
 				2F435EBE2D4FC26E005E1C84 /* Pretendard-Light.otf in Resources */,
 				2FA0979D2D42865400D01792 /* .swiftlint.yml in Resources */,
@@ -501,6 +507,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEECD2B52EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */,
 				2FA097C92D42A11000D01792 /* stag.xcconfig in Resources */,
 				2FA097CA2D42A11000D01792 /* dev.xcconfig in Resources */,
 				2FA097CB2D42A11000D01792 /* prod.xcconfig in Resources */,
@@ -512,6 +519,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEECD2B62EC2FB5400D178C5 /* GoogleService-Info.plist in Resources */,
 				2FA097CF2D42A11000D01792 /* stag.xcconfig in Resources */,
 				2FA097D02D42A11000D01792 /* dev.xcconfig in Resources */,
 				2FA097D12D42A11000D01792 /* prod.xcconfig in Resources */,
