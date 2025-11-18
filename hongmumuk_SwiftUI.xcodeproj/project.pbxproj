@@ -26,7 +26,6 @@
 		2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F68B4B02D717EBA00548850 /* TextFieldState.swift */; };
 		2F85BD5C2D916BFF0049FA77 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85BD5B2D916BFF0049FA77 /* Notification.swift */; };
 		2FA097852D427FC400D01792 /* hongmumuk_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */; };
-		2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA097892D427FC900D01792 /* ContentView.swift */; };
 		2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */; };
 		2FA0978E2D427FC900D01792 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097862D427FC900D01792 /* Preview Assets.xcassets */; };
 		2FA0978F2D427FC900D01792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA097882D427FC900D01792 /* Assets.xcassets */; };
@@ -68,6 +67,7 @@
 		BE941F872DAE452A00C80FA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
+		BEC591CA2ECC271400C6AB1D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC591C92ECC271400C6AB1D /* DetailView.swift */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */; };
 		BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */; };
@@ -117,7 +117,6 @@
 		2FA097832D427FC400D01792 /* hongmumuk_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUITests.swift; sourceTree = "<group>"; };
 		2FA097862D427FC900D01792 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2FA097882D427FC900D01792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2FA097892D427FC900D01792 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUIApp.swift; sourceTree = "<group>"; };
 		2FA097902D427FCF00D01792 /* hongmumuk_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		2FA097912D427FCF00D01792 /* hongmumuk_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hongmumuk_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -149,6 +148,7 @@
 		BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		BEC591C92ECC271400C6AB1D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEECD2B82EC2FD9E00D178C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -260,6 +260,7 @@
 		2FA0978B2D427FC900D01792 /* hongmumuk_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				BEC591C82ECC270D00C6AB1D /* Feat */,
 				BE5B13152DA917A000EEC23D /* Localization */,
 				2F68B49B2D70D05D00548850 /* Utility */,
 				BE5F1A942D51EB2500D124DB /* Enums */,
@@ -271,7 +272,6 @@
 				BEB42C302D758C0D0040F65F /* Loading.json */,
 				2FA097882D427FC900D01792 /* Assets.xcassets */,
 				2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */,
-				2FA097892D427FC900D01792 /* ContentView.swift */,
 				2FA0978A2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift */,
 			);
 			path = hongmumuk_SwiftUI;
@@ -332,6 +332,14 @@
 				BEECD2B82EC2FD9E00D178C5 /* Event.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		BEC591C82ECC270D00C6AB1D /* Feat */ = {
+			isa = PBXGroup;
+			children = (
+				BEC591C92ECC271400C6AB1D /* DetailView.swift */,
+			);
+			path = Feat;
 			sourceTree = "<group>";
 		};
 		BEFB83902D3D359F000D9537 = {
@@ -591,7 +599,6 @@
 				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
 				BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */,
 				BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */,
-				2FA0978C2D427FC900D01792 /* ContentView.swift in Sources */,
 				BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */,
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */,
@@ -603,6 +610,7 @@
 				2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
+				BEC591CA2ECC271400C6AB1D /* DetailView.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
 				BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */,
