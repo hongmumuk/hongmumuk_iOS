@@ -6,13 +6,23 @@ struct HMLargeTitle: View {
     var body: some View {
         HStack {
             Text(title)
-                .fontStyle(Fonts.title2Bold)
-                .padding(.top, 32)
-                .padding(.bottom, 12)
-                .padding(.horizontal, 24)
+                .setFont()
+                .setPadding()
             
             Spacer()
         }
         .background(.red)
+    }
+}
+
+private extension View {
+    func setFont() -> some View {
+        fontStyle(Fonts.title2Bold)
+    }
+    
+    func setPadding() -> some View {
+        padding(.top, 32)
+            .padding(.bottom, 12)
+            .padding(.horizontal, 24)
     }
 }

@@ -9,16 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 0) {
+            HMLargeTitle(title: "오늘의 추천 맛집")
+            HMLagePhotoList()
+            HMLargeTitle(title: "에디터 추천 5선")
+            HMMediumPhotoList()
+            Spacer()
         }
-        .padding()
+        .padding(.vertical)
     }
-}
-
-#Preview {
-    ContentView()
 }

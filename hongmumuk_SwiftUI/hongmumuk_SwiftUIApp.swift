@@ -18,11 +18,7 @@ struct Hongmumuk_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            VStack {
-                Spacer()
-                HMLargeTitle(title: "오늘의 추천 맛집")
-                Spacer()
-            }
+            ContentView()
         }
     }
 

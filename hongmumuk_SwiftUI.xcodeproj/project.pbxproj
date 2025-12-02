@@ -50,7 +50,11 @@
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
 		BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09C2D607D0C00F61E66 /* Sort.swift */; };
+		BE1E5A7E2EDEF64D002C38EC /* HMMediumPhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */; };
+		BE1E5A802EDEF675002C38EC /* HMMediumPhotoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */; };
 		BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */; };
+		BE22A4B32EDEC7300019164B /* HMLagePhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22A4B22EDEC7300019164B /* HMLagePhotoList.swift */; };
+		BE235B772EDED3CE0084560B /* HMLargePhotoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */; };
 		BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DCFE2D79C283006B819E /* ProfileSet.swift */; };
 		BE25DD032D79C840006B819E /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DD022D79C840006B819E /* Bundle+.swift */; };
 		BE25DD132D79E080006B819E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE25DD122D79E080006B819E /* Lottie */; };
@@ -131,7 +135,11 @@
 		2FD2DD562E0B298300B34067 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE02D09C2D607D0C00F61E66 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMediumPhotoList.swift; sourceTree = "<group>"; };
+		BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMediumPhotoCard.swift; sourceTree = "<group>"; };
 		BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargeTitle.swift; sourceTree = "<group>"; };
+		BE22A4B22EDEC7300019164B /* HMLagePhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLagePhotoList.swift; sourceTree = "<group>"; };
+		BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargePhotoCard.swift; sourceTree = "<group>"; };
 		BE25DCFE2D79C283006B819E /* ProfileSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSet.swift; sourceTree = "<group>"; };
 		BE25DD022D79C840006B819E /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		BE2D3BC62DAB99200008BA40 /* localize.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = localize.py; sourceTree = "<group>"; };
@@ -312,6 +320,10 @@
 			isa = PBXGroup;
 			children = (
 				BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */,
+				BE22A4B22EDEC7300019164B /* HMLagePhotoList.swift */,
+				BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */,
+				BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */,
+				BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -625,9 +637,13 @@
 				BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */,
 				BE25DD032D79C840006B819E /* Bundle+.swift in Sources */,
 				BEECD2B92EC2FD9E00D178C5 /* Event.swift in Sources */,
+				BE235B772EDED3CE0084560B /* HMLargePhotoCard.swift in Sources */,
+				BE1E5A802EDEF675002C38EC /* HMMediumPhotoCard.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
+				BE22A4B32EDEC7300019164B /* HMLagePhotoList.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
+				BE1E5A7E2EDEF64D002C38EC /* HMMediumPhotoList.swift in Sources */,
 				2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
