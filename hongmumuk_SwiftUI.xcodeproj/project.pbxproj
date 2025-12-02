@@ -52,6 +52,8 @@
 		BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09C2D607D0C00F61E66 /* Sort.swift */; };
 		BE1E5A7E2EDEF64D002C38EC /* HMMediumPhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */; };
 		BE1E5A802EDEF675002C38EC /* HMMediumPhotoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */; };
+		BE1E5A822EDEF8A9002C38EC /* HMSmallPhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A812EDEF8A9002C38EC /* HMSmallPhotoList.swift */; };
+		BE1E5A842EDEF8B1002C38EC /* HMSmallPhotoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E5A832EDEF8B1002C38EC /* HMSmallPhotoCard.swift */; };
 		BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */; };
 		BE22A4B32EDEC7300019164B /* HMLagePhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22A4B22EDEC7300019164B /* HMLagePhotoList.swift */; };
 		BE235B772EDED3CE0084560B /* HMLargePhotoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */; };
@@ -68,6 +70,7 @@
 		BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */; };
 		BE5B13182DA917C300EEC23D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE5B13162DA917C300EEC23D /* Localizable.strings */; };
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
+		BE715BA22EDEFA2100F76E12 /* HMImageOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE715BA12EDEFA2100F76E12 /* HMImageOverlay.swift */; };
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
 		BE941F872DAE452A00C80FA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */; };
@@ -137,6 +140,8 @@
 		BE02D09C2D607D0C00F61E66 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMediumPhotoList.swift; sourceTree = "<group>"; };
 		BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMediumPhotoCard.swift; sourceTree = "<group>"; };
+		BE1E5A812EDEF8A9002C38EC /* HMSmallPhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSmallPhotoList.swift; sourceTree = "<group>"; };
+		BE1E5A832EDEF8B1002C38EC /* HMSmallPhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSmallPhotoCard.swift; sourceTree = "<group>"; };
 		BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargeTitle.swift; sourceTree = "<group>"; };
 		BE22A4B22EDEC7300019164B /* HMLagePhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLagePhotoList.swift; sourceTree = "<group>"; };
 		BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargePhotoCard.swift; sourceTree = "<group>"; };
@@ -153,6 +158,7 @@
 		BE5B13172DA917C300EEC23D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE5B131A2DA917CC00EEC23D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE5F1A932D51EB2500D124DB /* Cateogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cateogory.swift; sourceTree = "<group>"; };
+		BE715BA12EDEFA2100F76E12 /* HMImageOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMImageOverlay.swift; sourceTree = "<group>"; };
 		BE79E7742D61BCC9002D57D8 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		BE8299612D60B5E70081F979 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		BE941F852DAE3F5D00C80FA2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -324,6 +330,9 @@
 				BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */,
 				BE1E5A7D2EDEF64D002C38EC /* HMMediumPhotoList.swift */,
 				BE1E5A7F2EDEF674002C38EC /* HMMediumPhotoCard.swift */,
+				BE1E5A812EDEF8A9002C38EC /* HMSmallPhotoList.swift */,
+				BE1E5A832EDEF8B1002C38EC /* HMSmallPhotoCard.swift */,
+				BE715BA12EDEFA2100F76E12 /* HMImageOverlay.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 				BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F85BD5C2D916BFF0049FA77 /* Notification.swift in Sources */,
+				BE1E5A842EDEF8B1002C38EC /* HMSmallPhotoCard.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
 				BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */,
@@ -627,6 +637,7 @@
 				2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */,
 				BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */,
 				BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */,
+				BE715BA22EDEFA2100F76E12 /* HMImageOverlay.swift in Sources */,
 				2FC2DF892E2BE2A20052515C /* Triangle+.swift in Sources */,
 				BE8299622D60B5E70081F979 /* String+.swift in Sources */,
 				BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */,
@@ -646,6 +657,7 @@
 				BE1E5A7E2EDEF64D002C38EC /* HMMediumPhotoList.swift in Sources */,
 				2FC2DF872E2BAA8B0052515C /* Badge.swift in Sources */,
 				2F435EA42D4FBF5A005E1C84 /* View+.swift in Sources */,
+				BE1E5A822EDEF8A9002C38EC /* HMSmallPhotoList.swift in Sources */,
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
