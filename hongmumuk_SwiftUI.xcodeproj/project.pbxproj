@@ -50,6 +50,7 @@
 		2FF95D3D2DEC83BB005BA558 /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */; };
 		2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */; };
 		BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09C2D607D0C00F61E66 /* Sort.swift */; };
+		BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */; };
 		BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DCFE2D79C283006B819E /* ProfileSet.swift */; };
 		BE25DD032D79C840006B819E /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DD022D79C840006B819E /* Bundle+.swift */; };
 		BE25DD132D79E080006B819E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE25DD122D79E080006B819E /* Lottie */; };
@@ -130,6 +131,7 @@
 		2FD2DD562E0B298300B34067 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		2FF95D3E2DEC84AE005BA558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE02D09C2D607D0C00F61E66 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargeTitle.swift; sourceTree = "<group>"; };
 		BE25DCFE2D79C283006B819E /* ProfileSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSet.swift; sourceTree = "<group>"; };
 		BE25DD022D79C840006B819E /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		BE2D3BC62DAB99200008BA40 /* localize.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = localize.py; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		BE22A4AE2EDEC50E0019164B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BE22A4B02EDEC5EA0019164B /* HMLargeTitle.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				2F85BD5C2D916BFF0049FA77 /* Notification.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
+				BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
 				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,
 				2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */,
