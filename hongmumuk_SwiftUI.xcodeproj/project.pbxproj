@@ -260,6 +260,7 @@
 		2FA0978B2D427FC900D01792 /* hongmumuk_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				BE22A4AF2EDEC50E0019164B /* Presentation */,
 				BE5B13152DA917A000EEC23D /* Localization */,
 				2F68B49B2D70D05D00548850 /* Utility */,
 				BE5F1A942D51EB2500D124DB /* Enums */,
@@ -296,6 +297,29 @@
 				2FA097C82D42A11000D01792 /* stag.xcconfig */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		BE22A4AD2EDEC50E0019164B /* Benefit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Benefit;
+			sourceTree = "<group>";
+		};
+		BE22A4AE2EDEC50E0019164B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BE22A4AF2EDEC50E0019164B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BE22A4AE2EDEC50E0019164B /* Home */,
+				BE22A4AD2EDEC50E0019164B /* Benefit */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		BE5B13152DA917A000EEC23D /* Localization */ = {
