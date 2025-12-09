@@ -17,6 +17,8 @@ struct ContentView: View {
                 HMMediumPhotoList()
                 HMLargeTitle(title: "새로운 장소가 궁금하다면?")
                 HMSmallPhotoList()
+                HMLargeTitle(title: "카테고리별로 볼래요")
+                HMFilter()
                 Spacer()
             }
         }
