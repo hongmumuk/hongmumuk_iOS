@@ -18,7 +18,7 @@ struct Hongmumuk_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Text("홍무묵 3.0")
+            ContentView()
         }
     }
 
