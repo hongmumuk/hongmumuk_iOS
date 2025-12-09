@@ -9,8 +9,8 @@ struct HMSmallPhotoCard: View {
         HStack(spacing: 20) {
             imageStack()
             textStack()
-            Spacer()
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     private func imageStack() -> some View {
@@ -92,8 +92,9 @@ extension HMSmallPhotoCard {
 
 extension HMSmallPhotoCard {
     private func title() -> some View {
-        Text(card.title)
-            .fontStyle(Fonts.heading2Bold)
+        let isBenifit = card is HMBeniftSmallPhoto
+        return Text(card.title)
+            .fontStyle(isBenifit ? Fonts.heading3Bold : Fonts.heading2Bold)
             .lineLimit(1)
             .truncationMode(.tail)
             .padding(.bottom, 10)

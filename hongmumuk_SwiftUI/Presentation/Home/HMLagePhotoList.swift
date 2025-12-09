@@ -17,7 +17,6 @@ struct HMLagePhotoList: View {
             .scrollTargetBehavior(.viewAligned)
         }
         .frame(height: 200)
-        .background(.blue)
     }
 }
 
@@ -35,26 +34,5 @@ let cards: [HMLagePhoto] = [
         category: .korean,
         views: 89,
         distance: 5
-    ),
-    .init(
-        title: "제육볶음 장인",
-        subtitle: "불타는 제육",
-        category: .asian,
-        views: 201,
-        distance: 3
-    ),
-    .init(
-        title: "연남동 감성 카페",
-        subtitle: "브루잉데이",
-        category: .chinese,
-        views: 56,
-        distance: 7
-    ),
-    .init(
-        title: "떡볶이 레전드",
-        subtitle: "할매분식",
-        category: .snack,
-        views: 310,
-        distance: 2
     )
 ]

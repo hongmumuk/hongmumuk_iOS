@@ -11,61 +11,60 @@ struct HMSmallPhotoList: View {
                     .padding(.vertical, 12)
             }
         }
-        .background(.green)
     }
 }
 
 let tagSmallCards: [HMTagSmallPhoto] = [
     .init(
-        title: "연남동 브런치",
-        tags: ["브런치", "감성", "사진맛집"],
+        title: "요즘 뜨는 홍대 커피바, 틴클",
+        tags: ["상수역", "에스프레소바"],
         category: .asian,
-        distance: 3
+        distance: 10
     ),
     .init(
-        title: "불타는 제육",
-        tags: ["제육", "매콤", "밥도둑"],
-        category: .chinese,
-        distance: 5
+        title: "장소만 옮겼어요, 하카타분코",
+        tags: ["사장님은", "같아요"],
+        category: .japanese,
+        distance: 10
     ),
     .init(
-        title: "집밥 김치찌개",
-        tags: ["김치찌개", "한식", "혼밥"],
-        category: .korean,
-        distance: 2
+        title: "리뉴얼해서 돌아온, 별버거",
+        tags: ["10년째", "단골"],
+        category: .asian,
+        distance: 10
     )
 ]
 
 let categorySmallCards: [HMCategorySmallPhoto] = [
     .init(
-        title: "연남 감성 카페",
+        title: "집밥김치찌개",
         tag: "베스트",
-        category: .asian,
-        distance: 3
+        category: .korean,
+        distance: 10
     ),
     .init(
-        title: "홍대 짜장면 맛집",
-        tag: "에디터픽",
-        category: .chinese,
-        distance: 5
+        title: "하카타 분코",
+        tag: "에디터 픽",
+        category: .japanese,
+        distance: 10
     ),
     .init(
-        title: "감성 브런치 식당",
-        tag: "브런치",
+        title: "별버거",
+        tag: "새로운",
         category: .asian,
-        distance: 6
+        distance: 10
     )
 ]
 
 let cafeBenefitCards: [HMBeniftSmallPhoto] = [
     .init(
-        title: "입장료 10% 즉시 할인",
+        title: "평일/주말 언제든 10% 할인",
         subTitle: "HIDE AND SEEK 쌈지길점",
-        tag: "방탈출",
+        tag: "방탈출 카페",
         address: "서울 마포구 잔다리로 143"
     ),
     .init(
-        title: "전 메뉴 10% 할인 (최대 5만원)",
+        title: "전 메뉴 10% 할인 (5만원 이하까지)",
         subTitle: "꾸울과자점",
         tag: "베이커리",
         address: "서울 마포구 상수동 88-14"
@@ -74,7 +73,7 @@ let cafeBenefitCards: [HMBeniftSmallPhoto] = [
 
 let restaurantBenefitCards: [HMBeniftSmallPhoto] = [
     .init(
-        title: "결제 금액 10% 할인",
+        title: "전체 금액에서 10% 할인",
         subTitle: "고토히라우동",
         tag: "일식",
         address: "서울 마포구 서교동 327-20"

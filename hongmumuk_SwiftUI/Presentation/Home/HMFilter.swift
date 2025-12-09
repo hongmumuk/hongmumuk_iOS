@@ -1,24 +1,28 @@
 import SwiftUI
 
 struct HMFilter: View {
+    // 임시 프로퍼티
     @State private var selected: Category? = nil
     private let categories: [Category] = Category.allCases.filter { $0 != .all }
+    let isImage: Bool
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
+            HStack(spacing: 8) {
                 ForEach(categories, id: \.self) { category in
                     HMFilterButton(
                         imageName: category.rawValue,
                         title: category.displayName,
-                        isSelected: category == selected
+                        isSelected: category == selected,
+                        isImage: isImage
                     ) {
                         action(category)
                     }
                 }
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .padding(.bottom, 16)
+            .padding(.horizontal, 24)
         }
     }
     
@@ -35,17 +39,20 @@ struct HMFilterButton: View {
     let imageName: String?
     let title: String
     let isSelected: Bool
+    let isImage: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
-                image(for: imageName)
+                if isImage {
+                    image(for: imageName)
+                }
+                
                 title(for: title)
             }
             .padding(.vertical, 6)
             .padding(.horizontal, 12)
-            .frame(minWidth: 82, minHeight: 36)
             .background(content: backgroundContent)
             .shadow(color: .black.opacity(0.05), radius: 12)
         }

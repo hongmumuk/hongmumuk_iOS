@@ -11,7 +11,6 @@ struct HMLargeTitle: View {
             
             Spacer()
         }
-        .background(.red)
     }
 }
 
