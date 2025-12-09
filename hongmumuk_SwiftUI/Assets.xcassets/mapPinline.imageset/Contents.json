@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "mapPinline.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
