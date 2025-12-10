@@ -21,7 +21,7 @@ struct HMMediumPhotoCard: View {
     }
     
     private func bottomStack() -> some View {
-        VStack {
+        VStack(alignment: .leading) {
             viewIcon()
             Spacer()
             titleStack()
@@ -40,7 +40,6 @@ struct HMMediumPhotoCard: View {
                 .fontStyle(Fonts.caption1Medium)
         }
         .frame(height: 17)
-        .padding(.top, 20)
     }
     
     private func titleStack() -> some View {
