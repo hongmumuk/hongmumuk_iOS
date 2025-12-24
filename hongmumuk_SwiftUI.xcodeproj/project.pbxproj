@@ -60,6 +60,7 @@
 		BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DCFE2D79C283006B819E /* ProfileSet.swift */; };
 		BE25DD032D79C840006B819E /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DD022D79C840006B819E /* Bundle+.swift */; };
 		BE25DD132D79E080006B819E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE25DD122D79E080006B819E /* Lottie */; };
+		BE2712D22EF2680C00D09128 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2712D12EF2680C00D09128 /* DetailView.swift */; };
 		BE2D3BC72DAB99200008BA40 /* localize.py in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3BC62DAB99200008BA40 /* localize.py */; };
 		BE2D3BCD2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3BCC2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json */; };
 		BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D70C92D818710002FA07C /* NetworkManager.swift */; };
@@ -148,6 +149,7 @@
 		BE235B762EDED3CE0084560B /* HMLargePhotoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLargePhotoCard.swift; sourceTree = "<group>"; };
 		BE25DCFE2D79C283006B819E /* ProfileSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSet.swift; sourceTree = "<group>"; };
 		BE25DD022D79C840006B819E /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		BE2712D12EF2680C00D09128 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BE2D3BC62DAB99200008BA40 /* localize.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = localize.py; sourceTree = "<group>"; };
 		BE2D3BCC2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hongmumuk-localization-456509-c03bc9f5eaee.json"; sourceTree = "<group>"; };
 		BE2D70C92D818710002FA07C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -344,9 +346,18 @@
 			isa = PBXGroup;
 			children = (
 				BE22A4AE2EDEC50E0019164B /* Home */,
+				BE2712D02EF2680500D09128 /* Detail */,
 				BE22A4AD2EDEC50E0019164B /* Benefit */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BE2712D02EF2680500D09128 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BE2712D12EF2680C00D09128 /* DetailView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		BE5B13152DA917A000EEC23D /* Localization */ = {
@@ -635,6 +646,7 @@
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
 				BE22A4B12EDEC5EA0019164B /* HMLargeTitle.swift in Sources */,
+				BE2712D22EF2680C00D09128 /* DetailView.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
 				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,
 				2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */,

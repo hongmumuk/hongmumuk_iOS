@@ -32,7 +32,7 @@ struct HMMediumPhotoCard: View {
     private func viewIcon() -> some View {
         HStack(spacing: 4) {
             Spacer()
-            Image("View")
+            Image("view")
                 .frame(width: 16, height: 16)
             
             Text("\(card.views)")
