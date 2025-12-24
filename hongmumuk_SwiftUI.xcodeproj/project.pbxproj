@@ -69,6 +69,7 @@
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
 		BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */; };
+		BE53EF172EFBCA8500168871 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = BE53EF162EFBCA8500168871 /* Supabase */; };
 		BE5B13182DA917C300EEC23D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE5B13162DA917C300EEC23D /* Localizable.strings */; };
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
 		BE6547822EE7D70E00A00E25 /* HMFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6547812EE7D70E00A00E25 /* HMFilter.swift */; };
@@ -78,6 +79,7 @@
 		BE941F872DAE452A00C80FA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
+		BECBD5662EFBD16F005E234B /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5642EFBD16F005E234B /* SupabaseService.swift */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */; };
 		BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */; };
@@ -169,6 +171,7 @@
 		BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		BECBD5642EFBD16F005E234B /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEECD2B82EC2FD9E00D178C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE53EF172EFBCA8500168871 /* Supabase in Frameworks */,
 				BE34849E2EC1AB7B007A92A7 /* GoogleMobileAds in Frameworks */,
 				BE25DD132D79E080006B819E /* Lottie in Frameworks */,
 				BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */,
@@ -280,6 +284,7 @@
 		2FA0978B2D427FC900D01792 /* hongmumuk_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				BECBD5652EFBD16F005E234B /* Data */,
 				BE22A4AF2EDEC50E0019164B /* Presentation */,
 				BE5B13152DA917A000EEC23D /* Localization */,
 				2F68B49B2D70D05D00548850 /* Utility */,
@@ -396,6 +401,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		BECBD5652EFBD16F005E234B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BECBD5642EFBD16F005E234B /* SupabaseService.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		BEFB83902D3D359F000D9537 = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +455,7 @@
 				BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */,
 				BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */,
 				BEECD2B22EC2FB0100D178C5 /* FirebaseRemoteConfig */,
+				BE53EF162EFBCA8500168871 /* Supabase */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -526,6 +540,7 @@
 				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 				BE34849C2EC1AB7B007A92A7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				BEECD2AD2EC2FB0100D178C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BE53EF152EFBCA8500168871 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -668,6 +683,7 @@
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
 				BE22A4B32EDEC7300019164B /* HMLagePhotoList.swift in Sources */,
+				BECBD5662EFBD16F005E234B /* SupabaseService.swift in Sources */,
 				BE6547822EE7D70E00A00E25 /* HMFilter.swift in Sources */,
 				2FA0978D2D427FC900D01792 /* hongmumuk_SwiftUIApp.swift in Sources */,
 				BE1E5A7E2EDEF64D002C38EC /* HMMediumPhotoList.swift in Sources */,
@@ -1664,6 +1680,14 @@
 				minimumVersion = 12.13.0;
 			};
 		};
+		BE53EF152EFBCA8500168871 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
 		BEECD2AD2EC2FB0100D178C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1689,6 +1713,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE34849C2EC1AB7B007A92A7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		BE53EF162EFBCA8500168871 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE53EF152EFBCA8500168871 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
 		};
 		BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
