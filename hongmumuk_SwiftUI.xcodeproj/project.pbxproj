@@ -80,6 +80,7 @@
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
 		BECBD5662EFBD16F005E234B /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5642EFBD16F005E234B /* SupabaseService.swift */; };
+		BECBD5682EFBD645005E234B /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5672EFBD645005E234B /* HomeModel.swift */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
 		BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */; };
 		BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */; };
@@ -172,6 +173,7 @@
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		BECBD5642EFBD16F005E234B /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		BECBD5672EFBD645005E234B /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		BEECD2B42EC2FB5400D178C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEECD2B82EC2FD9E00D178C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				BECBD5642EFBD16F005E234B /* SupabaseService.swift */,
+				BECBD5672EFBD645005E234B /* HomeModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				2F68B49D2D70D09A00548850 /* CommonTextfieldStyle.swift in Sources */,
 				BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */,
 				2F435E9E2D4FBC05005E1C84 /* Color+.swift in Sources */,
+				BECBD5682EFBD645005E234B /* HomeModel.swift in Sources */,
 				BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,4 +11,13 @@ final class SupabaseService {
             supabaseKey: Constant.supabaseKey
         )
     }
+    
+    func getHome() async throws -> HomeModel {
+        let response: HomeModel = try await SupabaseService.shared.client
+            .rpc("get_screen", params: ["p_screen_key": "home"])
+            .execute()
+            .value
+        
+        return response
+    }
 }
