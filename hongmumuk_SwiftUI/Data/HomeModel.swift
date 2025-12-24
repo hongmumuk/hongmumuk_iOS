@@ -1,6 +1,6 @@
 import Foundation
 
-struct HomeModel: Decodable {
+struct ScreenModel: Decodable {
     let screenKey: String
     let specVersion: Int
     let sections: [Section]
@@ -19,7 +19,7 @@ struct Section: Decodable, Identifiable {
     let displayOrder: Int
     let type: SectionType
     let props: SectionProps
-    let items: [Content]
+    let items: [HomeItem]
     
     enum CodingKeys: String, CodingKey {
         case sectionKey = "section_key"
@@ -69,7 +69,7 @@ enum SectionShowItem: String, Decodable {
     case walkTime = "walk_time"
 }
 
-struct Content: Decodable, Identifiable {
+struct HomeItem: Decodable, Identifiable {
     let id: String
     let mainTitle: String
     let subTitle: String?

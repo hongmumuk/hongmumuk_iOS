@@ -60,5 +60,3 @@ struct Menu: Decodable, Identifiable {
         case isRecommended = "is_recommended"
     }
 }
-
-

@@ -3,7 +3,7 @@ import SwiftUI
 
 final class SupabaseService {
     static let shared = SupabaseService()
-    let client: SupabaseClient
+    private let client: SupabaseClient
         
     private init() {
         client = SupabaseClient(
@@ -12,9 +12,9 @@ final class SupabaseService {
         )
     }
     
-    func getHome() async throws -> HomeModel {
-        let response: HomeModel = try await SupabaseService.shared.client
-            .rpc("get_screen", params: ["p_screen_key": "home"])
+    func getScreen(for type: Screen) async throws -> ScreenModel {
+        let response: ScreenModel = try await SupabaseService.shared.client
+            .rpc("get_screen", params: ["p_screen_key": type.rawValue])
             .execute()
             .value
         
