@@ -423,12 +423,12 @@
 			children = (
 				BEBCC8232F0A543B0015CB4F /* HM.swift */,
 				BEEC2BD12F0A3AB10094EFAE /* HMFilter.swift */,
+				BEEC2BD52F0A3AB10094EFAE /* HMLargeTitle.swift */,
 				BEEC2BD22F0A3AB10094EFAE /* HMImageOverlay.swift */,
 				BEEC2BD32F0A3AB10094EFAE /* HMLagePhotoList.swift */,
 				BEEC2BD42F0A3AB10094EFAE /* HMLargePhotoCard.swift */,
-				BEEC2BD52F0A3AB10094EFAE /* HMLargeTitle.swift */,
-				BEEC2BD62F0A3AB10094EFAE /* HMMediumPhotoCard.swift */,
 				BEEC2BD72F0A3AB10094EFAE /* HMMediumPhotoList.swift */,
+				BEEC2BD62F0A3AB10094EFAE /* HMMediumPhotoCard.swift */,
 				BEEC2BD82F0A3AB10094EFAE /* HMSmallPhotoCard.swift */,
 				BEEC2BD92F0A3AB10094EFAE /* HMSmallPhotoList.swift */,
 			);

@@ -28,6 +28,11 @@ struct HomeView: View {
                         if let item = section as? HMLagePhotos {
                             HMLagePhotoList(cards: item)
                         }
+                        
+                    case .mediumPhoto:
+                        if let item = section as? HMMediumPhotos {
+                            HMMediumPhotoList(cards: item)
+                        }
                     }
                 }
             }
