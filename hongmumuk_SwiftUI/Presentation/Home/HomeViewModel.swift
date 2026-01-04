@@ -29,12 +29,14 @@ class HomeViewModel {
                         let item = fetchHMMediumPhoto(for: section.items)
                         sections.append(item)
                     case .small:
-                        print("small")
+                        let item = fetchTagSmallPhoto(for: section.items)
+                        sections.append(item)
                     case .none:
                         print("none")
                     }
                 case .categoryFilterList:
-                    print("categoryFilterList")
+                    let item = fetchCategorySmallPhoto(for: section.items)
+                    sections.append(item)
                 }
             }
         } catch {
@@ -69,6 +71,42 @@ class HomeViewModel {
                 title: item.mainTitle,
                 subtitle: item.subTitle ?? "",
                 views: item.viewCount ?? 0,
+                imageUrl: item.heroImageUrl ?? ""
+            )
+             
+            result.append(newItem)
+        }
+        
+        return .init(items: result)
+    }
+    
+    private func fetchTagSmallPhoto(for items: [HomeItem]) -> HMTagSmallPhotos {
+        var result: [HMTagSmallPhoto] = []
+        
+        for item in items {
+            let newItem: HMTagSmallPhoto = .init(
+                title: item.mainTitle,
+                tags: ["태그 입니다."],
+                category: .korean,
+                distance: item.walkTimeMin ?? 0,
+                imageUrl: item.heroImageUrl ?? ""
+            )
+             
+            result.append(newItem)
+        }
+        
+        return .init(items: result)
+    }
+    
+    private func fetchCategorySmallPhoto(for items: [HomeItem]) -> HMCategorySmallPhotos {
+        var result: [HMCategorySmallPhoto] = []
+        
+        for item in items {
+            let newItem: HMCategorySmallPhoto = .init(
+                title: item.mainTitle,
+                tag: "태그 입니다",
+                category: .korean,
+                distance: item.walkTimeMin ?? 0,
                 imageUrl: item.heroImageUrl ?? ""
             )
              

@@ -14,17 +14,14 @@ struct HMSmallPhotoCard: View {
     }
     
     private func imageStack() -> some View {
-        ZStack {
-            if let image = card.image {
-                image
-                    .resizable()
-                    .scaledToFill()
+        AsyncImage(url: URL(string: card.imageUrl))
+            .frame(width: size, height: size)
+            .overlay {
+                ZStack(alignment: .bottomLeading) {
+                    HMImageOverlay()
+                }
             }
-            
-            HMImageOverlay()
-        }
-        .frame(width: size, height: size)
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
     
     private func textStack() -> some View {
@@ -157,37 +154,4 @@ extension HMSmallPhotoCard {
                 .fontStyle(Fonts.caption1Medium)
         }
     }
-}
-
-protocol HMSmallPhoto: Identifiable {
-    var id: UUID { get }
-    var image: Image? { get }
-    var title: String { get }
-}
-
-struct HMTagSmallPhoto: HMSmallPhoto {
-    let id = UUID()
-    let image: Image? = nil
-    let title: String
-    let tags: [String]
-    let category: Category
-    let distance: Int
-}
-
-struct HMCategorySmallPhoto: HMSmallPhoto {
-    let id = UUID()
-    let image: Image? = nil
-    let title: String
-    let tag: String
-    let category: Category
-    let distance: Int
-}
-
-struct HMBeniftSmallPhoto: HMSmallPhoto {
-    let id = UUID()
-    let image: Image? = nil
-    let title: String
-    let subTitle: String
-    let tag: String
-    let address: String
 }
