@@ -8,6 +8,7 @@ protocol HM: Identifiable {
 enum HMLType {
     case title
     case largePhoto
+    case mediumPhoto
 }
 
 struct HMLTitle: HM {
@@ -29,5 +30,19 @@ struct HMLagePhoto: Identifiable {
     let category: Category
     let views: Int
     let distance: Int
+    let imageUrl: String
+}
+
+struct HMMediumPhotos: HM {
+    var id: UUID = .init()
+    var type: HMLType = .mediumPhoto
+    var items: [HMMediumPhoto]
+}
+
+struct HMMediumPhoto: Identifiable {
+    let id = UUID()
+    let title: String
+    let subtitle: String
+    let views: Int
     let imageUrl: String
 }
