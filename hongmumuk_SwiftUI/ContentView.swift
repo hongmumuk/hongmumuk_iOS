@@ -36,13 +36,5 @@ struct ContentView: View {
                 Text("혜택")
             }
         }
-        .task {
-            do {
-                let result = try await SupabaseService.shared.getScreen(for: .home)
-                print("result", result)
-            } catch {
-                print("error", error)
-            }
-        }
     }
 }
