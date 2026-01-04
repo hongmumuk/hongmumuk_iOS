@@ -33,6 +33,19 @@ struct HomeView: View {
                         if let item = section as? HMMediumPhotos {
                             HMMediumPhotoList(cards: item)
                         }
+                        
+                    case .tagSmallPhoto:
+                        if let item = section as? HMTagSmallPhotos {
+                            HMSmallPhotoList(cards: item.items)
+                        }
+                        
+                    case .categorySmallPhoto:
+                        if let item = section as? HMCategorySmallPhotos {
+                            VStack {
+                                HMFilter(isImage: true)
+                                HMSmallPhotoList(cards: item.items)
+                            }
+                        }
                     }
                 }
             }

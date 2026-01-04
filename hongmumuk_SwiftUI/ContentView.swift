@@ -22,11 +22,11 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                     HMFilter(isImage: false)
                     HMLargeTitle(title: "카페")
-                    HMSmallPhotoList(items: cafeBenefitCards)
+//                    HMSmallPhotoList(items: cafeBenefitCards)
                     HMLargeTitle(title: "음식점")
-                    HMSmallPhotoList(items: restaurantBenefitCards)
+//                    HMSmallPhotoList(items: restaurantBenefitCards)
                     HMLargeTitle(title: "생활/문화")
-                    HMSmallPhotoList(items: lifeCultureBenefitCards)
+//                    HMSmallPhotoList(items: lifeCultureBenefitCards)
                     Spacer()
                 }
             }
