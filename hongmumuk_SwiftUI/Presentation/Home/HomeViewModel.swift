@@ -3,15 +3,61 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     var isLoading = true
-    var items: ScreenModel?
+    var sections: [any HM] = []
     
     func getSections() async {
+        if !sections.isEmpty {
+            sections = []
+        }
+        
         do {
             let items = try await SupabaseService.shared.getScreen(for: .home)
-            self.items = items
+            
+            for section in items.sections {
+                if let title = section.props.title {
+                    let item = HMLTitle(title: title)
+                    sections.append(item)
+                }
+                
+                switch section.type {
+                case .cards:
+                    switch section.props.cardStyle {
+                    case .large:
+                        let item = fetchHMLagePhoto(for: section.items)
+                        sections.append(item)
+                    case .medium:
+                        print("medium")
+                    case .small:
+                        print("small")
+                    case .none:
+                        print("none")
+                    }
+                case .categoryFilterList:
+                    print("categoryFilterList")
+                }
+            }
         } catch {
             print("error", error)
         }
+    }
+    
+    func fetchHMLagePhoto(for items: [HomeItem]) -> HMLagePhotos {
+        var result: [HMLagePhoto] = []
+        
+        for item in items {
+            let newItem: HMLagePhoto = .init(
+                title: item.mainTitle,
+                subtitle: item.subTitle ?? "",
+                category: .init(rawValue: item.cuisineType!) ?? .korean,
+                views: item.viewCount ?? 0,
+                distance: item.walkTimeMin ?? 0,
+                imageUrl: item.heroImageUrl ?? ""
+            )
+             
+            result.append(newItem)
+        }
+        
+        return .init(items: result)
     }
 }
 

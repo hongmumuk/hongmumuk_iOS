@@ -72,6 +72,7 @@
 		BE941F872DAE452A00C80FA2 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */; };
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
+		BEBCC8242F0A543B0015CB4F /* HM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC8232F0A543B0015CB4F /* HM.swift */; };
 		BECBD5662EFBD16F005E234B /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5642EFBD16F005E234B /* SupabaseService.swift */; };
 		BECBD5682EFBD645005E234B /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5672EFBD645005E234B /* HomeModel.swift */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
@@ -169,6 +170,7 @@
 		BE941F862DAE452A00C80FA2 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		BEB42C2A2D7575770040F65F /* Epmty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Epmty.swift; sourceTree = "<group>"; };
 		BEB42C302D758C0D0040F65F /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		BEBCC8232F0A543B0015CB4F /* HM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HM.swift; sourceTree = "<group>"; };
 		BECBD5642EFBD16F005E234B /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		BECBD5672EFBD645005E234B /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		BECD1DF32D6C0F4000FDA113 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		BEEC2BDA2F0A3AB10094EFAE /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				BEBCC8232F0A543B0015CB4F /* HM.swift */,
 				BEEC2BD12F0A3AB10094EFAE /* HMFilter.swift */,
 				BEEC2BD22F0A3AB10094EFAE /* HMImageOverlay.swift */,
 				BEEC2BD32F0A3AB10094EFAE /* HMLagePhotoList.swift */,
@@ -709,6 +712,7 @@
 				2F435EA92D4FC19C005E1C84 /* Text+.swift in Sources */,
 				BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */,
 				BE25DD032D79C840006B819E /* Bundle+.swift in Sources */,
+				BEBCC8242F0A543B0015CB4F /* HM.swift in Sources */,
 				BEECD2B92EC2FD9E00D178C5 /* Event.swift in Sources */,
 				BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */,
 				2F435EA22D4FBF35005E1C84 /* Colors.swift in Sources */,
