@@ -66,6 +66,6 @@ struct HomeView: View {
     }
     
     private func fullScreenContent(for item: SelectedItem) -> some View {
-        return DetailView()
+        return DetailView(detailViewModel: DetailViewModel(selectedId: item.id))
     }
 }
