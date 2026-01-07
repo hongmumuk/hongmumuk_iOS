@@ -44,7 +44,7 @@ extension HMSmallPhotoCard {
         } else if let card = card as? HMCategorySmallPhoto {
             text(for: card.tag)
         } else if let card = card as? HMPartnerSmallPhoto {
-            textBadge(for: card.tag)
+            textBadge(for: card.category.rawValue)
         } else {
             EmptyView()
         }
