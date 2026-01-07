@@ -7,17 +7,15 @@ struct HMMediumPhotoCard: View {
     let cornerRadius: CGFloat = 20
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            if let image = card.image {
-                image
-                    .resizable()
-                    .scaledToFill()
+        AsyncImage(url: URL(string: card.imageUrl))
+            .frame(width: width, height: height)
+            .overlay {
+                ZStack(alignment: .bottomLeading) {
+                    HMImageOverlay()
+                    bottomStack()
+                }
             }
-            HMImageOverlay()
-            bottomStack()
-        }
-        .frame(width: width, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
     
     private func bottomStack() -> some View {
@@ -55,12 +53,4 @@ struct HMMediumPhotoCard: View {
                 .fontStyle(Fonts.heading2Bold)
         }
     }
-}
-
-struct HMMediumPhoto: Identifiable {
-    let id = UUID()
-    let image: Image? = nil
-    let title: String
-    let subtitle: String
-    let views: Int
 }
