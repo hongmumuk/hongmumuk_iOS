@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HMLagePhotoList: View {
     var cards: HMLagePhotos
+    let onSelect: (String) -> Void
     
     var body: some View {
         GeometryReader { geo in
@@ -11,6 +12,7 @@ struct HMLagePhotoList: View {
                 HStack(spacing: 12) {
                     ForEach(cards.items) { card in
                         HMLagePhotoCard(card: card, width: cardWidth)
+                            .onTapGesture { onSelect(card.id.uuidString) }
                     }
                 }
                 .scrollTargetLayout()

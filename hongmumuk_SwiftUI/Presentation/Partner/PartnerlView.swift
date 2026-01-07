@@ -28,7 +28,7 @@ struct PartnerlView: View {
                         if let item = section as? HMPartnerSmallPhotos {
                             VStack {
                                 HMFilter(isImage: false)
-                                HMSmallPhotoList(cards: item.items)
+                                HMSmallPhotoList(cards: item.items) { _ in }
                             }
                         }
                         
