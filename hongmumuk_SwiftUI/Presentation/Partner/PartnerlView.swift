@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct PartnerlView: View {
+    var partnerViewModel: PartnerViewModel = .init()
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
