@@ -14,7 +14,7 @@ struct HMSmallPhotoList: View {
     }
 }
 
-let cafeBenefitCards: [HMBeniftSmallPhoto] = [
+let cafeBenefitCards: [HMPartnerSmallPhoto] = [
     .init(
         title: "평일/주말 언제든 10% 할인",
         subTitle: "HIDE AND SEEK 쌈지길점",
@@ -31,7 +31,7 @@ let cafeBenefitCards: [HMBeniftSmallPhoto] = [
     )
 ]
 
-let restaurantBenefitCards: [HMBeniftSmallPhoto] = [
+let restaurantBenefitCards: [HMPartnerSmallPhoto] = [
     .init(
         title: "전체 금액에서 10% 할인",
         subTitle: "고토히라우동",
@@ -48,7 +48,7 @@ let restaurantBenefitCards: [HMBeniftSmallPhoto] = [
     )
 ]
 
-let lifeCultureBenefitCards: [HMBeniftSmallPhoto] = [
+let lifeCultureBenefitCards: [HMPartnerSmallPhoto] = [
     .init(
         title: "커트 20% 할인/펌, 염색 30% 할인",
         subTitle: "헤어더봄 홍대점",

@@ -86,7 +86,13 @@ struct HMCategorySmallPhoto: HMSmallPhoto {
     let imageUrl: String
 }
 
-struct HMBeniftSmallPhoto: HMSmallPhoto {
+struct HMPartnerSmallPhotos: HM {
+    var id: UUID = .init()
+    var type: HMLType = .categorySmallPhoto
+    var items: [any HMSmallPhoto]
+}
+
+struct HMPartnerSmallPhoto: HMSmallPhoto {
     let id = UUID()
     let title: String
     let subTitle: String
