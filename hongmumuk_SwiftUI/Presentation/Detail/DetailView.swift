@@ -17,6 +17,7 @@ struct DetailView: View {
                         tags()
                         content()
                     }
+                    .padding(.bottom, 81)
                 }
                 .ignoresSafeArea(edges: .top)
                 
