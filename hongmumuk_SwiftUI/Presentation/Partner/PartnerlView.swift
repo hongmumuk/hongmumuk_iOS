@@ -43,6 +43,6 @@ struct PartnerlView: View {
     }
     
     private func fullScreenContent() -> some View {
-        return DetailView()
+        return DetailView(detailViewModel: DetailViewModel(selectedId: ""))
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) private var dismiss
+    var detailViewModel: DetailViewModel
     
     var body: some View {
         NavigationStack {
@@ -21,6 +22,9 @@ struct DetailView: View {
                 
                 dismissButton()
             }
+        }
+        .onAppear {
+            detailViewModel.onAppear()
         }
     }
     
