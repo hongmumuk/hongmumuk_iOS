@@ -15,6 +15,8 @@ enum Constant {
             static let appsFlyerDevKey = "DEV_KEY"
             static let appleAppID = "APP_ID"
             static let nativeAdUnitId = "nativeAdUnitId"
+            static let projectRef = "PROJECT_REF"
+            static let anonKey = "ANON_KEY"
         }
     }
     
@@ -58,5 +60,21 @@ enum Constant {
         }
         
         return id
+    }()
+    
+    static let supabaseUrlString: String = {
+        guard let projectRef = Constant.infoDictionary[Keys.Plist.projectRef] as? String else {
+            fatalError("projectRef not set in plist")
+        }
+        
+        return "https://\(projectRef).supabase.co"
+    }()
+    
+    static let supabaseKey: String = {
+        guard let anonKey = Constant.infoDictionary[Keys.Plist.anonKey] as? String else {
+            fatalError("anonKey not set in plist")
+        }
+        
+        return anonKey
     }()
 }
