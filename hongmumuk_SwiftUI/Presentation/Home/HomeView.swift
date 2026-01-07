@@ -46,6 +46,9 @@ struct HomeView: View {
                                 HMSmallPhotoList(cards: item.items)
                             }
                         }
+                        
+                    default:
+                        EmptyView()
                     }
                 }
             }

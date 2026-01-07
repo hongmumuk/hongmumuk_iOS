@@ -12,6 +12,7 @@ enum HMLType {
     case mediumPhoto
     case tagSmallPhoto
     case categorySmallPhoto
+    case partnerSmallPhoto
 }
 
 struct HMLTitle: HM {
@@ -88,7 +89,7 @@ struct HMCategorySmallPhoto: HMSmallPhoto {
 
 struct HMPartnerSmallPhotos: HM {
     var id: UUID = .init()
-    var type: HMLType = .categorySmallPhoto
+    var type: HMLType = .partnerSmallPhoto
     var items: [any HMSmallPhoto]
 }
 
@@ -96,7 +97,7 @@ struct HMPartnerSmallPhoto: HMSmallPhoto {
     let id = UUID()
     let title: String
     let subTitle: String
-    let tag: String
     let address: String
     let imageUrl: String
+    let category: Category
 }
