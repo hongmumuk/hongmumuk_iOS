@@ -3,6 +3,7 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     var isLoading = true
+    var selectedItem: SelectedItem?
     var sections: [any HM] = []
     
     func getSections() async {
@@ -114,5 +115,9 @@ class HomeViewModel {
         }
         
         return .init(items: result)
+    }
+    
+    func selectItem(for id: String) {
+        selectedItem = .init(id: id)
     }
 }

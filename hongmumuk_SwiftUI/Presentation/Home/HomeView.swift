@@ -2,11 +2,11 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showDetail = false
-    var homeViewModel: HomeViewModel = .init()
+    @Bindable var homeViewModel: HomeViewModel = .init()
     
     var body: some View {
         ScrollView(content: content)
-            .fullScreenCover(isPresented: $showDetail, content: fullScreenContent)
+            .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
             .padding(.top)
             .task {
                 await homeViewModel.getSections()
@@ -26,24 +26,32 @@ struct HomeView: View {
                         
                     case .largePhoto:
                         if let item = section as? HMLagePhotos {
-                            HMLagePhotoList(cards: item)
+                            HMLagePhotoList(cards: item) { id in
+                                homeViewModel.selectItem(for: id)
+                            }
                         }
                         
                     case .mediumPhoto:
                         if let item = section as? HMMediumPhotos {
-                            HMMediumPhotoList(cards: item)
+                            HMMediumPhotoList(cards: item) { id in
+                                homeViewModel.selectItem(for: id)
+                            }
                         }
                         
                     case .tagSmallPhoto:
                         if let item = section as? HMTagSmallPhotos {
-                            HMSmallPhotoList(cards: item.items)
+                            HMSmallPhotoList(cards: item.items) { id in
+                                homeViewModel.selectItem(for: id)
+                            }
                         }
                         
                     case .categorySmallPhoto:
                         if let item = section as? HMCategorySmallPhotos {
                             VStack {
                                 HMFilter(isImage: true)
-                                HMSmallPhotoList(cards: item.items)
+                                HMSmallPhotoList(cards: item.items) { id in
+                                    homeViewModel.selectItem(for: id)
+                                }
                             }
                         }
                         
@@ -57,7 +65,7 @@ struct HomeView: View {
         }
     }
     
-    private func fullScreenContent() -> some View {
-        return DetailView()
+    private func fullScreenContent(for item: SelectedItem) -> some View {
+        return DetailView(detailViewModel: DetailViewModel(selectedId: item.id))
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) private var dismiss
+    var detailViewModel: DetailViewModel
     
     var body: some View {
         NavigationStack {
@@ -16,11 +17,15 @@ struct DetailView: View {
                         tags()
                         content()
                     }
+                    .padding(.bottom, 81)
                 }
                 .ignoresSafeArea(edges: .top)
                 
                 dismissButton()
             }
+        }
+        .onAppear {
+            detailViewModel.onAppear()
         }
     }
     
