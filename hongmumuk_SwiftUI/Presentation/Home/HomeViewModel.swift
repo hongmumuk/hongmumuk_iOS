@@ -35,6 +35,7 @@ class HomeViewModel {
                     case .none:
                         print("none")
                     }
+                    
                 case .categoryFilterList:
                     let item = fetchCategorySmallPhoto(for: section.items)
                     sections.append(item)
@@ -50,14 +51,14 @@ class HomeViewModel {
         
         for item in items {
             let newItem: HMLagePhoto = .init(
-                title: item.mainTitle,
-                subtitle: item.subTitle ?? "",
-                category: .init(rawValue: item.cuisineType!) ?? .korean,
+                title: item.title ?? "",
+                subtitle: item.subtitle ?? "",
+                category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
                 views: item.viewCount ?? 0,
                 distance: item.walkTimeMin ?? 0,
-                imageUrl: item.heroImageUrl ?? ""
+                imageUrl: item.image ?? ""
             )
-             
+            
             result.append(newItem)
         }
         
@@ -66,54 +67,54 @@ class HomeViewModel {
     
     private func fetchHMMediumPhoto(for items: [HomeItem]) -> HMMediumPhotos {
         var result: [HMMediumPhoto] = []
-        
+
         for item in items {
             let newItem: HMMediumPhoto = .init(
-                title: item.mainTitle,
-                subtitle: item.subTitle ?? "",
+                title: item.title ?? "",
+                subtitle: item.subtitle ?? "",
                 views: item.viewCount ?? 0,
-                imageUrl: item.heroImageUrl ?? ""
+                imageUrl: item.image ?? ""
             )
-             
+
             result.append(newItem)
         }
-        
+
         return .init(items: result)
     }
     
     private func fetchTagSmallPhoto(for items: [HomeItem]) -> HMTagSmallPhotos {
         var result: [HMTagSmallPhoto] = []
-        
+
         for item in items {
             let newItem: HMTagSmallPhoto = .init(
-                title: item.mainTitle,
-                tags: ["태그 입니다."],
-                category: .korean,
+                title: item.title ?? "",
+                tags: item.tags ?? [],
+                category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
                 distance: item.walkTimeMin ?? 0,
-                imageUrl: item.heroImageUrl ?? ""
+                imageUrl: item.image ?? ""
             )
-             
+
             result.append(newItem)
         }
-        
+
         return .init(items: result)
     }
     
     private func fetchCategorySmallPhoto(for items: [HomeItem]) -> HMCategorySmallPhotos {
         var result: [HMCategorySmallPhoto] = []
-        
+
         for item in items {
             let newItem: HMCategorySmallPhoto = .init(
-                title: item.mainTitle,
-                tag: "태그 입니다",
-                category: .korean,
+                title: item.title ?? "",
+                tag: item.tags?.joined(separator: " ") ?? "",
+                category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
                 distance: item.walkTimeMin ?? 0,
-                imageUrl: item.heroImageUrl ?? ""
+                imageUrl: item.image ?? ""
             )
-             
+
             result.append(newItem)
         }
-        
+
         return .init(items: result)
     }
     
