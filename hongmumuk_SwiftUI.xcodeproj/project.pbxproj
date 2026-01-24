@@ -52,7 +52,6 @@
 		BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE02D09C2D607D0C00F61E66 /* Sort.swift */; };
 		BE25DCFF2D79C283006B819E /* ProfileSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DCFE2D79C283006B819E /* ProfileSet.swift */; };
 		BE25DD032D79C840006B819E /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE25DD022D79C840006B819E /* Bundle+.swift */; };
-		BE25DD132D79E080006B819E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BE25DD122D79E080006B819E /* Lottie */; };
 		BE2712D22EF2680C00D09128 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2712D12EF2680C00D09128 /* DetailView.swift */; };
 		BE2D3BC72DAB99200008BA40 /* localize.py in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3BC62DAB99200008BA40 /* localize.py */; };
 		BE2D3BCD2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3BCC2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json */; };
@@ -207,7 +206,6 @@
 			files = (
 				BE53EF172EFBCA8500168871 /* Supabase in Frameworks */,
 				BE34849E2EC1AB7B007A92A7 /* GoogleMobileAds in Frameworks */,
-				BE25DD132D79E080006B819E /* Lottie in Frameworks */,
 				BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */,
 				BEECD2B32EC2FB0100D178C5 /* FirebaseRemoteConfig in Frameworks */,
 				BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */,
@@ -487,7 +485,6 @@
 			);
 			name = hongmumuk_SwiftUI;
 			packageProductDependencies = (
-				BE25DD122D79E080006B819E /* Lottie */,
 				2FF95D3C2DEC83BB005BA558 /* AppsFlyerLib */,
 				BE34849D2EC1AB7B007A92A7 /* GoogleMobileAds */,
 				BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */,
@@ -574,7 +571,6 @@
 			mainGroup = BEFB83902D3D359F000D9537;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 				BE34849C2EC1AB7B007A92A7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				BEECD2AD2EC2FB0100D178C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -1712,14 +1708,6 @@
 				minimumVersion = 6.17.0;
 			};
 		};
-		BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.1;
-			};
-		};
 		BE34849C2EC1AB7B007A92A7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
@@ -1751,11 +1739,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FF95D3B2DEC83BB005BA558 /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
 			productName = AppsFlyerLib;
-		};
-		BE25DD122D79E080006B819E /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BE25DD112D79E080006B819E /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
 		};
 		BE34849D2EC1AB7B007A92A7 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
