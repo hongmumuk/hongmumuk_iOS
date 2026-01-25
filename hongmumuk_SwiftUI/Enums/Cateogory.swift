@@ -1,10 +1,3 @@
-//
-//  Cateogory.swift
-//  hongmumuk_SwiftUI
-//
-//  Created by Dongwan Ryoo on 2/4/25.
-//
-
 import Foundation
 
 enum Category: String, CaseIterable, Codable {
@@ -27,6 +20,18 @@ extension Category {
         case .fastfood: return "패스트푸드"
         case .food: return "음식점"
         case .life: return "생활/문화"
+        }
+    }
+    
+    static func filterHome() -> [Category] {
+        return allCases.filter { category in
+            return category != .life && category != .food
+        }
+    }
+    
+    static func filterPartner() -> [Category] {
+        return allCases.filter { category in
+            return category == .life || category == .food || category == .cafe
         }
     }
 }

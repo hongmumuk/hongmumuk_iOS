@@ -4,6 +4,7 @@ import SwiftUI
 class PartnerViewModel {
     var isLoading = true
     var sections: [any HM] = []
+    var filters: [Category] = Category.filterPartner()
     
     func getSections() async {
         if !sections.isEmpty {

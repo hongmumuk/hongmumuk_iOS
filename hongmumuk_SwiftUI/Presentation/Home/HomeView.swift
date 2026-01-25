@@ -18,9 +18,6 @@ struct HomeView: View {
         if !homeViewModel.sections.isEmpty {
             ForEach(homeViewModel.sections, id: \.id) { section in
                 switch section.type {
-                case .filter:
-                    HMFilter(isImage: true)
-                    
                 case .title:
                     if let item = section as? HMLTitle {
                         HMLargeTitle(title: item.title)
@@ -49,6 +46,7 @@ struct HomeView: View {
                     
                 case .categorySmallPhoto:
                     if let item = section as? HMCategorySmallPhotos {
+                        HMFilter(categories: homeViewModel.filters, isImage: true)
                         HMSmallPhotoList(cards: item.items) { id in
                             homeViewModel.selectItem(for: id)
                         }
