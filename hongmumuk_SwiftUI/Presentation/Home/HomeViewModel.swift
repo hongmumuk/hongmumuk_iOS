@@ -8,7 +8,7 @@ class HomeViewModel {
     
     func getSections() async {
         if !sections.isEmpty {
-            sections = []
+            return
         }
         
         do {
@@ -37,6 +37,8 @@ class HomeViewModel {
                     }
                     
                 case .categoryFilterList:
+                    sections.append(HMListFilter())
+                    
                     let item = fetchCategorySmallPhoto(for: section.items)
                     sections.append(item)
                 }
