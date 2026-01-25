@@ -7,7 +7,7 @@ class PartnerViewModel {
     
     func getSections() async {
         if !sections.isEmpty {
-            sections = []
+            return
         }
         
         do {
