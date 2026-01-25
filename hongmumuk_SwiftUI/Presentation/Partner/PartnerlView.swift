@@ -19,7 +19,7 @@ struct PartnerlView: View {
             ForEach(partnerViewModel.sections, id: \.id) { section in
                 switch section.type {
                 case .filter:
-                    HMFilter(isImage: false)
+                    HMFilter(categories: partnerViewModel.filters, isImage: false)
                     
                 case .title:
                     if let item = section as? HMLTitle {

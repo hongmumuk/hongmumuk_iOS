@@ -5,6 +5,7 @@ class HomeViewModel {
     var isLoading = true
     var selectedItem: SelectedItem?
     var sections: [any HM] = []
+    var filters: [Category] = Category.filterHome()
     
     func getSections() async {
         if !sections.isEmpty {

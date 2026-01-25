@@ -3,7 +3,7 @@ import SwiftUI
 struct HMFilter: View {
     // 임시 프로퍼티
     @State private var selected: Category? = nil
-    private let categories: [Category] = Category.allCases
+    let categories: [Category]
     let isImage: Bool
 
     var body: some View {
