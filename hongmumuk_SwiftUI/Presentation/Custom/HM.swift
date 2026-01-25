@@ -105,5 +105,5 @@ struct HMPartnerSmallPhoto: HMSmallPhoto {
     let subTitle: String
     let address: String
     let imageUrl: String
-    let category: Category
+    let tag: String
 }

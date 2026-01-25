@@ -40,7 +40,7 @@ class PartnerViewModel {
                 subTitle: item.placeName ?? "",
                 address: item.address ?? "",
                 imageUrl: item.image ?? "",
-                category: .korean
+                tag: item.partnerSubcategoryLabel ?? ""
             )
 
             result.append(newItem)
