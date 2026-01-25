@@ -4,7 +4,7 @@ import SwiftUI
 final class SupabaseService {
     static let shared = SupabaseService()
     private let client: SupabaseClient
-        
+    
     private init() {
         client = SupabaseClient(
             supabaseURL: URL(string: Constant.supabaseUrlString)!,
@@ -19,6 +19,15 @@ final class SupabaseService {
             .value
         
         return response
+    }
+    
+    func getScreenJson(for type: Screen) async throws {
+        let response = try await SupabaseService.shared.client
+            .rpc("get_screen", params: ["p_screen_key": type.rawValue])
+            .execute()
+        
+        let jsonString = String(data: response.data, encoding: .utf8)
+        print("📥 raw JSON:\n\(jsonString)")
     }
     
     func getDetail(for id: String) async throws -> DetailModel {

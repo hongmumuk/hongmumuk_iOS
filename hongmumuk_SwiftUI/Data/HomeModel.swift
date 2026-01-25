@@ -4,7 +4,7 @@ struct ScreenModel: Decodable {
     let screenKey: String
     let specVersion: Int
     let sections: [Section]
-    
+
     enum CodingKeys: String, CodingKey {
         case screenKey = "screen_key"
         case specVersion = "spec_version"
@@ -14,13 +14,13 @@ struct ScreenModel: Decodable {
 
 struct Section: Decodable, Identifiable {
     var id: String { sectionKey }
-    
+
     let sectionKey: String
     let displayOrder: Int
     let type: SectionType
     let props: SectionProps
     let items: [HomeItem]
-    
+
     enum CodingKeys: String, CodingKey {
         case sectionKey = "section_key"
         case displayOrder = "display_order"
@@ -37,16 +37,31 @@ enum SectionType: String, Decodable {
 
 struct SectionProps: Decodable {
     let title: String?
+
     let cardStyle: CardStyle?
     let cardVariant: CardVariant?
     let show: [SectionShowItem]?
-    
+
+    let chips: [CategoryChip]?
+    let chipField: String?
+    let defaultChip: String?
+
     enum CodingKeys: String, CodingKey {
         case title
         case cardStyle = "card_style"
         case cardVariant = "card_variant"
         case show
+        case chips
+        case chipField = "chip_field"
+        case defaultChip = "default_chip"
     }
+}
+
+struct CategoryChip: Decodable, Identifiable {
+    let key: String
+    let label: String
+
+    var id: String { key }
 }
 
 enum CardStyle: String, Decodable {
@@ -63,32 +78,58 @@ enum CardVariant: String, Decodable {
 }
 
 enum SectionShowItem: String, Decodable {
-    case viewCount = "view_count"
-    case subTitle = "sub_title"
+    case image
+    case title
+    case subtitle
     case category
+    case placeName = "place_name"
+    case address
+
     case walkTime = "walk_time"
+    case viewCount = "view_count"
+    case tags
+    case badge
+    
+    case partnerCategoryLabel = "partner_category_label"
+    case partnerSubcategoryLabel = "partner_subcategory_label"
 }
 
 struct HomeItem: Decodable, Identifiable {
     let id: String
-    let mainTitle: String
-    let subTitle: String?
-    let heroImageUrl: String?
-    let detailImageUrls: [String]?
-    let cuisineType: String?
-    let walkTimeMin: Int?
+
+    let title: String?
+    let subtitle: String?
+    let image: String?
+
+    let placeName: String?
+    let category: String?
+    let primaryCategoryKey: String?
+
+    let address: String?
+    let partnerCategoryKey: String?
+    let partnerCategoryLabel: String?
+    let partnerSubcategoryLabel: String?
+
+    let tags: [String]?
     let viewCount: Int?
-    let flags: [String: Bool]?
-    
+    let walkTimeMin: Int?
+
     enum CodingKeys: String, CodingKey {
         case id
-        case mainTitle = "main_title"
-        case subTitle = "sub_title"
-        case heroImageUrl = "hero_image_url"
-        case detailImageUrls = "detail_image_urls"
-        case cuisineType = "cuisine_type"
-        case walkTimeMin = "walk_time_min"
+        case title
+        case subtitle
+        case image
+        case placeName = "place_name"
+        case category
+        case primaryCategoryKey = "primary_category_key"
+
+        case address
+        case partnerCategoryKey = "partner_category_key"
+        case partnerCategoryLabel = "partner_category_label"
+        case partnerSubcategoryLabel = "partner_subcategory_label"
+
+        case tags
         case viewCount = "view_count"
-        case flags
+        case walkTimeMin = "walk_time_min"
     }
 }

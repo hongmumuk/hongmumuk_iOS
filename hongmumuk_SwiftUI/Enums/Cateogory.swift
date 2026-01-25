@@ -1,10 +1,3 @@
-//
-//  Cateogory.swift
-//  hongmumuk_SwiftUI
-//
-//  Created by Dongwan Ryoo on 2/4/25.
-//
-
 import Foundation
 
 enum Category: String, CaseIterable, Codable {
@@ -12,34 +5,36 @@ enum Category: String, CaseIterable, Codable {
     case korean
     case chinese
     case japanese
-    case western
-    case asian
-    case fast
-    case snack
-    case etc
+    case cafe
+    case fastfood
+    case food
+    case life
 }
 
 extension Category {
     var displayName: String {
         switch self {
-        case .all:
-            return "전체"
-        case .korean:
-            return "korean".localized()
-        case .chinese:
-            return "chinese".localized()
-        case .japanese:
-            return "japanese".localized()
-        case .western:
-            return "western".localized()
-        case .asian:
-            return "asian".localized()
-        case .fast:
-            return "fastfood".localized()
-        case .snack:
-            return "snack".localized()
-        case .etc:
-            return "etc".localized()
+        case .all: return "전체"
+        case .korean: return "한식"
+        case .chinese: return "중식"
+        case .japanese: return "일식"
+        case .cafe: return "카페"
+        case .fastfood: return "패스트푸드"
+        case .food: return "음식점"
+        case .life: return "생활/문화"
+        }
+    }
+    
+    static func filterHome() -> [Category] {
+        return allCases.filter { category in
+            return category != .life && category != .food && category != .all
+        }
+    }
+    
+    static func filterPartner() -> [Category] {
+        return allCases.filter { category in
+            return category == .life || category == .food || category == .cafe || category == .all
         }
     }
 }
+    
