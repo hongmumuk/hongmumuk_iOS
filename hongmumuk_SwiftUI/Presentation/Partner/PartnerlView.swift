@@ -16,25 +16,23 @@ struct PartnerlView: View {
     @ViewBuilder
     private func content() -> some View {
         if !partnerViewModel.sections.isEmpty {
-            VStack(spacing: 0) {
-                ForEach(partnerViewModel.sections, id: \.id) { section in
-                    switch section.type {
-                    case .filter:
-                        HMFilter(isImage: false)
-                        
-                    case .title:
-                        if let item = section as? HMLTitle {
-                            HMLargeTitle(title: item.title)
-                        }
-                        
-                    case .partnerSmallPhoto:
-                        if let item = section as? HMPartnerSmallPhotos {
-                            HMSmallPhotoList(cards: item.items) { _ in }
-                        }
-                        
-                    default:
-                        EmptyView()
+            ForEach(partnerViewModel.sections, id: \.id) { section in
+                switch section.type {
+                case .filter:
+                    HMFilter(isImage: false)
+                    
+                case .title:
+                    if let item = section as? HMLTitle {
+                        HMLargeTitle(title: item.title)
                     }
+                    
+                case .partnerSmallPhoto:
+                    if let item = section as? HMPartnerSmallPhotos {
+                        HMSmallPhotoList(cards: item.items) { _ in }
+                    }
+                    
+                default:
+                    EmptyView()
                 }
             }
         } else {
