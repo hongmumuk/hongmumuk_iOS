@@ -83,10 +83,15 @@ enum SectionShowItem: String, Decodable {
     case subtitle
     case category
     case placeName = "place_name"
+    case address
+
     case walkTime = "walk_time"
     case viewCount = "view_count"
     case tags
     case badge
+    
+    case partnerCategoryLabel = "partner_category_label"
+    case partnerSubcategoryLabel = "partner_subcategory_label"
 }
 
 struct HomeItem: Decodable, Identifiable {
@@ -100,6 +105,11 @@ struct HomeItem: Decodable, Identifiable {
     let category: String?
     let primaryCategoryKey: String?
 
+    let address: String?
+    let partnerCategoryKey: String?
+    let partnerCategoryLabel: String?
+    let partnerSubcategoryLabel: String?
+
     let tags: [String]?
     let viewCount: Int?
     let walkTimeMin: Int?
@@ -112,6 +122,12 @@ struct HomeItem: Decodable, Identifiable {
         case placeName = "place_name"
         case category
         case primaryCategoryKey = "primary_category_key"
+
+        case address
+        case partnerCategoryKey = "partner_category_key"
+        case partnerCategoryLabel = "partner_category_label"
+        case partnerSubcategoryLabel = "partner_subcategory_label"
+
         case tags
         case viewCount = "view_count"
         case walkTimeMin = "walk_time_min"

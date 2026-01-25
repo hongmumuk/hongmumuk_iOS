@@ -6,9 +6,9 @@ struct PartnerlView: View {
     
     var body: some View {
         ScrollView(content: content)
-            .fullScreenCover(isPresented: $showDetail, content: fullScreenContent)
             .padding(.top)
             .task {
+                try? await SupabaseService.shared.getScreenJson(for: .partner)
                 await partnerViewModel.getSections()
             }
     }
@@ -19,6 +19,9 @@ struct PartnerlView: View {
             VStack(spacing: 0) {
                 ForEach(partnerViewModel.sections, id: \.id) { section in
                     switch section.type {
+                    case .filter:
+                        HMFilter(isImage: false)
+                        
                     case .title:
                         if let item = section as? HMLTitle {
                             HMLargeTitle(title: item.title)
@@ -26,10 +29,7 @@ struct PartnerlView: View {
                         
                     case .partnerSmallPhoto:
                         if let item = section as? HMPartnerSmallPhotos {
-                            VStack {
-                                HMFilter(isImage: false)
-                                HMSmallPhotoList(cards: item.items) { _ in }
-                            }
+                            HMSmallPhotoList(cards: item.items) { _ in }
                         }
                         
                     default:
@@ -40,9 +40,5 @@ struct PartnerlView: View {
         } else {
             Text("데이터가 없습니다.")
         }
-    }
-    
-    private func fullScreenContent() -> some View {
-        return DetailView(detailViewModel: DetailViewModel(selectedId: ""))
     }
 }
