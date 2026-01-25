@@ -1,6 +1,7 @@
 import Foundation
 
 enum Category: String, CaseIterable, Codable {
+    case all
     case korean
     case chinese
     case japanese
@@ -13,6 +14,7 @@ enum Category: String, CaseIterable, Codable {
 extension Category {
     var displayName: String {
         switch self {
+        case .all: return "전체"
         case .korean: return "한식"
         case .chinese: return "중식"
         case .japanese: return "일식"
@@ -25,13 +27,13 @@ extension Category {
     
     static func filterHome() -> [Category] {
         return allCases.filter { category in
-            return category != .life && category != .food
+            return category != .life && category != .food && category != .all
         }
     }
     
     static func filterPartner() -> [Category] {
         return allCases.filter { category in
-            return category == .life || category == .food || category == .cafe
+            return category == .life || category == .food || category == .cafe || category == .all
         }
     }
 }
