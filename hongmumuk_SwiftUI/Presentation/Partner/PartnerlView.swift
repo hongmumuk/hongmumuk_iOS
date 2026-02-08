@@ -1,48 +1,33 @@
 import SwiftUI
 
-struct HomeView: View {
+struct PartnerlView: View {
     @State var showDetail = false
-    var homeViewModel: HomeViewModel = .init()
+    var partnerViewModel: PartnerViewModel = .init()
     
     var body: some View {
         ScrollView(content: content)
             .fullScreenCover(isPresented: $showDetail, content: fullScreenContent)
             .padding(.top)
             .task {
-                await homeViewModel.getSections()
+                await partnerViewModel.getSections()
             }
     }
     
     @ViewBuilder
     private func content() -> some View {
-        if !homeViewModel.sections.isEmpty {
+        if !partnerViewModel.sections.isEmpty {
             VStack(spacing: 0) {
-                ForEach(homeViewModel.sections, id: \.id) { section in
+                ForEach(partnerViewModel.sections, id: \.id) { section in
                     switch section.type {
                     case .title:
                         if let item = section as? HMLTitle {
                             HMLargeTitle(title: item.title)
                         }
                         
-                    case .largePhoto:
-                        if let item = section as? HMLagePhotos {
-                            HMLagePhotoList(cards: item)
-                        }
-                        
-                    case .mediumPhoto:
-                        if let item = section as? HMMediumPhotos {
-                            HMMediumPhotoList(cards: item)
-                        }
-                        
-                    case .tagSmallPhoto:
-                        if let item = section as? HMTagSmallPhotos {
-                            HMSmallPhotoList(cards: item.items)
-                        }
-                        
-                    case .categorySmallPhoto:
-                        if let item = section as? HMCategorySmallPhotos {
+                    case .partnerSmallPhoto:
+                        if let item = section as? HMPartnerSmallPhotos {
                             VStack {
-                                HMFilter(isImage: true)
+                                HMFilter(isImage: false)
                                 HMSmallPhotoList(cards: item.items)
                             }
                         }

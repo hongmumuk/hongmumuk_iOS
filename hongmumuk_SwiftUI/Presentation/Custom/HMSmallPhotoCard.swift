@@ -43,8 +43,8 @@ extension HMSmallPhotoCard {
             text(for: card.tags.map { "#\($0)" }.joined(separator: " "))
         } else if let card = card as? HMCategorySmallPhoto {
             text(for: card.tag)
-        } else if let card = card as? HMBeniftSmallPhoto {
-            textBadge(for: card.tag)
+        } else if let card = card as? HMPartnerSmallPhoto {
+            textBadge(for: card.category.rawValue)
         } else {
             EmptyView()
         }
@@ -76,7 +76,7 @@ extension HMSmallPhotoCard {
 extension HMSmallPhotoCard {
     @ViewBuilder
     private func subTtitle() -> some View {
-        if let card = card as? HMBeniftSmallPhoto {
+        if let card = card as? HMPartnerSmallPhoto {
             Text(card.subTitle)
                 .fontStyle(Fonts.caption1Medium)
                 .foregroundColor(Colors.Label.Normal.neutral)
@@ -89,7 +89,7 @@ extension HMSmallPhotoCard {
 
 extension HMSmallPhotoCard {
     private func title() -> some View {
-        let isBenifit = card is HMBeniftSmallPhoto
+        let isBenifit = card is HMPartnerSmallPhoto
         return Text(card.title)
             .fontStyle(isBenifit ? Fonts.heading3Bold : Fonts.heading2Bold)
             .lineLimit(1)
@@ -103,7 +103,7 @@ extension HMSmallPhotoCard {
 extension HMSmallPhotoCard {
     @ViewBuilder
     private func info() -> some View {
-        if let card = card as? HMBeniftSmallPhoto {
+        if let card = card as? HMPartnerSmallPhoto {
             address(for: card.address)
         } else if let card = card as? HMTagSmallPhoto {
             HStack(spacing: 12) {
