@@ -7,17 +7,15 @@ struct HMLagePhotoCard: View {
     let cornerRadius: CGFloat = 20
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            if let image = card.image {
-                image
-                    .resizable()
-                    .scaledToFill()
+        AsyncImage(url: URL(string: card.imageUrl))
+            .frame(width: width, height: height)
+            .overlay {
+                ZStack(alignment: .bottomLeading) {
+                    HMImageOverlay()
+                    bottomStack()
+                }
             }
-            HMImageOverlay()
-            bottomStack()
-        }
-        .frame(width: width, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
     
     private func bottomStack() -> some View {
@@ -65,34 +63,24 @@ struct HMLagePhotoCard: View {
     private func infoStack() -> some View {
         VStack(alignment: .trailing, spacing: 8) {
             Spacer()
-                
+            
             HStack(spacing: 4) {
                 Image("riceIcon")
                     .frame(width: 16, height: 16)
-                    
+                
                 Text("\(card.category.displayName)")
                     .foregroundColor(.white)
                     .fontStyle(Fonts.caption1Medium)
             }
-                
+            
             HStack(spacing: 4) {
                 Image("Clock")
                     .frame(width: 16, height: 16)
-                    
+                
                 Text("도보 \(card.distance)분")
                     .foregroundColor(.white)
                     .fontStyle(Fonts.caption1Medium)
             }
         }
     }
-}
-
-struct HMLagePhoto: Identifiable {
-    let id = UUID()
-    let image: Image? = nil
-    let title: String
-    let subtitle: String
-    let category: Category
-    let views: Int
-    let distance: Int
 }
