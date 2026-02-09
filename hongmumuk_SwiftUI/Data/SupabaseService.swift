@@ -32,7 +32,7 @@ final class SupabaseService {
     
     func getDetail(for id: String) async throws -> DetailModel {
         let response: DetailModel = try await SupabaseService.shared.client
-            .rpc("get_content_detail", params: ["p_content_id": id])
+            .rpc("get_place_detail", params: ["p_place_id": id])
             .execute()
             .value
         
