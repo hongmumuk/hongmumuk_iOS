@@ -9,7 +9,8 @@ struct HMMediumPhotoList: View {
             HStack(spacing: 12) {
                 ForEach(cards.items, id: \.id) { card in
                     HMMediumPhotoCard(card: card)
-                        .onTapGesture { onSelect(card.id.uuidString) }
+                        .contentShape(Rectangle())
+                        .onTapGesture { onSelect(card.id) }
                 }
             }
             .padding(.horizontal, 24)
