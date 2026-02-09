@@ -72,6 +72,7 @@ enum Colors {
             static let neutral = Color(hex: "#73778C")
             static let normal = Color(hex: "2B2D3B")
             static let strong = Color(hex: "#040615")
+            static let basic = Color(hex: "434656")
         }
     }
     
