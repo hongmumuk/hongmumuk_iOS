@@ -37,6 +37,7 @@ class PartnerViewModel {
 
         for item in items {
             let newItem: HMPartnerSmallPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 subTitle: item.placeName ?? "",
                 address: item.address ?? "",
