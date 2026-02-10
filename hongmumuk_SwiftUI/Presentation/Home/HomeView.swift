@@ -16,48 +16,46 @@ struct HomeView: View {
     @ViewBuilder
     private func content() -> some View {
         if !homeViewModel.sections.isEmpty {
-            VStack(spacing: 0) {
-                ForEach(homeViewModel.sections, id: \.id) { section in
-                    switch section.type {
-                    case .title:
-                        if let item = section as? HMLTitle {
-                            HMLargeTitle(title: item.title)
-                        }
-                        
-                    case .largePhoto:
-                        if let item = section as? HMLagePhotos {
-                            HMLagePhotoList(cards: item) { id in
-                                homeViewModel.selectItem(for: id)
-                            }
-                        }
-                        
-                    case .mediumPhoto:
-                        if let item = section as? HMMediumPhotos {
-                            HMMediumPhotoList(cards: item) { id in
-                                homeViewModel.selectItem(for: id)
-                            }
-                        }
-                        
-                    case .tagSmallPhoto:
-                        if let item = section as? HMTagSmallPhotos {
-                            HMSmallPhotoList(cards: item.items) { id in
-                                homeViewModel.selectItem(for: id)
-                            }
-                        }
-                        
-                    case .categorySmallPhoto:
-                        if let item = section as? HMCategorySmallPhotos {
-                            VStack {
-                                HMFilter(isImage: true)
-                                HMSmallPhotoList(cards: item.items) { id in
-                                    homeViewModel.selectItem(for: id)
-                                }
-                            }
-                        }
-                        
-                    default:
-                        EmptyView()
+            ForEach(homeViewModel.sections, id: \.id) { section in
+                switch section.type {
+                case .filter:
+                    HMFilter(categories: homeViewModel.filters, isImage: true)
+                    
+                case .title:
+                    if let item = section as? HMLTitle {
+                        HMLargeTitle(title: item.title)
                     }
+                    
+                case .largePhoto:
+                    if let item = section as? HMLagePhotos {
+                        HMLagePhotoList(cards: item) { id in
+                            homeViewModel.selectItem(for: id)
+                        }
+                    }
+                    
+                case .mediumPhoto:
+                    if let item = section as? HMMediumPhotos {
+                        HMMediumPhotoList(cards: item) { id in
+                            homeViewModel.selectItem(for: id)
+                        }
+                    }
+                    
+                case .tagSmallPhoto:
+                    if let item = section as? HMTagSmallPhotos {
+                        HMSmallPhotoList(cards: item.items) { id in
+                            homeViewModel.selectItem(for: id)
+                        }
+                    }
+                    
+                case .categorySmallPhoto:
+                    if let item = section as? HMCategorySmallPhotos {
+                        HMSmallPhotoList(cards: item.items) { id in
+                            homeViewModel.selectItem(for: id)
+                        }
+                    }
+                    
+                default:
+                    EmptyView()
                 }
             }
         } else {

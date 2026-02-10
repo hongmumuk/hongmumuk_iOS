@@ -7,12 +7,18 @@ protocol HM: Identifiable {
 }
 
 enum HMLType {
+    case filter
     case title
     case largePhoto
     case mediumPhoto
     case tagSmallPhoto
     case categorySmallPhoto
     case partnerSmallPhoto
+}
+
+struct HMListFilter: HM {
+    let id: UUID = .init()
+    let type: HMLType = .filter
 }
 
 struct HMLTitle: HM {
@@ -99,5 +105,5 @@ struct HMPartnerSmallPhoto: HMSmallPhoto {
     let subTitle: String
     let address: String
     let imageUrl: String
-    let category: Category
+    let tag: String
 }
