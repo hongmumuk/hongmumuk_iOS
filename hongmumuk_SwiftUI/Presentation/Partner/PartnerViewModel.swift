@@ -3,7 +3,9 @@ import SwiftUI
 @Observable
 class PartnerViewModel {
     var isLoading = true
+    var selectedFitler: Category?
     var sections: [any HM] = []
+    var displaySections: [any HM] = []
     var filters: [Category] = Category.filterPartner()
     
     func getSections() async {
@@ -27,6 +29,8 @@ class PartnerViewModel {
                 let item = fetchCategorySmallPhoto(for: section.items)
                 sections.append(item)
             }
+            
+            displaySections = sections
         } catch {
             print("error", error)
         }
@@ -42,12 +46,43 @@ class PartnerViewModel {
                 subTitle: item.placeName ?? "",
                 address: item.address ?? "",
                 imageUrl: item.image ?? "",
-                tag: item.partnerSubcategoryLabel ?? ""
+                tag: item.partnerSubcategoryLabel ?? "",
+                category: .init(rawValue: item.partnerCategoryKey ?? "") ?? .life,
             )
 
             result.append(newItem)
         }
 
         return .init(items: result)
+    }
+    
+    func selectFilter(for category: Category) {
+        if selectedFitler == category {
+            displaySections = sections
+            selectedFitler = nil
+            return
+        } else {
+            selectedFitler = category
+        }
+
+        displaySections = sections.compactMap { section in
+            // categorySmallPhoto가 아니면 그대로 유지
+            guard let categorySection = section as? HMPartnerSmallPhotos else {
+                return section
+            }
+
+            // category 기준 필터링
+            let filteredItems = categorySection.items
+                .compactMap { $0 as? HMPartnerSmallPhoto }
+                .filter { $0.category == category }
+
+            // 필터 결과가 없으면 섹션 제거
+            guard !filteredItems.isEmpty else {
+                return nil
+            }
+
+            // 필터된 categorySmallPhoto 섹션만 교체
+            return HMPartnerSmallPhotos(items: filteredItems)
+        }
     }
 }
