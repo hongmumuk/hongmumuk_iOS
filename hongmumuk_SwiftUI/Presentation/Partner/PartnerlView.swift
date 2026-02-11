@@ -8,35 +8,41 @@ struct PartnerlView: View {
         ScrollView(content: content)
             .padding(.top)
             .task {
-                try? await SupabaseService.shared.getScreenJson(for: .partner)
                 await partnerViewModel.getSections()
             }
     }
     
     @ViewBuilder
     private func content() -> some View {
-        if !partnerViewModel.sections.isEmpty {
-            ForEach(partnerViewModel.sections, id: \.id) { section in
-                switch section.type {
-                case .filter:
-                    HMFilter(categories: partnerViewModel.filters, isImage: false)
-                    
-                case .title:
-                    if let item = section as? HMLTitle {
-                        HMLargeTitle(title: item.title)
+        if !partnerViewModel.displaySections.isEmpty {
+            LazyVStack(spacing: 16) {
+                ForEach(partnerViewModel.displaySections, id: \.id) { section in
+                    switch section.type {
+                    case .filter:
+                        HMFilter(categories: partnerViewModel.filters, isImage: false) { category in
+                            partnerViewModel.selectFilter(for: category)
+                        }
+                        .padding(.bottom, 8)
+                        
+                    case .title:
+                        if let item = section as? HMLTitle {
+                            HMLargeTitle(title: item.title)
+                                .padding(.bottom, 4)
+                        }
+                        
+                    case .partnerSmallPhoto:
+                        if let item = section as? HMPartnerSmallPhotos {
+                            HMSmallPhotoList(cards: item.items) { _ in }
+                                .padding(.bottom, 8)
+                        }
+                        
+                    default:
+                        EmptyView()
                     }
-                    
-                case .partnerSmallPhoto:
-                    if let item = section as? HMPartnerSmallPhotos {
-                        HMSmallPhotoList(cards: item.items) { _ in }
-                    }
-                    
-                default:
-                    EmptyView()
                 }
             }
         } else {
-            Text("데이터가 없습니다.")
+            ProgressView()
         }
     }
 }

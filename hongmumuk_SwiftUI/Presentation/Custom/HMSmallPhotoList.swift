@@ -10,7 +10,8 @@ struct HMSmallPhotoList: View {
                 HMSmallPhotoCard(card: card)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 12)
-                    .onTapGesture { onSelect(card.id.uuidString) }
+                    .contentShape(Rectangle())
+                    .onTapGesture { onSelect(card.id) }
             }
         }
     }

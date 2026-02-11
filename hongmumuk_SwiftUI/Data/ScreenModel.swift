@@ -1,62 +1,50 @@
 import Foundation
 
 struct DetailModel: Decodable {
-    let content: ContentDetail
-    let place: Place?
-    let menus: [Menu]?
-    let tags: [String]
-}
-
-struct ContentDetail: Decodable, Identifiable {
     let id: String
-    let mainTitle: String
-    let subTitle: String?
+    let placeName: String?
+    let title: String?
+    let subtitle: String?
     let description: String?
-    let addressText: String?
-    let walkTimeMin: Int?
-    let heroImageUrl: String?
-    let detailImageUrls: [String]?
-    let flags: [String: Bool]?
-
+    let photos: [DetailPhoto]?
+    let category: String?
+    let address: String?
+    let walkTime: Int?
+    let viewCount: Int?
+    let menus: [DetailMenu]?
+    let tags: [String]?
+    
     enum CodingKeys: String, CodingKey {
         case id
-        case mainTitle = "main_title"
-        case subTitle = "sub_title"
+        case placeName = "place_name"
+        case title
+        case subtitle
         case description
-        case addressText = "address_text"
-        case walkTimeMin = "walk_time_min"
-        case heroImageUrl = "hero_image_url"
-        case detailImageUrls = "detail_image_urls"
-        case flags
-    }
-}
-
-struct Place: Decodable {
-    let name: String?
-    let address: String?
-    let phone: String?
-    let businessHours: String?
-
-    enum CodingKeys: String, CodingKey {
-        case name
+        case photos
+        case category
+        case tags
         case address
-        case phone
-        case businessHours = "business_hours"
+        case walkTime = "walk_time"
+        case viewCount = "view_count"
+        case menus
     }
 }
 
-struct Menu: Decodable, Identifiable {
-    var id: String { name }
+struct DetailPhoto: Decodable, Identifiable {
+    let url: String
+    let sortOrder: Int
+    
+    var id: String { "\(url)-\(sortOrder)" }
+    
+    enum CodingKeys: String, CodingKey {
+        case url
+        case sortOrder = "sort_order"
+    }
+}
 
+struct DetailMenu: Decodable, Identifiable {
     let name: String
     let price: Int?
-    let imageUrl: String?
-    let isRecommended: Bool?
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case price
-        case imageUrl = "image_url"
-        case isRecommended = "is_recommended"
-    }
+    
+    var id: String { name }
 }

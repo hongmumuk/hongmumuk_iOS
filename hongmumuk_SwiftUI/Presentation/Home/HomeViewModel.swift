@@ -4,7 +4,9 @@ import SwiftUI
 class HomeViewModel {
     var isLoading = true
     var selectedItem: SelectedItem?
+    var selectedFitler: Category?
     var sections: [any HM] = []
+    var displaySections: [any HM] = []
     var filters: [Category] = Category.filterHome()
     
     func getSections() async {
@@ -44,6 +46,8 @@ class HomeViewModel {
                     sections.append(item)
                 }
             }
+            
+            displaySections = sections
         } catch {
             print("error", error)
         }
@@ -54,6 +58,7 @@ class HomeViewModel {
         
         for item in items {
             let newItem: HMLagePhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 subtitle: item.subtitle ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
@@ -73,6 +78,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMMediumPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 subtitle: item.subtitle ?? "",
                 views: item.viewCount ?? 0,
@@ -90,6 +96,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMTagSmallPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 tags: item.tags ?? [],
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
@@ -108,6 +115,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMCategorySmallPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 tag: item.tags?.joined(separator: " ") ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
@@ -123,5 +131,35 @@ class HomeViewModel {
     
     func selectItem(for id: String) {
         selectedItem = .init(id: id)
+    }
+
+    func selectFilter(for category: Category) {
+        if selectedFitler == category {
+            displaySections = sections
+            selectedFitler = nil
+            return
+        } else {
+            selectedFitler = category
+        }
+
+        displaySections = sections.compactMap { section in
+            // categorySmallPhoto가 아니면 그대로 유지
+            guard let categorySection = section as? HMCategorySmallPhotos else {
+                return section
+            }
+
+            // category 기준 필터링
+            let filteredItems = categorySection.items
+                .compactMap { $0 as? HMCategorySmallPhoto }
+                .filter { $0.category == category }
+
+            // 필터 결과가 없으면 섹션 제거
+            guard !filteredItems.isEmpty else {
+                return nil
+            }
+
+            // 필터된 categorySmallPhoto 섹션만 교체
+            return HMCategorySmallPhotos(items: filteredItems)
+        }
     }
 }
