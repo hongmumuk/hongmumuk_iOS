@@ -60,7 +60,7 @@ class DetailViewModel {
         if let photos = detail.photos, !photos.isEmpty {
             images = photos
                 .sorted { $0.sortOrder < $1.sortOrder }
-                .map { $0.url }
+                .map(\.url)
         }
         
         // tags 복사

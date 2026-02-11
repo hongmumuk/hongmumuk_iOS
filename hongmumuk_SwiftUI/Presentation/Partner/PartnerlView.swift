@@ -8,20 +8,21 @@ struct PartnerlView: View {
         ScrollView(content: content)
             .padding(.top)
             .task {
-                try? await SupabaseService.shared.getScreenJson(for: .partner)
                 await partnerViewModel.getSections()
             }
     }
     
     @ViewBuilder
     private func content() -> some View {
-        if !partnerViewModel.sections.isEmpty {
+        if !partnerViewModel.displaySections.isEmpty {
             LazyVStack(spacing: 16) {
-                ForEach(partnerViewModel.sections, id: \.id) { section in
+                ForEach(partnerViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
-                        HMFilter(categories: partnerViewModel.filters, isImage: false)
-                            .padding(.bottom, 8)
+                        HMFilter(categories: partnerViewModel.filters, isImage: false) { category in
+                            partnerViewModel.selectFilter(for: category)
+                        }
+                        .padding(.bottom, 8)
                         
                     case .title:
                         if let item = section as? HMLTitle {
@@ -41,7 +42,7 @@ struct PartnerlView: View {
                 }
             }
         } else {
-            Text("데이터가 없습니다.")
+            ProgressView()
         }
     }
 }
