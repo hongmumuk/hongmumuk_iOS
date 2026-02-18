@@ -76,6 +76,7 @@
 		BEB42C2B2D7575770040F65F /* Epmty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB42C2A2D7575770040F65F /* Epmty.swift */; };
 		BEB42C312D758C0D0040F65F /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB42C302D758C0D0040F65F /* Loading.json */; };
 		BEBCC8242F0A543B0015CB4F /* HM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC8232F0A543B0015CB4F /* HM.swift */; };
+		BEC498102F458BAB007E723F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BEC4980F2F458BAB007E723F /* Kingfisher */; };
 		BECBD5662EFBD16F005E234B /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5642EFBD16F005E234B /* SupabaseService.swift */; };
 		BECBD5682EFBD645005E234B /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECBD5672EFBD645005E234B /* HomeModel.swift */; };
 		BECD1DF42D6C0F4000FDA113 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD1DF32D6C0F4000FDA113 /* Keyword.swift */; };
@@ -206,6 +207,7 @@
 			files = (
 				BE53EF172EFBCA8500168871 /* Supabase in Frameworks */,
 				BE34849E2EC1AB7B007A92A7 /* GoogleMobileAds in Frameworks */,
+				BEC498102F458BAB007E723F /* Kingfisher in Frameworks */,
 				BEECD2B12EC2FB0100D178C5 /* FirebaseCrashlytics in Frameworks */,
 				BEECD2B32EC2FB0100D178C5 /* FirebaseRemoteConfig in Frameworks */,
 				BEECD2AF2EC2FB0100D178C5 /* FirebaseAnalytics in Frameworks */,
@@ -491,6 +493,7 @@
 				BEECD2B02EC2FB0100D178C5 /* FirebaseCrashlytics */,
 				BEECD2B22EC2FB0100D178C5 /* FirebaseRemoteConfig */,
 				BE53EF162EFBCA8500168871 /* Supabase */,
+				BEC4980F2F458BAB007E723F /* Kingfisher */,
 			);
 			productName = hongmumuk_SwiftUI;
 			productReference = BEFB83992D3D359F000D9537 /* hongmumuk_SwiftUI.app */;
@@ -575,6 +578,7 @@
 				BE34849C2EC1AB7B007A92A7 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				BEECD2AD2EC2FB0100D178C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BE53EF152EFBCA8500168871 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				BEC4980E2F458BAB007E723F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BEFB839A2D3D359F000D9537 /* Products */;
@@ -1286,12 +1290,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1315,7 +1317,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1566,12 +1567,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_stag;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"hongmumuk_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7HDHR2SNR7;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1595,7 +1594,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.INTP.hogmumuk.staging";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1724,6 +1722,14 @@
 				minimumVersion = 2.5.1;
 			};
 		};
+		BEC4980E2F458BAB007E723F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.7.0;
+			};
+		};
 		BEECD2AD2EC2FB0100D178C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1749,6 +1755,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE53EF152EFBCA8500168871 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		BEC4980F2F458BAB007E723F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEC4980E2F458BAB007E723F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		BEECD2AE2EC2FB0100D178C5 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

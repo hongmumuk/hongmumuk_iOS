@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct HMSmallPhotoCard: View {
@@ -14,7 +15,9 @@ struct HMSmallPhotoCard: View {
     }
     
     private func imageStack() -> some View {
-        AsyncImage(url: URL(string: card.imageUrl))
+        KFImage(URL(string: card.imageUrl))
+            .resizable()
+            .scaledToFill()
             .frame(width: size, height: size)
             .overlay {
                 ZStack(alignment: .bottomLeading) {
