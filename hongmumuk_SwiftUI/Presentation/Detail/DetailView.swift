@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct DetailView: View {
@@ -47,22 +48,10 @@ struct DetailView: View {
                     .overlay(content: thumbnailImageOverlay)
             } else {
                 ForEach(detailViewModel.images, id: \.self) { imageUrl in
-                    AsyncImage(url: URL(string: imageUrl)) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case let .success(image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                        case .failure:
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                        @unknown default:
-                            EmptyView()
-                        }
-                    }
-                    .overlay(content: thumbnailImageOverlay)
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .overlay(content: thumbnailImageOverlay)
                 }
             }
         }
