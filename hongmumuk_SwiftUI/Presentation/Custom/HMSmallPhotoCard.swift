@@ -3,8 +3,9 @@ import SwiftUI
 
 struct HMSmallPhotoCard: View {
     let card: any HMSmallPhoto
+    @State private var isLoaded = false
     private let size: CGFloat = 96
-    let cornerRadius: CGFloat = 20
+    private let cornerRadius: CGFloat = 20
     
     var body: some View {
         HStack(spacing: 20) {
@@ -14,17 +15,33 @@ struct HMSmallPhotoCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    @ViewBuilder
     private func imageStack() -> some View {
-        KFImage(URL(string: card.imageUrl))
-            .resizable()
-            .scaledToFill()
-            .frame(width: size, height: size)
-            .overlay {
-                ZStack(alignment: .bottomLeading) {
-                    HMImageOverlay()
+        if let url = URL(string: card.imageUrl) {
+            KFImage(url)
+                .onSuccess { _ in
+                    isLoaded = true
                 }
-            }
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                .onFailure { _ in
+                    isLoaded = false
+                }
+                .placeholder {
+                    thumbnailImage
+                }
+                .resizable()
+                .scaledToFill()
+                .frame(width: size, height: size)
+                .overlay {
+                    if isLoaded {
+                        ZStack(alignment: .bottomLeading) {
+                            HMImageOverlay()
+                        }
+                    }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        } else {
+            thumbnailImage
+        }
     }
     
     private func textStack() -> some View {
@@ -34,6 +51,18 @@ struct HMSmallPhotoCard: View {
             title()
             info()
         }
+    }
+}
+
+// MARK: - Image
+
+extension HMSmallPhotoCard {
+    private var thumbnailImage: some View {
+        Image("thumbnailBigIcon")
+            .resizable()
+            .scaledToFill()
+            .frame(width: size, height: size)
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
     }
 }
 
@@ -110,12 +139,12 @@ extension HMSmallPhotoCard {
             address(for: card.address)
         } else if let card = card as? HMTagSmallPhoto {
             HStack(spacing: 12) {
-                category(for: card.category.displayName)
+                category(for: card.category)
                 distance(for: card.distance)
             }
         } else if let card = card as? HMCategorySmallPhoto {
             HStack(spacing: 12) {
-                category(for: card.category.displayName)
+                category(for: card.category)
                 distance(for: card.distance)
             }
         }
@@ -132,14 +161,14 @@ extension HMSmallPhotoCard {
         }
     }
     
-    private func category(for text: String) -> some View {
+    private func category(for category: Category) -> some View {
         HStack(spacing: 4) {
-            Image("riceIcon")
+            Image(category.lineIconName)
                 .renderingMode(.template)
                 .foregroundColor(Colors.GrayScale.grayscale50)
                 .frame(width: 16, height: 16)
             
-            Text("\(text)")
+            Text(category.displayName)
                 .foregroundColor(Colors.GrayScale.grayscale50)
                 .fontStyle(Fonts.caption1Medium)
         }
