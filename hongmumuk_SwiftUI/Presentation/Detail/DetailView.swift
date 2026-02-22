@@ -85,7 +85,6 @@ struct DetailView: View {
             Spacer()
             thumbnailContent()
         }
-        .frame(height: 51)
         .padding(.leading, 20)
         .padding(.trailing, 24)
         .padding(.bottom, 56)
@@ -93,6 +92,8 @@ struct DetailView: View {
     
     private func thumbnailTitle() -> some View {
         VStack(alignment: .leading, spacing: 4) {
+            Spacer()
+            
             // placeName이 있으면 상단에 표시
             if !detailViewModel.placeName.isEmpty {
                 Text(detailViewModel.placeName)
