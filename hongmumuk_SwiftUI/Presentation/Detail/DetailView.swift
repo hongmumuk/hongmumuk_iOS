@@ -114,7 +114,7 @@ struct DetailView: View {
         VStack(alignment: .trailing, spacing: 8) {
             Spacer()
             if let category = detailViewModel.category {
-                categoryView(for: category.displayName)
+                categoryView(for: category)
             }
             if let walkTime = detailViewModel.walkTime {
                 distance(for: walkTime)
@@ -122,14 +122,14 @@ struct DetailView: View {
         }
     }
     
-    private func categoryView(for text: String) -> some View {
+    private func categoryView(for category: Category) -> some View {
         HStack(spacing: 4) {
-            Image("riceIcon")
+            Image(category.lineIconName)
                 .renderingMode(.template)
                 .foregroundColor(.white)
                 .frame(width: 16, height: 16)
             
-            Text("\(text)")
+            Text(category.displayName)
                 .foregroundColor(.white)
                 .fontStyle(Fonts.caption1Medium)
         }
