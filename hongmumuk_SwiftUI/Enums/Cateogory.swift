@@ -42,7 +42,7 @@ extension Category {
     
     static func filterHome() -> [Category] {
         return allCases.filter { category in
-            return category != .life && category != .food && category != .all
+            return category != .life && category != .food
         }
     }
     
