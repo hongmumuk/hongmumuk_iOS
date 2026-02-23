@@ -20,11 +20,14 @@ struct HomeView: View {
                 ForEach(homeViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
-//                        HMFilter(categories: homeViewModel.filters, isImage: true) { category in
-//                            homeViewModel.selectFilter(for: category)
-//                        }
-//                        .padding(.bottom, 8)
-                        Text("필터")
+                        HMFilter(
+                            categories: homeViewModel.filters,
+                            isImage: true,
+                            selected: homeViewModel.selectedFitler
+                        ) { category in
+                            homeViewModel.selectFilter(for: category)
+                        }
+                        .padding(.bottom, 8)
                         
                     case .title:
                         if let item = section as? HMLTitle {

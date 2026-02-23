@@ -4,7 +4,7 @@ import SwiftUI
 class HomeViewModel {
     var isLoading = true
     var selectedItem: SelectedItem?
-    var selectedFitler: Category?
+    var selectedFitler: Category = .all
     var sections: [any HM] = []
     var displaySections: [any HM] = []
     var filters: [Category] = Category.filterHome()
@@ -132,17 +132,29 @@ class HomeViewModel {
     func selectItem(for id: String) {
         selectedItem = .init(id: id)
     }
-
+    
     func selectFilter(for category: Category) {
-        if selectedFitler == category {
+        // 1) 전체 버튼
+        if category == .all {
+            selectedFitler = .all
             displaySections = sections
-            selectedFitler = nil
             return
-        } else {
-            selectedFitler = category
         }
 
-        displaySections = sections.compactMap { section in
+        // 2) 같은 카테고리 재클릭 → 전체로 복귀
+        if selectedFitler == category {
+            selectedFitler = .all
+            displaySections = sections
+            return
+        }
+
+        // 3) 신규 카테고리 선택 → 필터링
+        selectedFitler = category
+        displaySections = filteredSections(for: category)
+    }
+
+    private func filteredSections(for category: Category) -> [any HM] {
+        sections.compactMap { section in
             // categorySmallPhoto가 아니면 그대로 유지
             guard let categorySection = section as? HMCategorySmallPhotos else {
                 return section
