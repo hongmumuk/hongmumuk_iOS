@@ -35,6 +35,8 @@ class DetailViewModel {
                 let detail = try await SupabaseService.shared.getDetail(for: selectedId)
                 self.detail = detail
                 convertToUIModel(detail)
+                
+                try await SupabaseService.shared.postViewCnt(for: selectedId)
             } catch {
                 print("❌ detail error", error)
             }
