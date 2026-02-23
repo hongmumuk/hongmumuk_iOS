@@ -3,7 +3,7 @@ import SwiftUI
 @Observable
 class PartnerViewModel {
     var isLoading = true
-    var selectedFitler: Category?
+    var selectedFitler: Category = .all
     var sections: [any HM] = []
     var displaySections: [any HM] = []
     var filters: [Category] = Category.filterPartner()
@@ -57,31 +57,41 @@ class PartnerViewModel {
     }
     
     func selectFilter(for category: Category) {
-        if selectedFitler == category {
+        // 1) 전체 버튼
+        if category == .all {
+            selectedFitler = .all
             displaySections = sections
-            selectedFitler = nil
             return
-        } else {
-            selectedFitler = category
         }
 
-        displaySections = sections.compactMap { section in
-            // categorySmallPhoto가 아니면 그대로 유지
+        // 2) 같은 카테고리 재클릭 → 전체로 복귀
+        if selectedFitler == category {
+            selectedFitler = .all
+            displaySections = sections
+            return
+        }
+
+        // 3) 신규 카테고리 선택 → 필터링
+        selectedFitler = category
+        displaySections = filteredSections(for: category)
+    }
+
+    private func filteredSections(for category: Category) -> [any HM] {
+        sections.compactMap { section in
+            // category 섹션이 아니면 그대로 유지
             guard let categorySection = section as? HMPartnerSmallPhotos else {
                 return section
             }
 
-            // category 기준 필터링
-            let filteredItems = categorySection.items
+            // category 기준 아이템 필터
+            let filteredItems: [HMPartnerSmallPhoto] = categorySection.items
                 .compactMap { $0 as? HMPartnerSmallPhoto }
                 .filter { $0.category == category }
 
-            // 필터 결과가 없으면 섹션 제거
-            guard !filteredItems.isEmpty else {
-                return nil
-            }
+            // 결과 없으면 섹션 제거
+            guard !filteredItems.isEmpty else { return nil }
 
-            // 필터된 categorySmallPhoto 섹션만 교체
+            // 필터된 섹션으로 교체
             return HMPartnerSmallPhotos(items: filteredItems)
         }
     }
