@@ -20,7 +20,11 @@ struct HomeView: View {
                 ForEach(homeViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
-                        HMFilter(categories: homeViewModel.filters, isImage: true) { category in
+                        HMFilter(
+                            categories: homeViewModel.filters,
+                            isImage: true,
+                            selected: homeViewModel.selectedFitler
+                        ) { category in
                             homeViewModel.selectFilter(for: category)
                         }
                         .padding(.bottom, 8)

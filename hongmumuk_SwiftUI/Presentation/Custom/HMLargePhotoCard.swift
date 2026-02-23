@@ -68,8 +68,11 @@ struct HMLagePhotoCard: View {
             Spacer()
             
             HStack(spacing: 4) {
-                Image("riceIcon")
+                Image(card.category.lineIconName)
+                    .renderingMode(.template)
+                    .scaledToFit()
                     .frame(width: 16, height: 16)
+                    .foregroundColor(.white)
                 
                 Text("\(card.category.displayName)")
                     .foregroundColor(.white)
