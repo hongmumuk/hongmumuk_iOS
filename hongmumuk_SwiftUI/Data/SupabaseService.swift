@@ -38,4 +38,12 @@ final class SupabaseService {
         
         return response
     }
+    
+    func postViewCnt(for id: String) async throws {
+        let response = try await SupabaseService.shared.client
+            .rpc("increment_view_count", params: ["p_content_id": id])
+            .execute()
+
+        print("status:", response.status)
+    }
 }
