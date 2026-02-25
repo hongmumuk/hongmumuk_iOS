@@ -34,7 +34,7 @@ struct HMLagePhotos: HM {
 }
 
 struct HMLagePhoto: Identifiable {
-    let id = UUID()
+    let id: String
     let title: String
     let subtitle: String
     let category: Category
@@ -50,7 +50,7 @@ struct HMMediumPhotos: HM {
 }
 
 struct HMMediumPhoto: Identifiable {
-    let id = UUID()
+    let id: String
     let title: String
     let subtitle: String
     let views: Int
@@ -58,7 +58,7 @@ struct HMMediumPhoto: Identifiable {
 }
 
 protocol HMSmallPhoto: Identifiable {
-    var id: UUID { get }
+    var id: String { get }
     var imageUrl: String { get }
     var title: String { get }
 }
@@ -70,7 +70,7 @@ struct HMTagSmallPhotos: HM {
 }
 
 struct HMTagSmallPhoto: HMSmallPhoto {
-    let id = UUID()
+    let id: String
     let title: String
     let tags: [String]
     let category: Category
@@ -85,7 +85,7 @@ struct HMCategorySmallPhotos: HM {
 }
 
 struct HMCategorySmallPhoto: HMSmallPhoto {
-    let id = UUID()
+    let id: String
     let title: String
     let tag: String
     let category: Category
@@ -100,7 +100,7 @@ struct HMPartnerSmallPhotos: HM {
 }
 
 struct HMPartnerSmallPhoto: HMSmallPhoto {
-    let id = UUID()
+    let id: String
     let title: String
     let subTitle: String
     let address: String

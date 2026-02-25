@@ -54,6 +54,7 @@ class HomeViewModel {
         
         for item in items {
             let newItem: HMLagePhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 subtitle: item.subtitle ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
@@ -73,6 +74,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMMediumPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 subtitle: item.subtitle ?? "",
                 views: item.viewCount ?? 0,
@@ -90,6 +92,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMTagSmallPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 tags: item.tags ?? [],
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
@@ -108,6 +111,7 @@ class HomeViewModel {
 
         for item in items {
             let newItem: HMCategorySmallPhoto = .init(
+                id: item.id,
                 title: item.title ?? "",
                 tag: item.tags?.joined(separator: " ") ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
