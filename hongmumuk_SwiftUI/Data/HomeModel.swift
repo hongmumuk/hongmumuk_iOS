@@ -112,7 +112,7 @@ struct HomeItem: Decodable, Identifiable {
 
     let tags: [String]?
     let viewCount: Int?
-    let walkTimeMin: Int?
+    let walkTimeMin: String?
 
     enum CodingKeys: String, CodingKey {
         case id
