@@ -4,12 +4,12 @@ struct DetailModel: Decodable {
     let id: String
     let placeName: String?
     let title: String?
-    let subtitle: String?
-    let description: String?
+    let contentTitle: String?
+    let content: String?
     let photos: [DetailPhoto]?
     let category: String?
     let address: String?
-    let walkTime: Int?
+    let walkTime: String?
     let viewCount: Int?
     let menus: [DetailMenu]?
     let tags: [String]?
@@ -18,8 +18,8 @@ struct DetailModel: Decodable {
         case id
         case placeName = "place_name"
         case title
-        case subtitle
-        case description
+        case contentTitle = "content_title"
+        case content
         case photos
         case category
         case tags

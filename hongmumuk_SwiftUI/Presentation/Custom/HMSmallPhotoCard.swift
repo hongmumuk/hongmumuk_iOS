@@ -142,7 +142,7 @@ extension HMSmallPhotoCard {
         }
     }
     
-    private func distance(for time: Int) -> some View {
+    private func distance(for time: String) -> some View {
         HStack(spacing: 4) {
             Image("Clock")
                 .renderingMode(.template)

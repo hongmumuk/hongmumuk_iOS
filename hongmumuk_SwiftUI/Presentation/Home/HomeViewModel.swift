@@ -56,10 +56,10 @@ class HomeViewModel {
             let newItem: HMLagePhoto = .init(
                 id: item.id,
                 title: item.title ?? "",
-                subtitle: item.subtitle ?? "",
+                placeName: item.placeName ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
                 views: item.viewCount ?? 0,
-                distance: item.walkTimeMin ?? 0,
+                distance: item.walkTimeMin ?? "0",
                 imageUrl: item.image ?? ""
             )
             
@@ -76,7 +76,7 @@ class HomeViewModel {
             let newItem: HMMediumPhoto = .init(
                 id: item.id,
                 title: item.title ?? "",
-                subtitle: item.subtitle ?? "",
+                placeName: item.placeName ?? "",
                 views: item.viewCount ?? 0,
                 imageUrl: item.image ?? ""
             )
@@ -96,7 +96,7 @@ class HomeViewModel {
                 title: item.title ?? "",
                 tags: item.tags ?? [],
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
-                distance: item.walkTimeMin ?? 0,
+                distance: item.walkTimeMin ?? "0",
                 imageUrl: item.image ?? ""
             )
 
@@ -115,7 +115,7 @@ class HomeViewModel {
                 title: item.title ?? "",
                 tag: item.tags?.joined(separator: " ") ?? "",
                 category: .init(rawValue: item.primaryCategoryKey ?? "") ?? .korean,
-                distance: item.walkTimeMin ?? 0,
+                distance: item.walkTimeMin ?? "0",
                 imageUrl: item.image ?? ""
             )
 
