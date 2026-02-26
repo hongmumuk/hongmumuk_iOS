@@ -54,7 +54,7 @@ struct HMFilterButton: View {
             .padding(.vertical, 6)
             .padding(.horizontal, 12)
             .background(content: backgroundContent)
-            .shadow(color: .black.opacity(0.05), radius: 12)
+            .shadow(color: .black.opacity(0.08), radius: 2, x: 0, y: 1)
         }
     }
     

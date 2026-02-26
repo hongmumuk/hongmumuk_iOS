@@ -44,7 +44,7 @@ struct HMMediumPhotoCard: View {
         VStack(alignment: .leading, spacing: 4) {
             Spacer()
             
-            Text(card.subtitle)
+            Text(card.placeName)
                 .foregroundColor(.white)
                 .fontStyle(Fonts.body2SemiBold)
             

@@ -19,8 +19,7 @@ struct DetailView: View {
                             }
                             
                             tags()
-                            subtitle()
-                            description()
+                            contentSection()
                             address()
                             menu()
                         }
@@ -145,7 +144,7 @@ struct DetailView: View {
         }
     }
     
-    private func distance(for time: Int) -> some View {
+    private func distance(for time: String) -> some View {
         HStack(spacing: 4) {
             Image("Clock")
                 .renderingMode(.template)
@@ -192,31 +191,25 @@ struct DetailView: View {
     // MARK: - Content
     
     @ViewBuilder
-    private func subtitle() -> some View {
-        if !detailViewModel.subtitle.isEmpty {
-            HStack {
-                Text(detailViewModel.subtitle)
+    private func contentSection() -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if !detailViewModel.contentTitle.isEmpty {
+                Text(detailViewModel.contentTitle)
                     .foregroundColor(Colors.Label.Normal.normal)
                     .fontStyle(Fonts.heading2Bold)
                     .padding(.horizontal, 24)
-                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-        }
-    }
-    
-    @ViewBuilder
-    private func description() -> some View {
-        if !detailViewModel.description.isEmpty {
-            HStack {
-                Text(detailViewModel.description)
+            
+            if !detailViewModel.content.isEmpty {
+                Text(detailViewModel.content)
                     .foregroundColor(Colors.Label.Normal.basic)
                     .fontStyle(Fonts.heading3Medium)
                     .padding(.horizontal, 24)
-                    .padding(.top, 8)
                     .padding(.bottom, 32)
-                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 8)
     }
     
     @ViewBuilder
