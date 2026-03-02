@@ -16,7 +16,9 @@ struct PartnerlView: View {
     private func content() -> some View {
         if !partnerViewModel.displaySections.isEmpty {
             LazyVStack(spacing: 16) {
-                ForEach(partnerViewModel.displaySections, id: \.id) { section in
+                HMNavigationBar()
+                
+                ForEach(partnerViewModel.sections, id: \.id) { section in
                     switch section.type {
                     case .filter:
                         HMFilter(categories: partnerViewModel.filters, isImage: false, selected: partnerViewModel.selectedFitler) { category in
