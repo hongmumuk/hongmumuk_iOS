@@ -19,7 +19,7 @@ struct PartnerlView: View {
                 ForEach(partnerViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
-                        HMFilter(categories: partnerViewModel.filters, isImage: false) { category in
+                        HMFilter(categories: partnerViewModel.filters, isImage: false, selected: partnerViewModel.selectedFitler) { category in
                             partnerViewModel.selectFilter(for: category)
                         }
                         .padding(.bottom, 8)

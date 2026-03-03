@@ -85,7 +85,6 @@ struct DetailView: View {
             Spacer()
             thumbnailContent()
         }
-        .frame(height: 51)
         .padding(.leading, 20)
         .padding(.trailing, 24)
         .padding(.bottom, 56)
@@ -93,6 +92,8 @@ struct DetailView: View {
     
     private func thumbnailTitle() -> some View {
         VStack(alignment: .leading, spacing: 4) {
+            Spacer()
+            
             // placeName이 있으면 상단에 표시
             if !detailViewModel.placeName.isEmpty {
                 Text(detailViewModel.placeName)
@@ -113,7 +114,7 @@ struct DetailView: View {
         VStack(alignment: .trailing, spacing: 8) {
             Spacer()
             if let category = detailViewModel.category {
-                categoryView(for: category.displayName)
+                categoryView(for: category)
             }
             if let walkTime = detailViewModel.walkTime {
                 distance(for: walkTime)
@@ -121,14 +122,14 @@ struct DetailView: View {
         }
     }
     
-    private func categoryView(for text: String) -> some View {
+    private func categoryView(for category: Category) -> some View {
         HStack(spacing: 4) {
-            Image("riceIcon")
+            Image(category.lineIconName)
                 .renderingMode(.template)
                 .foregroundColor(.white)
                 .frame(width: 16, height: 16)
             
-            Text("\(text)")
+            Text(category.displayName)
                 .foregroundColor(.white)
                 .fontStyle(Fonts.caption1Medium)
         }

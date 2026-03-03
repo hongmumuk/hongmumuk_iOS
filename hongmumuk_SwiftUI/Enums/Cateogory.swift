@@ -25,9 +25,24 @@ extension Category {
         }
     }
     
+    var lineIconName: String {
+        switch self {
+        case .korean, .chinese:
+            "riceLine"
+        case .japanese:
+            "japanLine"
+        case .cafe:
+            "cafeLine"
+        case .fastfood:
+            "fastFoodLine"
+        default:
+            ""
+        }
+    }
+    
     static func filterHome() -> [Category] {
         return allCases.filter { category in
-            return category != .life && category != .food && category != .all
+            return category != .life && category != .food
         }
     }
     
