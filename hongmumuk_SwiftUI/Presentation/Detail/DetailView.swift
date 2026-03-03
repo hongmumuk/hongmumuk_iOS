@@ -51,7 +51,7 @@ struct DetailView: View {
                         switch phase {
                         case .empty:
                             ProgressView()
-                        case .success(let image):
+                        case let .success(image):
                             image
                                 .resizable()
                                 .scaledToFill()

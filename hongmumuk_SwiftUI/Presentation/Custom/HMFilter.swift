@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct HMFilter: View {
-    // 임시 프로퍼티
     @State private var selected: Category? = nil
     let categories: [Category]
     let isImage: Bool
-
+    let onSelcted: (Category) -> Void
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
@@ -16,6 +16,7 @@ struct HMFilter: View {
                         isSelected: category == selected,
                         isImage: isImage
                     ) {
+                        onSelcted(category)
                         action(category)
                     }
                 }
@@ -41,7 +42,7 @@ struct HMFilterButton: View {
     let isSelected: Bool
     let isImage: Bool
     let action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
