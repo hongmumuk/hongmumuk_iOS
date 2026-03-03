@@ -36,10 +36,10 @@ struct HMLagePhotos: HM {
 struct HMLagePhoto: Identifiable {
     let id: String
     let title: String
-    let subtitle: String
+    let placeName: String
     let category: Category
     let views: Int
-    let distance: Int
+    let distance: String
     let imageUrl: String
 }
 
@@ -52,7 +52,7 @@ struct HMMediumPhotos: HM {
 struct HMMediumPhoto: Identifiable {
     let id: String
     let title: String
-    let subtitle: String
+    let placeName: String
     let views: Int
     let imageUrl: String
 }
@@ -74,7 +74,7 @@ struct HMTagSmallPhoto: HMSmallPhoto {
     let title: String
     let tags: [String]
     let category: Category
-    let distance: Int
+    let distance: String
     let imageUrl: String
 }
 
@@ -89,7 +89,7 @@ struct HMCategorySmallPhoto: HMSmallPhoto {
     let title: String
     let tag: String
     let category: Category
-    let distance: Int
+    let distance: String
     let imageUrl: String
 }
 

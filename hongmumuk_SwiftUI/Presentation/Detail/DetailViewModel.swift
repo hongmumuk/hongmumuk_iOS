@@ -10,11 +10,11 @@ class DetailViewModel {
     var images: [String] = []
     var placeName: String = ""
     var title: String = ""
-    var subtitle: String = ""
     var category: Category?
-    var walkTime: Int?
+    var walkTime: String?
     var tags: [String] = []
-    var description: String = ""
+    var contentTitle: String = ""
+    var content: String = ""
     var address: String = ""
     var menus: [DetailMenu] = []
     var viewCount: Int = 0
@@ -45,8 +45,8 @@ class DetailViewModel {
     private func convertToUIModel(_ detail: DetailModel) {
         placeName = detail.placeName ?? ""
         title = detail.title ?? ""
-        subtitle = detail.subtitle ?? ""
-        description = detail.description ?? ""
+        contentTitle = detail.contentTitle ?? ""
+        content = detail.content ?? ""
         address = detail.address ?? ""
         walkTime = detail.walkTime
         viewCount = detail.viewCount ?? 0
