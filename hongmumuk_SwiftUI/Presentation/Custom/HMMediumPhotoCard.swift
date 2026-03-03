@@ -1,3 +1,4 @@
+import Kingfisher
 import SwiftUI
 
 struct HMMediumPhotoCard: View {
@@ -7,7 +8,9 @@ struct HMMediumPhotoCard: View {
     let cornerRadius: CGFloat = 20
     
     var body: some View {
-        AsyncImage(url: URL(string: card.imageUrl))
+        KFImage(URL(string: card.imageUrl))
+            .resizable()
+            .scaledToFill()
             .frame(width: width, height: height)
             .overlay {
                 ZStack(alignment: .bottomLeading) {
