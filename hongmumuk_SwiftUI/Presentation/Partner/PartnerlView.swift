@@ -15,7 +15,7 @@ struct PartnerlView: View {
     @ViewBuilder
     private func content() -> some View {
         if !partnerViewModel.displaySections.isEmpty {
-            LazyVStack(spacing: 16) {
+            LazyVStack(spacing: 0) {
                 HMNavigationBar()
                 
                 ForEach(partnerViewModel.sections, id: \.id) { section in
