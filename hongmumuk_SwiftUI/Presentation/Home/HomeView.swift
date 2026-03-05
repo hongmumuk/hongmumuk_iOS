@@ -16,8 +16,10 @@ struct HomeView: View {
     @ViewBuilder
     private func content() -> some View {
         if !homeViewModel.displaySections.isEmpty {
-            LazyVStack(spacing: 16) {
-                ForEach(homeViewModel.displaySections, id: \.id) { section in
+            LazyVStack(spacing: 0) {
+                HMNavigationBar()
+                
+                ForEach(homeViewModel.sections, id: \.id) { section in
                     switch section.type {
                     case .filter:
                         HMFilter(
