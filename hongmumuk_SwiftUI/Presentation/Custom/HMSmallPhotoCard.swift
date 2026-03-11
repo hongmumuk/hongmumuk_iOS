@@ -181,7 +181,7 @@ extension HMSmallPhotoCard {
                 .foregroundColor(Colors.GrayScale.grayscale50)
                 .frame(width: 16, height: 16)
             
-            Text("도보 \(time)분")
+            Text("\(time)")
                 .foregroundColor(Colors.GrayScale.grayscale50)
                 .fontStyle(Fonts.caption1Medium)
         }
