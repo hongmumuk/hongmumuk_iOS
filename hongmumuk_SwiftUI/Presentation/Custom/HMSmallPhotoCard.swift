@@ -76,7 +76,7 @@ extension HMSmallPhotoCard {
         } else if let card = card as? HMCategorySmallPhoto {
             text(for: card.tag)
         } else if let card = card as? HMPartnerSmallPhoto {
-            textBadge(for: card.tag)
+            textBadge(for: card.tag, category: card.category)
         } else {
             EmptyView()
         }
@@ -89,17 +89,22 @@ extension HMSmallPhotoCard {
             .padding(.bottom, 4)
     }
     
-    private func textBadge(for text: String) -> some View {
-        Text(text)
-            .fontStyle(Fonts.caption1Semibold)
-            .foregroundColor(Colors.Primary.normal)
-            .padding(.vertical, 2)
-            .padding(.horizontal, 4)
-            .background(
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Colors.Primary.primary10)
-            )
-            .padding(.bottom, 4)
+    private func textBadge(for text: String, category: Category) -> some View {
+        HStack(spacing: 4) {
+            Image("\(category.rawValue)TagLine")
+                .resizable()
+                .frame(width: 16, height: 16)
+            Text(text)
+                .fontStyle(Fonts.caption1Semibold)
+                .foregroundColor(Colors.Primary.normal)
+        }
+        .padding(.vertical, 2)
+        .padding(.horizontal, 4)
+        .background(
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Colors.Primary.primary10)
+        )
+        .padding(.bottom, 4)
     }
 }
 

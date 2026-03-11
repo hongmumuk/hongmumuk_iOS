@@ -2,7 +2,6 @@ import SwiftUI
 
 @Observable
 class PartnerViewModel {
-    var isLoading = true
     var selectedFitler: Category = .all
     var sections: [any HM] = []
     var displaySections: [any HM] = []
@@ -19,15 +18,19 @@ class PartnerViewModel {
             for section in items.sections {
                 if section.type == .categoryFilterList {
                     sections.append(HMListFilter())
+                    if !section.items.isEmpty {
+                        sections.append(fetchCategorySmallPhoto(for: section.items))
+                    }
+                    continue
                 }
                 
                 if let title = section.props.title {
-                    let item = HMLTitle(title: title)
-                    sections.append(item)
+                    sections.append(HMLTitle(title: title))
                 }
                 
-                let item = fetchCategorySmallPhoto(for: section.items)
-                sections.append(item)
+                if !section.items.isEmpty {
+                    sections.append(fetchCategorySmallPhoto(for: section.items))
+                }
             }
             
             displaySections = sections
@@ -42,12 +45,12 @@ class PartnerViewModel {
         for item in items {
             let newItem: HMPartnerSmallPhoto = .init(
                 id: item.id,
-                title: item.title ?? "",
-                subTitle: item.placeName ?? "",
+                title: item.placeName ?? "",
+                subTitle: item.title ?? "",
                 address: item.address ?? "",
                 imageUrl: item.image ?? "",
                 tag: item.partnerSubcategoryLabel ?? "",
-                category: .init(rawValue: item.partnerCategoryKey ?? "") ?? .life,
+                category: .init(rawValue: item.partnerCategoryKey ?? "") ?? .shopping,
             )
 
             result.append(newItem)
@@ -77,22 +80,18 @@ class PartnerViewModel {
     }
 
     private func filteredSections(for category: Category) -> [any HM] {
-        sections.compactMap { section in
-            // category 섹션이 아니면 그대로 유지
-            guard let categorySection = section as? HMPartnerSmallPhotos else {
+        let filtered: [any HM] = sections.compactMap { section in
+            guard let photoSection = section as? HMPartnerSmallPhotos else {
                 return section
             }
+            let firstCategory = (photoSection.items.first as? HMPartnerSmallPhoto)?.category
+            return firstCategory == category ? photoSection : nil
+        }
 
-            // category 기준 아이템 필터
-            let filteredItems: [HMPartnerSmallPhoto] = categorySection.items
-                .compactMap { $0 as? HMPartnerSmallPhoto }
-                .filter { $0.category == category }
-
-            // 결과 없으면 섹션 제거
-            guard !filteredItems.isEmpty else { return nil }
-
-            // 필터된 섹션으로 교체
-            return HMPartnerSmallPhotos(items: filteredItems)
+        return filtered.enumerated().compactMap { index, section in
+            guard section is HMLTitle else { return section }
+            let next = filtered.indices.contains(index + 1) ? filtered[index + 1] : nil
+            return next is HMPartnerSmallPhotos ? section : nil
         }
     }
 }
