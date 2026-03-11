@@ -7,8 +7,13 @@ enum Category: String, CaseIterable, Codable {
     case japanese
     case cafe
     case fastfood
-    case food
-    case life
+    
+    case dining
+    case culture
+    case edu
+    case shopping
+    case health
+    case beauty
 }
 
 extension Category {
@@ -20,8 +25,13 @@ extension Category {
         case .japanese: return "일식"
         case .cafe: return "카페"
         case .fastfood: return "패스트푸드"
-        case .food: return "음식점"
-        case .life: return "생활/문화"
+
+        case .dining: return "외식"
+        case .culture: return "문화"
+        case .edu: return "교육"
+        case .shopping: return "쇼핑"
+        case .health: return "운동"
+        case .beauty: return "미용"
         }
     }
     
@@ -41,15 +51,11 @@ extension Category {
     }
     
     static func filterHome() -> [Category] {
-        return allCases.filter { category in
-            return category != .life && category != .food
-        }
+        return [.korean, .chinese, .japanese, .cafe, .fastfood]
     }
     
     static func filterPartner() -> [Category] {
-        return allCases.filter { category in
-            return category == .life || category == .food || category == .cafe || category == .all
-        }
+        return [.all, .dining, .culture, .edu, .shopping, .health, .beauty]
     }
 }
     
