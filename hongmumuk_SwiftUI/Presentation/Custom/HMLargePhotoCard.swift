@@ -83,7 +83,7 @@ struct HMLagePhotoCard: View {
                 Image("Clock")
                     .frame(width: 16, height: 16)
                 
-                Text("도보 \(card.distance)분")
+                Text("\(card.distance)")
                     .foregroundColor(.white)
                     .fontStyle(Fonts.caption1Medium)
             }

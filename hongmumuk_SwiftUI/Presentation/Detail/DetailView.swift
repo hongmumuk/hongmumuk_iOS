@@ -141,7 +141,7 @@ struct DetailView: View {
                 .foregroundColor(.white)
                 .frame(width: 16, height: 16)
             
-            Text("도보 \(time)분")
+            Text("\(time)")
                 .foregroundColor(.white)
                 .fontStyle(Fonts.caption1Medium)
         }

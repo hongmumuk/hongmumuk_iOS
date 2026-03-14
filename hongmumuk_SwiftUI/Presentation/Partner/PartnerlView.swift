@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PartnerlView: View {
     @State var showDetail = false
-    var partnerViewModel: PartnerViewModel = .init()
+    @State var partnerViewModel: PartnerViewModel = .init()
     
     var body: some View {
         ScrollView(content: content)
@@ -18,10 +18,10 @@ struct PartnerlView: View {
             LazyVStack(spacing: 0) {
                 HMNavigationBar()
                 
-                ForEach(partnerViewModel.sections, id: \.id) { section in
+                ForEach(partnerViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
-                        HMFilter(categories: partnerViewModel.filters, isImage: false, selected: partnerViewModel.selectedFitler) { category in
+                        HMFilter(categories: partnerViewModel.filters, isImage: true, selected: partnerViewModel.selectedFitler) { category in
                             partnerViewModel.selectFilter(for: category)
                         }
                         .padding(.bottom, 8)

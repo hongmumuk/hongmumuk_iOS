@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showDetail = false
-    @Bindable var homeViewModel: HomeViewModel = .init()
+    @State var homeViewModel: HomeViewModel = .init()
     
     var body: some View {
         ScrollView(content: content)
@@ -19,7 +19,7 @@ struct HomeView: View {
             LazyVStack(spacing: 0) {
                 HMNavigationBar()
                 
-                ForEach(homeViewModel.sections, id: \.id) { section in
+                ForEach(homeViewModel.displaySections, id: \.id) { section in
                     switch section.type {
                     case .filter:
                         HMFilter(
