@@ -25,7 +25,6 @@ extension Category {
         case .japanese: return "일식"
         case .cafe: return "카페"
         case .fastfood: return "패스트푸드"
-
         case .dining: return "외식"
         case .culture: return "문화"
         case .edu: return "교육"
@@ -51,7 +50,7 @@ extension Category {
     }
     
     static func filterHome() -> [Category] {
-        return [.korean, .chinese, .japanese, .cafe, .fastfood]
+        return [.all, .korean, .chinese, .japanese, .cafe, .fastfood]
     }
     
     static func filterPartner() -> [Category] {
