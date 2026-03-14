@@ -11,7 +11,7 @@ struct HMFilter: View {
             HStack(spacing: 8) {
                 ForEach(categories, id: \.self) { category in
                     HMFilterButton(
-                        imageName: isImage && category != .all ? category.rawValue : nil,
+                        imageName: isImage ? "\(category)TagLine" : nil,
                         title: category.displayName,
                         isSelected: category == selected,
                         isImage: isImage
