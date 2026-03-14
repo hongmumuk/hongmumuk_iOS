@@ -199,7 +199,6 @@ struct DetailView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 8)
     }
     
     @ViewBuilder
