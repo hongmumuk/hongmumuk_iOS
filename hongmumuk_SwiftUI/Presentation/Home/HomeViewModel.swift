@@ -167,7 +167,7 @@ class HomeViewModel {
 
             // 필터 결과가 없으면 섹션 제거
             guard !filteredItems.isEmpty else {
-                return nil
+                return HMCategorySmallPhotos(items: [])
             }
 
             // 필터된 categorySmallPhoto 섹션만 교체
