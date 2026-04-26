@@ -8,6 +8,9 @@ struct HomeView: View {
         ScrollView(content: content)
             .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
             .padding(.top)
+            .onAppear {
+                Event.screenHome.send()
+            }
             .task {
                 await homeViewModel.getSections()
             }

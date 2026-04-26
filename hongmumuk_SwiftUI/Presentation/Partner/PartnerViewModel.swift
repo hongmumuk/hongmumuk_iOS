@@ -6,15 +6,18 @@ class PartnerViewModel {
     var sections: [any HM] = []
     var displaySections: [any HM] = []
     var filters: [Category] = Category.filterPartner()
-    
+
+    // id → HMPartnerSmallPhoto 룩업 - 카드 탭 이벤트에 활용
+    private var partnerItemMap: [String: HMPartnerSmallPhoto] = [:]
+
     func getSections() async {
         if !sections.isEmpty {
             return
         }
-        
+
         do {
             let items = try await SupabaseService.shared.getScreen(for: .partner)
-            
+
             for section in items.sections {
                 if section.type == .categoryFilterList {
                     sections.append(HMListFilter())
@@ -23,22 +26,22 @@ class PartnerViewModel {
                     }
                     continue
                 }
-                
+
                 if let title = section.props.title {
                     sections.append(HMLTitle(title: title))
                 }
-                
+
                 if !section.items.isEmpty {
                     sections.append(fetchCategorySmallPhoto(for: section.items))
                 }
             }
-            
+
             displaySections = sections
         } catch {
             print("error", error)
         }
     }
-    
+
     private func fetchCategorySmallPhoto(for items: [HomeItem]) -> HMPartnerSmallPhotos {
         var result: [HMPartnerSmallPhoto] = []
 
@@ -52,13 +55,22 @@ class PartnerViewModel {
                 tag: item.partnerSubcategoryLabel ?? "",
                 category: .init(rawValue: item.partnerCategoryKey ?? "") ?? .shopping,
             )
-
+            partnerItemMap[item.id] = newItem
             result.append(newItem)
         }
 
         return .init(items: result)
     }
-    
+
+    func selectItem(for id: String) {
+        guard let item = partnerItemMap[id] else { return }
+        Event.partnerCardTapped(
+            placeId: id,
+            placeName: item.title,
+            category: item.category.displayName
+        ).send()
+    }
+
     func selectFilter(for category: Category) {
         // 1) 전체 버튼
         if category == .all {
@@ -77,6 +89,7 @@ class PartnerViewModel {
         // 3) 신규 카테고리 선택 → 필터링
         selectedFitler = category
         displaySections = filteredSections(for: category)
+        Event.partnerCategoryFilterSelected(category: category.displayName).send()
     }
 
     private func filteredSections(for category: Category) -> [any HM] {

@@ -7,6 +7,9 @@ struct PartnerlView: View {
     var body: some View {
         ScrollView(content: content)
             .padding(.top)
+            .onAppear {
+                Event.screenPartner.send()
+            }
             .task {
                 await partnerViewModel.getSections()
             }
@@ -34,8 +37,10 @@ struct PartnerlView: View {
                         
                     case .partnerSmallPhoto:
                         if let item = section as? HMPartnerSmallPhotos {
-                            HMSmallPhotoList(cards: item.items) { _ in }
-                                .padding(.bottom, 8)
+                            HMSmallPhotoList(cards: item.items) { id in
+                                partnerViewModel.selectItem(for: id)
+                            }
+                            .padding(.bottom, 8)
                         }
                         
                     default:
