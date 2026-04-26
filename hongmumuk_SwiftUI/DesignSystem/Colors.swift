@@ -168,4 +168,62 @@ enum Colors {
             static let normal = Color(hex: "#00000029")
         }
     }
+    
+    enum PartnerTags {
+        static let neutralBg = Color(hex: "#E8EBFC")
+        static let neutralTxt = Color(hex: "#193BE6")
+
+        static let purpleBg = Color(hex: "#F3EBFF")
+        static let purpleTxt = Color(hex: "#5D19E6")
+
+        static let lightPurpleBg = Color(hex: "#FBEDFD")
+        static let lightPurpleTxt = Color(hex: "#C419E6")
+
+        static let rubyBg = Color(hex: "#FFEBF0")
+        static let rubyTxt = Color(hex: "#E6193B")
+
+        static let yellowBg = Color(hex: "#FBF7D0")
+        static let yellowTxt = Color(hex: "#DB8F00")
+
+        static let lightBlueBg = Color(hex: "#E6F7FE")
+        static let lightBlueTxt = Color(hex: "#1692CF")
+    }
+
+    static func partnerTagsBg(for category: Category) -> Color {
+        switch category {
+        case .dining:
+            return PartnerTags.neutralBg
+        case .culture:
+            return PartnerTags.purpleBg
+        case .edu:
+            return PartnerTags.lightPurpleBg
+        case .shopping:
+            return PartnerTags.rubyBg
+        case .health:
+            return PartnerTags.yellowBg
+        case .beauty:
+            return PartnerTags.lightBlueBg
+        default:
+            return PartnerTags.neutralBg
+        }
+    }
+
+    static func partnerTagsTxt(for category: Category) -> Color {
+        switch category {
+        case .dining:
+            return PartnerTags.neutralTxt
+        case .culture:
+            return PartnerTags.purpleTxt
+        case .edu:
+            return PartnerTags.lightPurpleTxt
+        case .shopping:
+            return PartnerTags.rubyTxt
+        case .health:
+            return PartnerTags.yellowTxt
+        case .beauty:
+            return PartnerTags.lightBlueTxt
+        default:
+            return PartnerTags.neutralTxt
+        }
+    }
 }

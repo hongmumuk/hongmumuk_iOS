@@ -87,7 +87,10 @@ class PartnerViewModel {
             let firstCategory = (photoSection.items.first as? HMPartnerSmallPhoto)?.category
             return firstCategory == category ? photoSection : nil
         }
-
+        
+        let hasResult = filtered.contains { $0 is HMPartnerSmallPhotos }
+        guard hasResult else { return [] }
+        
         return filtered.enumerated().compactMap { index, section in
             guard section is HMLTitle else { return section }
             let next = filtered.indices.contains(index + 1) ? filtered[index + 1] : nil

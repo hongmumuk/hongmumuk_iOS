@@ -9,8 +9,12 @@ struct HMSmallPhotoCard: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            imageStack()
-            textStack()
+            if card is HMPartnerSmallPhoto {
+                textStack()
+            } else {
+                imageStack()
+                textStack()
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -91,18 +95,15 @@ extension HMSmallPhotoCard {
     
     private func textBadge(for text: String, category: Category) -> some View {
         HStack(spacing: 4) {
-            Image("\(category.rawValue)TagLine")
-                .resizable()
-                .frame(width: 16, height: 16)
             Text(text)
                 .fontStyle(Fonts.caption1Semibold)
-                .foregroundColor(Colors.Primary.normal)
+                .foregroundColor(Colors.partnerTagsTxt(for: category))
         }
         .padding(.vertical, 2)
         .padding(.horizontal, 4)
         .background(
             RoundedRectangle(cornerRadius: 4)
-                .fill(Colors.Primary.primary10)
+                .fill(Colors.partnerTagsBg(for: category))
         )
         .padding(.bottom, 4)
     }
@@ -114,7 +115,7 @@ extension HMSmallPhotoCard {
     @ViewBuilder
     private func subTtitle() -> some View {
         if let card = card as? HMPartnerSmallPhoto {
-            Text(card.subTitle)
+            Text(card.title)
                 .fontStyle(Fonts.caption1Medium)
                 .foregroundColor(Colors.Label.Normal.neutral)
                 .padding(.bottom, 4)
@@ -126,12 +127,15 @@ extension HMSmallPhotoCard {
 
 extension HMSmallPhotoCard {
     private func title() -> some View {
-        let isBenifit = card is HMPartnerSmallPhoto
-        return Text(card.title)
-            .fontStyle(isBenifit ? Fonts.heading3Bold : Fonts.heading2Bold)
-            .lineLimit(1)
-            .truncationMode(.tail)
-            .padding(.bottom, 10)
+        if let card = card as? HMPartnerSmallPhoto {
+            return Text(card.subTitle)
+                .fontStyle(Fonts.heading3Bold)
+                .padding(.bottom, 10)
+        } else {
+            return Text(card.title)
+                .fontStyle(Fonts.heading2Bold)
+                .padding(.bottom, 10)
+        }
     }
 }
 

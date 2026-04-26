@@ -6,6 +6,17 @@ struct HMSmallPhotoList: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            mainView()
+        }
+    }
+}
+
+extension HMSmallPhotoList {
+    @ViewBuilder
+    private func mainView() -> some View {
+        if cards.isEmpty {
+            EmptyPlaceView()
+        } else {
             ForEach(cards, id: \.id) { card in
                 HMSmallPhotoCard(card: card)
                     .padding(.horizontal, 24)
