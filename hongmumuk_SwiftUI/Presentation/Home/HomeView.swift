@@ -2,18 +2,62 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showDetail = false
+    @State var showPopup = false
     @State var homeViewModel: HomeViewModel = .init()
     
+    //    var body: some View {
+    //        ScrollView(content: content)
+    //            .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
+    //            .padding(.top)
+    //            .onAppear {
+    //                Event.screenHome.send()
+    //            }
+    //            .task {
+    //                await homeViewModel.getSections()
+    //            }
+    //    }
+    
     var body: some View {
-        ScrollView(content: content)
-            .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
-            .padding(.top)
-            .onAppear {
-                Event.screenHome.send()
+        ZStack {
+            ScrollView(content: content)
+                .disabled(showPopup)
+                .blur(radius: showPopup ? 2 : 0)
+            
+            if showPopup {
+                Color.black
+                    .opacity(0.45)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        dismissPopup()
+                    }
+                
+                HMPopupView(
+                    onClose: dismissPopup,
+                    onTapPost: {
+                        dismissPopup()
+                    }
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(1)
             }
-            .task {
-                await homeViewModel.getSections()
+        }
+        .animation(.spring(response: 0.45, dampingFraction: 0.9), value: showPopup)
+        .task {
+            await homeViewModel.getSections()
+
+            // if !UserDefaultsManager.shared.isViewPopUp {
+            if !showPopup {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    showPopup = true
+                }
+
+                UserDefaultsManager.shared.isViewPopUp = true
             }
+        }
+    }
+    
+    private func dismissPopup() {
+        showPopup = false
     }
     
     @ViewBuilder
