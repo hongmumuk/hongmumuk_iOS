@@ -9,6 +9,14 @@ struct HMLagePhotoCard: View {
     
     var body: some View {
         KFImage(URL(string: card.imageUrl))
+            .setProcessor(
+                DownsamplingImageProcessor(
+                    size: CGSize(width: width * UIScreen.main.scale,
+                                 height: height * UIScreen.main.scale)
+                )
+            )
+            .scaleFactor(UIScreen.main.scale)
+            .cacheOriginalImage()
             .resizable()
             .scaledToFill()
             .frame(width: width, height: height)

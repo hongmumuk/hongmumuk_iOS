@@ -23,6 +23,12 @@ struct HMSmallPhotoCard: View {
     private func imageStack() -> some View {
         if let url = URL(string: card.imageUrl) {
             KFImage(url)
+                .setProcessor(
+                    DownsamplingImageProcessor(
+                        size: CGSize(width: size * UIScreen.main.scale,
+                                     height: size * UIScreen.main.scale)
+                    )
+                )
                 .onSuccess { _ in
                     isLoaded = true
                 }
@@ -32,6 +38,8 @@ struct HMSmallPhotoCard: View {
                 .placeholder {
                     thumbnailImage
                 }
+                .scaleFactor(UIScreen.main.scale)
+                .cacheOriginalImage()
                 .resizable()
                 .scaledToFill()
                 .frame(width: size, height: size)

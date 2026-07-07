@@ -3,15 +3,18 @@ import Foundation
 
 enum Event {
     // MARK: - Screen
+
     case screenHome
     case screenPartner
     case screenDetail(placeId: String, placeName: String, category: String)
 
     // MARK: - Home
+
     case homeCardTapped(placeId: String, placeName: String, section: String)
     case homeCategoryFilterSelected(category: String)
 
     // MARK: - Partner
+
     case partnerCardTapped(placeId: String, placeName: String, category: String)
     case partnerCategoryFilterSelected(category: String)
 }

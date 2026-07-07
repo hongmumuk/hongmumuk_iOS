@@ -40,7 +40,12 @@ struct DetailView: View {
     // MARK: - thumbnailImage
     
     private func thumbnailTab() -> some View {
-        TabView {
+        let size = CGSize(
+            width: UIScreen.main.bounds.size.width * UIScreen.main.scale,
+            height: 402 * UIScreen.main.scale
+        )
+        
+        return TabView {
             if detailViewModel.images.isEmpty {
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
@@ -48,6 +53,9 @@ struct DetailView: View {
             } else {
                 ForEach(detailViewModel.images, id: \.self) { imageUrl in
                     KFImage(URL(string: imageUrl))
+                        .setProcessor(DownsamplingImageProcessor(size: size))
+                        .scaleFactor(UIScreen.main.scale)
+                        .cacheOriginalImage()
                         .resizable()
                         .scaledToFill()
                         .overlay(content: thumbnailImageOverlay)
