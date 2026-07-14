@@ -12,12 +12,24 @@ class HomeViewModel {
     // id → (placeName, sectionKey) 룩업 - 카드 탭 이벤트에 활용
     private var itemNameMap: [String: String] = [:]
     private var itemSectionMap: [String: String] = [:]
+    
+    func getPopup() async {
+        if UserDefaultsManager.shared.isViewPopUp {
+            return
+        }
+        
+        do {
+            let item = try await SupabaseService.shared.getScreen(for: .popup)
+        } catch {
+            print("error", error)
+        }
+    }
 
     func getSections() async {
         if !sections.isEmpty {
             return
         }
-
+        
         do {
             let items = try await SupabaseService.shared.getScreen(for: .home)
 
@@ -47,6 +59,9 @@ class HomeViewModel {
                     sections.append(HMListFilter())
                     let item = fetchCategorySmallPhoto(for: section.items, sectionKey: section.sectionKey)
                     sections.append(item)
+
+                default:
+                    break
                 }
             }
 

@@ -33,10 +33,17 @@ struct Section: Decodable, Identifiable {
 enum SectionType: String, Decodable {
     case cards
     case categoryFilterList = "category_filter_list"
+    case popup
 }
 
 struct SectionProps: Decodable {
     let title: String?
+
+    let weekLabel: String?
+    let subtitle: String?
+    let coverUrl: String?
+    let popupTitle: String?
+    let popupContent: String?
 
     let cardStyle: CardStyle?
     let cardVariant: CardVariant?
@@ -48,6 +55,13 @@ struct SectionProps: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case title
+
+        case weekLabel = "week_label"
+        case subtitle
+        case coverUrl = "cover_url"
+        case popupTitle = "popup_title"
+        case popupContent = "popup_content"
+
         case cardStyle = "card_style"
         case cardVariant = "card_variant"
         case show
@@ -114,6 +128,10 @@ struct HomeItem: Decodable, Identifiable {
     let viewCount: Int?
     let walkTimeMin: String?
 
+    let contentTitle: String?
+    let content: String?
+    let displayOrder: Int?
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -131,5 +149,9 @@ struct HomeItem: Decodable, Identifiable {
         case tags
         case viewCount = "view_count"
         case walkTimeMin = "walk_time_min"
+
+        case contentTitle = "content_title"
+        case content
+        case displayOrder = "display_order"
     }
 }

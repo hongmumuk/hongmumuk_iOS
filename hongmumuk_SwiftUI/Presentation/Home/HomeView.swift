@@ -4,22 +4,11 @@ struct HomeView: View {
     @State var showDetail = false
     @State var showPopup = false
     @State var homeViewModel: HomeViewModel = .init()
-    
-    //    var body: some View {
-    //        ScrollView(content: content)
-    //            .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
-    //            .padding(.top)
-    //            .onAppear {
-    //                Event.screenHome.send()
-    //            }
-    //            .task {
-    //                await homeViewModel.getSections()
-    //            }
-    //    }
-    
+
     var body: some View {
         ZStack {
             ScrollView(content: content)
+                .fullScreenCover(item: $homeViewModel.selectedItem, content: fullScreenContent)
                 .disabled(showPopup)
                 .blur(radius: showPopup ? 2 : 0)
             
@@ -53,6 +42,9 @@ struct HomeView: View {
 
                 UserDefaultsManager.shared.isViewPopUp = true
             }
+        }
+        .onAppear {
+            Event.screenHome.send()
         }
     }
     
