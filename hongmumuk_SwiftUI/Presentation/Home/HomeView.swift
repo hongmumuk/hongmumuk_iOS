@@ -12,26 +12,32 @@ struct HomeView: View {
                 .disabled(showPopup)
                 .blur(radius: showPopup ? 2 : 0)
             
-            if showPopup {
-                Color.black
-                    .opacity(0.45)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        dismissPopup()
-                    }
-                
-                HMPopupView(
-                    onClose: dismissPopup,
-                    onTapPost: {
-                        dismissPopup()
-                    }
-                )
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .zIndex(1)
+            if let props = homeViewModel.popupProps {
+                if showPopup {
+                    Color.black
+                        .opacity(0.45)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            dismissPopup()
+                        }
+
+                    HMPopupView(
+                        props: props,
+                        items: homeViewModel.popupItems,
+                        onClose: dismissPopup,
+                        onTapPost: {
+                            dismissPopup()
+                        }
+                    )
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .zIndex(1)
+                }
             }
         }
         .animation(.spring(response: 0.45, dampingFraction: 0.9), value: showPopup)
         .task {
+            // await homeViewModel.getPopup()
+            await homeViewModel.getPopupMock()
             await homeViewModel.getSections()
 
             // if !UserDefaultsManager.shared.isViewPopUp {
@@ -40,7 +46,7 @@ struct HomeView: View {
                     showPopup = true
                 }
 
-                UserDefaultsManager.shared.isViewPopUp = true
+                // UserDefaultsManager.shared.isViewPopUp = true
             }
         }
         .onAppear {

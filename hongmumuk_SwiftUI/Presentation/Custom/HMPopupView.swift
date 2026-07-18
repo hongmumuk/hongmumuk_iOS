@@ -4,9 +4,13 @@
 //
 //  Created by Dongwan Ryoo on 7/7/26.
 //
+import Kingfisher
 import SwiftUI
 
 struct HMPopupView: View {
+    let props: HMPopupProps
+    let items: [HMPopupItem]
+    
     let onClose: () -> Void
     let onTapPost: () -> Void
     
@@ -17,60 +21,114 @@ struct HMPopupView: View {
     
     func mainContent() -> some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
-                imgSubTitle()
-                imgTitle()
-            }
-            .background(.black)
-            
+            cover()
             title()
             subTitle()
             viewButton()
             closeButton()
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 464)
         .background(.white)
         .cornerRadius(20)
         .padding(.horizontal, 20)
     }
     
-    func imgSubTitle() -> some View {
-        HStack {
-            Text("에디터가 직접 먹어 본")
+    // MARK: - Cover 영역
+
+    func cover() -> some View {
+        ZStack {
+            coverImage()
+            coverImgTitleSection()
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 220)
+        .padding(.bottom, 24)
+        .background(.blue)
+    }
+    
+    func coverImage() -> some View {
+        KFImage(URL(string: props.coverUrl))
+            .cacheOriginalImage()
+            .resizable()
+            .scaledToFill()
+            .frame(height: 220)
+    }
+    
+    func coverImgTitleSection() -> some View {
+        VStack(spacing: 0) {
+            coverImgWeekTitle()
+            Spacer()
+            coverImgSubTitle()
+            coverImgTitle()
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    func coverImgWeekTitle() -> some View {
+        HStack(spacing: 0) {
+            Text("MUMOOK?")
+                .font(Fonts.body1Medium.toFont())
+                .foregroundColor(Colors.Primary.normal)
+                .padding(.vertical, 2)
+                .padding(.horizontal, 6)
+                .background(.white)
+                .frame(height: 25)
+            
+            Text("6월 3주차")
+                // Text(props.weekLabel)
                 .font(Fonts.body1Medium.toFont())
                 .foregroundColor(.white)
+                .padding(.vertical, 2)
+                .padding(.horizontal, 6)
+                .background(Colors.Primary.normal)
+                .frame(height: 25)
+            
+            Spacer()
+        }
+        .padding(.top, 20)
+    }
+    
+    func coverImgSubTitle() -> some View {
+        HStack {
+            Text(props.subtitle)
+                .font(Fonts.body1Medium.toFont())
+                .foregroundColor(.white)
+                .padding(.bottom, 4)
             
             Spacer()
         }
     }
     
-    func imgTitle() -> some View {
+    func coverImgTitle() -> some View {
         HStack {
-            Text("홍대 주변 한식 맛집 zip")
+            Text(props.title)
                 .font(Fonts.title2Bold.toFont())
                 .foregroundColor(.white)
-                .padding(.bottom, 12)
+                .padding(.bottom, 20)
             
             Spacer()
         }
     }
     
+    // MARK: - 중간 title 영역
+
     func title() -> some View {
-        Text("이달의 포스트가 나왔어요!")
+        Text(props.popupTitle)
             .font(Fonts.heading2Bold.toFont())
             .foregroundColor(Colors.Label.Normal.strong)
             .padding(.bottom, 12)
     }
     
     func subTitle() -> some View {
-        Text("에디터가 직접 다녀온\n홍대 저녁 맛집 5곳을 한 번에 모아봤어요.")
+        Text(props.popupContent)
             .multilineTextAlignment(.center)
             .font(Fonts.heading3Medium.toFont())
             .foregroundColor(Colors.Label.Normal.neutral)
             .padding(.bottom, 24)
     }
     
+    // MARK: - 하단 버튼 영역
+
     func viewButton() -> some View {
         Button(action: onTapPost) {
             Text("포스트 보러 가기")
@@ -93,5 +151,6 @@ struct HMPopupView: View {
                 .foregroundStyle(.white)
         }
         .background(.clear)
+        .padding(.bottom, 20)
     }
 }
