@@ -59,6 +59,7 @@
 		BE2D70CA2D818710002FA07C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D70C92D818710002FA07C /* NetworkManager.swift */; };
 		BE34849E2EC1AB7B007A92A7 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BE34849D2EC1AB7B007A92A7 /* GoogleMobileAds */; };
 		BE3A02DC3006683800D2442E /* PopupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A02DB3006683800D2442E /* PopupModel.swift */; };
+		BE3A2CB2300BA6C200F5633C /* HMPopupLastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A2CB1300BA6C200F5633C /* HMPopupLastView.swift */; };
 		BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F60A72E101DA3000F1212 /* UIImage+.swift */; };
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
@@ -165,6 +166,7 @@
 		BE2D3BCC2DABAD980008BA40 /* hongmumuk-localization-456509-c03bc9f5eaee.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hongmumuk-localization-456509-c03bc9f5eaee.json"; sourceTree = "<group>"; };
 		BE2D70C92D818710002FA07C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BE3A02DB3006683800D2442E /* PopupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModel.swift; sourceTree = "<group>"; };
+		BE3A2CB1300BA6C200F5633C /* HMPopupLastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPopupLastView.swift; sourceTree = "<group>"; };
 		BE4F60A72E101DA3000F1212 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Univ.swift; sourceTree = "<group>"; };
 		BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Univ+.swift"; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				BEEC2BD92F0A3AB10094EFAE /* HMSmallPhotoList.swift */,
 				BE02FF232F552937007452FD /* HMNavigationBar.swift */,
 				BE51E6BB2FFD247700EF5DA8 /* HMPopupView.swift */,
+				BE3A2CB1300BA6C200F5633C /* HMPopupLastView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				BEEC2BCF2F0A3AA20094EFAE /* HomeView.swift in Sources */,
 				2F435EAB2D4FC1C4005E1C84 /* Fonts.swift in Sources */,
 				2F68B4B12D717EBA00548850 /* TextFieldState.swift in Sources */,
+				BE3A2CB2300BA6C200F5633C /* HMPopupLastView.swift in Sources */,
 				BE2712D22EF2680C00D09128 /* DetailView.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
 				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,

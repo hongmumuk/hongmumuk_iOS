@@ -15,7 +15,9 @@ struct HMPopupView: View {
     let onTapPost: () -> Void
     
     var body: some View {
-        mainContent()
+//        mainContent()
+//            .ignoresSafeArea()
+        HMPopupLastView(onClose: {}, onTapPost: {})
             .ignoresSafeArea()
     }
     
