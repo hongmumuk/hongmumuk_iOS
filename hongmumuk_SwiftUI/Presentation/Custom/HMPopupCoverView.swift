@@ -1,5 +1,5 @@
 //
-//  HMPopupView.swift
+//  HMPopupCoverView.swift
 //  hongmumuk_SwiftUI
 //
 //  Created by Dongwan Ryoo on 7/7/26.
@@ -7,7 +7,7 @@
 import Kingfisher
 import SwiftUI
 
-struct HMPopupView: View {
+struct HMPopupCoverView: View {
     let props: HMPopupProps
     let items: [HMPopupItem]
     
@@ -15,10 +15,7 @@ struct HMPopupView: View {
     let onTapPost: () -> Void
     
     var body: some View {
-//        mainContent()
-//            .ignoresSafeArea()
-        HMPopupLastView(onClose: {}, onTapPost: {})
-            .ignoresSafeArea()
+        mainContent()
     }
     
     func mainContent() -> some View {
@@ -36,7 +33,7 @@ struct HMPopupView: View {
     }
     
     // MARK: - Cover 영역
-
+    
     func cover() -> some View {
         ZStack {
             coverImage()
@@ -45,7 +42,6 @@ struct HMPopupView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 220)
         .padding(.bottom, 24)
-        .background(.blue)
     }
     
     func coverImage() -> some View {
@@ -76,8 +72,7 @@ struct HMPopupView: View {
                 .background(.white)
                 .frame(height: 25)
             
-            Text("6월 3주차")
-                // Text(props.weekLabel)
+            Text(props.weekLabel)
                 .font(Fonts.body1Medium.toFont())
                 .foregroundColor(.white)
                 .padding(.vertical, 2)
@@ -113,7 +108,7 @@ struct HMPopupView: View {
     }
     
     // MARK: - 중간 title 영역
-
+    
     func title() -> some View {
         Text(props.popupTitle)
             .font(Fonts.heading2Bold.toFont())
@@ -130,17 +125,17 @@ struct HMPopupView: View {
     }
     
     // MARK: - 하단 버튼 영역
-
+    
     func viewButton() -> some View {
         Button(action: onTapPost) {
             Text("포스트 보러 가기")
                 .font(Fonts.heading2Bold.toFont())
                 .foregroundStyle(.white)
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Colors.Primary.normal)
+                .cornerRadius(20)
         }
-        .frame(height: 60)
-        .frame(maxWidth: .infinity)
-        .background(Colors.Primary.normal)
-        .cornerRadius(20)
         .padding(.horizontal, 20)
         .padding(.bottom, 12)
     }
@@ -152,6 +147,7 @@ struct HMPopupView: View {
                 .foregroundColor(Colors.Label.Normal.alternative)
                 .foregroundStyle(.white)
         }
+        .contentShape(Rectangle())
         .background(.clear)
         .padding(.bottom, 20)
     }

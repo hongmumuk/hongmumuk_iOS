@@ -18,6 +18,15 @@ extension View {
             ))
         }
     }
+    
+    func blockScrollBounce() -> some View {
+        onAppear {
+            UIScrollView.appearance().bounces = false
+        }
+        .onDisappear {
+            UIScrollView.appearance().bounces = true
+        }
+    }
 }
 
 struct FontStyleModifier: ViewModifier {

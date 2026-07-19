@@ -64,10 +64,12 @@
 		BE4F9B1E2D58FC9600E7CC46 /* Univ.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1D2D58FC9600E7CC46 /* Univ.swift */; };
 		BE4F9B202D58FCB400E7CC46 /* Univ+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */; };
 		BE4F9B2F2D59EEBB00E7CC46 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */; };
-		BE51E6BC2FFD247700EF5DA8 /* HMPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51E6BB2FFD247700EF5DA8 /* HMPopupView.swift */; };
+		BE51E6BC2FFD247700EF5DA8 /* HMPopupCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51E6BB2FFD247700EF5DA8 /* HMPopupCoverView.swift */; };
 		BE53EF172EFBCA8500168871 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = BE53EF162EFBCA8500168871 /* Supabase */; };
 		BE5B13182DA917C300EEC23D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE5B13162DA917C300EEC23D /* Localizable.strings */; };
 		BE5F1A952D51EB2500D124DB /* Cateogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F1A932D51EB2500D124DB /* Cateogory.swift */; };
+		BE5F30BD300C8D9000BE7CA5 /* HMPopupCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F30BC300C8D9000BE7CA5 /* HMPopupCarouselView.swift */; };
+		BE5F30BF300C8DAC00BE7CA5 /* HMPopupRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F30BE300C8DAC00BE7CA5 /* HMPopupRootView.swift */; };
 		BE79E7752D61BCC9002D57D8 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79E7742D61BCC9002D57D8 /* Double+.swift */; };
 		BE8299622D60B5E70081F979 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8299612D60B5E70081F979 /* String+.swift */; };
 		BE8BE19C2EFBDF3F00A75736 /* ScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8BE19B2EFBDF3F00A75736 /* ScreenModel.swift */; };
@@ -172,10 +174,12 @@
 		BE4F9B1F2D58FCB400E7CC46 /* Univ+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Univ+.swift"; sourceTree = "<group>"; };
 		BE4F9B2D2D59EE2C00E7CC46 /* hongmumuk-SwiftUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hongmumuk-SwiftUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BE4F9B2E2D59EEBB00E7CC46 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		BE51E6BB2FFD247700EF5DA8 /* HMPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPopupView.swift; sourceTree = "<group>"; };
+		BE51E6BB2FFD247700EF5DA8 /* HMPopupCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPopupCoverView.swift; sourceTree = "<group>"; };
 		BE5B13172DA917C300EEC23D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE5B131A2DA917CC00EEC23D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE5F1A932D51EB2500D124DB /* Cateogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cateogory.swift; sourceTree = "<group>"; };
+		BE5F30BC300C8D9000BE7CA5 /* HMPopupCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPopupCarouselView.swift; sourceTree = "<group>"; };
+		BE5F30BE300C8DAC00BE7CA5 /* HMPopupRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPopupRootView.swift; sourceTree = "<group>"; };
 		BE79E7742D61BCC9002D57D8 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		BE8299612D60B5E70081F979 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		BE8BE19B2EFBDF3F00A75736 /* ScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenModel.swift; sourceTree = "<group>"; };
@@ -459,7 +463,9 @@
 				BEEC2BD82F0A3AB10094EFAE /* HMSmallPhotoCard.swift */,
 				BEEC2BD92F0A3AB10094EFAE /* HMSmallPhotoList.swift */,
 				BE02FF232F552937007452FD /* HMNavigationBar.swift */,
-				BE51E6BB2FFD247700EF5DA8 /* HMPopupView.swift */,
+				BE5F30BE300C8DAC00BE7CA5 /* HMPopupRootView.swift */,
+				BE51E6BB2FFD247700EF5DA8 /* HMPopupCoverView.swift */,
+				BE5F30BC300C8D9000BE7CA5 /* HMPopupCarouselView.swift */,
 				BE3A2CB1300BA6C200F5633C /* HMPopupLastView.swift */,
 			);
 			path = Custom;
@@ -710,8 +716,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE51E6BC2FFD247700EF5DA8 /* HMPopupView.swift in Sources */,
+				BE51E6BC2FFD247700EF5DA8 /* HMPopupCoverView.swift in Sources */,
 				BE4F60A82E101DA3000F1212 /* UIImage+.swift in Sources */,
+				BE5F30BD300C8D9000BE7CA5 /* HMPopupCarouselView.swift in Sources */,
 				BE02D09D2D607D0C00F61E66 /* Sort.swift in Sources */,
 				2F85BD5C2D916BFF0049FA77 /* Notification.swift in Sources */,
 				BE8BE19E2EFBE00D00A75736 /* Screen.swift in Sources */,
@@ -721,6 +728,7 @@
 				BE3A2CB2300BA6C200F5633C /* HMPopupLastView.swift in Sources */,
 				BE2712D22EF2680C00D09128 /* DetailView.swift in Sources */,
 				2F435EA62D4FBF91005E1C84 /* Effects.swift in Sources */,
+				BE5F30BF300C8DAC00BE7CA5 /* HMPopupRootView.swift in Sources */,
 				2FF95D3F2DEC84AE005BA558 /* AppDelegate.swift in Sources */,
 				BE3A02DC3006683800D2442E /* PopupModel.swift in Sources */,
 				2FD2DD572E0B298300B34067 /* DateUtils.swift in Sources */,

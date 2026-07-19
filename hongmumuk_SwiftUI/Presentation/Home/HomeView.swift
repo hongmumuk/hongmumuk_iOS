@@ -17,17 +17,11 @@ struct HomeView: View {
                     Color.black
                         .opacity(0.45)
                         .ignoresSafeArea()
-                        .onTapGesture {
-                            dismissPopup()
-                        }
 
-                    HMPopupView(
+                    HMPopupRootView(
                         props: props,
                         items: homeViewModel.popupItems,
-                        onClose: dismissPopup,
-                        onTapPost: {
-                            dismissPopup()
-                        }
+                        onClose: dismissPopup
                     )
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .zIndex(1)

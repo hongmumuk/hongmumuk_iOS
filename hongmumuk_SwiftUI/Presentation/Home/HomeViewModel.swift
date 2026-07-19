@@ -25,12 +25,42 @@ class HomeViewModel {
             popupTitle: "popupTitle",
             popupContent: "popupContent"
         )
+
+        popupItems = [
+            HMPopupItem(
+                id: "mock-1",
+                image: "https://picsum.photos/420/300",
+                placeName: "홍대 맛집 1호점",
+                category: "한식",
+                contentTitle: "홍대에서 꼭 가야 할 저녁 맛집",
+                content: "분위기 좋고 음식도 맛있는 홍대 대표 맛집입니다.",
+                displayOrder: 1
+            ),
+            HMPopupItem(
+                id: "mock-2",
+                image: "https://picsum.photos/421/300",
+                placeName: "홍대 맛집 2호점",
+                category: "양식",
+                contentTitle: "홍대 핫플 레스토랑",
+                content: "파스타와 스테이크가 일품인 홍대 인기 레스토랑입니다.",
+                displayOrder: 2
+            ),
+            HMPopupItem(
+                id: "mock-3",
+                image: "https://picsum.photos/422/300",
+                placeName: "홍대 맛집 3호점",
+                category: "일식",
+                contentTitle: "홍대 숨은 일식 맛집",
+                content: "정통 일식 코스를 합리적인 가격에 즐길 수 있는 곳입니다.",
+                displayOrder: 3
+            )
+        ]
     }
     
     func getPopup() async {
-        if UserDefaultsManager.shared.isViewPopUp {
-            return
-        }
+//        if UserDefaultsManager.shared.isViewPopUp {
+//            return
+//        }
         
         do {
             let screen = try await SupabaseService.shared.getScreen(for: .popup)

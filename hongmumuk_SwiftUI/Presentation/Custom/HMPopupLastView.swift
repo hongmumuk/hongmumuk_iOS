@@ -9,7 +9,6 @@ import Kingfisher
 import SwiftUI
 
 struct HMPopupLastView: View {
-    let onClose: () -> Void
     let onTapPost: () -> Void
     
     var body: some View {
@@ -20,7 +19,6 @@ struct HMPopupLastView: View {
     func mainContent() -> some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
-                buttonStack()
                 titleStack()
                 viewButton()
             }
@@ -30,32 +28,10 @@ struct HMPopupLastView: View {
         .frame(maxWidth: .infinity)
         .background(Colors.Primary.normal)
         .cornerRadius(20)
-        .padding(.horizontal, 20)
     }
     
     func logoImage() -> some View {
         Image("popupLogo")
-    }
-    
-    // MARK: - 상단 버튼 영역
-    
-    func buttonStack() -> some View {
-        HStack {
-            Spacer()
-            
-            Button(action: onClose) {
-                Image(systemName: "xmark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 16, height: 16)
-                    .foregroundStyle(Colors.Label.Normal.assisitive)
-            }
-            .frame(width: 32, height: 32)
-            .background(Color.black.opacity(0.6))
-            .clipShape(Circle())
-        }
-        .padding(.top, 20)
-        .padding(.horizontal, 20)
     }
     
     // MARK: - 중간 title 영역
@@ -91,11 +67,11 @@ struct HMPopupLastView: View {
             Text("맛집 리스트 보러가기")
                 .font(Fonts.heading2Bold.toFont())
                 .foregroundStyle(Colors.Primary.normal)
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(Colors.Primary.alternative)
+                .cornerRadius(20)
         }
-        .frame(height: 60)
-        .frame(maxWidth: .infinity)
-        .background(Colors.Primary.alternative)
-        .cornerRadius(20)
         .padding(.horizontal, 20)
         .padding(.bottom, 94)
     }
